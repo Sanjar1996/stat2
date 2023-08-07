@@ -1,0 +1,49 @@
+{% extends "layouts/base.html" %}
+{% load i18n %}
+{% block title %} {% trans 'organization page title' %} {% endblock %}
+
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+    {% if not permission_denied %}
+        <div class="row">
+            <div class="col-md-8 offset-md-2">
+                <div class="card">
+                    <div class="card-header card-header-info shadow py-4">
+                        <h4 class="card-title text-light text-center">{% trans 'organization create form' %}</h4>
+                    </div>
+                    <div class="card-body mt-4">
+                        <form role="form" method="POST" action="{% url 'finance:organization_create' %}">
+                            {% csrf_token %}
+                            <div class="row d-flex align-items-end">
+                                <div class="col-md-8">
+                                <div class="form-group">
+                                    {{form.name}}
+                                </div>
+                                <div class="form-group">
+                                    {{form.owner}}
+                                </div>
+                                </div>
+                                <div class="col-md-4 d-flex align-items-end">
+                                    <button type="submit" class="btn btn-info btn-sm">{% trans 'create' %}</button>
+                                    <a href="{% url 'finance:organization_list' %}"
+                                           class="btn btn-success btn-sm text-dark">{% trans 'back' %}</a>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    {% else %}
+        <h2>{% trans 'Permision denied' %}</h2>
+    {% endif %}
+
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}
+
+{% endblock javascripts %}

@@ -1,0 +1,356 @@
+{% extends "layouts/base.html" %}
+{% load i18n %}
+{% block title %} {% trans 'Chorva input output create page' %} {% endblock %}
+{% block stylesheets %}
+    <style>
+        [v-cloak] {
+            display: none;
+        }
+    </style>
+{% endblock stylesheets %}
+<!-- Specific Page CSS goes HERE  -->
+{% block content %}
+    {% if perms.chorvachilik.add_chorvainputoutput %}
+        <div class="row pt-5" id="chorvachilik_input_create" v-cloak>
+            <div class="col-md-10 offset-md-1">
+                <form @submit.prevent="createGrowingPlan">
+                    {% csrf_token %}
+                    <div class="card">
+                        <div class="card-header card-header-info py-4">
+                            <h4 class="card-title text-light text-center">{% trans 'Chorva input output create form' %}</h4>
+                        </div>
+                        <div class="card-body py-4">
+                            <div class="row d-flex align-items-center bg-light border mb-1 mx-1">
+                                <div class="col-md-4">
+                                    <div class="form-group pt-3">
+                                        <label for="id_date" class="text-dark">{% trans "date" %}</label>
+                                        <input type="date" name="date" id="id_date" class="form-control" v-model="date"
+                                               required>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group pb-2">
+                                        <label for="region_id">{% trans 'Region' %}</label>
+                                        <select
+                                                name="region"
+                                                id="region_id"
+                                                class="custom-select"
+                                                v-model="region"
+                                                @change="regionChangeHandler(region)"
+                                                required>
+                                            <option v-for="item in regions" :key="item.id" :value="item.id">[[ item.name
+                                                ]]
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group pb-2">
+                                        <label for="region">{% trans 'Department' %}</label>
+                                        <select
+                                                name="department"
+                                                id="department_id"
+                                                class="custom-select"
+                                                v-model="department"
+                                                @change="departmentChangeHandler(department)"
+                                                required>
+                                            <option v-for="item in selectedDepartments" :key="item.id" :value="item.id">
+                                                [[ item.name ]]
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label>{% trans 'Output Categoty' %}</label>
+                                        <select
+                                                class="custom-select"
+                                                v-model="category"
+                                                @change="outputCategoryChangeHandler(category)"
+                                                id="category"
+                                                required>
+                                            <option v-for="item in categories" :key="item.id" :value="item.id">[[
+                                                item.name|truncate(20, '...') ]]
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="text">{% trans 'Animal Categories' %}</label>
+                                        <select
+                                                v-model="animal_category"
+                                                class="custom-select"
+                                                id="id_animal_category"
+                                                @change="animalCategoryChangeHandler(animal_category)"
+                                                required>
+                                            <template>
+                                                <option v-for="item in animal_categories" :key="item.id"
+                                                        :value="item.id">[[ item.name ]]
+                                                </option>
+                                            </template>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 py-2">
+                                    <div class="form-group pt-1">
+                                        <label for="text" class="text-dark"> {% trans 'Animal' %}</label>
+                                        <select name="type" id="id_animal" class="custom-select" v-model="animal"
+                                                required>
+                                            <template>
+                                                <option v-for="item in animalAfterFilter" :key="item.id"
+                                                        :value="item.id">[[ item.name ]]
+                                                </option>
+                                            </template>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 py-2">
+                                    <div class="form-group pt-1">
+                                        <label for="date" class="text-dark">{% trans 'amount' %}</label>
+                                        <input type="number" class="form-control" v-model="amount" id="id_amount"
+                                               required>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 py-2">
+                                    <div class="form-group pt-1">
+                                        <label for="date" class="text-dark">{% trans 'weight' %}</label>
+                                        <input type="number" step="0.01" class="form-control" v-model="weight" id="id_weight"
+                                               required>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 py-2">
+                                    <div class="col-md-12">
+                                        <input id="id_files" name="files" type="file" class="files"
+                                               data-show-upload="false" data-show-caption="true" multiple
+                                               ref="files" multiple @change="upload()">
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="row">
+                                        <div class="col-md-2" v-for="item in uploadetFiles" :key="item.id">
+                                            <div class="card">
+                                                <img class="card-img-top" :src="item.file" rel="nofollow"
+                                                     :alt="item.file">
+                                                <div class="card-body d-flex justify-content-center">
+                                                    <a
+                                                            data-toggle="modal"
+                                                            data-target="#preview"
+                                                            @click="previewImageHandler(item.file)"
+                                                            class="btn btn-info btn-fab btn-fab-mini btn-round text-light">
+                                                        <i class="material-icons">visibility</i>
+                                                    </a>
+                                                    <a
+                                                            @click="removeUploadedFile(item.id)"
+                                                            class="btn btn-info btn-fab btn-fab-mini btn-round text-light">
+                                                        <i class="material-icons">delete</i>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12 d-flex align-items-start justify-content-end pb-2">
+                                    <a href="{% url 'chorvachilik:chorva_output_list' %}"
+                                       class="btn btn-success btn-sm text-light">
+                                        {% trans 'back' %}
+                                    </a>
+                                    <button type="submit" @click="saveAndNext()" class="btn btn-info btn-sm">
+                                        {% trans 'save' %}
+                                    </button>
+                                    <button type="submit" @click="saveAndExit()" class="btn btn-info btn-sm">
+                                        {% trans 'save and exit' %}
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                </form>
+
+            </div>
+        </div>
+        <div class="modal fade bd-example-modal-lg" id="preview" tabindex="-1" role="dialog"
+             aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">{% trans 'preview' %}</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body d-flex justify-content-center align-items-center">
+                        <img :src="currentImage" alt="previewImage" height="300">
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-success btn-sm"
+                                data-dismiss="modal">{% trans "exit" %}</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+
+    {% else %}
+        <h2>{% trans 'Permission Denied' %}</h2>
+    {% endif %}
+{% endblock content %}
+{% block javascripts %}
+    <script>
+        let d = {{departments|safe}};
+        let r = {{ regions|safe }};
+        let animal_data = {{ animal|safe }};
+        let a_categories = {{ animal_category|safe }};
+        let category_data = {{ category|safe }};
+        const categories = convertToObj(category_data);
+        const animals_data = animal_data.map(elem => {
+            if (elem) {
+                return {id: elem.pk, name: elem.fields['name'], category: elem.fields['category']}
+            }
+        })
+        const departments = convertToJson(d);
+        const regions = convertToObj(r);
+        const animal_category = convertToObj(a_categories);
+        const animals = animal_data.map(elem => {
+            if (elem) {
+                let obj = {name: elem.fields['name'], category: elem.fields['category']}
+                return obj
+            }
+        })
+        const animal_categories = convertToObj(a_categories)
+        const token = getCsrfToken(document.querySelectorAll('input'));
+        const chorvachilik_input_create = new Vue({
+            delimiters: ['[[', ']]'],
+            el: '#chorvachilik_input_create',
+            data: {
+                date: null,
+                region: null,
+                animal_category: null,
+                department: null,
+                weight: null,
+                animal: null,
+                amount: null,
+                category: null,
+                next: false,
+                token: token,
+                amount_types: [{id: 1, title: "Kirim"}, {id: 2, title: "Chiqim"}],
+                regions: regions,
+                selectedDepartments: [],
+                departmentsRoot: departments,
+                animalsRoot: animals_data,
+                animalAfterFilter: [],
+                categories: categories,
+                animal_categories: animal_categories,
+                images: [],
+                uploadetFiles: [],
+                previewImage: ""
+            },
+            methods: {
+                regionChangeHandler(id) {
+                    this.selectedDepartments = this.departmentsRoot.filter(elem => elem.region === id)
+                },
+                animalCategoryChangeHandler(id) {
+                    console.log("id", id)
+                    this.animalAfterFilter = this.animalsRoot.filter(elem => elem.category === id)
+                },
+                outputCategoryChangeHandler(category) {
+                    console.log(category)
+                },
+                departmentChangeHandler(id) {
+                    this.department = id
+                },
+                async upload() {
+                    let uploaded_files = this.$refs.files.files;
+
+                    for (let i = 0; i < uploaded_files.length; ++i) {
+                        let formData = new FormData()
+                        formData.append("csrfmiddlewaretoken", this.token);
+                        formData.append('file', uploaded_files[i])
+                        formData.append('name', "chorvachilik chiqim")
+                        const url = location.origin + "/chorvachilik/chorva/upload/file/";
+                        try {
+                            const response = await fetch(url, {
+                                method: 'POST',
+                                body: formData
+                            })
+                            if (response) {
+                                const data = await response.json();
+                                if (data.id > 0) {
+                                    this.uploadetFiles.push(data)
+                                    this.images.push(data.id)
+                                }
+                            }
+                        } catch (error) {
+                            alert('Error')
+                        }
+                    }
+                },
+                async createGrowingPlan() {
+                    let form = new FormData();
+                    form.append("csrfmiddlewaretoken", this.token);
+                    form.append("date", this.date);
+                    form.append("region", this.region);
+                    form.append("department", this.department);
+                    form.append("category", this.category);
+                    form.append("animal", this.animal);
+                    form.append("amount", this.amount);
+                    form.append("weight", this.weight);
+                    form.append("next", this.next);
+                    form.append("images", JSON.stringify(this.images));
+                    const url = location.origin + "/chorvachilik/chorvachilik/output/create/";
+                    try {
+                        const response = await fetch(url, {
+                            method: 'POST',
+                            body: form
+                        })
+                        if (response.status === 200) {
+                           let msg = "{% trans "Your work has been saved" %}"
+                            successMessage(msg)
+                            setTimeout(() => {
+                                location.href = response.url
+                            }, 2000)
+                        }
+                    } catch (error) {
+                        let msg = "Error"
+                        errorMessage(msg)
+                    }
+                },
+                async removeUploadedFile(id) {
+                    let formData = new FormData();
+                    formData.append("csrfmiddlewaretoken", this.token)
+                    this.uploadetFiles = this.uploadetFiles.filter(item => item.id !== id)
+                    this.images = this.images.filter(item => item !== id)
+                    const url = location.origin + "/chorvachilik/chorva/delete/file/" + `${id}`;
+                    try {
+                        const response = await fetch(url, {method: 'POST', body: formData})
+                    } catch (error) {
+                        alert('Error')
+                    }
+                },
+                saveAndNext() {
+                    this.next = true
+                },
+                saveAndExit() {
+                    this.next = false
+                },
+                previewImageHandler(file) {
+                    this.previewImage = file
+                }
+            },
+
+            computed: {
+                currentImage() {
+                    return this.previewImage
+                }
+            },
+            filters: {
+                truncate: function (text, length, suffix) {
+                    if (text.length > length) {
+                        return text.substring(0, length) + suffix;
+                    } else {
+                        return text;
+                    }
+                },
+            }
+        });
+    </script>
+{% endblock javascripts %}

@@ -1,0 +1,505 @@
+{% extends "layouts/base.html" %}
+{% load i18n %}
+{% block title %} {% trans 'user_update_title' %} {% endblock %}
+
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}
+    <style>
+        .user_territory {
+            height: 300px;
+            width: auto;
+            overflow-y: auto;
+            max-height: 200px;
+            display: block;
+        }
+
+        .upload {
+            font-size: 15px;
+            color: white;
+            width: 145px;
+            padding: 11px;
+            position: relative;
+            overflow: hidden;
+            background-color: cornflowerblue;
+            cursor: pointer;
+        }
+
+        .upload input[type=file] {
+            position: absolute;
+            top: 0;
+            right: 0;
+            min-width: 100%;
+            min-height: 100%;
+            font-size: 100px;
+            text-align: right;
+            filter: alpha(opacity=0);
+            opacity: 0;
+            outline: none;
+            background: white;
+            cursor: inherit;
+            display: block;
+        }
+    </style>
+{% endblock stylesheets %}
+
+{% block content %}
+    {% if is_user %}
+        {% if perms.accounts.change_user %}
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="container mb-4">
+                            {% if msg %}
+                                <div class="alert alert-warning " role="alert">
+                                    {{ msg }}
+                                </div>
+                            {% endif %}
+                        </div>
+                        <div class="card-header card-header-info py-4">
+                            <h4 class="card-title text-light">{% trans 'Update user' %}</h4>
+                            <p class="card-category text-light"></p>
+                        </div>
+                        <div class="card-body mt-4">
+                            <form role="form" method="post" action="{% url 'accounts:accounts_update' account.pk %}"
+                                  enctype="multipart/form-data">
+                                {% csrf_token %}
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="form-group py-2">
+                                            <label for="" class="text-dark">{% trans 'Email' %}</label>
+                                            {{ form_user.email }}
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group py-2">
+                                            <label for="" class="text-dark">{% trans 'First name' %}</label>
+                                            {{ form_user.first_name }}
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group py-2">
+                                            <label for="" class="text-dark">{% trans 'Last name' %}</label>
+                                            {{ form_user.last_name }}
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group py-2">
+                                            <label for="" class="text-dark">{% trans 'Mid name' %}</label>
+                                            {{ form_user.mid_name }}
+                                        </div>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <div class="form-group py-2">
+                                            <label for="" class="text-dark">{% trans 'Teamporary  work' %}</label>
+                                            {{ form_user.temporary_work }}
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group py-2">
+                                            <label for="" class="text-dark">{% trans 'Information' %}</label>
+                                            {{ form_user.information }}
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group py-2">
+                                            <label for="" class="text-dark">{% trans 'Position' %}</label>
+                                            {{ form_user.position }}
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group py-2">
+                                            <label for="" class="text-dark">{% trans 'Nation' %}</label>
+                                            {{ form_user.national }}
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group py-2">
+                                            <label for="" class="text-dark">{% trans 'Department' %}</label>
+                                            {{ form_user.department }}
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group py-2">
+                                            <label for="" class="text-dark">{% trans 'Status' %}</label>
+                                            {{ form_user.status }}
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group py-2">
+                                            <label for="" class="text-dark">{% trans "year_of_graduation" %}</label>
+                                            <input type="date"
+                                                   name="year_of_graduation"
+                                                   class="form-control"
+                                                   id="id_year_of_graduation"
+                                                   value="{{ form_info.year_of_graduation.value|date:"Y-m-d" }}">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group py-2">
+                                            <label for="" class="text-dark">{% trans "name_of_graduation" %}</label>
+                                            {{ form_info.name_of_graduation }}
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group py-2">
+                                            <label for="" class="text-dark">{% trans "birth_date" %}</label>
+                                            <input type="date" name="birth_date" class="form-control"
+                                                   id="id_birth_date"
+                                                   value="{{ form_info.birth_date.value|date:"Y-m-d" }}">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group py-2">
+                                            <label for="" class="text-dark">{% trans "birth_place" %}</label>
+                                            {{ form_info.birth_place }}
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group py-2">
+                                            <label for="" class="text-dark">{% trans "specialization" %}</label>
+                                            {{ form_info.specialization }}
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group py-2">
+                                            <label for="" class="text-dark">{% trans "passport_number" %}</label>
+                                            {{ form_info.passport_number }}
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group py-2">
+                                            <label for="" class="text-dark">{% trans "start_position_date" %}</label>
+                                            <input type="date" name="start_position_date" class="form-control"
+                                                   id="id_start_position_date"
+                                                   value="{{ form_info.start_position_date.value|date:"Y-m-d" }}">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group py-2">
+                                            <label for="" class="text-dark">{% trans "end_position_date" %}</label>
+                                            <input type="date"
+                                                   name="end_position_date"
+                                                   class="form-control"
+                                                   id="id_end_position_date"
+                                                   value="{{ form_info.end_position_date.value|date:"Y-m-d" }}">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group py-2">
+                                            <label for="" class="text-dark">{% trans "gender" %}</label>
+                                            {{ form_info.gender }}
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group py-2">
+                                            <label for="" class="text-dark">{% trans "cripple" %}</label>
+                                            {{ form_info.cripple }}
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group py-2">
+                                            <label for="" class="text-dark">{% trans "residence_address" %}</label>
+                                            {{ form_info.residence_address }}
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group py-2">
+                                            <label for="" class="text-dark">{% trans "phone_number" %}</label>
+                                            {{ form_info.phone_number }}
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group py-2">
+                                            <label for="" class="text-dark">{% trans "academic_degree" %}</label>
+                                            {{ form_info.academic_degree }}
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group py-2">
+                                            <label for="" class="text-dark">{% trans "tour" %}</label>
+                                            {{ form_info.tour }}
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group py-2">
+                                            <label for="" class="text-dark">{% trans "favorite_party" %}</label>
+                                            {{ form_info.favorite_party }}
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group py-2">
+                                            <label for="" class="text-dark">{% trans "languages" %}</label>
+                                            {{ form_info.languages }}
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group py-2">
+                                            <label for="" class="text-dark">{% trans "family_number" %}</label>
+                                            {{ form_info.family_number }}
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group py-2">
+                                            <label for="" class="text-dark">{% trans "people_deputy" %}</label>
+                                            {{ form_info.people_deputy }}
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group py-2">
+                                            <label for="" class="text-dark">{% trans "state_award" %}</label>
+                                            {{ form_info.state_award }}
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group py-2">
+                                            <label for="" class="text-dark">{% trans "military_service" %}</label>
+                                            {{ form_info.military_service }}
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <div class="form-group py-2">
+                                            <label for="" class="text-dark">{% trans "Sudlangan" %}</label>
+                                            {{ form_info.is_judicial }}
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <div class="form-group py-2">
+                                            <label for="" class="text-dark">{% trans "Faollashtirish" %}</label>
+                                            {{ form_user.is_active }}
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4" id="judicial_box">
+                                        <div class="form-group py-2">
+                                            <label for="" class="text-dark">{% trans "Sudlanganligi sababi:" %}</label>
+                                            {{ form_info.judicial }}
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group py-2">
+                                            <label for="" class="text-dark">{% trans "Password" %}</label>
+                                            {{ form_user.password }}
+                                        </div>
+                                    </div>
+                                    <div class="row col-md-12">
+                                        <div class="col-md-6 p-3">
+                                            <p class="text-center">Рухсат этилган худуд</p>
+                                            <div class="user_territory border p-3">
+                                                {% for region in regions %}
+                                                    <p>
+                                                        <input class="active_reg" type="checkbox" name="regions"
+                                                               onclick="getUserDepartment({{ region.id }})"
+                                                               id="region_{{ region.id }}"
+                                                               value="{{ region.pk }}">
+                                                        <span>&nbsp;{{ region.name }}</span>
+                                                    </p>
+                                                {% endfor %}
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 p-3">
+                                            <div style="margin-bottom: 15px">
+                                                <a style="opacity: 0; margin-right: 90px" href="javascript:void(0)"
+                                                   id="check_all" onclick="selectAllDepartments()">
+                                                    <input type="checkbox" name="checkbox_all" id="checkbox_all">
+                                                    <span>&nbsp;барчаси</span>
+                                                </a>
+                                                <span class="text-center">Рухсат этилган ташкилот</span>
+                                            </div>
+                                            <div class="user_territory border p-3" id="selected_departments">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row col-md-12">
+                                        <div class="col-md-6 p-3">
+                                            <p class="text-center">Мавжуд ваколатлар</p>
+                                            {% if groups %}
+                                                <div class="user_territory border p-3">
+                                                    {% for group in groups %}
+                                                        <p>
+                                                            <input type="checkbox" class="active_rol" name="groups"
+                                                                   id="group_{{ group.pk }}"
+                                                                   value="{{ group.pk }}">
+                                                            <span>&nbsp;{{ group.name }}</span>
+                                                        </p>
+                                                    {% endfor %}
+                                                </div>
+                                            {% else %}
+                                                <p class="text-center text-secondary">Сизда ҳозирча ваколат (лар) мавжуд
+                                                    эмас.</p>
+                                            {% endif %}
+                                        </div>
+                                        <div class="col-md-6 d-flex align-items-center justify-content-center">
+                                            <div class="upload">{% trans "Upload resume" %}{{ form_info.resume }}</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12 d-flex align-items-center justify-content-between">
+                                    <a class="btn btn-success btn-sm"
+                                       href="{% url 'accounts:members_list' %}">{% trans "Back" %}</a>
+                                    {% if perms.accounts.change_user %}
+                                        <button class="btn btn-info btn-sm" type="submit">{% trans 'Update' %}</button>
+                                    {% endif %}
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% else %}
+            <h2>{% trans "permision_denied" %}</h2>
+        {% endif %}
+    {% else %}
+        <h2>"{{ incorrect_pk }}" Фойдаланувчи топилмади</h2>
+    {% endif %}
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}
+    <script>
+        const judicalChecbox = document.querySelector('#id_is_judicial');
+        const judicalInput = document.querySelector('#judicial_box')
+        if (!judicalChecbox.checked) {
+            judicalInput.style.display = "none"
+        }
+        judicalChecbox.addEventListener("change", (e) => {
+            if (e.target.checked) {
+                judicalInput.style.display = "block"
+                judicalInput.setAttribute("placeholder", "Qachon va nega sudlanganini kiriting....")
+                const arre = judicalInput.childNodes
+            } else {
+                judicalInput.style.display = "none"
+            }
+        })
+
+        /* -------------    Get Department by Region ID   --------------  */
+        const URL = "{{ get_departments_path }}"
+        console.log("Update-URL....." + URL)
+        let selected_regions_id = JSON.parse("[" + {{ selected_regions_list }} +"]");
+        let selected_departments_id = JSON.parse("[" + {{ selected_departments_list }} +"]");
+        let selected_roles_id = JSON.parse("[" + {{ selected_roles }} +"]");
+
+        if (typeof selected_regions_id === 'undefined' || selected_regions_id.length === 0) {
+            let departments = '<p class="text-center text-secondary p-5">Рухсат этилган ташкилот топилмади.</p>'
+            $("#selected_departments").html(departments);
+        }
+
+        let all_regions = document.getElementsByClassName('active_reg')
+        for (let i = 0; i < all_regions.length; i++) {
+            for (let j = 0; j < selected_regions_id.length; j++) {
+                let input_id = parseInt(all_regions[i].value)
+                if (selected_regions_id[j] === input_id) {
+                    document.getElementById(`region_${input_id}`).checked = true;
+                }
+            }
+        }
+
+        let all_roles = document.getElementsByClassName('active_rol')
+        for (let i = 0; i < all_roles.length; i++) {
+            for (let j = 0; j < selected_roles_id.length; j++) {
+                let input_id = parseInt(all_roles[i].value)
+                if (selected_roles_id[j] === input_id) {
+                    document.getElementById(`group_${input_id}`).checked = true;
+                }
+            }
+        }
+
+        if (typeof selected_regions_id !== 'undefined' && selected_regions_id.length > 0) {
+            ajaxRequestSend(selected_regions_id)
+        }
+        const getUserDepartment = (id) => {
+            let inp = document.getElementById(`region_${id}`)
+            if (inp.checked) {
+                selected_regions_id.push(parseInt(id))
+            } else {
+                const index = selected_regions_id.indexOf(id);
+                if (index > -1) {
+                    selected_regions_id.splice(index, 1);
+                }
+            }
+            ajaxRequestSend(selected_regions_id)
+        }
+
+        function ajaxRequestSend(data) {
+            if (typeof data !== 'undefined' && data.length > 0) {
+                $.ajax({
+                    type: "POST",
+                    url: URL,
+                    data: {ids: data},
+                    dataType: "json",
+                    headers: {"X-CSRFToken": '{{ csrf_token }}'},
+                    success: function (response) {
+                        let departments = ""
+                        for (let i = 0; i < response.length; i++) {
+                            departments += `<p><input type="checkbox" name="departments" onclick="select_or_remove(${response[i].pk})" class="active_dep" id="department_${response[i].pk}" value="${response[i].pk}"><span>&nbsp; ${response[i].fields['name']}</span></p>`;
+                        }
+                        $("#selected_departments").html(departments);
+                        getCheckedDepartment()
+                        document.getElementById('checkbox_all').checked = false;
+                        document.getElementById('check_all').style.opacity = '100%'
+                    },
+                    error: function (response) {
+                        console.log("Error", response);
+                        document.getElementById('checkbox_all').checked = false;
+                        document.getElementById('check_all').style.opacity = '0'
+                    },
+                })
+            } else {
+                let departments = '<h3 class="text-center p-5"><b>&#8672; </b>  Ҳудудни танланг</h3>'
+                $("#selected_departments").html(departments);
+                document.getElementById('checkbox_all').checked = false;
+                document.getElementById('check_all').style.opacity = '0'
+            }
+        }
+
+        function getCheckedDepartment() {
+            let all_departments = document.getElementsByClassName("active_dep");
+            for (let item of all_departments) {
+                for (let i = 0; i < selected_departments_id.length; i++) {
+                    let input_id = parseInt(item.value)
+                    if (selected_departments_id[i] === input_id) {
+                        document.getElementById(`department_${input_id}`).checked = true;
+                    }
+                }
+            }
+        }
+
+        const selectAllDepartments = () => {
+            /* activates when "all (barchasi)" is pressed */
+            if (selected_regions_id.length === 0 || selected_regions_id.length < 1) {
+                // e.preventDefault();
+                return false
+            } else {
+                let all_departments = document.querySelectorAll(".active_dep");
+                if (document.getElementById('checkbox_all').checked) {
+                    document.getElementById('checkbox_all').checked = true;
+                    for (let item of all_departments) {
+                        item.checked = true;
+                    }
+                } else {
+                    document.getElementById('checkbox_all').checked = false;
+                    for (let item of all_departments) {
+                        item.checked = false;
+                    }
+                }
+            }
+        }
+
+        const select_or_remove = (id) => {
+            if (document.getElementById(`department_${id}`).checked) {
+                checked_all_departments()
+            } else {
+                checked_all_departments()
+            }
+        }
+
+        function checked_all_departments() {
+            document.getElementById('checkbox_all').checked = true
+            let all_departments = document.getElementsByClassName("active_dep");
+            for (let item of all_departments) {
+                if (!item.checked) {
+                    document.getElementById('checkbox_all').checked = false
+                }
+            }
+        }
+
+    </script>
+{% endblock javascripts %}

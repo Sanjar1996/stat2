@@ -1,0 +1,47 @@
+{% extends "layouts/base.html" %}
+{% load i18n %}
+{% block title %} {% trans 'region detail page' %} {% endblock %}
+
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+    {% if perms.accounts.view_position %}
+        <div class="row">
+            <div class="col-md-8 offset-md-2">
+                <div class="card">
+                    <div class="card-header card-header-info py-4 shadow">
+                        <h4 class="card-title text-light text-center">{% trans 'position detail form' %}</h4>
+                    </div>
+                    <div class="card-body mt-4">
+                        <form role="form" method="POST" action="{% url 'accounts:position_detail' position.id %}">
+                            {% csrf_token %}
+                            <div class="row d-flex align-items-end">
+                                <div class="col-md-8">
+                                    <div class="form-group py-2">
+                                        <label for="" class="text-dark">{% trans "Position" %}</label>
+                                        {{ form.name }}
+                                    </div>
+                                </div>
+                                <div class="col-md-12 d-flex align-items-center justify-content-between">
+                                    <a href="{% url 'accounts:position_list' %}"
+                                       class="btn btn-success btn-sm text-light">{% trans 'back' %}</a>
+                                    {% if perms.accounts.change_position %}
+                                        <button type="submit" class="btn btn-info btn-sm">{% trans 'update' %}</button>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    {% else %}
+        <h2>{% trans "Permision denied" %}</h2>
+    {% endif %}
+
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}{% endblock javascripts %}

@@ -1,0 +1,284 @@
+{% extends "layouts/base.html" %}
+{% load i18n %}
+{% block title %} {% trans 'Agriculture Plan page' %} {% endblock %}
+
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}
+    <style>
+
+    #agriculture_create {
+        display: block;
+        position: relative;
+    }
+    .fixed-add-btn{
+        position: fixed;
+        top:50%;
+        right: 6%;
+    }
+    </style>
+{% endblock stylesheets %}
+{% block content %}
+    {% if perms.agriculture.add_agricultureplan %}
+        <div class="row " id="agriculture_create">
+            <div class="col-md-10 offset-md-1">
+                <form @submit.prevent="createGrowingPlan" id="form">
+                    {% csrf_token %}
+                    <div class="card">
+                        <div class="card-header card-header-info py-4">
+                            <h4 class="card-title text-light text-center">{% trans 'Agriculture Plan create form' %}</h4>
+                        </div>
+                        <div class="card-body py-4">
+                            <div class="row d-flex align-items-end bg-light border mb-1 mx-1">
+                                <div class="col-md-4">
+                                    <label for="id_date" class="text-dark">{% trans "date" %}</label>
+                                    <div class="form-group">
+                                        <input type="date" name="date" id="id_date" class="form-control" v-model="date">
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="region_id">{% trans 'Region' %}</label>
+                                        <select
+                                                name="region"
+                                                id="region_id"
+                                                class="custom-select"
+                                                v-model="region"
+                                                @change="regionChangeHandler(region)"
+                                                required>
+                                            <option v-for="item in regions" :key="item.id" :value="item.id">[[ item.name|truncate(30, '...')
+                                                ]]
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="region">{% trans 'Department' %}</label>
+                                        <select
+                                                name="department"
+                                                id="department_id"
+                                                class="custom-select"
+                                                v-model="department"
+                                                @change="departmentChangeHandler(department)"
+                                                required>
+                                            <option v-for="item in selectedDepartments" :key="item.id" :value="item.id">
+                                                [[ item.name|truncate(20, '...') ]]
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="w-100" v-for="(item, i) in count">
+                                    <div class="row d-flex align-items-end bg-light border-0 mb-1 mx-1">
+                                        <div v-if="count > 1 && i > 0" class="col-md-12 d-flex justify-content-end align-items-end">
+                                            <button class="btn btn-danger btn-sm btn-fab btn-fab-mini btn-round remove"
+                                                    @click="removeRow(i)">
+                                                <i class="material-icons">close</i>
+                                            </button>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="tree_type_id">{% trans 'Type' %}</label>
+                                                <select
+                                                        name="tree_type"
+                                                        :id=`tree_type_id_${i}`
+                                                        class="custom-select"
+                                                        v-model="income[i].tree_type"
+                                                        @change="treeTypeChangeHandler(income[i].tree_type, i)"
+                                                        required>
+                                                    <option v-for="item in tree_types" :key="item.id" :value="item.id">
+                                                        [[
+                                                        item.name|truncate(30, '...') ]]
+                                                    </option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="text">{% trans 'Tree Plant' %}</label>
+                                                <select
+                                                        name="department"
+                                                        class="custom-select"
+                                                        v-model="income[i].tree_plant"
+                                                        :id=`tree_plant_id_${i}`
+                                                        required>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group py-2">
+                                                <label for="date" class="text-dark">{% trans 'hectare' %}</label>
+                                                <input type="number" step="0.01" class="form-control"
+                                                       v-model="income[i].hectares">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group py-2">
+                                                <label for="date" class="text-dark">{% trans 'weight' %}</label>
+                                                <input type="number" step="0.01" class="form-control" v-model="income[i].weights">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12 d-flex align-items-start justify-content-end pb-2">
+
+                            <button type="submit" @click="this.next = false"
+                                    class="btn btn-info btn-sm">{% trans 'save and exit' %}</button>
+                            <button type="submit" @click="saveAndNext()"
+                                    class="btn btn-info btn-sm">{% trans 'save' %}</button>
+                            <a href="{% url 'agriculture:agriculture_plan_list' %}"
+                               class="btn btn-success btn-sm text-light">
+                                {% trans 'back' %}
+                            </a>
+                        </div>
+                    </div>
+                </form>
+                 <div class="fixed-add-btn">
+                    <button class="btn btn-success btn-sm text-dark btn-fab btn-fab-mini btn-round" @click="incrementFormRow">
+                        <i class="material-icons text-light">add</i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+    {% else %}
+        <h2>{% trans 'Permission Denied' %}</h2>
+    {% endif %}
+
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}
+    <script>
+        let tee_plant_data = {{ tree_plants|safe }};
+        const tree_types = convertToObj({{ tree_types|safe }});
+        const tree_plant = tee_plant_data.map(elem => {
+            if (elem) {
+                return {id: elem.pk, name: elem.fields['name'], types: elem.fields['types']}
+            }
+        });
+        setTreePlant = (arr, current) => {
+            console.log("arr", arr)
+            const currentOptions = document.querySelector(`#tree_plant_id_${current}`)
+            arr.forEach(item =>{
+                let opt = document.createElement('option')
+                opt.setAttribute("value", item.name)
+                opt.setAttribute("id", item.id)
+                opt.textContent = item.name
+                console.log("OPT", opt)
+                currentOptions.append(opt)
+            })
+        }
+        const departments = convertToJson({{departments|safe}})
+        const token = getCsrfToken(document.querySelectorAll('input'));
+        const regions = convertToObj({{ regions|safe }})
+        const agriculture_create = new Vue({
+            delimiters: ['[[', ']]'],
+            el: '#agriculture_create',
+            data: {
+                count: 1,
+                date: null,
+                region: null,
+                department: null,
+                income: [{
+                    tree_plant: null,
+                    tree_type: null,
+                    hectares: null,
+                    weights: null
+                }],
+                tree_plant: null,
+                tree_type: null,
+                hectares: null,
+                weights: null,
+                next: false,
+                token: token,
+                regions: regions,
+                selectedDepartments: [],
+                departmentsRoot: departments,
+                tree_plantsRoot: tree_plant,
+                selectedTrees: [],
+                tree_types: tree_types
+
+            },
+            methods: {
+                regionChangeHandler(id) {
+                    this.selectedDepartments = this.departmentsRoot.filter(elem => elem.region === id)
+                },
+                treeTypeChangeHandler(id, current) {
+                    this.selectedTrees = this.tree_plantsRoot.filter(item => {
+                        if (item.types.length > 0) {
+                            if (item.types.find(type => type === id)) {
+                                return item
+                            }
+                        }
+                    })
+                    this.setTreePlant(this.selectedTrees, current)
+                },
+                setTreePlant(arr, current) {
+                    const currentOptions = document.querySelector(`#tree_plant_id_${current}`)
+                    currentOptions.innerHTML = ""
+                    arr.forEach(item =>{
+                        let opt = document.createElement('option')
+                        opt.setAttribute("value", item.id)
+                        opt.setAttribute("id", item.id)
+                        opt.textContent = item.name
+                        currentOptions.append(opt)
+                    })
+                },
+                incrementFormRow() {
+                    this.count++;
+                    const obj = {tree_plant: null,tree_type: null,hectares: null, weights: null};
+                    this.income.push(obj)
+                },
+                removeRow(id) {
+                    this.income.splice(id, 1);
+                    this.count--
+                },
+                departmentChangeHandler(id) {
+                    this.department = id
+                },
+                async createGrowingPlan() {
+                    let form = new FormData();
+                    form.append("csrfmiddlewaretoken", this.token);
+                    form.append("date", this.date);
+                    form.append("region", this.region);
+                    form.append("department", this.department);
+                    form.append("items", JSON.stringify(this.income));
+                    form.append("next", this.next);
+                    console.log("form", form)
+                    const url = location.origin + "/agriculture/agriculture/plan/create/";
+                    try {
+                        const response = await fetch(url, {
+                            method: 'POST',
+                            body: form
+                        })
+                        if (response.status === 200) {
+                           let msg = "{% trans "Your work has been saved" %}"
+                            successMessage(msg)
+                            setTimeout(() => {
+                                location.href = response.url
+                            }, 1800)
+                        }
+                    } catch (error) {
+                        alert('Error')
+                    }
+
+                },
+                saveAndNext() {
+                    this.next = !this.next
+                },
+
+            },
+            filters: {
+                truncate: function (text, length, suffix) {
+                    if (text.length > length) {
+                        return text.substring(0, length) + suffix;
+                    } else {
+                        return text;
+                    }
+                },
+            }
+        });
+    </script>
+{% endblock javascripts %}

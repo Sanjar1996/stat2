@@ -1,0 +1,97 @@
+{% extends "layouts/base.html" %}
+{% load i18n %}
+{% block title %} {% trans 'Kochat shartnoma tafsisi' %} {% endblock %}
+
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+    {% if perms.trees.view_treecontractplan %}
+        <div class="row">
+            <div class="col-md-10 offset-md-1">
+                <div class="card">
+                    <div class="card-header card-header-info py-4 shadow">
+                        <h4 class="card-title text-light text-center">{% trans 'Kochat shartnoma tafsisi formasi' %}</h4>
+                    </div>
+                    <div class="card-body mt-4">
+                       <form role="form" method="POST" action="{% url 'trees:tree_contract_plan_detail' tree.id %}">
+                            {% csrf_token %}
+                            <div class="row d-flex align-items-end">
+                                <div class="col-md-4">
+                                    <div class="form-group mb-2">
+                                        <label for="" class="text-dark">{% trans "Region" %}</label>
+                                        {{ form.region }}
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group mb-2">
+                                        <label for="" class="text-dark">{% trans "Department" %}</label>
+                                        {{ form.department }}
+                                    </div>
+                                </div>
+
+                                <div class="col-md-4">
+                                    <div class="form-group py-2 ">
+                                        <label for="" class="text-dark">{% trans "tree_count_c" %}</label>
+                                        {{form.tree_count}}
+                                    </div>
+                                </div>
+                                <div class="col-md-12 d-flex align-items-end justify-content-between">
+                                    <a href="{% url 'trees:tree_contract_plan_list' %}"
+                                    class="btn btn-success btn-sm text-light">{% trans 'back' %}</a>
+                                    {% if perms.trees.change_treecontractplan %}
+                                        <button type="submit" class="btn btn-info btn-sm">{% trans 'saqlash' %}</button>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    {% else %}
+        <h2>{% trans "Permission Denied" %}</h2>
+    {% endif %}
+
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}
+<script>
+    let check_user_permision = {% if department is none %} 0 {% else %} 1 {% endif %};
+    if (!check_user_permision) {
+        let msg = "{% trans "Sizda ruxsat yoq Admin bilan boglaning!" %}"
+        warningMessage(msg)
+        setTimeout(() => {
+            location.href = '/trees/tree/tree_contract/plan/list'
+        }, 1700)
+    }
+    const region = document.getElementById('id_region');
+    const departmentOptions = document.getElementById('id_department');
+    const departments = convertToJson({{department|safe}})
+    const regions = convertToObj({{ region|safe }})
+    const setDepartment = (city) => {
+        const region = regions.find(elem => elem.name === city);
+        const current = departments.filter(elem => elem.region === region.id)
+        if(current.length > 0){
+            departmentOptions.innerHTML = ""
+            current.forEach((elem, index) => {
+            if(elem.name && index===0) {
+                departmentOptions.innerHTML += `<option value='${elem.name}' selected>${elem.name}</option>`
+            }
+            else if(elem.name){
+                departmentOptions.innerHTML += `<option value='${elem.name}'>${elem.name}</option>`
+            }
+
+        })
+        } else departmentOptions.innerHTML = ""
+    }
+    region.addEventListener('change', (event) => {
+        const city = event.target.value;
+        city ? setDepartment(city) : departmentOptions.innerHTML = "";
+
+    })
+
+</script>
+{% endblock javascripts %}

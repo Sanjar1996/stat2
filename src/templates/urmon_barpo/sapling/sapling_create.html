@@ -1,0 +1,280 @@
+{% extends "layouts/base.html" %}
+{% load i18n %}
+{% block title %} {% trans 'GrowingPlant title' %} {% endblock %}
+
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}
+    <style>
+        #sapling{
+            display: block;
+            position: relative;
+        }
+        .fixed-add-btn{
+            position: fixed;
+            top: 50%;
+            left: 93%;
+        }
+        input {
+            font-size: 18px !important;
+        }
+        ._warning {
+            background-color: rgba(255, 0, 0, 0.3);
+        }
+    </style>
+{% endblock stylesheets %}
+{% block content %}
+{% if perms.trees.add_sapling %}
+
+<div class="row " id="sapling">
+    <div class="col-md-10 offset-md-1 card">
+        <form @submit.prevent="createGrowing" id="form">
+            {% csrf_token %}
+            <div class="card-header card-header-info py-4 shadow">
+                <h4 class="card-title text-light text-center">
+                    {% trans "Ёпиқ илдизлик йирик хажмли кўчатлар киритиш" %}</h4>
+            </div>
+            <div class="card-body mt-4">
+                <div class="row d-flex align-items-end bg-light border mb-1 mx-1">
+                    <div class="col-md-4">
+                        <div class="form-group py-2">
+                            <label for="date" class="text-dark" style="font-size: 130%;">{% trans 'date' %}</label>
+                            <input type="date" class="form-control" v-model="date" required>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group py-2">
+                            <label for="region_id" style="font-size: 130%;">{% trans 'Region' %}</label>
+                            <select name="region" id="region_id" class="custom-select"
+                                    @input="region = $event.target.value"
+                                    style="font-size: 150%;"
+                                    @change="regionChangeHandler(region)" required>
+                                <option value="region">[[ regionName ]]</option>
+                                <option v-for="(item, index) in regions" :key="item.id" :value="item.id">[[
+                                    item.name ]]
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group py-2">
+                            <label for="department_id" style="font-size: 130%;">{% trans 'Department' %}</label>
+                            <select name="department" id="department_id"
+                                    class="custom-select" style="font-size: 150%;"
+                                    @input="department = $event.target.value" @change="departmentChangeHandler(department)"
+                                    required>
+                                <option value="department">[[ departmentName ]]</option>
+                                <option v-for="item in selectedDepartments" :key="item.id" :value="item.id">
+                                    [[ item.name ]]
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card-body" v-for="(item, i) in counts" :key="item">
+                <div class="row d-flex align-items-end bg-light border mb-1 mx-1">
+                    <div class="col-md-12 d-flex justify-content-end align-items-end">
+                        <button class="btn btn-danger btn-sm btn-fab btn-fab-mini btn-round remove"
+                                @click="removeRow(i)">
+                            <i class="material-icons">close</i>
+                        </button>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group py-2">
+                            <label for="tree_id" class="text-dark" style="font-size: 130%;">{% trans 'Tree Plant' %}</label>
+                            <input 
+                                list="treePlantsChoices" 
+                                @input="income[i].tree_plant = $event.target.value"
+                                class="form-control"
+                                :class="{_warning: income[i].treePlantWarning}"
+                                type="text"
+                                @change="validateTreePlantName($event.target.value, income[i])"
+                            >
+                            <datalist id="treePlantsChoices">
+                                <option
+                                    v-for="item in tree_plants" 
+                                    :key="item.id" 
+                                    :value="item.name"
+                                ></option>
+                            </datalist>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group py-2">
+                            <label for="amount" class="text-dark " style="font-size: 130%;">{% trans 'Count' %}
+                                <span>({% trans 'count_c' %})</span></label>
+                            <input type="number" step="0.01" min="0.00" class="form-control"
+                                   id="amount" v-model="income[i].count" required>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12 d-flex align-items-end justify-content-between">
+                <a href="{% url 'trees:sapling_list' %}"
+                   @click="clearLocalStorage()"
+                   class="btn btn-success btn-sm text-light">
+                    {% trans 'back' %}
+                </a>
+                <div>
+                    <button @click="isSave = true"  class="btn btn-info btn-sm">{% trans 'saqlash' %}</button>
+                    <button @click="isSave = false" type="submit" class="btn btn-info btn-sm">{% trans 'save and exit' %}</button>
+                </div>
+            </div>
+        </form>
+
+       
+    </div>
+    <div class="fixed-add-btn">
+        <button class="btn btn-success btn-sm text-dark btn-fab btn-fab-mini btn-round"
+                @click="incrementFormRow">
+            <i class="material-icons text-light">add</i>
+        </button>
+    </div>
+</div>
+</div>
+
+    {% else %}
+        <h2>{% trans 'Permission Denied' %}</h2>
+    {% endif %}
+
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}
+    <script>
+    const departments = convertToJson({{ departments|safe }});
+    const token = getCsrfToken(document.querySelectorAll('input'));
+    const regions = convertToObj({{ regions|safe }})
+    const tree_plant = convertToObj({{ tree_plants|safe }})
+    const currentTime = new Date();
+    const year = currentTime.getFullYear();
+    const month = currentTime.getMonth() < 10 ? '0' + (currentTime.getMonth() + 1) : (currentTime.getMonth() + 1);
+    const day = currentTime.getDate() < 10 ? '0' + currentTime.getDate() : currentTime.getDate();
+    const today = `${year}-${month}-${day}`
+    
+    const treePlantNames = []
+    for (let i in tree_plant) {
+        treePlantNames.push(tree_plant[i]['name'])
+    }
+    const sapling = new Vue({
+      delimiters: ['[[', ']]'],
+      el: '#sapling',
+      data: {
+          counts: 1,
+          date: today,
+          region: null,
+          department: null,
+          regionName: '',
+          departmentName: '',
+          income: [{
+               count: null,
+               tree_plant: "",
+               treePlantWarning: false,
+             }
+          ],
+          regions: regions,
+          selectedDepartments: [],
+          departmentsRoot: departments,
+          tree_plants: tree_plant,
+          isSave: false,
+          treePlantNames: treePlantNames,
+      },
+      mounted() {
+        this.intiRegionDepartment()
+      },
+      methods: {
+            intiRegionDepartment() {
+                // When page is opened 
+                // if local storage has department and region
+                // this function will insert them to select tags above
+                let regionHtml = document.getElementById("region_id").innerHTML
+                data = JSON.parse(sessionStorage.getItem('sapling_data'))
+                if(Object.keys(data).length > 0) {
+                    this.region = data['region']
+                    this.department = data['department']
+                    this.regionName = this.regions.filter(item => item['id'] == this.region)[0]['name']
+                    this.regionChangeHandler(this.region)
+                    this.departmentName = this.selectedDepartments.filter(item => item['id'] == this.department)[0]['name']
+                }
+            },
+          regionChangeHandler(id){
+            this.selectedDepartments = this.departmentsRoot.filter(elem => elem.region == id)
+          },
+          departmentChangeHandler(id){
+              this.department = id
+          },
+          incrementFormRow(){
+              this.counts++;
+              const obj = {
+               count: null,
+               tree_plant: ""
+             };
+             this.income.push(obj)
+          },
+          removeRow(id){
+              this.income.splice(id, 1);
+              this.counts--
+          },
+         validateTreePlantName(name, item) {
+             console.log(name)
+            if (this.treePlantNames.indexOf(name) < 0) {
+                item['treePlantWarning'] = true
+            } else {
+                item['treePlantWarning'] = false 
+            }
+         },
+         treePlantIdHandler(items) {
+            for (let i in items) {
+                const name = items[i]['tree_plant']
+                this.mapNameToId(i, name)
+            } 
+         },
+         mapNameToId(ePos, name) {
+            for (let i in this.tree_plants) {
+                const item = this.tree_plants[i]
+                if(item['name'] == name) {
+                    this.income[ePos]['tree_plant'] = item['id']
+                }
+            }
+         },
+         async createGrowing(){
+              this.treePlantIdHandler(this.income)
+              let form = new FormData();
+              form.append("csrfmiddlewaretoken", token);
+              form.append("date", this.date);
+              form.append("region", this.region);
+              form.append("department", this.department);
+              form.append("items", JSON.stringify(this.income));
+              const url = location.origin + "/trees/sapling/create/";
+              try{
+                const response = await fetch(url, {
+                    method: 'POST',
+                    body: form
+                })
+                if(response.status === 200){
+                    successMessage("{% trans 'Your work has been saved' %}")
+                    if(this.isSave) {
+                       this.income = [{
+                            count: null,
+                            tree_plant: ""
+                        }] 
+                        this.counts = 0
+                        setTimeout(() => {
+                            this.counts = 1
+                        }, 1000)
+                    } else {
+                        setTimeout(() => {
+                            location.href = response.url
+                        }, 1500)
+                    }
+                } else {
+                   errorMessage("{% trans 'Tuldirilgan kadaklarda hatolik mavjud' %}") 
+                }
+              } catch (error) {
+                  errorMessage("{% trans 'Error' %}")
+              }
+          }
+      },
+    });
+  </script>
+{% endblock javascripts %}

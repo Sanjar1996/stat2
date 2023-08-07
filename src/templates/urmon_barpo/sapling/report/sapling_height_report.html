@@ -1,0 +1,328 @@
+{% extends "layouts/base.html" %}
+{% load static %}
+{% load i18n %}
+{% block title %} {% trans 'yillik reja' %} {% endblock %}
+
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}
+    <style>
+        .styled-table th,
+        .styled-table td {
+            padding: 12px 15px;
+        }
+
+        .styled-table thead tr {
+            color: #ffffff;
+        }
+
+        .fix__table_header {
+            position: sticky;
+            background-color: #009879;
+            color: #ffffff;
+            z-index: 1;
+            top: -1px;
+            outline: 1px solid #ffffff;
+        }
+
+        .fix__table_header_second_lines {
+            position: sticky;
+            color: #ffffff;
+            z-index: 1;
+            top: 5.1%;
+            height: 100%;
+            outline: 1px solid #ffffff;
+            background-color: #009879;
+        }
+
+        @media only screen and (max-width: 991px) {
+            .fix__table_header_second_lines {
+                top: 0;
+            }
+        }
+
+        @media only screen and (min-width: 992px) and (max-width: 1600px) {
+            .fix__table_header_second_lines {
+                top: 5.1%;
+            }
+        }
+
+        .rotate_text {
+            font-weight: 400;
+            text-align: center;
+            transform: rotate(-90deg);
+            white-space: nowrap;
+            transform-origin: center;
+            padding: 44px 10px;
+            font-size: 15px !important;
+            max-width: 50px;
+            text-indent: -35px;
+        }
+
+        #wrap {
+            position: relative;
+            overflow: scroll;
+        }
+
+        table {
+            text-align: left;
+            border-collapse: collapse;
+            background-color: transparent;
+        }
+    </style>
+{% endblock stylesheets %}
+
+{% block content %}
+    {% if messages %}
+        {% for message in messages %}
+            <div class="text-warning text-center alert{% if message.tags %}alert-{{ message.tags }}{% endif %}"
+                 role="alert">{{ message }}</div>
+        {% endfor %}
+    {% endif %}
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12 bg-light py-2 pt-2">
+                <div class="row d-flex justify-content-baseline align-items-center">
+                    <div class="col-md-2">
+                            <a href="{% url "trees:dashboard" %}"
+                            style="box-shadow: none; color: black" type="button"
+                            class="btn bg-light shadow-none text-black">
+                            <i class="text-black material-icons">arrow_back</i>
+                            </a>
+                    </div>
+                    <div class="col-md-10 form-group">
+                        <form role="form" method="GET" action="{% url 'trees:sapling_height_report' %}">
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <label for="id_start">{% trans "start" %}</label>
+                                    <div class="form-group">
+                                        {{ form.start }}
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <label for="id_end">{% trans "end" %}</label>
+                                    <div class="form-group">
+                                        {{ form.end }}
+                                    </div>
+                                </div>
+                                <div class="col-md-6 d-flex align-items-end flex-row justify-content-start">
+                                    <button type="submit"
+                                            class="btn btn-info btn-fab btn-fab-mini  text-light ml-1">
+                                        <i class="material-icons">search</i></button>
+                                    <a href="{% url 'trees:sapling_height_report' %}"
+                                       class="btn btn-info btn-sm  text-light ml-1">
+                                        {% trans 'reset' %}
+                                    </a>
+                                    <button class="btn btn-info btn-sm text-light ml-1" type="button"
+                                            id="1"
+                                            onclick="showHideRegionChild(this)">{% trans "Hududlar kesimida" %}
+                                    </button>
+                                    <a style="display: none" href="{% url 'trees:height_reports' %}"
+                                       id="height_reports">
+                                        <button class="btn btn-success btn-sm text-dark ml-1" type="button">
+                                            <img src="{% static 'assets/img/excel.ico' %}"
+                                                 style="max-width: 20px; max-height: 15px"
+                                                 alt="Excel">
+                                        </button>
+                                    </a>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="col-md-2 d-flex justify-content-center align-items-center pt-2">
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-12 bg-light">
+                <div class="card card-plain">
+                    <div class="card-header card-header-info">
+                        <h5 class="card-title mt-0 text-center text-light font-weight-bold">
+                            {% trans "Ўрмон хўжалиги давлат қўмитаси тизимидаги хўжаликларда" %}
+                            <span class="text-light">{{ start }}</span>
+                            {% trans 'дан' %}
+                            <span class="text-light">{{ end }}</span>
+                            <span class="text-lowercase">{% trans "Year" %}</span>
+                            <span class="text-lowercase">{% trans "Кўчатлар баландлиги бўйича маълумот" %}</span>
+                        </h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="table table-wrapper border">
+                            <table class="table-hover styled-table table-striped table-responsive-lg table-responsive-md table-responsive-sm">
+                                <thead class="bg-primary">
+                                <tr>
+                                    <th rowspan="3" class="border text-light text-center fix__table_header static"
+                                        style="background-color: #009879;">{% trans "T/p" %}
+                                    </th>
+                                    <th rowspan="3" class="border text-center text-light fix__table_header static"
+                                        style="background-color: #009879;">{% trans 'Кўчат тури' %}</th>
+                                    <th rowspan="3" class="border text-center fix__table_header"
+                                        style=" white-space: wrap;">{% trans "Жами экиш ва сотишга " %}
+                                        <br>
+                                        {% trans 'яроқли кўчатлар' %}</th>
+                                    {% for tree in tree_names %}
+                                        <th colspan="7" rowspan="1"
+                                            class="border text-center fix__table_header">{{ tree.name }}</th>
+                                    {% endfor %}
+                                </tr>
+                                <tr style="background-color: #009879;">
+                                    {% for tree in tree_names %}
+                                        <th rowspan="2" class=" active-row fix__table_header_second_lines"><p
+                                                class="rotate_text">{% trans 'Jami' %}</p></th>
+                                        <th rowspan="2" class="fix__table_header_second_lines"><p
+                                                class="rotate_text">{% trans '0,2 м гача' %}</p></th>
+                                        <th rowspan="2" class="fix__table_header_second_lines"><p
+                                                class="rotate_text">{% trans '0,2-0,5 м гача' %}</p></th>
+                                        <th rowspan="2" class="fix__table_header_second_lines"><p
+                                                class="rotate_text">{% trans '0,5-1 м. гача' %}</p></th>
+                                        <th rowspan="2" class="fix__table_header_second_lines"><p
+                                                class="rotate_text">{% trans '1-1,5 м гача' %}</p></th>
+                                        <th rowspan="2" class="fix__table_header_second_lines"><p
+                                                class="rotate_text">{% trans '1,5-2 м гача' %}</p></th>
+                                        <th rowspan="2" class="fix__table_header_second_lines"><p
+                                                class="rotate_text">{% trans '2-дан юқори' %}</p></th>
+                                    {% endfor %}
+                                </tr>
+                                </thead>
+                                <tbody id="wrap">
+                                {% for items in data %}
+                                    {% if items.region_name %}
+                                        <tr class="table-bordered border bg-info parent">
+                                            <td class="static text-dark text-center"></td>
+                                            <td class="text-center font-weight-bold static text-black  border">{{ items.region_name }}</td>
+                                            {% for item in items.all_count %}
+                                                {% if forloop.first %}
+                                                    {% if items.region_tree_all_sum %}
+                                                        {% for item in items.region_tree_all_sum %}
+                                                            <td class="text-center font-weight-bold text-black bg-info border">
+                                                                {{ item.0|floatformat:"2"|default:"0.00" }}</td>
+                                                        {% endfor %}
+                                                    {% else %}
+                                                        <td class="text-center font-weight-bold text-black bg-info border">
+                                                            0.00
+                                                        </td>
+                                                    {% endif %}
+                                                {% endif %}
+                                                {% for i in item %}
+                                                    <td class="text-center font-weight-bold text-black bg-info border">
+                                                        {{ i|floatformat:"2"|default:"0.00" }}</td>
+                                                {% endfor %}
+                                            {% endfor %}
+                                        </tr>
+                                    {% endif %}
+                                    <tr class="child">
+                                        <td class="static border text-center bg-light">{{ items.index }}</td>
+                                        <td class="text-left font-weight-bold static border bg-light">{{ items.department_name }}</td>
+                                        {% for department in items.tree_height_report %}
+                                            {% if forloop.first %}
+                                                {% if items.department_tree_all_sum %}
+                                                    {% for item in items.department_tree_all_sum %}
+                                                        <td class="text-center font-weight-bold border bg-light">
+                                                            {{ item.0|floatformat:"2"|default:"0.00" }}</td>
+                                                    {% endfor %}
+                                                {% else %}
+                                                    <td class="text-center font-weight-bold border bg-light">0.00</td>
+                                                {% endif %}
+                                            {% endif %}
+                                            {% for item in department %}
+                                                {% if forloop.first %}
+                                                    <td class="text-center font-weight-bold bg-info border">
+                                                        {{ item|floatformat:"2"|default:"0.00" }}</td>
+                                                {% else %}
+                                                    <td class="text-center font-weight-bold border bg-white">
+                                                        {{ item|floatformat:"2"|default:"0.00" }}</td>
+                                                {% endif %}
+                                            {% endfor %}
+                                        {% endfor %}
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                                <tfoot class="border text-light" style="opacity: 1; background:#009879;">
+                                <th class="static text-light border"
+                                    style="opacity: 1; background:#009879;">{% trans "T/p" %}</th>
+                                <th class="text-center static text-light"
+                                    style="opacity: 1; background:#009879;">{% trans 'Жами' %}</th>
+                                <th class="text-center text-light">{{ trees_sum.0|floatformat:"2"|default:"0.00" }}</th>
+                                {% for items in departments_all_tree_sum %}
+                                    {% for item in items %}
+                                        <th class="text-center text-light border">
+                                            {{ item|floatformat:"2"|default:"0.00" }}</th>
+                                    {% endfor %}
+                                {% endfor %}
+                                </tfoot>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}
+    <script>
+        const amount_sum = document.querySelectorAll('.amount_sum');
+        amount_sum.forEach(item => item.textContent = numberWithSpaces(item.textContent))
+        const child = document.querySelectorAll('.child');
+        const parrent = document.querySelectorAll('.parrent');
+        const region_index = document.querySelectorAll('.region_index');
+        const showHideRegionChild = (event) => {
+            const iid = event.id;
+            if (iid === "1") {
+                event.id = '2'
+                event.textContent = "{% trans 'Tashkilotlar kesimida' %}"
+                parrent.forEach(elem => {
+                    if (elem) {
+                        elem.classList.toggle('bg-info')
+                        elem.children[1].classList.toggle('text-center')
+                    }
+                })
+                child.forEach(elem => elem.classList.toggle("hidden"))
+                region_index.forEach((item, index, region_index) => item.innerText = index + 1)
+            } else if (iid === '2') {
+                event.id = '1'
+                event.textContent = "{% trans 'Hududlar kesimida' %}"
+                parrent.forEach(elem => {
+                    if (elem) {
+                        elem.classList.toggle('bg-info')
+                        elem.children[1].classList.toggle('text-center')
+                    }
+                })
+                region_index.forEach((item, index, region_index) => item.innerText = "")
+                child.forEach(elem => elem.classList.toggle("hidden"))
+            }
+        }
+
+
+    </script>
+
+    <script>
+        let a_href = document.querySelector('#height_reports');
+        const from_date = document.querySelector('#id_start');
+        const to_date = document.querySelector('#id_end');
+
+        $(document).ready(function () {$('#height_reports').show();});
+
+        let current_date_start_value = from_date.value
+        let current_date_to_value = to_date.value
+        let path = a_href.getAttribute('href')
+        a_href.setAttribute('href', `${path}?start=${current_date_start_value}&end=${current_date_to_value}`)
+
+        from_date.addEventListener("change", (e) => {
+            current_date_start_value = e.target.value;
+            a_href.setAttribute('href', `${path}?start=${current_date_start_value}&end=${current_date_to_value}`)
+        });
+        from_date.addEventListener("change", (e) => {
+            current_date_start_value = e.target.value;
+            a_href.setAttribute('href', `${path}?start=${current_date_start_value}&end=${current_date_to_value}`)
+        });
+        to_date.addEventListener("change", (e) => {
+            current_date_to_value = e.target.value;
+            a_href.setAttribute('href', `${path}?start=${current_date_start_value}&end=${current_date_to_value}`)
+        });
+    </script>
+
+{% endblock javascripts %}

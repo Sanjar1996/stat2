@@ -1,0 +1,870 @@
+[
+  {
+    "model": "report.report",
+    "pk": 3,
+    "fields": {
+      "created_at": "2021-04-09T07:14:35.558Z",
+      "updated_at": "2021-04-19T12:08:06.991Z",
+      "name": "\u0439\u0438\u043b \u0445\u043e\u043b\u0430\u0442\u0438\u0433\u0430  \u0434\u0430\u0432\u043b\u0430\u0442 \u045e\u0440\u043c\u043e\u043d \u0445\u045e\u0436\u0430\u043b\u0438\u0433\u0438\u0434\u0430 \u0442\u0443\u0448\u0433\u0430\u043d \u0442\u0443\u0448\u0443\u043c\u0434\u0430\u043d  \u040e\u0440\u043c\u043e\u043d\u043b\u0430\u0440\u043d\u0438 \u0440\u0438\u0432\u043e\u0436\u043b\u0430\u043d\u0442\u0438\u0440\u0438\u0448 \u0436\u0430\u043c\u0493\u0430\u0440\u043c\u0430\u0441\u0438\u0433\u0430 \u045e\u0442\u043a\u0430\u0437\u0433\u0430\u043d \u0442\u0443\u0448\u0443\u043c\u0438 \u0442\u045e\u0493\u0440\u0438\u0441\u0438\u0434\u0430  \u04b2\u0418\u0421\u041e\u0411",
+      "status": 1,
+      "type": 1
+    }
+  },
+  {
+    "model": "report.report",
+    "pk": 4,
+    "fields": {
+      "created_at": "2021-04-12T06:26:14.063Z",
+      "updated_at": "2021-04-19T12:08:30.634Z",
+      "name": "\u0439\u0438\u043b\u0434\u0430 \u040e\u0440\u043c\u043e\u043d \u043c\u0430\u04b3\u0441\u0443\u043b\u043e\u0442\u043b\u0430\u0440\u0438\u043d\u0438 \u044d\u043a\u0441\u043f\u043e\u0440\u0442 \u049b\u0438\u043b\u0438\u0448 \u0431\u045e\u0439\u0438\u0447\u0430 \u0445\u045e\u0436\u0430\u043b\u0438\u043a\u043b\u0430\u0440 \u043a\u0435\u0441\u0438\u043c\u0438\u0434\u0430 \u0425\u0418\u0421\u041e\u0411\u041e\u0422\u041b\u0410\u0420",
+      "status": 1,
+      "type": 1
+    }
+  },
+  {
+    "model": "report.report",
+    "pk": 5,
+    "fields": {
+      "created_at": "2021-04-22T06:48:02.177Z",
+      "updated_at": "2021-04-22T06:48:02.177Z",
+      "name": "\u0439\u0438\u043b \u0445\u043e\u043b\u0430\u0442\u0438\u0433\u0430 \u043a\u045e\u0447\u0430\u0442 \u0432\u0430 \u043d\u0438\u0445\u043e\u043b \u0441\u043e\u0442\u0438\u0448, \u0441\u0430\u043d\u043e\u0430\u0442, \u0445\u0430\u043b\u049b \u0438\u0441\u0442\u0435\u044a\u043c\u043e\u043b \u043c\u043e\u043b\u043b\u0430\u0440\u0438 \u0432\u0430 \u0430\u04b3\u043e\u043b\u0438\u0433\u0438 \u043f\u0443\u043b\u043b\u0438\u043a \u0445\u0438\u0437\u043c\u0430\u0442 \u043a\u045e\u0440\u0441\u0430\u0442\u0438\u0448, \u049b\u0438\u0448\u043b\u043e\u049b \u0445\u045e\u0436\u0430\u043b\u0438\u0433\u0438 \u043c\u0430\u04b3\u0441\u0443\u043b\u043e\u0442\u043b\u0430\u0440\u0438 \u0435\u0442\u0438\u0448\u0442\u0438\u0440\u0438\u0448, \u0447\u043e\u0440\u0432\u0430\u0447\u0438\u043b\u0438\u043a, \u043f\u0430\u0440\u0440\u0430\u043d\u0434\u0430\u0447\u0438\u043b\u0438\u043a, \u049b\u0443\u0451\u043d\u0447\u0438\u043b\u0438\u043a, \u0431\u0430\u043b\u0438\u049b\u0447\u0438\u043b\u0438\u043a, \u0434\u043e\u0440\u0438\u0432\u043e\u0440\u0447\u0438\u043b\u0438\u043a \u0432\u0430 \u0431\u043e\u0448\u049b\u0430 \u0441\u043e\u04b3\u0430\u043b\u0430\u0440\u0434\u0430\u043d \u0442\u043e\u043f\u0438\u043b\u0433\u0430\u043d \u0434\u0430\u0440\u043e\u043c\u0430\u0434\u043b\u0430\u0440 \u0442\u045e\u0493\u0440\u0438\u0441\u0438\u0434\u0430",
+      "status": 1,
+      "type": 1
+    }
+  },
+  {
+    "model": "report.reportgroup",
+    "pk": 4,
+    "fields": {
+      "name": "\u040e\u0440\u043c\u043e\u043d \u0444\u043e\u043d\u0434\u0438 \u0435\u0440\u043b\u0430\u0440\u0438\u043d\u0438 \u0438\u0436\u0430\u0440\u0430 \u0448\u0430\u0440\u0442\u043d\u043e\u043c\u0430\u0441\u0438 \u0430\u0441\u043e\u0441\u0438\u0434\u0430 \u0444\u043e\u0439\u0434\u0430\u043b\u0430\u043d\u0438\u0448\u0433\u0430  \u0431\u0435\u0440\u0433\u0430\u043d\u043b\u0438\u043a \u0443\u0447\u0443\u043d \u0442\u0443\u0448\u0433\u0430\u043d \u043c\u0430\u0431\u043b\u0430\u0433 (100%)",
+      "status": 1
+    }
+  },
+  {
+    "model": "report.reportgroup",
+    "pk": 5,
+    "fields": {
+      "name": "\u0425\u045e\u0436\u0430\u043b\u0438\u043a\u0433\u0430",
+      "status": 1
+    }
+  },
+  {
+    "model": "report.reportgroup",
+    "pk": 6,
+    "fields": {
+      "name": "\u0448\u0443\u043d\u0434\u0430\u043d  \u0416\u0430\u043c\u0493\u0430\u0440\u043c\u0430\u0433\u0430",
+      "status": 1
+    }
+  },
+  {
+    "model": "report.reportgroup",
+    "pk": 7,
+    "fields": {
+      "name": "\u0420\u0443\u0445\u0441\u0430\u0442\u043d\u043e\u043c\u0430 \u043e\u043b\u0438\u0448 \u0443\u0447\u0443\u043d \u0430\u0440\u0438\u0437\u0430\u043b\u0430\u0440\u043d\u0438 \u043a\u045e\u0440\u0438\u0431 \u0447\u0438\u049b\u049b\u0430\u043d\u043b\u0438\u043a \u0432\u0430 \u0440\u0443\u0445\u0441\u0430\u0442\u043d\u043e\u043c\u0430\u043b\u0430\u0440 \u0431\u0435\u0440\u0433\u0430\u043d\u043b\u0438\u043a \u0443\u0447\u0443\u043d \u0442\u0443\u0448\u0433\u0430\u043d \u043c\u0430\u0431\u043b\u0430\u0433 (100%)",
+      "status": 1
+    }
+  },
+  {
+    "model": "report.reportgroup",
+    "pk": 8,
+    "fields": {
+      "name": "\u0425\u0430\u0439\u0432\u043e\u043d\u043e\u0442 \u0432\u0430 \u045e\u0441\u0438\u043c\u043b\u0438\u043a \u0434\u0443\u043d\u0451\u0441\u0438\u0433\u0430 \u0435\u0442\u043a\u0430\u0437\u0438\u043b\u0433\u0430\u043d \u0437\u0430\u0440\u0430\u0440\u043d\u0438 \u049b\u043e\u043f\u043b\u0430\u0448 \u0431\u045e\u0439\u0438\u0447\u0430 \u0443\u043d\u0434\u0438\u0440\u0438\u043b\u0433\u0430\u043d \u043c\u0430\u0431\u043b\u0430\u0493 100%",
+      "status": 1
+    }
+  },
+  {
+    "model": "report.reportgroup",
+    "pk": 9,
+    "fields": {
+      "name": "\u0420\u0443\u0445\u0441\u0430\u0442 \u044d\u0442\u0438\u043b\u0433\u0430\u043d \u0445\u0443\u0434\u0443\u0434\u043b\u0430\u0440\u0438\u0434\u0430 \u0447\u043e\u0440\u0432\u0430 \u0431\u043e\u049b\u0438\u0448, \u043f\u0438\u0447\u0430\u043d \u045e\u0440\u0438\u0448, \u0430\u0441\u0430\u043b\u0430\u0440\u0438 \u0443\u044f\u043b\u0430\u0440\u0438 \u0432\u0430 \u049b\u0443\u0442\u0438\u043b\u0430\u0440\u0438\u043d\u0438 \u0436\u043e\u0439\u043b\u0430\u0448\u0442\u0438\u0440\u0438\u0448, \u0434\u0430\u0440\u0430\u0445\u0442 \u043a\u0435\u0441\u043c\u0430\u0433\u0430\u043d \u04b3\u043e\u043b\u0434\u0430 \u045e\u0442\u0438\u043d \u0439\u0438\u0493\u0438\u0448, \u0432\u0430 \u0431\u043e\u0448\u043a\u0430 \u043c\u0430\u049b\u0441\u0430\u0434\u043b\u0430\u0440\u0434\u0430\u043d \u0442\u0443\u0448\u0433\u0430\u043d \u043c\u0430\u0431\u043b\u0430\u0493 (50%)",
+      "status": 1
+    }
+  },
+  {
+    "model": "report.reportgroup",
+    "pk": 10,
+    "fields": {
+      "name": "\u0411\u043e\u0448\u049b\u0430 \u0434\u0430\u0440\u043e\u043c\u0430\u0434\u043b\u0430\u0440  (10%)",
+      "status": 1
+    }
+  },
+  {
+    "model": "report.reportgroup",
+    "pk": 11,
+    "fields": {
+      "name": "\u042d\u043a\u0441\u043f\u043e\u0440\u0442 \u049b\u0438\u043b\u0438\u0448 \u049b\u0438\u0439\u043c\u0430\u0442",
+      "status": 1
+    }
+  },
+  {
+    "model": "report.reportgroup",
+    "pk": 12,
+    "fields": {
+      "name": "\u0422\u0443\u0437\u0438\u043b\u0433\u0430\u043d \u0448\u0430\u0440\u0442\u043d\u043e\u043c\u0430",
+      "status": 1
+    }
+  },
+  {
+    "model": "report.reportgroup",
+    "pk": 13,
+    "fields": {
+      "name": "\u041a\u045e\u0447\u0430\u0442 \u0432\u0430 \u043d\u0438\u0445\u043e\u043b \u0441\u043e\u0442\u0438\u0448\u0434\u0430\u043d",
+      "status": 1
+    }
+  },
+  {
+    "model": "report.reportgroup",
+    "pk": 15,
+    "fields": {
+      "name": "\u0421\u0430\u043d\u043e\u0430\u0442, \u0445\u0430\u043b\u049b \u0438\u0441\u0442\u0435\u044a\u043c\u043e\u043b \u043c\u043e\u043b\u043b\u0430\u0440\u0438 \u0432\u0430 \u0430\u04b3\u043e\u043b\u0438\u0433\u0438 \u043f\u0443\u043b\u043b\u0438\u043a \u0445\u0438\u0437\u043c\u0430\u0442 \u043a\u045e\u0440\u0441\u0430\u0442\u0438\u0448\u0434\u0430\u043d",
+      "status": 1
+    }
+  },
+  {
+    "model": "report.reportgroup",
+    "pk": 16,
+    "fields": {
+      "name": "\u049a\u0438\u0448\u043b\u043e\u049b \u0445\u045e\u0436\u0430\u043b\u0438\u0433\u0438 \u043c\u0430\u04b3\u0441\u0443\u043b\u043e\u0442\u0438 \u0435\u0442\u0438\u0448\u0442\u0438\u0440\u0438\u0448\u0434\u0430\u043d",
+      "status": 1
+    }
+  },
+  {
+    "model": "report.reportgroup",
+    "pk": 17,
+    "fields": {
+      "name": "\u0427\u043e\u0440\u0432\u0430\u0447\u0438\u043b\u0438\u043a, \u041f\u0430\u0440\u0440\u0430\u043d\u0434\u0430\u0447\u0438\u043b\u0438\u043a, \u049a\u0443\u0451\u043d\u0447\u0438\u043b\u0438\u043a \u0432\u0430 \u0411\u0430\u043b\u0438\u049b\u0447\u0438\u043b\u0438\u043a\u0434\u0430\u043d",
+      "status": 1
+    }
+  },
+  {
+    "model": "report.reportgroup",
+    "pk": 18,
+    "fields": {
+      "name": "\u0414\u043e\u0440\u0438\u0432\u043e\u0440\u0447\u0438\u043b\u0438\u043a\u0434\u0430\u043d",
+      "status": 1
+    }
+  },
+  {
+    "model": "report.reportgroup",
+    "pk": 19,
+    "fields": {
+      "name": "\u0411\u043e\u0448\u049b\u0430 \u0434\u0430\u0440\u043e\u043c\u0430\u0434\u043b\u0430\u0440 (\u043a\u045e\u043a\u0430\u043b\u0430\u043c\u0437\u043e\u0440\u043b\u0430\u0448\u0442\u0438\u0440\u0438\u0448) (10%)",
+      "status": 1
+    }
+  },
+  {
+    "model": "report.reportkey",
+    "pk": 9,
+    "fields": {
+      "report": 3,
+      "name": "\u0416\u0430\u043c\u0438 \u0442\u045e\u043b\u0430\u043d\u0438\u0448\u0438 \u043a\u0435\u0440\u0430\u043a",
+      "status": 1,
+      "value_type": 1,
+      "report_group_one": 4,
+      "report_group_two": 5,
+      "sort": 0
+    }
+  },
+  {
+    "model": "report.reportkey",
+    "pk": 10,
+    "fields": {
+      "report": 3,
+      "name": "\u0436\u0430\u043c\u0438 \u0442\u0443\u0448\u0443\u043c",
+      "status": 1,
+      "value_type": 1,
+      "report_group_one": 4,
+      "report_group_two": 5,
+      "sort": 0
+    }
+  },
+  {
+    "model": "report.reportkey",
+    "pk": 11,
+    "fields": {
+      "report": 3,
+      "name": "\u0422\u045e\u043b\u0430\u043d\u0438\u0448\u0438 \u043a\u0435\u0440\u0430\u043a (100%)",
+      "status": 1,
+      "value_type": 1,
+      "report_group_one": 4,
+      "report_group_two": 6,
+      "sort": 0
+    }
+  },
+  {
+    "model": "report.reportkey",
+    "pk": 12,
+    "fields": {
+      "report": 3,
+      "name": "\u049a\u045e\u043c\u0438\u0442\u0430\u0433\u0430 \u045e\u0442\u043a\u0430\u0437\u0438\u043b\u0434\u0438",
+      "status": 1,
+      "value_type": 1,
+      "report_group_one": 4,
+      "report_group_two": 6,
+      "sort": 0
+    }
+  },
+  {
+    "model": "report.reportkey",
+    "pk": 13,
+    "fields": {
+      "report": 3,
+      "name": "\u049b\u043e\u043b\u0434\u0438\u049b",
+      "status": 1,
+      "value_type": 1,
+      "report_group_one": 4,
+      "report_group_two": 6,
+      "sort": 0
+    }
+  },
+  {
+    "model": "report.reportkey",
+    "pk": 14,
+    "fields": {
+      "report": 3,
+      "name": "\u0416\u0430\u043c\u0438 \u0442\u045e\u043b\u0430\u043d\u0438\u0448\u0438 \u043a\u0435\u0440\u0430\u043a",
+      "status": 1,
+      "value_type": 1,
+      "report_group_one": 7,
+      "report_group_two": 5,
+      "sort": 0
+    }
+  },
+  {
+    "model": "report.reportkey",
+    "pk": 15,
+    "fields": {
+      "report": 3,
+      "name": "\u0436\u0430\u043c\u0438 \u0442\u0443\u0448\u0443\u043c",
+      "status": 1,
+      "value_type": 1,
+      "report_group_one": 7,
+      "report_group_two": 5,
+      "sort": 0
+    }
+  },
+  {
+    "model": "report.reportkey",
+    "pk": 16,
+    "fields": {
+      "report": 3,
+      "name": "\u0422\u045e\u043b\u0430\u043d\u0438\u0448\u0438 \u043a\u0435\u0440\u0430\u043a (100%)",
+      "status": 1,
+      "value_type": 1,
+      "report_group_one": 7,
+      "report_group_two": 6,
+      "sort": 0
+    }
+  },
+  {
+    "model": "report.reportkey",
+    "pk": 17,
+    "fields": {
+      "report": 3,
+      "name": "\u049a\u045e\u043c\u0438\u0442\u0430\u0433\u0430 \u045e\u0442\u043a\u0430\u0437\u0438\u043b\u0434\u0438",
+      "status": 1,
+      "value_type": 1,
+      "report_group_one": 7,
+      "report_group_two": 6,
+      "sort": 0
+    }
+  },
+  {
+    "model": "report.reportkey",
+    "pk": 18,
+    "fields": {
+      "report": 3,
+      "name": "\u049b\u043e\u043b\u0434\u0438\u049b",
+      "status": 1,
+      "value_type": 1,
+      "report_group_one": 7,
+      "report_group_two": 6,
+      "sort": 0
+    }
+  },
+  {
+    "model": "report.reportkey",
+    "pk": 19,
+    "fields": {
+      "report": 3,
+      "name": "\u0416\u0430\u043c\u0438 \u0442\u045e\u043b\u0430\u043d\u0438\u0448\u0438 \u043a\u0435\u0440\u0430\u043a",
+      "status": 1,
+      "value_type": 1,
+      "report_group_one": 8,
+      "report_group_two": 5,
+      "sort": 0
+    }
+  },
+  {
+    "model": "report.reportkey",
+    "pk": 20,
+    "fields": {
+      "report": 3,
+      "name": "\u0436\u0430\u043c\u0438 \u0442\u0443\u0448\u0443\u043c",
+      "status": 1,
+      "value_type": 1,
+      "report_group_one": 8,
+      "report_group_two": 5,
+      "sort": 0
+    }
+  },
+  {
+    "model": "report.reportkey",
+    "pk": 21,
+    "fields": {
+      "report": 3,
+      "name": "\u0422\u045e\u043b\u0430\u043d\u0438\u0448\u0438 \u043a\u0435\u0440\u0430\u043a (100%)",
+      "status": 1,
+      "value_type": 1,
+      "report_group_one": 8,
+      "report_group_two": 6,
+      "sort": 0
+    }
+  },
+  {
+    "model": "report.reportkey",
+    "pk": 22,
+    "fields": {
+      "report": 3,
+      "name": "\u049a\u045e\u043c\u0438\u0442\u0430\u0433\u0430 \u045e\u0442\u043a\u0430\u0437\u0438\u043b\u0434\u0438",
+      "status": 1,
+      "value_type": 1,
+      "report_group_one": 8,
+      "report_group_two": 6,
+      "sort": 0
+    }
+  },
+  {
+    "model": "report.reportkey",
+    "pk": 23,
+    "fields": {
+      "report": 3,
+      "name": "\u049b\u043e\u043b\u0434\u0438\u049b",
+      "status": 1,
+      "value_type": 1,
+      "report_group_one": 8,
+      "report_group_two": 6,
+      "sort": 0
+    }
+  },
+  {
+    "model": "report.reportkey",
+    "pk": 24,
+    "fields": {
+      "report": 3,
+      "name": "\u0416\u0430\u043c\u0438 \u0442\u045e\u043b\u0430\u043d\u0438\u0448\u0438 \u043a\u0435\u0440\u0430\u043a",
+      "status": 1,
+      "value_type": 1,
+      "report_group_one": 9,
+      "report_group_two": 5,
+      "sort": 0
+    }
+  },
+  {
+    "model": "report.reportkey",
+    "pk": 25,
+    "fields": {
+      "report": 3,
+      "name": "\u0436\u0430\u043c\u0438 \u0442\u0443\u0448\u0443\u043c",
+      "status": 1,
+      "value_type": 1,
+      "report_group_one": 9,
+      "report_group_two": 5,
+      "sort": 0
+    }
+  },
+  {
+    "model": "report.reportkey",
+    "pk": 26,
+    "fields": {
+      "report": 3,
+      "name": "\u0422\u045e\u043b\u0430\u043d\u0438\u0448\u0438 \u043a\u0435\u0440\u0430\u043a (50%)",
+      "status": 1,
+      "value_type": 1,
+      "report_group_one": 9,
+      "report_group_two": 6,
+      "sort": 0
+    }
+  },
+  {
+    "model": "report.reportkey",
+    "pk": 27,
+    "fields": {
+      "report": 3,
+      "name": "\u049a\u045e\u043c\u0438\u0442\u0430\u0433\u0430 \u045e\u0442\u043a\u0430\u0437\u0438\u043b\u0434\u0438",
+      "status": 1,
+      "value_type": 1,
+      "report_group_one": 9,
+      "report_group_two": 6,
+      "sort": 0
+    }
+  },
+  {
+    "model": "report.reportkey",
+    "pk": 28,
+    "fields": {
+      "report": 3,
+      "name": "\u049b\u043e\u043b\u0434\u0438\u049b",
+      "status": 1,
+      "value_type": 1,
+      "report_group_one": 9,
+      "report_group_two": 6,
+      "sort": 0
+    }
+  },
+  {
+    "model": "report.reportkey",
+    "pk": 29,
+    "fields": {
+      "report": 3,
+      "name": "\u0416\u0430\u043c\u0438 \u0442\u045e\u043b\u0430\u043d\u0438\u0448\u0438 \u043a\u0435\u0440\u0430\u043a",
+      "status": 1,
+      "value_type": 1,
+      "report_group_one": 10,
+      "report_group_two": 5,
+      "sort": 0
+    }
+  },
+  {
+    "model": "report.reportkey",
+    "pk": 30,
+    "fields": {
+      "report": 3,
+      "name": "\u0436\u0430\u043c\u0438 \u0442\u0443\u0448\u0443\u043c",
+      "status": 1,
+      "value_type": 1,
+      "report_group_one": 10,
+      "report_group_two": 5,
+      "sort": 0
+    }
+  },
+  {
+    "model": "report.reportkey",
+    "pk": 31,
+    "fields": {
+      "report": 3,
+      "name": "\u0422\u045e\u043b\u0430\u043d\u0438\u0448\u0438 \u043a\u0435\u0440\u0430\u043a (10%)",
+      "status": 1,
+      "value_type": 1,
+      "report_group_one": 10,
+      "report_group_two": 6,
+      "sort": 0
+    }
+  },
+  {
+    "model": "report.reportkey",
+    "pk": 32,
+    "fields": {
+      "report": 3,
+      "name": "\u049a\u045e\u043c\u0438\u0442\u0430\u0433\u0430 \u045e\u0442\u043a\u0430\u0437\u0438\u043b\u0434\u0438",
+      "status": 1,
+      "value_type": 1,
+      "report_group_one": 10,
+      "report_group_two": 6,
+      "sort": 0
+    }
+  },
+  {
+    "model": "report.reportkey",
+    "pk": 33,
+    "fields": {
+      "report": 3,
+      "name": "\u049b\u043e\u043b\u0434\u0438\u049b",
+      "status": 1,
+      "value_type": 1,
+      "report_group_one": 10,
+      "report_group_two": 6,
+      "sort": 0
+    }
+  },
+  {
+    "model": "report.reportkey",
+    "pk": 34,
+    "fields": {
+      "report": 4,
+      "name": "I-\u0447\u043e\u0440\u0430\u043a",
+      "status": 1,
+      "value_type": 1,
+      "report_group_one": 11,
+      "report_group_two": null,
+      "sort": 0
+    }
+  },
+  {
+    "model": "report.reportkey",
+    "pk": 35,
+    "fields": {
+      "report": 4,
+      "name": "II-\u0447\u043e\u0440\u0430\u043a",
+      "status": 1,
+      "value_type": 1,
+      "report_group_one": 11,
+      "report_group_two": null,
+      "sort": 0
+    }
+  },
+  {
+    "model": "report.reportkey",
+    "pk": 36,
+    "fields": {
+      "report": 4,
+      "name": "III-\u0447\u043e\u0440\u0430\u043a",
+      "status": 1,
+      "value_type": 1,
+      "report_group_one": 11,
+      "report_group_two": null,
+      "sort": 0
+    }
+  },
+  {
+    "model": "report.reportkey",
+    "pk": 37,
+    "fields": {
+      "report": 4,
+      "name": "IV-\u0447\u043e\u0440\u0430\u043a",
+      "status": 1,
+      "value_type": 1,
+      "report_group_one": 11,
+      "report_group_two": null,
+      "sort": 0
+    }
+  },
+  {
+    "model": "report.reportkey",
+    "pk": 38,
+    "fields": {
+      "report": 5,
+      "name": "\u2116",
+      "status": 1,
+      "value_type": 1,
+      "report_group_one": 12,
+      "report_group_two": null,
+      "sort": 0
+    }
+  },
+  {
+    "model": "report.reportkey",
+    "pk": 39,
+    "fields": {
+      "report": 5,
+      "name": "\u0441\u0430\u043d\u0430\u0441\u0438",
+      "status": 1,
+      "value_type": 1,
+      "report_group_one": 12,
+      "report_group_two": null,
+      "sort": 0
+    }
+  },
+  {
+    "model": "report.reportkey",
+    "pk": 40,
+    "fields": {
+      "report": 5,
+      "name": "\u0422\u045e\u043b\u0430\u043d\u0438\u0448\u0438 \u043a\u0435\u0440\u0430\u043a",
+      "status": 1,
+      "value_type": 1,
+      "report_group_one": 13,
+      "report_group_two": 5,
+      "sort": 0
+    }
+  },
+  {
+    "model": "report.reportkey",
+    "pk": 41,
+    "fields": {
+      "report": 5,
+      "name": "\u0422\u045e\u043b\u0430\u043d\u0434\u0438",
+      "status": 1,
+      "value_type": 1,
+      "report_group_one": 13,
+      "report_group_two": 5,
+      "sort": 0
+    }
+  },
+  {
+    "model": "report.reportkey",
+    "pk": 42,
+    "fields": {
+      "report": 5,
+      "name": "\u049b\u043e\u043b\u0434\u0438\u049b",
+      "status": 1,
+      "value_type": 1,
+      "report_group_one": 13,
+      "report_group_two": 5,
+      "sort": 0
+    }
+  },
+  {
+    "model": "report.reportkey",
+    "pk": 43,
+    "fields": {
+      "report": 5,
+      "name": "\u049a\u045e\u043c\u0438\u0442\u0430\u0433\u0430 \u045e\u0442\u043a\u0430\u0437\u0438\u043b\u0434\u0438",
+      "status": 1,
+      "value_type": 1,
+      "report_group_one": 13,
+      "report_group_two": null,
+      "sort": 0
+    }
+  },
+  {
+    "model": "report.reportkey",
+    "pk": 44,
+    "fields": {
+      "report": 5,
+      "name": "\u0422\u045e\u043b\u0430\u043d\u0438\u0448\u0438 \u043a\u0435\u0440\u0430\u043a",
+      "status": 1,
+      "value_type": 1,
+      "report_group_one": 15,
+      "report_group_two": 5,
+      "sort": 0
+    }
+  },
+  {
+    "model": "report.reportkey",
+    "pk": 45,
+    "fields": {
+      "report": 5,
+      "name": "\u0422\u045e\u043b\u0430\u043d\u0434\u0438",
+      "status": 1,
+      "value_type": 1,
+      "report_group_one": 15,
+      "report_group_two": 5,
+      "sort": 0
+    }
+  },
+  {
+    "model": "report.reportkey",
+    "pk": 46,
+    "fields": {
+      "report": 5,
+      "name": "\u049b\u043e\u043b\u0434\u0438\u049b",
+      "status": 1,
+      "value_type": 1,
+      "report_group_one": 15,
+      "report_group_two": 5,
+      "sort": 0
+    }
+  },
+  {
+    "model": "report.reportkey",
+    "pk": 47,
+    "fields": {
+      "report": 5,
+      "name": "\u049a\u045e\u043c\u0438\u0442\u0430\u0433\u0430 \u045e\u0442\u043a\u0430\u0437\u0438\u043b\u0434\u0438",
+      "status": 1,
+      "value_type": 1,
+      "report_group_one": 15,
+      "report_group_two": null,
+      "sort": 0
+    }
+  },
+  {
+    "model": "report.reportkey",
+    "pk": 48,
+    "fields": {
+      "report": 5,
+      "name": "\u0422\u045e\u043b\u0430\u043d\u0438\u0448\u0438 \u043a\u0435\u0440\u0430\u043a",
+      "status": 1,
+      "value_type": 1,
+      "report_group_one": 16,
+      "report_group_two": 5,
+      "sort": 0
+    }
+  },
+  {
+    "model": "report.reportkey",
+    "pk": 49,
+    "fields": {
+      "report": 5,
+      "name": "\u0422\u045e\u043b\u0430\u043d\u0434\u0438",
+      "status": 1,
+      "value_type": 1,
+      "report_group_one": 16,
+      "report_group_two": 5,
+      "sort": 0
+    }
+  },
+  {
+    "model": "report.reportkey",
+    "pk": 50,
+    "fields": {
+      "report": 5,
+      "name": "\u049b\u043e\u043b\u0434\u0438\u049b",
+      "status": 1,
+      "value_type": 1,
+      "report_group_one": 16,
+      "report_group_two": 5,
+      "sort": 0
+    }
+  },
+  {
+    "model": "report.reportkey",
+    "pk": 51,
+    "fields": {
+      "report": 5,
+      "name": "\u049a\u045e\u043c\u0438\u0442\u0430\u0433\u0430 \u045e\u0442\u043a\u0430\u0437\u0438\u043b\u0434\u0438",
+      "status": 1,
+      "value_type": 1,
+      "report_group_one": 16,
+      "report_group_two": null,
+      "sort": 0
+    }
+  },
+  {
+    "model": "report.reportkey",
+    "pk": 52,
+    "fields": {
+      "report": 5,
+      "name": "\u0422\u045e\u043b\u0430\u043d\u0438\u0448\u0438 \u043a\u0435\u0440\u0430\u043a",
+      "status": 1,
+      "value_type": 1,
+      "report_group_one": 17,
+      "report_group_two": 5,
+      "sort": 0
+    }
+  },
+  {
+    "model": "report.reportkey",
+    "pk": 53,
+    "fields": {
+      "report": 5,
+      "name": "\u0422\u045e\u043b\u0430\u043d\u0434\u0438",
+      "status": 1,
+      "value_type": 1,
+      "report_group_one": 17,
+      "report_group_two": 5,
+      "sort": 0
+    }
+  },
+  {
+    "model": "report.reportkey",
+    "pk": 54,
+    "fields": {
+      "report": 5,
+      "name": "\u049b\u043e\u043b\u0434\u0438\u049b",
+      "status": 1,
+      "value_type": 1,
+      "report_group_one": 17,
+      "report_group_two": 5,
+      "sort": 0
+    }
+  },
+  {
+    "model": "report.reportkey",
+    "pk": 55,
+    "fields": {
+      "report": 5,
+      "name": "\u049a\u045e\u043c\u0438\u0442\u0430\u0433\u0430 \u045e\u0442\u043a\u0430\u0437\u0438\u043b\u0434\u0438",
+      "status": 1,
+      "value_type": 1,
+      "report_group_one": 17,
+      "report_group_two": null,
+      "sort": 0
+    }
+  },
+  {
+    "model": "report.reportkey",
+    "pk": 56,
+    "fields": {
+      "report": 5,
+      "name": "\u0422\u045e\u043b\u0430\u043d\u0438\u0448\u0438 \u043a\u0435\u0440\u0430\u043a",
+      "status": 1,
+      "value_type": 1,
+      "report_group_one": 18,
+      "report_group_two": 5,
+      "sort": 0
+    }
+  },
+  {
+    "model": "report.reportkey",
+    "pk": 57,
+    "fields": {
+      "report": 5,
+      "name": "\u0422\u045e\u043b\u0430\u043d\u0434\u0438",
+      "status": 1,
+      "value_type": 1,
+      "report_group_one": 18,
+      "report_group_two": 5,
+      "sort": 0
+    }
+  },
+  {
+    "model": "report.reportkey",
+    "pk": 58,
+    "fields": {
+      "report": 5,
+      "name": "\u049b\u043e\u043b\u0434\u0438\u049b",
+      "status": 1,
+      "value_type": 1,
+      "report_group_one": 18,
+      "report_group_two": 5,
+      "sort": 0
+    }
+  },
+  {
+    "model": "report.reportkey",
+    "pk": 59,
+    "fields": {
+      "report": 5,
+      "name": "\u049a\u045e\u043c\u0438\u0442\u0430\u0433\u0430 \u045e\u0442\u043a\u0430\u0437\u0438\u043b\u0434\u0438",
+      "status": 1,
+      "value_type": 1,
+      "report_group_one": 18,
+      "report_group_two": null,
+      "sort": 0
+    }
+  },
+  {
+    "model": "report.reportkey",
+    "pk": 60,
+    "fields": {
+      "report": 5,
+      "name": "\u0422\u045e\u043b\u0430\u043d\u0438\u0448\u0438 \u043a\u0435\u0440\u0430\u043a",
+      "status": 1,
+      "value_type": 1,
+      "report_group_one": 19,
+      "report_group_two": 5,
+      "sort": 0
+    }
+  },
+  {
+    "model": "report.reportkey",
+    "pk": 61,
+    "fields": {
+      "report": 5,
+      "name": "\u0422\u045e\u043b\u0430\u043d\u0434\u0438",
+      "status": 1,
+      "value_type": 1,
+      "report_group_one": 19,
+      "report_group_two": 5,
+      "sort": 0
+    }
+  },
+  {
+    "model": "report.reportkey",
+    "pk": 62,
+    "fields": {
+      "report": 5,
+      "name": "\u049b\u043e\u043b\u0434\u0438\u049b",
+      "status": 1,
+      "value_type": 1,
+      "report_group_one": 19,
+      "report_group_two": 5,
+      "sort": 0
+    }
+  },
+  {
+    "model": "report.reportkey",
+    "pk": 63,
+    "fields": {
+      "report": 5,
+      "name": "\u049a\u045e\u043c\u0438\u0442\u0430\u0433\u0430 \u045e\u0442\u043a\u0430\u0437\u0438\u043b\u0434\u0438",
+      "status": 1,
+      "value_type": 1,
+      "report_group_one": 19,
+      "report_group_two": null,
+      "sort": 0
+    }
+  }
+]

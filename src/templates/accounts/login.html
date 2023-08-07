@@ -1,0 +1,113 @@
+{% extends "layouts/full_base.html" %}
+{% load i18n %}
+{% block title %} {% trans "Login page" %} {% endblock %}
+
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}
+    <style>
+    .login_header{
+        position: relative;
+    }
+    .login_header:before{
+        content: '';
+        width: 8%;
+        height: 2px;
+        background-color: #000;
+        position: absolute;
+        top: 50%;
+        right: 25%;
+    }
+    .login_header:after{
+        content: '';
+        width: 8%;
+        height: 2px;
+        background-color: #000;
+        position: absolute;
+        top: 50%;
+        left: 25%;
+    }
+    @media only screen and (max-width: 1530px) {
+        .login_header:after{
+            left: 10%;
+        }
+        .login_header:before{
+            right: 10%;
+        }
+    }
+    @media only screen and (max-width: 850px) {
+        .login_header:after{
+            visibility: hidden;
+        }
+        .login_header:before{
+            visibility: hidden;
+        }
+    }
+    </style>
+{% endblock stylesheets %}
+
+{% block content %}
+    <div class="w-100">
+        <div class="row">
+            <div class="col-md-12 py-2 card-header d-flex align-items-center justify-content-center flex-column w-100">
+                <div class="w-100">
+                    <h3 class="text-center shadow-normal login_header">{% trans "Ўрмон хўжалиги ҳисобини юритиш ахборот тизими" %}</h3>
+                </div>
+                <div class="d-flex justify-content-end w-100">
+                    <a href="http://old.stat-urmon.uz"
+                      class="btn btn-warning btn-sm text-dark font-weight-bold"
+                      target="_blank"
+                   >{% trans "Тизимнинг эски версиясига ўтиш" %} </a>
+                </div>
+            </div>
+        </div>
+        <div class="row w-100 d-flex align-items-center justify-content-center" style="height: 84vh">
+            <div class="col-xl-4 col-lg-4 col-md-6 col-sm-10">
+                <div class="card">
+                    <div class="card-header card-header-info">
+                        <h4 class="card-title text-left">
+                            {% trans "Login" %}
+                        </h4>
+                    </div>
+                    <div class="card-body">
+                        <h6 class="card-category">
+                            {% if msg %}
+                                <span class="text-danger">{{ msg }}</span>
+                            {% else %}
+                            {% endif %}
+                        </h6>
+                        <br/>
+                        <form role="form" method="post" action="">
+                            {% csrf_token %}
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group py-3">
+                                        <label class="text-dark">{% trans "Email" %}</label>
+                                        {{ form.email }}
+                                    </div>
+                                </div>
+                            </div>
+                            <br/>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group py-3">
+                                        <label class="text-dark">{% trans "Password" %}</label>
+                                        {{ form.password }}
+                                    </div>
+                                </div>
+                            </div>
+                            <br/>
+                            <button type="submit" name="login" class="btn btn-info pull-left">{% trans "Login" %}</button>
+                            <div class="clearfix"></div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+{% include 'includes/footer.html' %}
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}{% endblock javascripts %}

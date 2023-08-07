@@ -1,0 +1,70 @@
+{% extends "layouts/base.html" %}
+{% load i18n %}
+{% block title %} {% trans "O'rmon barpo qilish" %} {% endblock %}
+
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}
+    <style>
+
+        .card-body {
+            display: flex;
+            flex-direction: column;
+            flex-wrap: wrap;
+
+            justify-content: space-between;
+            align-items: flex-end;
+        }
+
+        .card-body .card-title {
+            text-overflow: ellipsis;
+            overflow: hidden;
+            white-space: nowrap;
+            max-width: 100%;
+            width: 100%;
+            -webkit-line-clamp: 3;
+        }
+    </style>
+{% endblock stylesheets %}
+{% block content %}
+  <div class="container-fluid ">
+      <div class="row d-flex justify-content-start align-items-center">
+          <div class="col-md-12">
+              <h2 class="text-center m-0">{% trans "O'rmon barpo qilish" %}</h2>
+          </div>
+           <div class="col-lg-3 col-md-4 col-sm-6">
+                <div class="card equal_card_height">
+                  <div class="card-body">
+                    <h4 class="card-title text-center py-3 font-weight-bold">{% trans "Режа" %}</h4>
+<!--                    <h4 class="card-title text-center py-3 font-weight-bold">{% trans "The growing planting Plan" %}</h4>-->
+<!--                    <span class="text-dark text-left p-0 m-0">{% trans "4424 Қарор бўйича" %}</span>-->
+                    <a href="{% url 'trees:the_growing_plant_plan_list' %}" class="btn btn-info btn-sm text-right" >{% trans "Кириш" %}</a>
+                  </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-4 col-sm-6">
+                <div class="card equal_card_height">
+                  <div class="card-body">
+                    <h4 class="card-title text-center py-3 font-weight-bold ">{% trans "амалда" %}</span></h4>
+<!--                    <h4 class="card-title text-center py-3 font-weight-bold ">{% trans "The growing planting" %} <span class="text-lowercase">{% trans "амалда" %}</span></h4>-->
+<!--                    <span class="text-dark text-left p-0 m-0">{% trans "4424 Қарор бўйича" %}</span>-->
+                    <a href="{% url 'trees:the_growing_plant_list' %}" class="btn btn-info btn-sm text-right">{% trans "Кириш" %}</a>
+                  </div>
+                </div>
+            </div>
+          <div class="col-md-4 col-lg-3">
+              <div class="card equal_card_height">
+                  <div class="card-body text-right">
+                      <h4 class="card-title text-center py-3 font-weight-bold">{% trans "Report Generate" %}</h4>
+                      <p class="card-text"></p>
+                      <a href="{% url 'report:report_list' %}?id=2" class="btn btn-info btn-sm">{% trans "Кириш" %}</a>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}
+
+{% endblock javascripts %}

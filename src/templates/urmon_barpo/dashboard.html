@@ -1,0 +1,144 @@
+{% extends "layouts/base.html" %}
+{% load i18n %}
+{% block title %} {% trans "O'rmon barpo xisobotlari title" %} {% endblock %}
+
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}
+<style>
+    .card-body {
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: flex-end;
+    }
+
+    .card-body .card-title {
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
+        width: 100%;
+        max-width: 100%;
+        -webkit-line-clamp: 3;
+    }
+</style>
+{% endblock stylesheets %}
+{% block content %}
+    {% if perms.trees.view_treeplant %}
+        <div class="container-fluid ">
+                <div class="h-100 shadow rounded-top">
+                    <div class="card-header bg-info">
+                        <h3 class="text-center py-2 m-0">{% trans "O'rmon barpo xisobotlari" %}.</h3>
+                    </div>
+                    <div class="card-body">
+                         <div class="row d-flex justify-content-start align-items-center">
+                         {% if perms.trees.view_sprout %}
+                             <div class="col-lg-3 col-md-4 col-sm-6">
+                                 <div class="card">
+                                     <div class="card-body text-right">
+                                         <h4 class="card-title text-center text-dark py-3 font-weight-bold">{% trans "Ko'chatchilik hisoboti" %}</h4>
+                                         <a href="{% url 'trees:sapling_report_dashboard' %}"
+                                            class="btn btn-info btn-sm">{% trans "Кириш" %}</a>
+                                     </div>
+                                 </div>
+                             </div>
+                         {% endif %}
+{#                             <div class="col-lg-3 col-md-4 col-sm-6">#}
+{#                                 <div class="card">#}
+{#                                     <div class="card-body text-right">#}
+{#                                         <h4 class="card-title text-center py-3 font-weight-bold">{% trans "Yerni tayyorlash hisoboti" %}</h4>#}
+{#                                         <a href="{% url 'trees:land_report_dashboard' %}"#}
+{#                                            class="btn btn-info btn-sm">{% trans "Кириш" %}</a>#}
+{#                                     </div>#}
+{#                                 </div>#}
+{#                             </div>#}
+                         {% if perms.trees.view_sprout %}
+                             <div class="col-lg-3 col-md-4 col-sm-6">
+                                 <div class="card shadow">
+                                     <div class="card-body text-right">
+                                         <h4 class="card-title text-center py-3 font-weight-bold">{% trans "Yerni tayorlash" %}</h4>
+                                         <a href="{% url 'trees:land_all_report' %}"
+                                            class="btn btn-info btn-sm">{% trans "Kirish" %}</a>
+                                     </div>
+                                 </div>
+                             </div>
+                         {% endif %}
+                         {% if perms.trees.view_sprout %}
+                             <div class="col-lg-3 col-md-4 col-sm-6">
+                                 <div class="card">
+                                     <div class="card-body text-right">
+                                         <h4 class="card-title text-center py-3 font-weight-bold">{% trans "Niholchilik hisoboti" %}</h4>
+                                         <a href="{% url 'trees:sprout_report_dashboard' %}"
+                                            class="btn btn-info btn-sm">{% trans "Кириш" %}</a>
+                                     </div>
+                                 </div>
+                             </div>
+                         {% endif %}
+                         {% if perms.trees.view_sprout %}
+                             <div class="col-lg-3 col-md-4 col-sm-6">
+                                 <div class="card">
+                                     <div class="card-body text-right">
+                                         <h4 class="card-title text-center py-3 font-weight-bold">{% trans "the_ground_report" %}</h4>
+                                         <a href="{% url 'trees:the_ground_report' %}"
+                                            class="btn btn-info btn-sm">{% trans "Кириш" %} </a>
+                                     </div>
+                                 </div>
+                             </div>
+                         {% endif %}
+                             <div class="col-lg-3 col-md-4 col-sm-6">
+                                 <div class="card">
+                                     <div class="card-body text-right">
+                                         <h4 class="card-title text-center py-3 font-weight-bold">{% trans "Shartnoma" %}</h4>
+                                         <a href="{% url 'trees:tree_contract_report' %}"
+                                            class="btn btn-info btn-sm">{% trans "Кириш" %}</a>
+                                     </div>
+                                 </div>
+                             </div>
+                             <div class="col-lg-3 col-md-4 col-sm-6">
+                                 <div class="card shadow">
+                                     <div class="card-body text-right">
+                                         <h4 class="card-title text-center py-3 font-weight-bold">{% trans 'Кўчатлар баландлиги бўйича маълумот' %}</h4>
+<!--                                         <a href="{% url 'trees:sapling_height_report' %}"-->
+<!--                                            class="btn btn-info btn-sm">{% trans "Kirish" %}</a>-->
+                                         <a href="{% url 'trees:tree_height_report' %}"
+                                            class="btn btn-info btn-sm">{% trans "Kirish" %}</a>
+                                     </div>
+                                 </div>
+                             </div>
+                             <div class="col-lg-3 col-md-4 col-sm-6">
+                                 <div class="card shadow">
+                                     <div class="card-body text-right">
+                                         <h4 class="card-title text-center py-3 font-weight-bold">{% trans "Ёпиқ илдизлик йирик хажмли кўчатлар" %}</h4>
+                                         <a href="{% url 'trees:sapling_report' %}"
+                                            class="btn btn-info btn-sm">{% trans "Kirish" %}</a>
+                                     </div>
+                                 </div>
+                             </div>
+                             {% for item in data %}
+                                 <div class="col-lg-3 col-md-4 col-sm-6">
+                                     <div class="card shadow">
+                                         <div class="card-body text-right">
+                                             <h4 class="card-title text-center py-3 font-weight-bold" title="{{ item.name }}">
+                                                 {{ current_year }} {{ item.name }}
+                                             </h4>
+                                             <a href="{% url 'report:hisobot' item.id %}"
+                                                class="btn btn-info btn-sm">{% trans "Kirish" %}</a>
+                                         </div>
+                                     </div>
+                                 </div>
+                             {% endfor %}
+                         </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    {% else %}
+        <h2>{% trans "permision_denied" %}</h2>
+    {% endif %}
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}
+
+{% endblock javascripts %}

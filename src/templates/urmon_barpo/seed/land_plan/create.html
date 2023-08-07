@@ -1,0 +1,225 @@
+{% extends "layouts/base.html" %}
+{% load i18n %}
+{% block title %} {% trans 'Sapling Plan page' %} {% endblock %}
+
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}
+    <style>
+        #sapling_create{
+            display: block;
+            position: relative;
+        }
+        .fixed-add-btn{
+            position: fixed;
+            top:50%;
+            left: 85%;
+        }
+    </style>
+{% endblock stylesheets %}
+{% block content %}
+    {% if perms.trees.add_prepairlandplan %}
+        <div class="row " id="sapling_create">
+            <div class="col-md-8 offset-md-2">
+                <form @submit.prevent="createGrowingPlan" id="form">
+                    {% csrf_token %}
+                    <div class="card">
+                        <div class="card-header card-header-info py-4">
+                            <h4 class="card-title text-light text-center">{% trans 'PrepairLandPlan create form' %}</h4>
+                        </div>
+                        <div class="card-body mt-2">
+                            <div class="row d-flex align-items-end bg-light border mb-1 mx-1">
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="date">{% trans 'Year' %}</label>
+                                        <select id="years" class="custom-select" v-model="date">
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="region_id">{% trans 'Region' %}</label>
+                                        <select name="region" id="region_id" class="custom-select" v-model="region"  @change="regionChangeHandler(region)" required>
+                                            <option v-for="(item, index) in regions" :key="item.id" :value="item.id">[[ item.name ]]</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="region">{% trans 'Department' %}</label>
+                                        <select name="department" id="department_id" class="custom-select" v-model="department" @change="departmentChangeHandler(department)" required>
+                                            <option v-for="item in selectedDepartments" :key="item.id" :value="item.id">[[ item.name ]]</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                 <div class="col-md-6">
+                                    <div class="form-group pb-2">
+                                        <label for="text">{% trans 'Tree Plant' %}</label>
+                                        <select name="department"   class="custom-select" v-model="category" required>
+                                                <template>
+                                                    <option v-for="item in land_categories" :key="item.id" :value="item.id">[[ item.name ]]</option>
+                                                </template>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group py-2">
+                                        <label for="date" class="text-dark">{% trans 'Yillik' %}</label>
+                                        <input type="number" step="0.01" class="form-control" v-model="yillik" @change.prevent="allSum(yillik)">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        </form>
+                        <div class="card-body">
+                            <div class="row d-flex align-items-end bg-light border mb-1 mx-1">
+                                 <div class="col-md-4 pt-2" v-for="(item, i) in months" :key="item">
+                                    <div class="form-group py-2">
+                                        <label for="date" class="text-dark">[[ item ]]</label>
+                                        <input type="number" step="0.01" class="form-control" v-model="income[i].hectare">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-12 d-flex align-items-end justify-content-end">
+                            <button type="submit" class="btn btn-info btn-sm">{% trans 'save and exit' %}</button>
+                            <button type="submit" @click="saveAndNext()" class="btn btn-info btn-sm">{% trans 'saqlash' %}</button>
+                            <a href="{% url 'trees:sapling_plan_list' %}"
+                                class="btn btn-success btn-sm text-light">
+                                {% trans 'back' %}
+                            </a>
+                        </div>
+                    </div>
+            </div>
+        </div>
+
+    {% else %}
+        <h2>{% trans 'Permission Denied' %}</h2>
+    {% endif %}
+
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}
+    <script>
+    let land_category = {{ land_categories|safe }};
+    let department = {{data|safe}};
+    let region_data = {{ region|safe }};
+    const land_categories = convertToObj(land_category)
+    const  years = document.querySelector('#years');
+    let currentYear = new Date().getFullYear() - 1;
+    for(let i = 0; i < 5; i++){
+        let opt =  document.createElement('option')
+        opt.textContent = currentYear++
+        console.log(opt)
+        years.appendChild(opt)
+    }
+    const departments = department.map(elem => {
+        if(elem){
+            let obj = {id: elem.pk, name: elem.fields['name'], region: elem.fields['region']}
+            return obj
+        }
+    });
+    function getCsrf() {
+        let inputElements = document.querySelectorAll('input');
+        let csrfToken = '';
+            for (let i = 0; i < inputElements.length; ++i) {
+                if (inputElements[i].name === 'csrfmiddlewaretoken') {
+                    csrfToken = inputElements[i].value;
+                    break;
+                }
+            }
+            return csrfToken;
+    };
+    const regions = convertToObj(region_data)
+    const sapling_create = new Vue({
+      delimiters: ['[[', ']]'],
+      el: '#sapling_create',
+      data: {
+          count: 1,
+          date: null,
+          region: null,
+          months: ["{% trans 'Январ' %}", "{% trans 'Феврал' %}", "{% trans 'Март' %}", "{% trans 'Апрел' %}",
+                    "{% trans 'Май' %}", "{% trans 'Июн' %}", "{% trans 'Июл' %}", "{% trans 'Август' %}",
+                    "{% trans 'Сентябр' %}", "{% trans 'Октябр' %}", "{% trans 'Ноябр' %}", "{% trans 'Декабр' %}"],
+          department: null,
+          category:null,
+          income: [
+              {hectare: null},
+              {hectare: null},
+              {hectare: null},
+              {hectare: null},
+              {hectare: null},
+              {hectare: null},
+              {hectare: null},
+              {hectare: null},
+              {hectare: null},
+              {hectare: null},
+              {hectare: null},
+              {hectare: null}
+          ],
+          yillik: null,
+          next:false,
+          regions: regions,
+          selectedDepartments: [],
+          departmentsRoot: departments,
+          land_categories: land_categories
+
+      },
+      methods: {
+          regionChangeHandler(id){
+            this.selectedDepartments = this.departmentsRoot.filter(elem => elem.region === id)
+          },
+          departmentChangeHandler(id){
+              this.department = id
+          },
+          incrementFormRow(){
+              this.counts++;
+              const obj = {
+               hectare: null
+             };
+             this.income.push(obj)
+          },
+          removeRow(id){
+              this.income.splice(id, 1);
+              this.count--
+          },
+         async createGrowingPlan(){
+              let token = getCsrf();
+              let form = new FormData();
+              form.append("csrfmiddlewaretoken", token);
+              form.append("date", this.date);
+              form.append("region", this.region);
+              form.append("department", this.department);
+              form.append("category", this.category);
+              form.append("next", this.next);
+              form.append("items", JSON.stringify(this.income));
+              const url = location.origin + "/trees/land/plan/create/";
+              try{
+                const response = await fetch(url, {
+                    method: 'POST',
+                    body: form
+                })
+                if(response.status === 200){
+                    let msg = "{% trans 'Your work has been saved' %}"
+                    successMessage(msg)
+                    setTimeout(() => {
+                        location.href = response.url
+                    }, 1500)
+                }
+              } catch (error) {
+                  let msg = "{% trans 'Eroor что пошло не так......' %}"
+                  errorMessage(msg)
+              }
+
+          },
+          allSum(sum){
+              this.income.map(elem => elem['hectare'] = (parseInt(sum) / 12).toFixed(0))
+          },
+          saveAndNext(){
+              this.next = !this.next
+          }
+      },
+    });
+  </script>
+{% endblock javascripts %}

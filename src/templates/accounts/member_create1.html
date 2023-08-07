@@ -1,0 +1,428 @@
+{% extends "layouts/base.html" %}
+{% load i18n %}
+{% block title %} {% trans 'user_update_title' %} {% endblock %}
+
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+    {% if not permission_denied %}
+        <div class="row" id="member_create">
+            <div class="col-md-10 offset-1">
+                <div class="card">
+                    <div class="card-header card-header-info py-4">
+                        <h4 class="card-title text-light">{% trans "Create new user" %}</h4>
+                        <p class="card-category text-light"></p>
+                    </div>
+                    <div class="card-body mt-4">
+                        <form @submit.prevent="createMember" id="form" method="POST">
+                                {% csrf_token %}
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group py-2">
+                                        <label for="email" class="text-dark">{% trans 'Email' %}</label>
+                                        <input type="email" required="required" id="email" name="email" v-model="email" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group py-2">
+                                        <label for="first_name" class="text-dark">{% trans 'First name' %}</label>
+                                         <input type="text" required="required" id="first_name" name="first_name" v-model="first_name" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group py-2">
+                                        <label for="" class="text-dark">{% trans 'Last name' %}</label>
+                                         <input type="text" name="last_name" v-model="last_name" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group py-2">
+                                        <label for="" class="text-dark">{% trans 'Mid name' %}</label>
+                                        <input type="text"  name="mid_name" v-model="mid_name" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group py-2">
+                                        <label for="" class="text-dark">{% trans 'Teamporary  work' %}</label>
+                                        <input type="text"  name="temporary_work" v-model="temporary_work" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group py-2">
+                                        <label for="region_id" class="text-dark">{% trans 'Region' %}</label>
+                                        <select name="region" id="region_id" class="custom-select" v-model="region" @change="regionChangeHandler(region)" required>
+                                                <option v-for="(item, index) in regions" :key="item.id" :value="item.id">[[ item.name ]]</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group py-2">
+                                        <label for="" class="text-dark">{% trans 'Department' %}</label>
+                                        <select name="department" id="department_id" class="custom-select" v-model="department" @change="departmentChangeHandler(department)" required>
+                                            <option v-for="item in selectedDepartments" :key="item.id" :value="item.id">[[ item.name ]]</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group py-2">
+                                        <label for="position_id" class="text-dark">{% trans 'Position' %}</label>
+                                        <select name="position" id="position_id" class="custom-select" v-model="position" required>
+                                            <option v-for="item in positionRoot" :key="item.id" :value="item.id">[[ item.name ]]</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group py-2">
+                                        <label for="" class="text-dark">{% trans 'Nation' %}</label>
+                                        <select name="nation" id="nation_id" class="custom-select" v-model="national">
+                                            <option v-for="item in nationRoot" :key="item.id" :value="item.id">[[ item.name ]]</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group py-2">
+                                        <label for="" class="text-dark">{% trans 'Information' %}</label>
+                                         <select name="information" id="information_id" class="custom-select" v-model="information" >
+                                            <option v-for="item in informationRoot" :key="item.id" :value="item.id">[[ item.name ]]</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group py-2">
+                                        <label for="" class="text-dark">{% trans 'gender' %}</label>
+                                         <select name="gender" id="gender_id" class="custom-select" v-model="gender" >
+                                            <option v-for="item in genderRoot" :key="item.id" :value="item.id">[[ item.name ]]</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group py-2">
+                                        <label for="" class="text-dark">{% trans 'year_of_graduation' %}</label>
+                                        <input type="date" v-model="year_of_graduation" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group py-2">
+                                        <label for="" class="text-dark">{% trans 'name_of_graduation' %}</label>
+                                        <input type="text" v-model="name_of_graduation" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group py-2">
+                                        <label for="" class="text-dark">{% trans 'birth_date' %}</label>
+                                        <input type="date" v-model="birth_date" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group py-2">
+                                        <label for="" class="text-dark">{% trans 'birth_place' %}</label>
+                                        <input type="text" v-model="birth_place" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group py-2">
+                                        <label for="" class="text-dark">{% trans 'specialization' %}</label>
+                                        <input type="text" v-model="specialization" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group py-2">
+                                        <label for="" class="text-dark">{% trans 'passport_number' %}</label>
+                                        <input type="text" v-model="passport_number" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group py-2">
+                                        <label for="" class="text-dark">{% trans 'start_position_date' %}</label>
+                                        <input type="date" v-model="start_position_date" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group py-2">
+                                        <label for="" class="text-dark">{% trans 'end_position_date' %}</label>
+                                        <input type="date" v-model="end_position_date" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group py-2">
+                                        <label for="" class="text-dark">{% trans 'residence_address' %}</label>
+                                        <input type="text" v-model="residence_address" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group py-2">
+                                        <label for="" class="text-dark">{% trans 'phone_number' %}</label>
+                                        <input type="text" v-model="phone_number" class="form-control" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group py-2">
+                                        <label for="" class="text-dark">{% trans 'academic_degree' %}</label>
+                                        <input type="text" v-model="academic_degree" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group py-2">
+                                        <label for="" class="text-dark">{% trans 'tour' %}</label>
+                                        <input type="text" v-model="tour" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group py-2">
+                                        <label for="" class="text-dark">{% trans 'favorite_party' %}</label>
+                                        <input type="text" v-model="favorite_party" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group py-2">
+                                        <label for="" class="text-dark">{% trans 'languages' %}</label>
+                                        <input type="text" v-model="languages" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group py-2">
+                                        <label for="" class="text-dark">{% trans 'family_number' %}</label>
+                                        <input type="number" v-model="family_number" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group py-2">
+                                        <label for="" class="text-dark">{% trans 'people_deputy' %}</label>
+                                        <input type="text" v-model="people_deputy" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group py-2">
+                                        <label for="" class="text-dark">{% trans 'state_award' %}</label>
+                                        <input type="text" v-model="state_award" class="form-control">
+                                    </div>
+                                </div>
+                               <div class="col-md-6">
+                                    <div class="form-group py-2">
+                                        <label for="region_id" class="text-dark">{% trans 'Cripple' %}</label>
+                                        <select name="cripples" id="id_cripples" class="custom-select" v-model="cripple">
+                                                <option v-for="(item, index) in cripples" :key="item.id" :value="item.id">[[ item.title ]]</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group py-2">
+                                        <label for="" class="text-dark">{% trans 'military_service' %}</label>
+                                        <input type="text" v-model="military_service" class="form-control">
+                                    </div>
+                                </div>
+                                <div :class="[is_judicial ? `col-md-6` : `col-md-2` ]">
+                                    <div class="form-group">
+                                        <label for="" class="text-dark">{% trans 'judicial' %}</label>
+                                        <div v-if="!is_judicial" class="pl-4">
+                                            <input class="form-check-input" type="checkbox" value="" v-model="is_judicial">
+                                                  {% trans "Sudlanganmisiz ?" %}
+                                                  <span class="form-check-sign">
+                                                      <span class="check"></span>
+                                                  </span>
+                                        </div>
+                                        <input type="text" v-if="is_judicial" v-model="judicial" class="form-control" placeholder="{% trans "Sudlanganingiz sababini kiriting..." %}">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group py-2">
+                                        <label for="" class="text-dark">{% trans 'password' %}</label>
+                                         <input type="password" v-model="password" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group d-flex align-items-center justify-content-start" >
+{#                                        <label for="upload_file"  class="text-dark" style="border:1px solid darkblue; padding:8px;">{% trans 'Upload file' %}</label>#}
+{#                                        <span class="input-group-btn" >#}
+{#                                             <input type="file"#}
+{#                                               id="upload_file"#}
+{#                                               v-model="upload_file"#}
+{#                                               name="Upload file" >#}
+{#                                                <i class="material-icons">upload</i>#}
+{#                                        </span>#}
+{#                                        <p>[[ upload_file ]]</p>#}
+                                        {{ form }}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="d-flex align-items-end justify-content-between">
+                                    <a class="btn btn-success btn-sm" href="{% url 'accounts:users_list' %}">{% trans "Back" %}</a>
+                                    <button class="btn btn-info btn-sm" type="submit">{% trans 'Create' %}</button>
+                                </div>
+                            </div>
+                          </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% else %}
+        <h2>{% trans "permision_denied" %}</h2>
+    {% endif %}
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}
+<script>
+    let department = {{ department|safe }};
+    let region_data = {{ region|safe }};
+    let information = {{ information|safe }};
+    let n = {{ nation|safe }};
+    let position = {{ position|safe }};
+    const departments = convertToJson(department);
+    const info = convertToJson(information);
+    const nations = convertToObj(n);
+    const positions = convertToObj(position);
+
+    const token = getCsrfToken(document.querySelectorAll('input'));
+    console.log("token", token)
+    const regions_json = convertToObj(region_data);
+    const sapling = new Vue({
+      delimiters: ['[[', ']]'],
+      el: '#member_create',
+      data: {
+          email:null,
+          first_name:null,
+          last_name:null,
+          mid_name:null,
+          information:null,
+          position:null,
+          temporary_work:null,
+          national:null,
+          department:null,
+          year_of_graduation:null,
+          name_of_graduation:null,
+          birth_date:null,
+          birth_place:null,
+          specialization:null,
+          passport_number:null,
+          start_position_date:null,
+          end_position_date:null,
+          gender:null,
+          residence_address:null,
+          phone_number:null,
+          academic_degree:null,
+          tour:null,
+          favorite_party:null,
+          languages:null,
+          is_judicial:false,
+          family_number:null,
+          people_deputy:null,
+          state_award:null,
+          cripple:null,
+          military_service:null,
+          judicial:null,
+          password: null,
+          token: token,
+          region: null,
+          regions: regions_json,
+          selectedDepartments: [],
+          departmentsRoot: departments,
+          informationRoot: info,
+          nationRoot: nations,
+          positionRoot: positions,
+          genderRoot: [{id:1, name: "Erkak"},{id:2, name: "Ayol"},{id:3, name: "No Aniq"},],
+          cripples : [{id:1, title:"XA"}, {id:2, title:"YO'Q"}],
+          upload_file: null
+      },
+      methods: {
+          regionChangeHandler(id){
+            this.selectedDepartments = this.departmentsRoot.filter(elem => elem.region === id)
+          },
+          departmentChangeHandler(id){
+              this.department = id
+          },
+         async createMember(){
+              let form = new FormData();
+              form.append("csrfmiddlewaretoken", this.token);
+              form.append("email", this.email);
+              form.append("first_name", this.first_name);
+              form.append("last_name", this.last_name);
+              form.append("mid_name", this.mid_name);
+              form.append("information", this.information);
+              form.append("position", this.position);
+              form.append("temporary_work", this.temporary_work);
+              form.append("national", this.national);
+              form.append("department", this.department);
+              form.append("year_of_graduation", this.year_of_graduation);
+              form.append("name_of_graduation", this.name_of_graduation);
+              form.append("birth_date", this.birth_date);
+              form.append("birth_place", this.birth_place);
+              form.append("specialization", this.specialization);
+              form.append("passport_number", this.passport_number);
+              form.append("start_position_date", this.start_position_date);
+              form.append("end_position_date", this.end_position_date);
+              form.append("gender", this.gender);
+              form.append("residence_address", this.residence_address);
+              form.append("phone_number", this.phone_number);
+              form.append("academic_degree", this.academic_degree);
+              form.append("tour", this.tour);
+              form.append("favorite_party", this.favorite_party);
+              form.append("languages", this.languages);
+              form.append("family_number", this.family_number);
+              form.append("people_deputy", this.people_deputy);
+              form.append("state_award", this.state_award);
+              form.append("cripple", this.cripple);
+              form.append("military_service", this.military_service);
+              form.append("judicial", this.judicial);
+              form.append("is_judicial", this.is_judicial);
+              form.append("password", this.password);
+              var img = document.getElementById('upload_file').files[0];
+              {#form.append("upload", this.upload_file);#}
+              form.append('upload',img,img.name);
+              const url = location.origin + "/accounts/create/";
+              try{
+                const response = await fetch(url, {
+                    method: 'POST',
+                    body: form,
+                    headers: {
+                      'Content-Type': 'multipart/form-data'
+                    }
+                })
+                if(response.status === 200){
+                    location.href = response.url
+                }
+              } catch (error) {
+                  alert('Error')
+              }
+
+          }
+      },
+    });
+</script>
+
+{% endblock javascripts %}
+{#email#}
+{#first_name#}
+{#last_name#}
+{#mid_name#}
+{#information#}
+{#position#}
+{#temporary_work#}
+{#national#}
+{#crop_area#}
+{#groups#}
+{#department#}
+{#status#}
+{#year_of_graduation#}
+{#name_of_graduation#}
+{#birth_date#}
+{#birth_place#}
+{#specialization#}
+{#passport_number#}
+{#start_position_date#}
+{#end_position_date#}
+{#gender#}
+{#residence_address#}
+{#phone_number#}
+{#academic_degree#}
+{#tour#}
+{#favorite_party#}
+{#languages#}
+{#family_number#}
+{#people_deputy#}
+{#state_award#}
+{#cripple#}
+{#military_service#}
+{#judicial#}

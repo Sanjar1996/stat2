@@ -1,0 +1,63 @@
+
+[
+{
+  "model": "trees.treecategory",
+  "pk": 1,
+  "fields": {
+    "created_at": "2021-01-12T07:12:34.989Z",
+    "updated_at": "2021-01-12T07:12:34.990Z",
+    "name": "\u0418\u0433\u043d\u0430\u0431\u0430\u0440\u0433\u043b\u0438\u043b\u0430\u0440",
+    "status": 1
+  }
+},
+{
+  "model": "trees.treecategory",
+  "pk": 2,
+  "fields": {
+    "created_at": "2021-01-12T07:12:43.693Z",
+    "updated_at": "2021-01-12T07:12:43.693Z",
+    "name": "\u0422\u0435\u0437 \u045e\u0441\u0443\u0432\u0447\u0438\u043b\u0430\u0440",
+    "status": 1
+  }
+},
+{
+  "model": "trees.treecategory",
+  "pk": 3,
+  "fields": {
+    "created_at": "2021-01-12T07:12:49.602Z",
+    "updated_at": "2021-01-12T07:12:49.602Z",
+    "name": "\u0401\u043d\u0493\u043e\u049b\u043c\u0435\u0432\u0430\u043b\u0438\u043b\u0430\u0440",
+    "status": 1
+  }
+},
+{
+  "model": "trees.treecategory",
+  "pk": 4,
+  "fields": {
+    "created_at": "2021-01-12T07:12:55.394Z",
+    "updated_at": "2021-01-12T07:12:55.394Z",
+    "name": "\u041c\u0435\u0432\u0430\u043b\u0438\u043b\u0430\u0440",
+    "status": 1
+  }
+},
+{
+  "model": "trees.treecategory",
+  "pk": 5,
+  "fields": {
+    "created_at": "2021-01-12T07:13:03.331Z",
+    "updated_at": "2021-01-12T07:13:03.331Z",
+    "name": "\u042f\u043f\u0440\u043e\u049b\u0431\u0430\u0440\u0433\u043b\u0438\u043b\u0430\u0440",
+    "status": 1
+  }
+},
+{
+  "model": "trees.treecategory",
+  "pk": 6,
+  "fields": {
+    "created_at": "2021-01-12T07:13:18.026Z",
+    "updated_at": "2021-02-06T10:27:16.841Z",
+    "name": "\u0411\u0443\u0442\u0430 \u0432\u0430 \u0433\u0443\u043b\u043b\u0430\u0440",
+    "status": 1
+  }
+}
+]

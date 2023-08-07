@@ -1,0 +1,51 @@
+{% extends "layouts/base.html" %}
+{% load i18n %}
+{% block title %} {% trans 'tree type create page' %} {% endblock %}
+
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+    {% if not permission_denied %}
+        <div class="row">
+            <div class="col-md-8 offset-md-2">
+                <div class="card">
+                    <div class="card-header card-header-info py-4 shadow">
+                        <h4 class="card-title text-light text-center">{% trans 'tree type create form' %}</h4>
+                    </div>
+                    <div class="card-body mt-4">
+                        <form role="form" method="POST" action="{% url 'trees:tree_type_detail' type.id %} ">
+                            {% csrf_token %}
+                            <div class="row d-flex align-items-end">
+                                <div class="col-md-5">
+                                    <div class="form-group py-2">
+                                        <label for="" class="text-dark">{% trans "Category name" %}</label>
+                                        {{ form.name }}
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group py-2">
+                                        <label for="" class="text-dark">{% trans "Daromatda ko'rsatish" %}</label>
+                                        {{ form.show_profit }}
+                                    </div>
+                                </div>
+                                <div class="col-md-3 d-flex align-items-center">
+                                    <button type="submit" class="btn btn-info btn-sm">{% trans 'saqlash' %}</button>
+                                    <a href="{% url 'trees:tree_type_list' %}"
+                                           class="btn btn-success btn-sm text-light">{% trans 'back' %}</a>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    {% else %}
+        <h2>{% trans 'Permision Denied' %}</h2>
+    {% endif %}
+
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}{% endblock javascripts %}

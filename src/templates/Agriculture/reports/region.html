@@ -1,0 +1,291 @@
+{% extends "layouts/base.html" %}
+{% load static %}
+{% load i18n %}
+{% block title %} {% trans 'Nihol yil hisoboti' %} {% endblock %}
+
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}
+    <style>
+        .hide{
+        display: none;
+        transition: all .5s ease-in-out;
+    }
+    .top-container {
+        background-color: #f1f1f1;
+        padding: 30px;
+        text-align: center;
+    }
+    .header {
+        padding: 10px 16px;
+        background: #555;
+        color: #f1f1f1;
+    }
+    .content {
+        padding: 16px;
+    }
+    .sticky {
+        position: fixed;
+        top: 0;
+        width: 100%;
+    }
+
+    .sticky + .content {
+        padding-top: 102px;
+    }
+    th{
+        position: relative;
+        border: 1px solid #ddd;
+    }
+    .zindex{
+        z-index: 1;
+    }
+    .fix__table_header, .second_line, .fthreel{
+        z-index: 1;
+    }
+    </style>
+{% endblock stylesheets %}
+
+{% block content %}
+    {% if perms.agriculture.view_agricultureactual %}
+        {% if messages %}
+            {% for message in messages %}
+                <div class="text-warning text-center alert{% if message.tags %}alert-{{ message.tags }}{% endif %}"
+                     role="alert">{{ message }}</div>
+            {% endfor %}
+        {% endif %}
+        <div class="row">
+            <div class="col-md-12 bg-light pt-2">
+                    <div class="row d-flex justify-content-between w-100">
+                        <div class="col-md-1 d-flex align-items-center">
+                            <a href="{% url "agriculture:agriculture_report_dashboard" %}"
+                            style="box-shadow: none; color: black" type="button"
+                            class="btn bg-light shadow-normal text-black">
+                            <i class="text-black material-icons">arrow_back</i>
+                            </a>
+                        </div>
+                        <div class="col-md-3">
+                            <label for="id_start" class="text-dark">{% trans "start" %}</label>
+                            <div class="form-group w-100">
+                                <input type="date" name="start" required class="form-control" id="id_start"
+                                       value="{{ form.start.value }}">
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <label for="id_end" class="text-dark">{% trans "end" %}</label>
+                            <div class="form-group w-100">
+                                <input type="date" name="end" required class="form-control" id="id_end"
+                                       value="{{ form.end.value }}">
+                            </div>
+                        </div>
+                        <div class="col-md-5 d-flex align-items-end flex-row">
+                            <button onclick="filterBtn({{ tipp }})"
+                                    class="btn btn-info btn-fab btn-fab-mini text-light">
+                                <i class="material-icons">search</i>
+                            </button>
+                            <a href="{% url 'agriculture:agriculture_report_department' region.id %}?type={{ tipp }}"
+                               class="btn btn-info btn-sm text-light ml-1">
+                                {% trans 'reset' %}
+                            </a>
+                        </div>
+                    </div>
+            </div>
+            <div class="col-md-12 bg-light">
+                <div class="card card-plain">
+                    <div class="card-header card-header-info">
+                        <h4 class="card-title mt-0 text-center text-light">
+                            {% trans "Ўрмон хўжалиги давлат қўмитаси тизимидаги ўрмон хўжаликларида" %}
+                            <span class="text-light">{{ start|date:"Y" }}</span>
+                            {% trans "йилда экиладиган қишлоқ хўжалиги экинларини экиш ва махсулотларини етиштириш тўғрисида тезкор маълумот" %}
+                        </h4>
+                    </div>
+
+                    <div class="card-body">
+                        <div class="table table-wrapper tableFixHead " id="wrap">
+                            <table class="table table-hover table-responsive-lg table-responsive-md table-responsive-sm">
+                                <thead class="table table-bordered border-dark text-light header" id="myHeader"
+                                       style="opacity: 1; background:#009879;">
+                                <tr>
+                                    <th class="text-center p-2 zindex" rowspan="3">{% trans "T/p" %}</th>
+                                    <th rowspan="3"
+                                        class="fix__table_header text-center p-2">
+                                        {% trans 'Ташкилот номи' %}
+                                    </th>
+                                    <th class="text-center fix__table_header" rowspan="3">
+                                        {% trans 'Курсаткичлар' %}
+                                    </th>
+                                    <th class="text-center fix__table_header" rowspan="2" colspan="3">
+                                        {{ tree_type.name }}
+                                    </th>
+                                    <th class="text-center fix__table_header" colspan="70">
+                                        {% trans 'Шу жумладан' %}
+                                    </th>
+                                </tr>
+                                <tr>
+                                    {% for plant in plants_data %}
+                                        <th class="text-center second_line" colspan="3">
+                                            {{ plant.name }}
+                                        </th>
+                                    {% endfor %}
+                                </tr>
+                                <tr>
+                                    <th class="text-center p-2 fthreel">
+                                        {% trans 'га' %}
+                                    </th>
+                                    <th class="text-center p-2 fthreel">
+                                        {% trans 'ц/га' %}
+                                    </th>
+                                    <th class="text-center p-2 fthreel">
+                                        {% trans 'тн' %}
+                                    </th>
+                                    {% for plant in plants_data %}
+                                        <th class="text-center p-2 fthreel">
+                                            {% trans 'га' %}
+                                        </th>
+                                        <th class="text-center p-2 fthreel">
+                                            {% trans 'ц/га' %}
+                                        </th>
+                                        <th class="text-center p-2 fthreel">
+                                            {% trans 'тн' %}
+                                        </th>
+                                    {% endfor %}
+                                </tr>
+                                </thead>
+                                <tbody class="content">
+                                {% for items in data %}
+                                    {% if items.region_name %}
+                                        <tr class="table-bordered border-dark region">
+                                            <td class="region_index text-center" rowspan="4">{{ forloop.counter }}</td>
+                                            <td class="text-center font-weight-bold" rowspan="4">
+                                                {{ items.region_name }}
+                                            </td>
+                                            <tr class="table-bordered border-dark">
+                                                <td class="text-center">{% trans 'Топшириқ' %}</td>
+                                                <td class="text-center">{{ items.region_plan_hectare|floatformat:'0'|default:"0.00" }}</td>
+                                                <td class="text-center">{{ items.region_plan_cent|floatformat:'0'|default:"0.00" }}</td>
+                                                <td class="text-center">{{ items.region_plan_weight|floatformat:'0'|default:"0.00" }}</td>
+                                                {% for item in items.first_line %}
+                                                    <td class="text-center">{{ item.plant_plan_hectare|floatformat:'0'|default:"0" }}</td>
+                                                    <td class="text-center">{{ item.plant_plan_cent|floatformat:'0'|default:"0" }}</td>
+                                                    <td class="text-center">{{ item.plant_plan_weight|floatformat:'0'|default:"0" }}</td>
+                                                {% endfor %}
+                                            </tr>
+                                            <tr class="table-bordered border-dark">
+                                                <td class="text-center">{% trans 'Амалда' %}</td>
+                                                <td class="text-center">{{ items.region_actual_hectare|floatformat:'0'|default:"0.00" }}</td>
+                                                <td class="text-center">{{ items.region_actual_cent|floatformat:'0'|default:"0.00" }}</td>
+                                                <td class="text-center">{{ items.region_actual_weight|floatformat:'0'|default:"0.00" }}</td>
+                                                {% for item in items.second_line %}
+                                                    <td class="text-center">{{ item.plant_actual_hectare|floatformat:'0'|default:"0" }}</td>
+                                                    <td class="text-center">{{ item.plant_actual_cent|floatformat:'0'|default:"0" }}</td>
+                                                    <td class="text-center">{{ item.plant_actual_weight|floatformat:'0'|default:"0" }}</td>
+                                                {% endfor %}
+                                            </tr>
+                                            <tr class="table-bordered border-dark">
+                                                <td class="text-center">{% trans 'Фоиз' %}</td>
+                                                <td class="text-center">
+                                                    {{ items.region_hectare_percentage|floatformat:'0'|default:"0.00" }} %
+                                                </td>
+                                                <td class="text-center">
+                                                    {{ items.region_cent_percentage|floatformat:'0'|default:"0.00" }} %
+                                                </td>
+                                                <td class="text-center">
+                                                    {{ items.region_weight_percentage|floatformat:'0'|default:"0.00" }} %
+                                                </td>
+                                                {% for item in items.three_line %}
+                                                    <td class="text-center">{{ item.plant_hectare_percentage|floatformat:'0'|default:"0" }}%</td>
+                                                    <td class="text-center">{{ item.plant_cent_percentage|floatformat:'0'|default:"0" }}%</td>
+                                                    <td class="text-center">{{ item.plant_weight_percentage|floatformat:'0'|default:"0" }}%</td>
+                                                {% endfor %}
+                                            </tr>
+                                        </tr>
+                                    {% endif %}
+                                {% endfor %}
+                                <tfooter>
+                                    <tr class="table-bordered border-dark">
+                                        <td class="text-center" colspan="2" rowspan="4">{% trans 'Жами' %}</td>
+                                        <tr class="table-bordered">
+                                            <td class="text-center">{% trans 'Топшириқ' %}</td>
+                                            <td class="text-center">{{ all_sum.all_hectare_plan_sum|floatformat:'0'|default:"0" }}</td>
+                                            <td class="text-center">{{ all_sum.all_cent_plan_sum|floatformat:'0'|default:"0" }}</td>
+                                            <td class="text-center">{{ all_sum.all_weight_plan_sum|floatformat:'0'|default:"0" }}</td>
+                                            {% for item in sum_tree_plan_data  %}
+                                                <td class="text-center">{{ item.sum_tree_plan_hectare|floatformat:'0'|default:"0" }}</td>
+                                                <td class="text-center">{{ item.sum_plant_cent_actual|floatformat:'0'|default:"0" }}</td>
+                                                <td class="text-center">{{ item.sum_tree_plan_weight|floatformat:'0'|default:"0"}}</td>
+                                            {% endfor %}
+                                        </tr>
+                                        <tr class="table-bordered">
+                                            <td class="text-center">{% trans 'Амалда' %}</td>
+                                            <td class="text-center">{{ all_sum.all_hectare_actual_sum|floatformat:'0'|default:"0" }}</td>
+                                            <td class="text-center">{{ all_sum.all_cent_actual_sum|floatformat:'0'|default:"0"  }}</td>
+                                            <td class="text-center">{{ all_sum.all_weight_actual_sum|floatformat:'0'|default:"0" }}</td>
+
+                                            {% for item in sum_tree_actual_data  %}
+                                                <td class="text-center">{{ item.sum_tree_actual_hectare|floatformat:'0'|default:"0" }}</td>
+                                                <td class="text-center">{{ item.sum_actual_cent_actual|floatformat:'0'|default:"0" }}</td>
+                                                <td class="text-center">{{ item.sum_tree_actual_weight|floatformat:'0'|default:"0" }}</td>
+                                            {% endfor %}
+                                        </tr>
+                                        <tr class="table-bordered ">
+                                            <td class="text-center">{% trans 'Фоиз' %}</td>
+                                            <td class="text-center">{{ all_sum.all_hectare_percentage|floatformat:'0'|default:"0" }}%</td>
+                                            <td class="text-center">{{ all_sum.all_cent_percentage|floatformat:'0'|default:"0" }}%</td>
+                                            <td class="text-center">{{ all_sum.all_weight_percentage|floatformat:'0'|default:"0" }}%</td>
+
+                                            {% for item in sum_tree_percentage_data  %}
+                                                <td class="text-center">{{ item.sum_tree_hectare_percentage|floatformat:'0'|default:"0" }}%</td>
+                                                <td class="text-center">{{ item.sum_tree_cent_percentage|floatformat:'0'|default:"0" }}%</td>
+                                                <td class="text-center">{{ item.sum_tree_weight_percentage|floatformat:'0'|default:"0" }}%</td>
+                                            {% endfor %}
+                                        </tr>
+                                    </tr>
+                                </tfooter>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% else %}
+        <h1>{% trans 'Permission Denied' %}</h1>
+    {% endif %}
+{% endblock content %}
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}
+    <script>
+        const wrap = document.querySelector('#wrap').getBoundingClientRect();
+        let topSize = wrap.top
+        if(topSize < 100){
+            topSize = 269
+        }
+        $(document ).ready(function() {
+            const $th = $('.main-panel').find('thead th');
+            $('.main-panel').on('scroll', function () {
+                if(this.scrollTop >topSize) {
+                    $th.css('transform', 'translateY(' + (this.scrollTop - topSize) + 'px)');
+                } else {
+                    $th.css('transform', 'translateY(' + 0 + 'px)');
+                }
+            });
+        });
+        // GET TYPE PARAMS VALUE
+        const urlParams = new URLSearchParams(window.location.search);
+        let myParam = urlParams.get('type');
+        // SET TREE TYPE AND SELECTED CURRENT TYPE
+        const filterBtn = async (id) => {
+            const from_date = document.querySelector('#id_start');
+            const to_date = document.querySelector('#id_end');
+            let current_date_start_value = from_date.value
+            let current_date_to_value = to_date.value
+            const url = location.origin + "/agriculture/agriculture/report/region/" + `{{ region.id }}/?start=${current_date_start_value}&end=${current_date_to_value}&type=${id}`;
+            try {
+                const result = await fetch(url, {method: 'GET'})
+                location.href = result.url
+            } catch (error) {
+                console.log(error)
+            }
+        }
+    </script>
+{% endblock javascripts %}
+

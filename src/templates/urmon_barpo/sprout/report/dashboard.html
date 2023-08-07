@@ -1,0 +1,58 @@
+{% extends "layouts/base.html" %}
+{% load i18n %}
+{% block title %} {% trans 'Sprout dashboard page title' %} {% endblock %}
+
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}
+<style>
+        .card-body {
+            display: flex;
+            flex-direction: column;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: flex-end;
+        }
+
+        .card-body .card-title {
+            text-overflow: ellipsis;
+            overflow: hidden;
+            white-space: nowrap;
+            width: 100%;
+            max-width: 100%;
+            -webkit-line-clamp: 3;
+        }
+
+</style>
+{% endblock stylesheets %}
+{% block content %}
+  <div class="container-fluid">
+      <div class="row d-flex justify-content-start align-items-center">
+          <div class="col-md-12">
+              <h2 class="text-center m-0">{% trans "Niholchikik hisobotlari" %}.</h2>
+          </div>
+            <div class="col-lg-3 col-md-4 col-sm-6">
+                <div class="card shadow">
+                  <div class="card-body text-right">
+                    <h4 class="card-title text-center py-3 font-weight-bold">{% trans "Kirim chiqim xisoboti" %}</h4>
+<!--                    <p class="card-text">{% trans "Nihol kirim chiqim yuzasidan hisobot" %}</p>-->
+                    <a href="{% url 'trees:sprout_all_report' %}" class="btn btn-info btn-sm">{% trans "Kirish" %}</a>
+                  </div>
+                </div>
+            </div>
+          <div class="col-lg-3 col-md-4 col-sm-6">
+                <div class="card shadow">
+                  <div class="card-body text-right">
+                    <h4 class="card-title text-center py-3 font-weight-bold">{% trans "Reja va amaldagi" %}</h4>
+<!--                    <p class="card-text">{% trans "Reja va amaldagi nihollar yuzasidan xisobot" %}</p>-->
+                    <a href="{% url 'trees:sprout_report' %}" class="btn btn-info btn-sm">{% trans "Kirish" %}</a>
+                  </div>
+                </div>
+          </div>
+      </div>
+  </div>
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}
+
+{% endblock javascripts %}

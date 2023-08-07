@@ -1,0 +1,224 @@
+{% extends "layouts/base.html" %}
+{% load i18n %}
+{% block title %} {% trans 'Seed Plan page' %} {% endblock %}
+
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}
+    <style>
+        #sprout_create{
+            display: block;
+            position: relative;
+        }
+        .fixed-add-btn{
+            position: fixed;
+            top:50%;
+            left: 85%;
+        }
+    </style>
+{% endblock stylesheets %}
+{% block content %}
+    {% if perms.trees.add_treegroundplantingplan %}
+        <div class="row " id="sprout_create">
+            <div class="col-md-8 offset-md-2">
+                <form @submit.prevent="createGrowingPlanPlan" id="form">
+                    {% csrf_token %}
+                    <div class="card">
+                        <div class="card-header card-header-info py-4">
+                            <h4 class="card-title text-light text-center">{% trans "O'rmon barpo qilish" %}</h4>
+                             <div class="col-md-12 d-flex justify-content-end">
+                                    <p class="p-0 m-0">{% trans "Gektar" %}</p>
+                             </div>
+                        </div>
+                        <div class="card-body mt-2">
+                            <div class="row d-flex align-items-center bg-light border mb-1 mx-1">
+
+                                <div class="col-md-4">
+                                    <label for="date" class="text-dark">{% trans 'Date' %}</label>
+                                    <div class="form-group py-1">
+                                        <input type="date" required="required" class="form-control" name="date" v-model="created_at">
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="region_id" class="text-dark">{% trans 'Region' %}</label>
+                                        <select name="region" id="region_id" class="custom-select" v-model="region"  @change="regionChangeHandler(region)" required>
+                                            <option v-for="(item, index) in regions" :key="item.id" :value="item.id">[[ item.name ]]</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="region" class="text-dark">{% trans 'Department' %}</label>
+                                        <select name="department" id="department_id" class="custom-select" v-model="department" @change="departmentChangeHandler(department)" required>
+                                            <option v-for="item in selectedDepartments" :key="item.id" :value="item.id">[[ item.name ]]</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group py-2">
+                                        <label for="date" class="text-dark">{% trans 'desert_plant' %}</label>
+                                        <input type="number" step="0.01" class="form-control" v-model="desert_plant" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group py-2">
+                                        <label for="date" class="text-dark">{% trans 'walnut' %}</label>
+                                        <input type="number" step="0.01" class="form-control text-dark" v-model="walnut"  required>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group py-2">
+                                        <label for="date" class="text-dark">{% trans 'pistachios' %}</label>
+                                        <input type="number" step="0.01" class="form-control" v-model="pistachios" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group py-2">
+                                        <label for="date" class="text-dark">{% trans 'nut' %}</label>
+                                        <input type="number" step="0.01" class="form-control" v-model="nut" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group py-2">
+                                        <label for="date" class="text-dark">{% trans 'poplar' %}</label>
+                                        <input type="number" step="0.01" class="form-control" v-model="poplar" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group py-2">
+                                        <label for="date" class="text-dark">{% trans 'paulownia' %}</label>
+                                        <input type="number" step="0.01" class="form-control" v-model="paulownia" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group py-2">
+                                        <label for="date" class="text-dark">{% trans 'other_plants' %}</label>
+                                        <input type="number" step="0.01" class="form-control" v-model="other_plants" required>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        </form>
+                        <div class="col-md-12 d-flex align-items-end justify-content-end">
+                            <button type="submit" class="btn btn-info btn-sm">{% trans 'save and exit' %}</button>
+                            <button type="submit" @click="saveAndNext()" class="btn btn-info btn-sm">{% trans 'saqlash' %}</button>
+                            <a href="{% url 'trees:the_growing_plant_plan_list' %}"
+                                class="btn btn-success btn-sm text-light">
+                                {% trans 'back' %}
+                            </a>
+                        </div>
+                    </div>
+            </div>
+        </div>
+
+    {% else %}
+        <h2>{% trans 'Permission Denied' %}</h2>
+    {% endif %}
+
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}
+    <script>
+    let department = {{data|safe}};
+    let region_data = {{ region|safe }};
+    {#const years = document.querySelector('#years');#}
+    {#let currentYear = new Date().getFullYear() - 1;#}
+    {#for(let i = 0; i < 5; i++){#}
+    {#    let opt =  document.createElement('option')#}
+    {#    opt.textContent = currentYear++#}
+    {#    years.appendChild(opt)#}
+    {#}#}
+    const departments = convertToJson(department);
+    const token = getCsrfToken(document.querySelectorAll('input'));
+    const regions = convertToObj(region_data)
+    const sprout_create = new Vue({
+      delimiters: ['[[', ']]'],
+      el: '#sprout_create',
+      data: {
+          count: 1,
+          created_at: null,
+          region: null,
+          desert_plant:null,
+          walnut:null,
+          pistachios:null,
+          nut:null,
+          poplar:null,
+          paulownia:null,
+          other_plants:null,
+          department:null,
+          next:false,
+          regions: regions,
+          selectedDepartments: [],
+          departmentsRoot: departments,
+          token: token
+
+      },
+      methods: {
+          regionChangeHandler(id){
+            this.selectedDepartments = this.departmentsRoot.filter(elem => elem.region === id)
+          },
+          departmentChangeHandler(id){
+              this.department = id
+          },
+          incrementFormRow(){
+              this.counts++;
+              const obj = {
+               count: null,
+             };
+             this.income.push(obj)
+          },
+          removeRow(id){
+              this.income.splice(id, 1);
+              this.count--
+          },
+         async createGrowingPlanPlan(){
+              let token = this.token;
+              let form = new FormData();
+              form.append("csrfmiddlewaretoken", token);
+              form.append("date", this.created_at);
+              form.append("region", this.region);
+              form.append("department", this.department);
+              form.append("desert_plant", this.desert_plant);
+              form.append("walnut", this.walnut);
+              form.append("pistachios", this.pistachios);
+              form.append("nut", this.nut);
+              form.append("poplar", this.poplar);
+              form.append("paulownia", this.paulownia);
+              form.append("other_plants", this.other_plants);
+              form.append("next", this.next);
+              const url = location.origin + "/trees/the_growing_plant/plan/create/";
+              try{
+                const response = await fetch(url, {
+                    method: 'POST',
+                    body: form
+                })
+                if(response.status === 200){
+                    Swal.fire({
+                      position: 'top-center',
+                      type: 'success',
+                      title: 'Your work has been saved',
+                      showConfirmButton: false,
+                      timer: 1000
+                    })
+                    setTimeout(() => {
+                        location.href = response.url
+                    }, 1500)
+                }
+              } catch (error) {
+                  Swal.fire({
+                      position: 'top-center',
+                      type: 'error',
+                      showConfirmButton: false,
+                      timer: 1000
+                    })
+              }
+
+          },
+          saveAndNext(){
+              this.next = !this.next
+          }
+      },
+    });
+  </script>
+{% endblock javascripts %}

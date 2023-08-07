@@ -1,0 +1,112 @@
+{% extends "layouts/base.html" %}
+{% load i18n %}
+{% block title %} {% trans "Actions" %} {% endblock %}
+
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}
+
+{% endblock stylesheets %}
+{% block content %}
+  <div class="container-fluid">
+  <div class="row">
+      <div class="col-md-12 mb-4">
+          <h2 class="text-center m-0">{% trans "Barcha qo'shimcha amallar" %}</h2>
+      </div>
+      <div class="col-md-4 col-lg-3">
+          <div class="card equal_card_height">
+          <div class="card-body text-right">
+            <h4 class="card-title text-center py-3 font-weight-bold">{% trans "Region" %}</h4>
+            <p class="card-text"></p>
+            <a href="{% url 'accounts:region_list' %}" class="btn btn-info btn-sm">{% trans "Кириш" %}</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 col-lg-3">
+          <div class="card equal_card_height">
+          <div class="card-body text-right">
+            <h4 class="card-title text-center py-3 font-weight-bold">{% trans "Department" %}</h4>
+            <p class="card-text"></p>
+            <a href="{% url 'accounts:department_list' %}" class="btn btn-info btn-sm">{% trans "Кириш" %}</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 col-lg-3">
+          <div class="card equal_card_height">
+          <div class="card-body text-right">
+            <h4 class="card-title text-center py-3 font-weight-bold">{% trans "Nation" %}</h4>
+            <p class="card-text"></p>
+            <a href="{% url 'accounts:nation_list' %}" class="btn btn-info btn-sm">{% trans "Кириш" %}</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 col-lg-3">
+          <div class="card equal_card_height">
+          <div class="card-body text-right">
+            <h4 class="card-title text-center py-3 font-weight-bold">{% trans "Information" %}</h4>
+            <p class="card-text"></p>
+            <a href="{% url 'accounts:position_list' %}" class="btn btn-info btn-sm">{% trans "Кириш" %}</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 col-lg-3">
+          <div class="card equal_card_height">
+          <div class="card-body text-right">
+            <h4 class="card-title text-center py-3 font-weight-bold">{% trans "Animal" %}</h4>
+            <p class="card-text"></p>
+            <a href="{% url 'chorvachilik:animal_list' %}" class="btn btn-info btn-sm">{% trans "Кириш" %}</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 col-lg-3">
+          <div class="card equal_card_height">
+          <div class="card-body text-right">
+            <h4 class="card-title text-center py-3 font-weight-bold">{% trans "Chorva kirim-chiqim categoriya" %}</h4>
+            <p class="card-text"></p>
+            <a href="{% url 'chorvachilik:in_out_category_list' %}" class="btn btn-info btn-sm">{% trans "Кириш" %}</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 col-lg-3">
+          <div class="card equal_card_height">
+          <div class="card-body text-right">
+            <h4 class="card-title text-center py-3 font-weight-bold">{% trans "Chorva turi" %}</h4>
+            <p class="card-text"></p>
+            <a href="{% url 'chorvachilik:chorva_type_list' %}" class="btn btn-info btn-sm">{% trans "Кириш" %}</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 col-lg-3">
+          <div class="card equal_card_height">
+          <div class="card-body text-right">
+            <h4 class="card-title text-center py-3 font-weight-bold">{% trans "Chorva categoriya" %}</h4>
+            <p class="card-text"></p>
+            <a href="{% url 'chorvachilik:chorva_category_list' %}" class="btn btn-info btn-sm">{% trans "Кириш" %}</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 col-lg-3">
+          <div class="card equal_card_height">
+              <div class="card-body text-right">
+                <h4 class="card-title text-center py-3 font-weight-bold">{% trans "Animal categoriya" %}</h4>
+                <p class="card-text"></p>
+                <a href="{% url 'chorvachilik:animal_category_list' %}" class="btn btn-info btn-sm">{% trans "Кириш" %}</a>
+              </div>
+          </div>
+      </div>
+      <div class="col-md-4 col-lg-3">
+          <div class="card equal_card_height">
+              <div class="card-body text-right">
+                <h4 class="card-title text-center py-3 font-weight-bold">{% trans 'finance type' %}</h4>
+                <p class="card-text"></p>
+                <a href="{% url 'finance:finance_type_list' %}" class="btn btn-info btn-sm">{% trans "Кириш" %}</a>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}
+
+{% endblock javascripts %}

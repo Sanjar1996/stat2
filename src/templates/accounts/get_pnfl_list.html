@@ -1,0 +1,981 @@
+﻿{% extends "layouts/base.html" %}
+{% load static %}
+{% load i18n %}
+{% block title %} {% trans 'user_update_title' %} {% endblock %}
+
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}
+    <style>
+     .min_width{
+         min-width: 300px;
+     }
+     .dialog {
+         top: 0;
+         bottom: 0;
+         right: 0;
+         left: 0;
+         background: rgba(0, 0, 0, 0.5);
+         position: fixed;
+         display: flex;
+         z-index: 100;
+     }
+     .dialog__content {
+         margin: auto;
+         background: white;
+         border-radius: 12px;
+         min-height: 50px;
+         overflow-y: auto;
+         max-height: 500px;
+         min-width: 500px;
+         height: auto;
+         padding: 20px;
+     }
+     .loader {
+         border: 2px solid #fff;
+         border-radius: 50%;
+         border-top: 2px solid #3498db;
+         width: 120px;
+         height: 120px;
+         -webkit-animation: spin 2s linear infinite; /* Safari */
+         animation: spin 1s linear infinite;
+     }
+     @-webkit-keyframes spin {
+         0% {
+             -webkit-transform: rotate(0deg);
+         }
+         100% {
+             -webkit-transform: rotate(360deg);
+         }
+     }
+     @keyframes spin {
+         0% {
+             transform: rotate(0deg);
+         }
+         100% {
+             transform: rotate(360deg);
+         }
+     }
+     [v-cloak]{
+         display: none;
+     }
+     .card-body {
+         min-height:160px;
+     }
+    .icons-container{
+        position:absolute;
+        bottom:20px;
+        left:20px;
+        align-items:center;
+    }
+    .card i{
+        color:powderblue;
+        font-size:20px;
+        margin-left:5px;
+        cursor: pointer;
+    }
+    .bookmark{
+        background:#43cbe8;
+        width:50px !important;
+        height:80px !important;
+        position:absolute;
+        top:-5px;
+        right:15px;
+        display:flex;
+        justify-content:center;
+        align-items: center;
+        border-bottom-right-radius:10px;
+        border-bottom-left-radius:10px;
+    }
+    .bookmark::before{
+        content: "";
+        position: absolute;
+        background-color: inherit;
+        width:5px;
+        height:5px;
+        top:0;
+        right:-5px;
+        border-top-right-radius: 20px;
+    }
+
+    .modal-header .close {
+        padding: 0 !important;
+    }
+    .modal-header .close:focus {
+        border: none !important;
+    }
+    </style>
+{% endblock stylesheets %}
+
+{% block content %}
+    {% if perms.accounts.view_user %}
+    <div class="container-fluid" id="pnlf" v-cloak>
+      <div class="d-flex justify-content-center bg-grey align-items-center" style="height:80vh" v-if="loader">
+          <div class="loader"></div>
+      </div>
+      <div class="row d-flex justify-content-start align-items-stretch flex-wrap flex-row" v-else>
+          <div class="col-md-12">
+              <h2 class="text-center m-0">{% trans "Маълумотнома олиш ПФ-6191 асосида" %}</h2>
+          </div>
+
+          <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6" v-for="data in allData">
+              <div class="card min_width"
+                   :id="data.id"
+                   @mouseover="setBgColor(data.bgBookmarkColor, data.id)"
+                   @mouseleave="removeBgColor(data.id , data.bgBookmarkColor)">
+                  <a class="" @click="openModalHandler(data.id, data.title)">
+                  <div class="card-body text-right">
+                      <div class="row">
+                          <div class="col-md-10">
+                               <h4 class="card-title text-center py-3 font-weight-bold" style="line-height: 1.1">
+                                  [[data.title]]
+                               </h4>
+                          </div>
+                          <div class="col-md-2 bookmark" :style="{backgroundColor: data.bgBookmarkColor}">
+                              <img :src="data.imgPath" alt="" width="100" height="60">
+                          </div>
+                      </div>
+                  </div>
+                  <div class="col-md-12">
+                      <div class="d-flex row icons-container" >
+                          <i
+                              v-for="icon in data.icons"
+                              :key="icon.title"
+                              class="material-icons"
+                              rel="tooltip"
+                              :title="icon.title">
+                              [[icon.icon]]
+                              <img v-if="icon.image" :src="icon.image" alt="">
+                          </i>
+                      </div>
+                  </div>
+              </a>
+              </div>
+          </div>
+      </div>
+
+    {# MODAL #}
+        <div v-if="state">
+            <div class="dialog" @click="closeModal">
+                <div class="dialog__content" @click.stop>
+                    <div class="modal-header d-flex flex-column w-100 text-center align-items-center" >
+                        <button type="button" class="close border-none" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true" @click="closeModal">&times;</span>
+                        </button>
+                        <hr>
+                        <h6 class="modal-title text-center" id="exampleModalLabel">[[ title ]]</h6>
+                    </div>
+                    <div class="modal-body">
+                        <div v-if="currentModalForm.id">
+                            <div v-for="(value, item, i) in currentModalForm.formFields">
+                                <label for="" class="text-dark">[[ currentModalForm.headers[i].title ]]</label>
+                                <input type="text"
+                                       v-model="currentModalForm.formFields[item]"
+                                       class="form-control">
+                            </div>
+                            <div class="w-100 d-flex align-items-end justify-content-end mt-2">
+                                 <button
+                                         class="btn btn-sm btn-primary"
+                                         @click="submitFormHandler">
+                                     {% trans "Get" %}
+                                 </button>
+                            </div>
+                        </div>
+                        <div v-else="">
+                            <table class="table">
+                              <tbody>
+                                <tr v-for="(value, name, index) in  responseObjectData">
+                                  <td>[[ convertToDjangoString(name) ]]</td>
+                                  <td>[[ value ]]</td>
+                                </tr>
+                              </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {# ENDMODAL #}
+    </div>
+
+    {% else %}
+        <h2>{% trans 'Permission Denied' %}</h2>
+    {% endif %}
+
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}
+    <script>
+const headerTitles = [
+    {key: "pinfl", value: "{% trans "pinfl"%}"},
+    {key :"Pasport seriya raqami", value: "{% trans "Pasport seriya raqami" %}" },
+    {key : "Familyasi", value : "{% trans "Familyasi" %}"},
+    {key: "Ismi", value:"{% trans "Ismi" %}"},
+    {key : "Sharifi", value: "{% trans "Sharifi"%}"},
+    {key : "Tug'ilgan joyi", value: "{% trans "Tug'ilgan joyi"%}"},
+    {key : "Tug'ilgan davlati" , value: "{% trans "Tug'ilgan davlati"%}"},
+    {key : "Millati" , value: "{% trans "Millati"%}"},
+    {key : "Jinsi" , value: "{% trans "Jinsi"%}"},
+    {key : "Kim tomonidan berilgan" , value: "{% trans "Kim tomonidan berilgan"%}"},
+    {key : "Berilgan vaqti" , value: "{% trans "Berilgan vaqti"%}"},
+    {key : "Amal qilish muddati" , value: "{% trans "Amal qilish muddati"%}"},
+    {key : "Shaxar" , value: "{% trans "Shaxar"%}"},
+    {key : "Mamlakat" , value: "{% trans "Mamlakat"%}"},
+    {key : "Viloyat" , value: "{% trans "Viloyat"%}"},
+    {key : "Kadastra" , value: "{% trans "Kadastra"%}"},
+    {key : "Manzil" , value: "{% trans "Manzil"%}"},
+    {key : "Ro'yxatdan o'tgan vaqti" , value: "{% trans "Ro'yxatdan o'tgan vaqti"%}"},
+    {key : "Vaqtinchalik yashash manzili" , value: "{% trans "Vaqtinchalik yashash manzili"%}"},
+    {key : "tin_url" , value: "{% trans "tin_url"%}"},
+    {key : "tin" , value: "{% trans "tin"%}"},
+    {key : "fio" , value: "{% trans "fio"%}"},
+    {key : "surnamelatin" , value: "{% trans "surnamelatin"%}"},
+    {key : "namelatin" , value: "{% trans "namelatin"%}"},
+    {key : "patronymlatin" , value: "{% trans "patronymlatin"%}"},
+    {key : "pinp" , value: "{% trans "pinp"%}"},
+    {key : "document" , value: "{% trans "document"%}"},
+    {key : "summa" , value: "{% trans "summa"%}"},
+    {key : "address" , value: "{% trans "address"%}"},
+    {key : "datepens" , value: "{% trans "datepens"%}"},
+    {key : "datepay" , value: "{% trans "datepay"%}"},
+    {key : "experience" , value: "{% trans "experience"%}"},
+    {key : "salarysumma" , value: "{% trans "salarysumma"%}"},
+    {key : "penstype" , value: "{% trans "penstype"%}"},
+    {key : "Result" , value: "{% trans "Result"%}"},
+    {key : "out_text" , value: "{% trans "out_text"%}"},
+    {key : "Faoliyat tarixi" , value: "{% trans "Faoliyat tarixi"%}"},
+    {key : "pinnp" , value: "{% trans "pinnp"%}"},
+    {key : "date_begin" , value: "{% trans "date_begin"%}"},
+    {key : "date_end" , value: "{% trans "date_end"%}"},
+    {key : "pens_type" , value: "{% trans "pens_type"%}"},
+    {key : "msg" , value: "{% trans "msg"%}"},
+    {key : "pinpp" , value: "{% trans "pinpp"%}"},
+    {key : "apptype" , value: "{% trans "apptype"%}"},
+    {key : "Natija" , value: "{% trans "Natija"%}"},
+    {key : "surname_latin" , value: "{% trans "surname_latin"%}"},
+    {key : "name_latin" , value: "{% trans "name_latin"%}"},
+    {key : "passport" , value: "{% trans "passport"%}"},
+    {key : "result_message" , value: "{% trans "result_message"%}"},
+    {key : "result_code" , value: "{% trans "result_code"%}"},
+    {key : "patronym_latin" , value: "{% trans "patronym_latin"%}"},
+    {key : "date_start" , value: "{% trans "date_start"%}"},
+    {key : "contract_date" , value: "{% trans "contract_date"%}"},
+    {key : "company_tin" , value: "{% trans "company_tin"%}"},
+    {key : "company_name" , value: "{% trans "company_name"%}"},
+    {key : "company_address" , value: "{% trans "company_address"%}"},
+    {key : "position_name" , value: "{% trans "position_name"%}"},
+    {key : "order_date" , value: "{% trans "order_date"%}"},
+    {key : "contract_number" , value: "{% trans "contract_number"%}"},
+    {key : "PROFILE" , value: "{% trans "PROFILE"%}"},
+    {key : "EXPERIENCES" , value: "{% trans "EXPERIENCES"%}"},
+    {key : "person_surname" , value: "{% trans "person_surname"%}"},
+    {key : "person_name" , value: "{% trans "person_name"%}"},
+    {key : "person_patronymic" , value: "{% trans "person_patronymic"%}"},
+    {key : "structure_name" , value: "{% trans "structure_name"%}"},
+    {key : "company_inn" , value: "{% trans "company_inn"%}"},
+    {key : "workplace_address" , value: "{% trans "workplace_address"%}"},
+    {key : "transaction_id" , value: "{% trans "transaction_id"%}"},
+    {key : "soato_code" , value: "{% trans "soato_code"%}"},
+    {key : "kodp" , value: "{% trans "kodp"%}"},
+    {key : "code" , value: "{% trans "code"%}"},
+    {key : "cadastr_list" , value: "{% trans "cadastr_list"%}"},
+    {key : "pinfi" , value: "{% trans "pinfi"%}"},
+    {key : "cadastr_count" , value: "{% trans "cadastr_count"%}"},
+    {key : "response_id" , value: "{% trans "response_id"%}"},
+    {key : "message" , value: "{% trans "message"%}"},
+    {key : "So'rovingizni tekshirish uchun maxfiy raqam" , value: "{% trans "So'rovingizni tekshirish uchun maxfiy raqam"%}"},
+    {key : "Holati" , value: "{% trans "Holati"%}"},
+    {key : "So'rov natijasi Searched" , value: "{% trans "So'rov natijasi Searched"%}"},
+    {key : "So'rovning holati" , value: "{% trans "So'rovning holati"%}"},
+]
+     const pnlfRoot = new Vue({
+         delimiters: ['[[', ']]'],
+         el: '#pnlf',
+         data: {
+             responseObjectData: {},
+             state: false,
+             loader: false,
+             title: "",
+             currentModalForm: {},
+             allData: [
+                 {
+                     id: 1,
+                     icons: [
+                         {icon: "person",title:"Jismoniy shaxslarga xizmat ko'rsatiladi"},
+                         {icon: "settings",title:"Avtomatik"},
+                         ],
+                     bgBookmarkColor :"#43cbe8",
+                     title: "{% trans "Паспортные данные физического лица" %}",
+                     imgPath:"{% static "assets/img/sheet.png" %}"
+                 },
+                 {
+                     id: 2,
+                     icons: [
+                         {icon: "groups",title:"Barchaga xizmat ko'rsatiladi"},
+                         {icon: "settings",title:"Avtomatik"},
+                     ],
+                     bgBookmarkColor :"#8ec483",
+                     title: "{% trans "Адрес постоянной и временной прописки" %}",
+                     imgPath:"{% static "assets/img/home.png" %}"
+
+                 },
+                 {
+                     id: 3,
+                     icons: [
+                         {icon: "person",title:"Jismoniy shaxslarga ko'rsatiladi"},
+                         {icon: "settings",title:"Avtomatik"},
+                     ],
+                     bgBookmarkColor :"#43cbe8",
+                     title: "{% trans "Получение информации об ИНН по серии и номеру паспорта" %}",
+                     imgPath:"{% static "assets/img/sheet.png" %}"
+                 },
+                 {
+                     id: 4,
+                     icons: [
+                         {icon: "person",title:"Jismoniy shaxslarga ko'rsatiladi"},
+                         {icon: "settings",title:"Avtomatik"},
+                     ],
+                     bgBookmarkColor :"#43cbe8",
+                     title: "{% trans "Информация о размерах пенсии паспорта" %}",
+                     imgPath:"{% static "assets/img/sheet.png" %}"
+                 },
+                 {
+                     id: 5,
+                     icons: [
+                         {icon: "person",title:"Jismoniy shaxslarga ko'rsatiladi"},
+                         {icon: "settings",title:"Avtomatik"},
+                     ],
+                     bgBookmarkColor :"#979797",
+                     title: "{% trans "Информация о факте назначения пенсии" %}",
+                     imgPath:"{% static "assets/img/credit.png" %}"
+                 },
+                 {
+                     id: 6,
+                     icons: [
+                         {icon: "person",title:"Jismoniy shaxslarga ko'rsatiladi"},
+                         {icon: "settings",title:"Avtomatik"},
+                     ],
+                     bgBookmarkColor : "#979797",
+                     title: "{% trans "Информация о размерах выданных пенсий, пособий" %}",
+                     imgPath:"{% static "assets/img/credit.png" %}"
+                 },
+                 {
+                     id: 8,
+                     icons: [
+                         {icon: "person",title:"Jismoniy shaxslarga ko'rsatiladi"},
+                         {icon: "settings",title:"Avtomatik"},
+                     ],
+                     bgBookmarkColor : "indigo",
+                     title: "{% trans "Получение данных о бракосочетании" %}",
+                     imgPath:"{% static "assets/img/family.png" %}"
+                 },
+                 {
+                     id: 9,
+                     icons: [
+                         {icon: "person",title:"Jismoniy shaxslarga ko'rsatiladi"},
+                         {icon: "settings",title:"Avtomatik"},
+                     ],
+                     bgBookmarkColor: "#11a8ec",
+                     title: "{% trans "Информация о разводе физических лиц" %}",
+                     imgPath:"{% static "assets/img/4.png" %}"
+                 },
+                 {
+                     id: 10,
+                     icons: [
+                         {icon: "person",title:"Jismoniy shaxslarga ko'rsatiladi"},
+                         {icon: "settings",title:"Avtomatik"},
+                     ],
+                     bgBookmarkColor :"#43cbe8",
+                     title: "{% trans "Получение информации касательно свидетельства о смерти" %}",
+                     imgPath:"{% static "assets/img/sheet.png" %}"
+                 },
+                 {
+                     id: 11,
+                     icons: [
+                         {icon: "person",title:"Jismoniy shaxslarga ko'rsatiladi"},
+                         {icon: "settings",title:"Avtomatik"},
+                     ],
+                     bgBookmarkColor :"#43cbe8",
+                     title: "{% trans "Информация о текущей должности" %}",
+                     imgPath:"{% static "assets/img/sheet.png" %}"
+                 },
+                 {
+                     id: 12,
+                     icons: [
+                         {icon: "person",title:"Jismoniy shaxslarga ko'rsatiladi"},
+                         {icon: "settings",title:"Avtomatik"},
+                     ],
+                     bgBookmarkColor :"#43cbe8",
+                     title: "{% trans "Получение информации о истории должностей" %}",
+                     imgPath:"{% static "assets/img/sheet.png" %}"
+                 },
+                 {
+                     id: 13,
+                     icons: [
+                         {icon: "person",title:"Jismoniy shaxslarga ko'rsatiladi"},
+                         {icon: "settings",title:"Avtomatik"},
+                     ],
+                     bgBookmarkColor :"#43cbe8",
+                     title: "{% trans "Получение данных из психоневрологического диспансера" %}",
+                     imgPath:"{% static "assets/img/sheet.png" %}"
+                 },
+                 {
+                     id: 14,
+                     icons: [
+                         {icon: "person",title:"Jismoniy shaxslarga ko'rsatiladi"},
+                         {icon: "settings",title:"Avtomatik"},
+                     ],
+                     bgBookmarkColor :"#43cbe8",
+                     title: "{% trans "Получение данных из наркологического диспансера" %}",
+                     imgPath:"{% static "assets/img/sheet.png" %}"
+                 },
+                 {
+                     id: 15,
+                     icons: [
+                         {icon: "person",title:"Jismoniy shaxslarga ko'rsatiladi"},
+                         {icon: "settings",title:"Avtomatik"},
+                     ],
+                     bgBookmarkColor :"#43cbe8",
+                     title: "{% trans "Получение данных о людях, с ограниченными возможностями" %}",
+                     imgPath:"{% static "assets/img/sheet.png" %}"
+                 },
+                 {
+                     id: 16,
+                     icons: [
+                         {icon: "person",title:"Jismoniy shaxslarga ko'rsatiladi"},
+                         {icon: "settings",title:"Avtomatik"},
+                     ],
+                     bgBookmarkColor : "#8ec483",
+                     title: "{% trans "Получение данных о недвижимости." %}",
+                     imgPath:"{% static "assets/img/home.png" %}"
+                 },
+                 {
+                     id: 17,
+                     icons: [
+                         {icon: "person",title:"Jismoniy shaxslarga ko'rsatiladi"},
+                         {image: "{% static "assets/img/moon.svg" %}", title: "Yarim avtomat"}
+                     ],
+                     bgBookmarkColor :"#43cbe8",
+                     title: "{% trans "Проверка на наличие судимости." %}",
+                     imgPath:"{% static "assets/img/sheet.png" %}"
+                 },
+                 {
+                     id: 19,
+                     icons: [
+                         {icon: "person",title:"Jismoniy shaxslarga ko'rsatiladi"},
+                         {icon: "settings",title:"Avtomatik"},
+                     ],
+                     bgBookmarkColor : "#43cbe8",
+                     title: "{% trans "Sudlangamligini tekshuruv natijasini olish" %}",
+                     imgPath:"{% static "assets/img/sheet.png" %}"
+                 },
+
+                 {
+                    id: 20, // NEW ITEMS
+                    icons: [
+                        {icon: "person", title: "Jismoniy shaxslarga ko'rsatiladi"},
+                        {icon: "settings", title: "Avtomatik"}
+                    ],
+                   bgBookmarkColor:  "#43cbe8",
+                   title: "{% trans "Получение данных о выпускниках школ" %}",
+                   imgPath:"{% static "assets/img/icons-school-50.png"  %}"
+                 },
+
+                 {
+                    id: 21,
+                    icons: [
+                        {icon: "person", title: "Jismoniy shaxslarga ko'rsatiladi"},
+                        {icon: "settings", title: "Avtomatik"}
+                    ],
+                   bgBookmarkColor:  "#43cbe8",
+                   title: "{% trans "Данные свидетельства о государственной регистрации субъекта предпринимательства (Для ИП:)" %}",
+                   imgPath:"{% static "assets/img/business.png" %}"
+                 },
+
+                 {
+                    id: 22,
+                    icons: [
+                        {icon: "person", title: "Yuridik shaxslar uchun"},
+                        {icon: "settings", title: "Avtomatik"}
+                    ],
+                   bgBookmarkColor:  "#43cbe8",
+                   title: "{% trans "Данные свидетельства о государственной регистрации субъекта предпринимательства (Для Юр. лиц:)" %}",
+                   imgPath:"{% static "assets/img/verified.png" %}"
+                 },
+
+                 {
+                    id: 23,
+                    icons: [
+                        {icon: "person", title: "Jismoniy shaxslarga ko'rsatiladi"},
+                        {icon: "settings", title: "Avtomatik"}
+                    ],
+                   bgBookmarkColor:  "#43cbe8",
+                   title: "{% trans "NOMI YO'Q" %}",
+                   imgPath:"{% static "assets/img/sheet.png" %}"
+                 },
+
+                 {
+                    id: 24,
+                    icons: [
+                        {icon: "person", title: "Jismoniy shaxslarga ko'rsatiladi"},
+                        {icon: "settings", title: "Avtomatik"}
+                    ],
+                   bgBookmarkColor:  "#43cbe8",
+                   title: "{% trans "Финансовые отчетности (форма-1)" %}",
+                   imgPath:"{% static "assets/img/nalog.png" %}"
+                 },
+
+                 {
+                    id: 25,
+                    icons: [
+                        {icon: "person", title: "Jismoniy shaxslarga ko'rsatiladi"},
+                        {icon: "settings", title: "Avtomatik"}
+                    ],
+                   bgBookmarkColor:  "#43cbe8",
+                   title: "{% trans "Финансовые отчетности (форма-2)" %}",
+                   imgPath:"{% static "assets/img/nalog.png" %}"
+                 },
+
+                 {
+                    id: 26,
+                    icons: [
+                        {icon: "person", title: "Jismoniy shaxslarga ko'rsatiladi"},
+                        {icon: "settings", title: "Avtomatik"}
+                    ],
+                   bgBookmarkColor:  "#43cbe8",
+                   title: "{% trans "Информация о зар. плате физ. лиц за 12 месяцев" %}",
+                   imgPath:"{% static "assets/img/nalog.png" %}"
+                 },
+
+                 {
+                    id: 27,
+                    icons: [
+                        {icon: "person", title: "Jismoniy shaxslarga ko'rsatiladi"},
+                        {icon: "settings", title: "Avtomatik"}
+                    ],
+                   bgBookmarkColor:  "#43cbe8",
+                   title: "{% trans "Информация о самозанятых лицах" %}",
+                   imgPath:"{% static "assets/img/sheet.png" %}"
+                 },
+
+                 {
+                    id: 28,
+                    icons: [
+                        {icon: "person", title: "Jismoniy shaxslarga ko'rsatiladi"},
+                        {icon: "settings", title: "Avtomatik"}
+                    ],
+                   bgBookmarkColor:  "#43cbe8",
+                   title: "{% trans "Данные о наличии лицензий (Для ИП:)" %}",
+                   imgPath:"{% static "assets/img/verified.png" %}"
+                 },
+
+                 {
+                    id: 29,
+                    icons: [
+                        {icon: "person", title: "Yuridik shaxslar uchun"},
+                        {icon: "settings", title: "Avtomatik"}
+                    ],
+                   bgBookmarkColor:  "#43cbe8",
+                   title: "{% trans "Данные о наличии лицензий (Для Юр. лиц:)" %}",
+                   imgPath:"{% static "assets/img/verified.png" %}"
+                 },
+
+                 {
+                    id: 30,
+                    icons: [
+                        {icon: "person", title: "Jismoniy shaxslarga ko'rsatiladi"},
+                        {icon: "settings", title: "Avtomatik"}
+                    ],
+                   bgBookmarkColor:  "#43cbe8",
+                   title: "{% trans "Получение информации об учащихся колледжей и лицеев (По пинфл:)" %}",
+                   imgPath:"{% static "assets/img/icons-school-50.png" %}"
+                 },
+
+                 {
+                    id: 31,
+                    icons: [
+                        {icon: "person", title: "Jismoniy shaxslarga ko'rsatiladi"},
+                        {icon: "settings", title: "Avtomatik"}
+                    ],
+                   bgBookmarkColor:  "#43cbe8",
+                   title: "{% trans "Получение информации об учащихся колледжей и лицеев (По серию и № пасспорта:)" %}",
+                   imgPath:"{% static "assets/img/icons-school-50.png" %}"
+                 },
+
+                 {
+                    id: 32,
+                    icons: [
+                        {icon: "person", title: "Jismoniy shaxslarga ko'rsatiladi"},
+                        {icon: "settings", title: "Avtomatik"}
+                    ],
+                   bgBookmarkColor:  "#43cbe8",
+                   title: "{% trans "Получение информации о наличии гражданина в женской тетради" %}",
+                   imgPath:"{% static "assets/img/sheet.png" %}"
+                 },
+
+                 {
+                    id: 33,
+                    icons: [
+                        {icon: "person", title: "Jismoniy shaxslarga ko'rsatiladi"},
+                        {icon: "settings", title: "Avtomatik"}
+                    ],
+                   bgBookmarkColor:  "#43cbe8",
+                   title: "{% trans "Получение информации о наличии гражданина в молодёжной тетради" %}",
+                   imgPath:"{% static "assets/img/123.png" %}"
+                 },
+
+                 {
+                    id: 34,
+                    icons: [
+                        {icon: "person", title: "Jismoniy shaxslarga ko'rsatiladi"},
+                        {icon: "settings", title: "Avtomatik"}
+                    ],
+                   bgBookmarkColor:  "#43cbe8",
+                   title: "{% trans "Единый реестр социальной защиты" %}",
+                   imgPath:"{% static "assets/img/set.png" %}"
+                 }
+
+             ],
+             allUrlsData: [
+                 {
+                     id: 1,
+                     url: "/api/ipsgov/v1/get_person_dock_info_servise/",
+                     headers: [
+                         {title: "{% trans 'pnfl' %}"},
+                         {title:  "{% trans 'pass_series' %}"}
+                     ],
+                     formFields: {pnfl: null, pass_series: null}
+                 },
+                 {
+                     id: 2,
+                     url: "/api/ipsgov/v1/get_citizen_info/",
+                     headers: [
+                         {title: "{% trans 'jsh_shir' %}"}
+                     ],
+                     formFields: {jsh_shir: null}
+                 },
+                 {
+                     id: 3,
+                     url: "/api/ipsgov/v1/get_tin_by_pass/",
+                     headers: [
+                         {title: "{% trans 'passport_number' %}"}
+                     ],
+                     formFields: {passport_number: null}
+                 },
+                 {
+                     id: 4,
+                     url: "/api/ipsgov/v1/get_pension_service/",
+                     headers: [
+                         {title: "{% trans 'pnfl' %}"}
+                     ],
+                     formFields: {pnfl: null}
+                 },
+                 {
+                     id: 5,
+                     url: "/api/ipsgov/v1/get_pension_assng_service/",
+                     headers: [
+                         {title: "{% trans 'pnfl' %}"}
+                     ],
+                     formFields: {pnfl: null}
+                 },
+                 {
+                     id: 6,
+                     url: "/api/ipsgov/v1/get_pension_size_service/",
+                     headers: [
+                         {title: "{% trans 'pnfl' %}"},
+                         {title: "{% trans "start" %}"},
+                         {title: "{% trans "end" %}"}
+                     ],
+                     formFields: {pnfl: null, start: "01.01.2018", end: "12.12.2018"}
+                 },
+                 {
+                     id: 9,
+                     url: "/api/ipsgov/v1/get_divorce_info/",
+                     headers: [
+                         {title: "{% trans 'pnfl' %}"}
+                     ],
+                     formFields: {pnfl: null}
+                 },
+                 {
+                     id: 10,
+                     url: "/api/ipsgov/v1/get_death_info/",
+                     headers: [
+                         {title: "{% trans 'pnfl' %}"}
+                     ],
+                     formFields: {pnfl: null}
+                 },
+                 {
+                     id: 11,
+                     url: "/api/ipsgov/v1/get_position_info/",
+                     headers: [
+                         {title: "{% trans 'pnfl' %}"}
+                     ],
+                     formFields: {pnfl: null}
+                 },
+                 {
+                     id: 12,
+                     url: "/api/ipsgov/v1/get_position_history/",
+                     headers: [
+                         {title: "{% trans 'pnfl' %}"}
+                     ],
+                     formFields: {pnfl: null}
+                 },
+                 {
+                     id: 16,
+                     url: "/api/ipsgov/v1/get_ownership_pnfl_service/",
+                     headers: [
+                         {title: "{% trans 'pnfl' %}"},
+                         {title: "{% trans 'time' %}"},
+                     ],
+                     formFields: {pnfl: null, time: "2021-01-20 11:00:00"}
+                 },
+                 {
+                     id: 17,
+                     url: "/api/ipsgov/v1/check/conviction/",
+                     headers: [
+                         {title: "{% trans 'first_name' %}"},
+                         {title: "{% trans 'last_name' %}"},
+                         {title: "{% trans 'pnfl' %}"},
+                         {title: "{% trans 'midd_name' %}"},
+                         {title: "{% trans 'birth_year' %}"},
+                     ],
+                     formFields: {first_name: null,last_name: null, pnfl: null,midd_name: null,birth_year: '1988'}
+                 },
+                 {
+                     id: 19,
+                     url: "/api/ipsgov/v1/get/conviction/result/",
+                     headers: [{title: "{% trans 'request_id' %}"}],
+                     formFields: {request_id: null,}
+                 },
+
+                 {
+                     id: 20,
+                     url: "/api/ipsgov/v1/get_position_history/",
+                     headers: [
+                         {title: "{% trans 'pinfl' %}"}
+                     ],
+                     formFields: {pnfl: null}
+                 },
+
+                 {
+                     id: 21,
+                     url: "/api/ipsgov/v1/get_position_history/",
+                     headers: [
+                         {title: "{% trans 'pinfl' %}"}
+                     ],
+                     formFields: {pinfl: null}
+                 },
+
+                 {
+                     id: 22,
+                     url: "/api/ipsgov/v1/get_position_history/",
+                     headers: [
+                         {title: "{% trans 'tin' %}"}
+                     ],
+                     formFields: {tin: null}
+                 },
+
+                 {
+                     id: 23,
+                     url: "/api/ipsgov/v1/get_position_history/",
+                     headers: [
+                         {title: "{% trans 'pinfl' %}"},
+                         {title: "{% trans 'pas_ser' %}"},
+                         {title: "{% trans 'year' %}"},
+                     ],
+                     formFields: {pinfl: null, pas_ser: null, year: '2021'}
+                 },
+
+                 {
+                     id: 24,
+                     url: "/api/ipsgov/v1/get_position_history/",
+                     headers: [
+                         {title: "{% trans 'quarter' %}"},
+                         {title: "{% trans 'request_date' %}"},
+                         {title: "{% trans 'request_id' %}"},
+                         {title: "{% trans 'tin' %}"},
+                         {title: "{% trans 'year' %}"},
+                     ],
+                     formFields: {quarter: 2, request_date: '2021-12-27 17:47:15', request_id: 1, tin: null, year: 2020}
+                 },
+
+                 {
+                     id: 25,
+                     url: "/api/ipsgov/v1/get_position_history/",
+                     headers: [
+                         {title: "{% trans 'quarter' %}"},
+                         {title: "{% trans 'request_date' %}"},
+                         {title: "{% trans 'request_id' %}"},
+                         {title: "{% trans 'tin' %}"},
+                         {title: "{% trans 'year' %}"},
+                     ],
+                     formFields: {quarter: 2, request_date: '2021-12-27 17:47:15', request_id: 1, tin: null, year: 2020}
+                 },
+
+                 {
+                     id: 26,
+                     url: "/api/ipsgov/v1/get_position_history/",
+                     headers: [
+                         {title: "{% trans 'pinfl' %}"},
+                         {title: "{% trans 'request_date' %}"},
+                         {title: "{% trans 'request_id' %}"},
+                         {title: "{% trans 'year' %}"},
+                     ],
+                     formFields: {pinfl: null, request_date: '2021-20-12 17:03:22', request_id: 12, year: "yyyy"}
+                 },
+
+                 {
+                     id: 27,
+                     url: "/api/ipsgov/v1/get_position_history/",
+                     headers: [
+                         {title: "{% trans 'pinfl' %}"}
+                     ],
+                     formFields: {pinfl: null}
+                 },
+
+                 {
+                     id: 28,
+                     url: "/api/ipsgov/v1/get_position_history/",
+                     headers: [
+                         {title: "{% trans 'pinfl' %}"}
+                     ],
+                     formFields: {pinfl: null}
+                 },
+
+                 {
+                     id: 29,
+                     url: "/api/ipsgov/v1/get_position_history/",
+                     headers: [
+                         {title: "{% trans 'tin' %}"}
+                     ],
+                     formFields: {tin: null}
+                 },
+
+                 {
+                     id: 30,
+                     url: "/api/ipsgov/v1/get_position_history/",
+                     headers: [
+                         {title: "{% trans 'pinfl' %}"}
+                     ],
+                     formFields: {pinfl: null}
+                 },
+
+                 {
+                     id: 31,
+                     url: "/api/ipsgov/v1/get_position_history/",
+                     headers: [
+                         {title: "{% trans 'doc_serial' %}"},
+                         {title: "{% trans 'doc_numr' %}"},
+                     ],
+                     formFields: {doc_serial: null, doc_numr: null}
+                 },
+
+                 {
+                     id: 32,
+                     url: "/api/ipsgov/v1/get_position_history/",
+                     headers: [
+                         {title: "{% trans 'pinfl' %}"},
+                         {title: "{% trans 'passport_sn' %}"},
+                     ],
+                     formFields: {pinfl: null, passport_sn: null}
+                 },
+
+                 {
+                     id: 33,
+                     url: "/api/ipsgov/v1/get_position_history/",
+                     headers: [
+                         {title: "{% trans 'young' %}"},
+                         {title: "{% trans 'pin' %}"},
+                         {title: "{% trans 'passport_seria' %}"},
+                         {title: "{% trans 'passport_number' %}"},
+                     ],
+                     formFields: {type: "young", pin: null, passport_seria: null, passport_number: null}
+                 },
+
+                 {
+                     id: 34,
+                     url: "/api/ipsgov/v1/get_position_history/",
+                     headers: [
+                         {title: "{% trans 'pinfl' %}"}
+                     ],
+                     formFields: {pinfl: null}
+                 }
+
+
+
+             ]
+         },
+         methods:{
+             setBgColor(color, id) {
+                 const currentDart = document.getElementById(id);
+                 const text = currentDart.getElementsByTagName('h4')[0];
+                 const  bookmark = currentDart.querySelector(".bookmark")
+                 currentDart.style.backgroundColor = color;
+                 text.style.color = "#ffffff";
+                 bookmark.style.background = "orange"
+             },
+             removeBgColor(id, color){
+                 const currentDart = document.getElementById(id);
+                 const text = currentDart.getElementsByTagName('h4')[0];
+                 const bookMark = currentDart.querySelector('.bookmark')
+                 bookMark.style.background = color
+                 text.style.color = "#000000";
+                 currentDart.style.backgroundColor = "#ffffff";
+             },
+             convertToDjangoString(str){
+                 if(str !== ""){
+                     const result = headerTitles.find(item => item.key === str)
+                     return  result ? result.value : str;
+                 }
+                 return "text";
+             },
+             closeModal(){
+                 this.state = false;
+                 this.responseObjectData = {};
+                 this.currentModalForm = null;
+             },
+             submitFormHandler(){
+                 {#this.loader = true;#}
+                 let url = location.origin + this.currentModalForm.url
+                 fetch(url, {
+                     method: 'POST',
+                     headers: {
+                         "Custom-Auth": 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXV',
+                         "Content-Type": 'application/json',
+                         "X-CSRFToken": '{{ csrf_token }}'
+                     },
+                     body: JSON.stringify(this.currentModalForm.formFields)
+                 }).then(response => {
+                     return response.json()
+                 }).then(data => {
+                     this.currentModalForm = {}
+                     this.responseObjectData = {...data}
+                     this.state = true
+                 }).catch(e => {
+                     errorMessage("Xozirda bu ma'lumot olish imkoni yo'q", 1500)
+                     this.closeModal()
+                 }).finally(() => {
+                      this.loader = false
+                    }
+                 )
+             },
+             openModalHandler(number, text){
+                this.title = text;
+                const result = this.allUrlsData.find(item => {
+                    if(item.id === number){
+                        return item
+                    }
+                })
+                 if(result !== undefined) {
+                     console.log(result);
+                     this.currentModalForm = result
+                     this.state = true
+                 } else { this.comingSoon()}
+             },
+             comingSoon(){
+                 errorMessage("Xozirda bu ma'lumot olish imkoni yo'q", 2000)
+             }
+         }
+     });
+    </script>
+{% endblock javascripts %}

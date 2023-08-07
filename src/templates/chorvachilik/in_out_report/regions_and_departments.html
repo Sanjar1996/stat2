@@ -1,0 +1,229 @@
+{% extends "layouts/base.html" %}
+{% load static %}
+{% load i18n %}
+{% block title %} {% trans 'Nihol yil hisoboti' %} {% endblock %}
+
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}
+    <style>
+        .hidden {
+            display: none;
+            transition: all .5s ease-in-out;
+        }
+        .fix__table_header {
+            position: sticky;
+            background-color: #009879;
+            color: #ffffff;
+            z-index: 1;
+            top: -1px;
+            outline: 1px solid #ffffff;
+        }
+
+        .fix__table_second_line {
+            position: sticky;
+            background-color: #009879;
+            color: #ffffff;
+            z-index: 1;
+            outline: 1px solid white;
+        }
+    </style>
+{% endblock stylesheets %}
+
+{% block content %}
+    {% if perms.chorvachilik.view_animalcategory %}
+    <div class="report-page1">
+        <div class="row bg-white">
+            <div class="col-md-10 offset-1">
+                <form role="form" method="GET" action="{% url "chorvachilik:chorva_in_out_all_report" %}">
+                    <div class="row d-flex">
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="">{% trans "category" %}</label>
+                                {{ form.category }}
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <label for="">{% trans "Start" %}</label>
+                            <div class="form-group">
+                                <input type="date" name="start" required class="form-control" id="id_start"
+                                       value="{{ form.start.value  }}">
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <label for="">{% trans "End" %}</label>
+                            <div class="form-group">
+                                <input type="date" name="end" required class="form-control" id="id_end"
+                                       value="{{ form.end.value }}">
+                            </div>
+                        </div>
+                        <div class="col-md-3 mb-2">
+                            <div style="position: absolute; top:50%; display: flex; flex-direction: row;">
+                                <button type="submit" onclick="filterBtn(this)"
+                                        class="btn btn-info btn-fab btn-fab-mini text-light">
+                                    <i class="material-icons">search</i></button>
+                                <a href="{% url 'chorvachilik:chorvachilik_all_report' %}"
+                                   class="btn btn-info btn-sm text-light ml-1">
+                                    {% trans 'reset' %}
+                                </a>
+                                <button class="btn btn-info btn-sm text-light"
+                                        id="1"
+                                        onclick="showHideRegionChild(this)">{% trans "Hududlar kesimida" %}
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="col-md-12 bg-light">
+                <div class="card card-plain">
+                    <div class="card-header card-header-info">
+                        <h4 class="card-title mt-0 text-center text-light">
+                            {% trans "Ўрмон хўжалиги давлат қўмитаси тизимидаги ўрмон хўжаликларида" %}
+                            <span class="text-light">{{ start|date:"Y" }}</span>
+                            {% trans "йилда қишлоқ хўжалиги чорвачилик  махсулотлари тўғрисида тезкор маълумот" %}
+                        </h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-wrapper">
+                            <table class="table table-hover table-responsive-lg table-responsive-md table-responsive-sm">
+                                <thead class="table table-bordered border-dark text-light"
+                                       style="opacity: 1; background-color: #009879;">
+                                <tr>
+                                    <th class="text-center border fix__table_header" rowspan="2">{% trans "T/p" %}</th>
+                                    <th class="text-center border fix__table_header" rowspan="2">{% trans 'Хўжалик номи' %}</th>
+                                    <th class="text-center border fix__table_header" rowspan="1" colspan="2">{% trans 'Input' %}</th>
+                                    <th class="text-center border fix__table_header" rowspan="1" colspan="2">{% trans 'Output' %}</th>
+                                </tr>
+                                <tr>
+                                    <th class="text-center border fix__table_second_line">{% trans 'amount(bosh)' %}</th>
+                                    <th class="text-center border fix__table_second_line">{% trans 'wight' %}</th>
+                                    <th class="text-center border fix__table_second_line">{% trans 'amount(bosh)' %}</th>
+                                    <th class="text-center border fix__table_second_line">{% trans 'wight' %}</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% for item in data %}
+                                    {% if item.region_name %}
+                                        <tr class="table-bordered border-dark bg-info parent"
+                                            data-region="{{ item.region_id }}">
+                                        <td class="region_index text-center"></td>
+                                        <td class="text-center">
+                                            <a href="{% url 'chorvachilik:chorva_in_out_department_report' item.region_id %}?category={{ category }}"
+                                               class="font-weight-bold nav-link text-dark">{{ item.region_name }}</a>
+                                        </td>
+                                        <td class="text-center font-weight-bold amount_sum">{{ item.region_in_amount|floatformat }}</td>
+                                        <td class="text-center font-weight-bold amount_sum">{{ item.region_in_weight|floatformat }}</td>
+                                        <td class="text-center font-weight-bold amount_sum">{{ item.region_out_amount|floatformat }}</td>
+                                        <td class="text-center font-weight-bold amount_sum">{{ item.region_out_weight|floatformat }}</td>
+                                    {% endif %}
+                                {% if item.depart_name %}
+                                    <tr class="table-bordered border-dark child">
+                                        <td class="text-center">{{ item.index }}</td>
+                                        <td>
+                                            <a href="{% url 'chorvachilik:chorva_in_out_department_report' item.depart_id %}?category={{ category }}"
+                                               class="text-left font-weight-bold nav-link text-dark">{{ item.depart_name }}</a>
+                                        </td>
+                                        <td class="text-center amount_sum">{{ item.depart_in_amount|floatformat }} </td>
+                                        <td class="text-center amount_sum">{{ item.depart_in_weight|floatformat }} </td>
+                                        <td class="text-center amount_sum">{{ item.depart_out_amount|floatformat }}</td>
+                                        <td class="text-center amount_sum">{{ item.depart_out_weight|floatformat }} </td>
+                                    </tr>
+                                {% endif %}
+                                {% endfor %}
+                                </tbody>
+                                <tfoot class="table-bordered border-dark text-light"
+                                       style="opacity: 1; background-color: #009879;">
+                                <th class="text-light">.</th>
+                                <th class="text-center text-light amount_sum">{% trans 'Жами' %}</th>
+                                <th class="text-center text-light amount_sum">{{ all_sum.all_in_amount__sum|floatformat }}</th>
+                                <th class="text-center text-light amount_sum">{{ all_sum.all_in_weight__sum|floatformat }}</th>
+                                <th class="text-center text-light amount_sum">{{ all_sum.all_out_amount__sum|floatformat }}</th>
+                                <th class="text-center text-light amount_sum">{{ all_sum.all_out_weight__sum|floatformat }}</th>
+                                </tfoot>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% else %}
+        <h1>{% trans 'Permission Denied' %}</h1>
+    {% endif %}
+
+
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}
+    <script>
+        const amount_sum = document.querySelectorAll('.amount_sum');
+        amount_sum.forEach(item => item.textContent =  numberWithSpaces(item.textContent))
+        const child = document.querySelectorAll('.child');
+        const parrent = document.querySelectorAll('.parent');
+        const region_index = document.querySelectorAll('.region_index');
+        const showHideRegionChild = (event) => {
+            const iid = event.id;
+            if (iid === "1") {
+                event.id = '2'
+                event.textContent  = "{% trans 'Tashkilotlar kesimida' %}"
+                parrent.forEach(elem => {
+                    if(elem){
+                        elem.classList.toggle('bg-info')
+                        elem.children[1].classList.toggle('text-center')
+                    }
+                })
+                child.forEach(elem => elem.classList.toggle("hidden"))
+                region_index.forEach((item, index, region_index) => item.innerText = index + 1)
+            } else if (iid === '2') {
+                event.id = '1'
+                event.textContent = "{% trans 'Hududlar kesimida' %}"
+                parrent.forEach(elem => {
+                    if(elem){
+                        elem.classList.toggle('bg-info')
+                        elem.children[1].classList.toggle('text-center')
+                    }
+                })
+                region_index.forEach((item, index, region_index) => item.innerText = "")
+                child.forEach(elem => elem.classList.toggle("hidden"))
+            }
+        }
+        let a_href = document.querySelector('#sprout_reports');
+        const from_date = document.querySelector('#id_start');
+        const to_date = document.querySelector('#id_end');
+
+        let current_date_start_value = from_date.value
+        let current_date_to_value = to_date.value
+        let path = a_href.getAttribute('href')
+        a_href.setAttribute('href', `${path}?start=${current_date_start_value}&end=${current_date_to_value}`)
+        from_date.addEventListener("change", (e) => {
+            current_date_start_value = e.target.value;
+            a_href.setAttribute('href', `${path}?start=${current_date_start_value}&end=${current_date_to_value}`)
+        });
+        to_date.addEventListener("change", (e) => {
+            current_date_to_value = e.target.value;
+            a_href.setAttribute('href', `${path}?start=${current_date_start_value}&end=${current_date_to_value}`)
+        });
+    </script>
+    <script>
+        const fix__table_header = document.querySelector('.fix__table_header');
+        const fix__table_second_line = document.querySelectorAll('.fix__table_second_line');
+        console.log("fix__table_header.clientHeight ", fix__table_header.clientHeight )
+        fix__table_second_line.forEach(item => {
+            if(fix__table_header.clientHeight > 0) {
+               item.style.top = fix__table_header.clientHeight / 2 - 1 + 'px'
+            } else(
+                item.style.top = 75 / 2 - 1 + 'px'
+            )
+        })
+        // const reportTable = document.querySelector('.table-wrapper');
+        // const displayHeightpx = isNaN(window.innerHeight) ? window.clientHeight : window.innerHeight ;
+        // reportTable.style.maxHeight = displayHeightpx * 62 / 100 + 'px'
+        // GET TYPE PARAMS VALUE
+        const urlParams = new URLSearchParams(window.location.search);
+        let myParam = urlParams.get('type');
+
+
+    </script>
+{% endblock javascripts %}

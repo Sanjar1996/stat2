@@ -1,0 +1,207 @@
+{% extends "layouts/base.html" %}
+{% load i18n %}
+{% block title %} {% trans 'report title title' %} {% endblock %}
+
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}
+    <style>
+        #finance{
+            display: block;
+            position: relative;
+        }
+        .fixed-add-btn{
+            position: fixed;
+            top:50%;
+            left: 85%;
+        }
+    </style>
+{% endblock stylesheets %}
+{% block content %}
+    {% if not permission_denied %}
+        {% if messages %}
+            {% for message in messages %}
+                <div class="text-warning text-center alert{% if message.tags %}alert-{{ message.tags }}{% endif %}"
+                     role="alert">{{ message }}</div>
+            {% endfor %}
+        {% endif %}
+        <div class="row" id="finance">
+            <div class="col-md-8 offset-md-2">
+                <form @submit.prevent="createFinance" id="form">
+                    {% csrf_token %}
+                    <div class="card">
+                        <div class="card-header card-header-info py-4 shadow">
+                            <h4 class="card-title text-light text-center">{% trans 'Daromad kiritish' %}</h4>
+                        </div>
+                        <div class="card-body mt-4">
+                            <div class="row d-flex align-items-end bg-light border mb-1 mx-1">
+                                <div class="col-md-4">
+                                    <div class="form-group py-2">
+                                        <label for="date" class="text-dark">{% trans 'Date' %}</label>
+                                        <input type="date" class="form-control" v-model="date" id="date" required>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-4">
+                                    <div class="form-group py-2" v-if="regions">
+                                        <label for="region_id" class="text-dark">{% trans 'Region' %}</label>
+                                        <select name="region" id="region_id" class="custom-select" v-model="region"  @change="regionChangeHandler(region)" required>
+                                                <option v-for="(item, index) in regions" :key="item.id" :value="item.id">[[ item.name ]]</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group py-2">
+                                        <label for="region" class="text-dark">{% trans 'Department' %}</label>
+                                        <select name="department" id="department_id" class="custom-select" v-model="department" @change="departmentChangeHandler(department)" required>
+                                            <option v-for="item in selectedDepartments" :key="item.id" :value="item.id">[[ item.name ]]</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body" v-for="(item, i) in count">
+                            <div class="row d-flex align-items-end bg-light border mb-1 mx-1">
+                                <div class="col-md-12 d-flex justify-content-end align-items-end">
+                                    <button class="btn btn-danger btn-sm btn-fab btn-fab-mini btn-round remove" @click="removeRow(i)">
+                                        <i class="material-icons">close</i>
+                                    </button>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group pb-2">
+                                        <label for="text">{% trans 'Finance Type' %}</label>
+                                        <select name="department" class="custom-select" v-model="income[i].type" required>
+                                            <template>
+                                                <option v-for="item in finance_types" :key="item.id" :value="item.id">[[ item.name ]]</option>
+                                            </template>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group py-2">
+                                        <label class="text-dark">{% trans 'Amount' %}</label>
+                                        <input type="number" step="0.01" class="form-control" v-model="income[i].amount" required>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12 d-flex align-items-end justify-content-between">
+                        <a href="{% url 'finance:finance_list' %}"
+                            class="btn btn-success btn-sm text-light">
+                            {% trans 'back' %}
+                        </a>
+                        <button type="submit" class="btn btn-info btn-sm" :disabled="buttonState">{% trans 'create' %}</button>
+                    </div>
+                </div>
+            </form>
+                <div class="fixed-add-btn">
+                    <button class="btn btn-success btn-sm text-dark btn-fab btn-fab-mini btn-round" @click="incrementFormRow">
+                        <i class="material-icons text-light">add</i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    {% else %}
+        <h2>{% trans 'Permission Denied' %}</h2>
+    {% endif %}
+
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}
+    <script>
+        let department
+        {% if departments is none %}department = false;{% else %}department = {{ departments|safe }};{% endif %}
+        let amount_type = {{ amount_type }};
+        if(!department){
+            let msg = "{% trans "Sizda ruxsat yoq Admin bilan boglaning!" %}"
+            warningMessage(msg)
+            setTimeout(() => {
+                location.href = '/finance/finance/list'
+            }, 1700)
+        }
+        let region_data = {{ regions|safe }}
+        const f_type_data = {{ type|safe }}
+        const departments = convertToJson(department);
+        const token =  getCsrfToken(document.querySelectorAll('input'));
+        const regions = convertToObj(region_data)
+        const finance_type = convertToObj(f_type_data)
+        const finance = new Vue({
+          delimiters: ['[[', ']]'],
+          el: '#finance',
+          data: {
+              count: 1,
+              date: null,
+              region: null,
+              department: null,
+              income: [{
+                   amount: null,
+                   type: ""
+                 }
+              ],
+              regions: regions,
+              selectedDepartments: [],
+              departmentsRoot: departments,
+              finance_types: finance_type,
+              token: token,
+              buttonState: false
+          },
+          methods: {
+              regionChangeHandler(id){
+                this.selectedDepartments = this.departmentsRoot.filter(elem => elem.region === id)
+              },
+              departmentChangeHandler(id){
+                  this.department = id
+              },
+              incrementFormRow(){
+                  this.count++;
+                  const obj = {
+                   amount: null,
+                   type: ""
+                 };
+                 this.income.push(obj)
+              },
+              removeRow(id){
+                  this.income.splice(id, 1);
+                  this.count--
+              },
+             async createFinance(){
+                  let msg = ''
+                  this.buttonState = true
+                  let form = new FormData();
+                  form.append("csrfmiddlewaretoken", this.token);
+                  form.append("date", this.date);
+                  form.append("region", this.region);
+                  form.append("department", this.department);
+                  form.append("amount_type", amount_type);
+                  form.append("items", JSON.stringify(this.income));
+                  const url = location.origin + "/finance/finance/create";
+                  try{
+                    const response = await fetch(url, {
+                        method: 'POST',
+                        body: form
+                    })
+                    const data = await response.redirected
+                    if(data){
+                        msg = "{% trans "Your work has been saved" %}"
+                        successMessage(msg)
+                        setTimeout(() => {
+                            location.href = response.url
+                            this.buttonState = false
+                        }, 1500)
+                    } else {
+                        msg = "{% trans "Siz tanlagan sanaga malumot kiritib bolingan" %}"
+                        warningMessage(msg)
+                        setTimeout(() => {
+                            this.buttonState = false
+                        }, 2500)
+                    }
+                  } catch (error) {
+                      msg = 'Error'
+                      errorMessage(msg)
+                      this.buttonState = false
+                  }
+              }
+          },
+        });
+  </script>
+{% endblock javascripts %}

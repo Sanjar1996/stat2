@@ -1,0 +1,233 @@
+{% extends "layouts/base.html" %}
+{% load static %}
+{% load i18n %}
+{% block title %} {% trans 'Nihol yil hisoboti' %} {% endblock %}
+
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}
+    <style>
+        body {
+            overflow-y: hidden;
+        }
+        .hidden {
+            display: none;
+            transition: all .5s ease-in-out;
+        }
+        .fix__table_header {
+            position: sticky;
+            background-color: #009879;
+            color: #ffffff;
+            z-index: 1;
+            top: -1px;
+        }
+    </style>
+{% endblock stylesheets %}
+
+{% block content %}
+    {% if perms.chorvachilik.view_chorvachilikactual %}
+        {% if messages %}
+            {% for message in messages %}
+                <div class="text-warning text-center alert{% if message.tags %}alert-{{ message.tags }}{% endif %}"
+                     role="alert">{{ message }}</div>
+            {% endfor %}
+        {% endif %}
+        <div class="report-page1">
+            <div class="row">
+            <div class="col-md-12 bg-light pt-2">
+                <div class="row d-flex justify-content-center align-items-center">
+                    <div class="col-lg-10 col-md-12 pl-lg-5 pr-lg-2 col-sm-12">
+                        <form role="form" method="GET" action="{% url "chorvachilik:chorvachilik_all_report" %}">
+                            <div class="row d-flex justify-content-center align-items-center">
+                                <div class="col-lg-3 col-md-6 col-sm-12">
+                                    <div class="form-group">
+                                        <label for="">{% trans "type" %}</label>
+                                        {{ form.type }}
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-md-6 col-sm-12">
+                                    <label for="">{% trans "Start" %}</label>
+                                    <div class="form-group">
+                                        <input type="date" name="start" required class="form-control" id="id_start"
+                                               value="{{ form.start.value}}">
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-md-6 col-sm-12">
+                                    <label for="">{% trans "End" %}</label>
+                                    <div class="form-group">
+                                        <input type="date" name="end" required class="form-control" id="id_end"
+                                               value="{{ form.end.value }}">
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-md-6 col-sm-12 mb-2">
+                                    <div style="position: absolute; top:50%; display: flex; flex-direction: row;">
+                                        <button type="submit" onclick="filterBtn(this)"
+                                                class="btn btn-info btn-fab btn-fab-mini text-light">
+                                            <i class="material-icons">search</i></button>
+                                        <a href="{% url 'chorvachilik:chorvachilik_all_report' %}"
+                                           class="btn btn-info btn-sm text-light ml-1">
+                                            {% trans 'reset' %}
+                                        </a>
+                                        <button class="btn btn-info btn-sm text-light ml-1"
+                                            type="button"
+                                            id="1"
+                                            onclick="showHideRegionChild(this)">
+                                            {% trans "Hududlar kesimida" %}
+                                        </button>
+                                        <a class="btn btn-success btn-sm text-light ml-1"
+                                           type="button"
+                                           href="{% url 'chorvachilik:chorvachilik_xlsx' %}" id="chorvachilik_xlsx">
+                                            <img src="{% static 'assets/img/excel.ico' %}"
+                                                 style="max-width: 20px; max-height: 15px"
+                                                 alt="Excel">
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12 bg-light">
+                <div class="card card-plain">
+                    <div class="card-header card-header-info">
+                        <h4 class="card-title mt-0 text-center text-light">
+                            {% trans "Ўрмон хўжалиги давлат қўмитаси тизимидаги ўрмон хўжаликларида" %}
+                            <span class="text-light">{{ current_year }}</span>
+                            {% trans "йилда қишлоқ хўжалиги чорвачилик  махсулотлари тўғрисида тезкор маълумот" %}
+                        </h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-wrapper">
+                            <table class="table table-hover table-responsive-lg table-responsive-md table-responsive-sm">
+                                <thead class="table table-bordered border-dark text-light"
+                                       style="opacity: 1; background-color: #009879;">
+                                <tr>
+                                    <th class="text-center fix__table_header" rowspan="5">{% trans "T/p" %}</th>
+                                    <th class="text-center fix__table_header" rowspan="5">{% trans 'Хўжалик номи' %}</th>
+                                    <th class="text-center fix__table_header" rowspan="3">{% trans 'Topshiriq' %}</th>
+                                    <th class="text-center fix__table_header" rowspan="3">{% trans 'Amalda' %}</th>
+                                    <th class="text-center fix__table_header" rowspan="3">{% trans 'Foizi' %}</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% for item in data %}
+                                    {% if item.region_name %}
+                                        <tr class="table-bordered border-dark bg-info parent"
+                                            data-region="{{ item.region_id }}">
+                                        <td class="region_index text-center"></td>
+                                        <td class="text-center">
+                                            <a href="{% url 'chorvachilik:chorvachilik_report_region' item.region_id %}?type={{ tipp }}"
+                                               class="font-weight-bold nav-link text-dark">{{ item.region_name }}</a>
+                                        </td>
+                                        <td class="text-center font-weight-bold amount_sum">{{ item.region_amount_plan|floatformat }}</td>
+                                        <td class="text-center font-weight-bold amount_sum">{{ item.region_amount_actual|floatformat }}</td>
+                                        <td class="text-center font-weight-bold">{{ item.region_amount_percentage|floatformat }}%</td>
+                                    {% endif %}
+                                {% if item.department_name %}
+                                    <tr class="table-bordered border-dark child">
+                                        <td class="text-center">{{ item.index }}</td>
+                                        <td>
+                                            <a href="{% url 'chorvachilik:chorvachilik_report_department' item.department_id %}?type={{ tipp }}"
+                                               class="text-left font-weight-bold nav-link text-dark">{{ item.department_name }}</a>
+                                        </td>
+                                        <td class="text-center amount_sum">{{ item.department_amount_plan|floatformat }} </td>
+                                        <td class="text-center amount_sum">{{ item.department_amount_actual|floatformat }} </td>
+                                        <td class="text-center">{{ item.department_amount_percentage|floatformat }} %
+                                        </td>
+                                    </tr>
+                                {% endif %}
+                                {% endfor %}
+                                </tbody>
+                                <tfoot class="text-light"
+                                       style="opacity: 1; background-color: #009879;">
+                                <th class="text-light">.</th>
+                                <th class="text-center text-light">{% trans 'Жами' %}</th>
+                                <th class="text-center text-light amount_sum">{{ all_sum.all_amount_plan_sum|floatformat }}</th>
+                                <th class="text-center text-light amount_sum">{{ all_sum.all_amount_actual_sum|floatformat }}</th>
+                                <th class="text-center text-light">{{ all_sum.all_amount_percentage|floatformat }}%</th>
+                                </tfoot>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+
+    {% else %}
+        <h1>{% trans 'Permission Denied' %}</h1>
+    {% endif %}
+
+
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}
+    <script>
+        const amount_sum = document.querySelectorAll('.amount_sum');
+        amount_sum.forEach(item => item.textContent =  numberWithSpaces(item.textContent))
+        let a_href = document.querySelector('#chorvachilik_xlsx');
+        const from_date = document.querySelector('#id_start');
+        const to_date = document.querySelector('#id_end');
+        let current_date_start_value = from_date.value
+        let current_date_to_value = to_date.value
+    </script>
+    <script>
+        // const reportTable = document.querySelector('.table-wrapper');
+        // const displayHeightpx = isNaN(window.innerHeight) ? window.clientHeight : window.innerHeight ;
+        // reportTable.style.maxHeight = displayHeightpx * 64 / 100 + 'px'
+        const animal_type_data = {{ chorvachilik_types|safe }};
+        const animal_types = convertToObj(animal_type_data);
+        const typesSelect = document.querySelector('#types');
+        // GET TYPE PARAMS VALUE
+        const urlParams = new URLSearchParams(window.location.search);
+        let myParam = urlParams.get('type');
+        // SET TREE TYPE AND SELECTED CURRENT TYPE
+        const child = document.querySelectorAll('.child');
+        const parrent = document.querySelectorAll('.parent');
+        const region_index = document.querySelectorAll('.region_index');
+        const showHideRegionChild = (event) => {
+            const iid = event.id;
+            if (iid === "1") {
+                event.id = '2'
+                event.textContent  = "{% trans 'Tashkilotlar kesimida' %}"
+                parrent.forEach(elem => {
+                    if(elem){
+                        elem.classList.toggle('bg-info')
+                        elem.children[1].classList.toggle('text-center')
+                    }
+                })
+                child.forEach(elem => elem.classList.toggle("hidden"))
+                region_index.forEach((item, index, region_index) => item.innerText = index + 1)
+            } else if (iid === '2') {
+                event.id = '1'
+                event.textContent = "{% trans 'Hududlar kesimida' %}"
+                parrent.forEach(elem => {
+                    if(elem){
+                        elem.classList.toggle('bg-info')
+                        elem.children[1].classList.toggle('text-center')
+                    }
+                })
+                region_index.forEach((item, index, region_index) => item.innerText = "")
+                child.forEach(elem => elem.classList.toggle("hidden"))
+            }
+        }
+        let chorvachilik_value = typesSelect.value
+        let path = a_href.getAttribute('href')
+        a_href.setAttribute('href', `${path}?type_name=${chorvachilik_value}&start=${current_date_start_value}&end=${current_date_to_value}`)
+        typesSelect.addEventListener('change', (e) => {
+            chorvachilik_value = e.target.value;
+            a_href.setAttribute('href', `${path}?type_name=${chorvachilik_value}&start=${current_date_start_value}&end=${current_date_to_value}`)
+        })
+        from_date.addEventListener("change", (e) => {
+            current_date_start_value = e.target.value;
+            a_href.setAttribute('href', `${path}?type_name=${chorvachilik_value}&start=${current_date_start_value}&end=${current_date_to_value}`)
+        });
+        to_date.addEventListener("change", (e) => {
+            current_date_to_value = e.target.value;
+            a_href.setAttribute('href', `${path}?type_name=${chorvachilik_value}&start=${current_date_start_value}&end=${current_date_to_value}`)
+        });
+
+
+    </script>
+{% endblock javascripts %}

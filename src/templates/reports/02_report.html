@@ -1,0 +1,298 @@
+{% extends "layouts/base.html" %}
+{% load static %}
+{% load i18n %}
+{% block title %} {% trans 'yillik reja' %} {% endblock %}
+
+                                                <!-- Specific Page CSS goes HERE NOT WORKING PAGE  EMPTY  -->
+{% block stylesheets %}
+    <style>
+    body{
+        overflow: hidden;
+    }
+    .styled-table {
+        border-collapse: collapse;
+        border-radius: 10px;
+        font-size: 0.9em;
+        font-family: sans-serif;
+        min-width: 400px;
+        box-shadow: 0 0 2px rgba(0, 0, 0, 0.15);
+        z-index: -1;
+    }
+    .styled-table thead tr {
+        background-color: #009879;
+        color: #ffffff;
+        text-align: left;
+    }
+    .styled-table th,
+    .styled-table td {
+        padding: 12px 15px;
+    }
+    .styled-table tbody tr {
+        border-bottom: 1px solid #dddddd;
+    }
+
+    .styled-table tbody tr:nth-of-type(even) {
+        background-color: #dddddd;
+    }
+
+    .styled-table tbody tr:last-of-type {
+        border-bottom: 2px solid #009879;
+    }
+    .styled-table tbody tr.active-row {
+        font-weight: bold;
+        color: #009879;
+    }
+    .table-wrapper{
+      overflow-y: scroll;
+      height: 700px;
+    }
+    thead {
+        position: relative;
+    }
+    .table-wrapper{
+      overflow-y: scroll;
+      height: 700px;
+      outline: 1px solid white;
+    }
+    thead {
+        position: relative;
+    }
+    .fix__table_header{
+        position: sticky;
+        background-color: #009879;
+        color: #ffffff;
+        z-index: 1;
+        top: -1px;
+        outline:1px solid #ffffff;
+    }
+    .fix__table_header_second_lines{
+        position: sticky;
+        color: #ffffff;
+        z-index: 1;
+        top: 8.9%;
+        height: 100%;
+        outline:1px solid #ffffff;
+        background-color: #009879;
+    }
+    .rotate_text {
+        font-weight: 400;
+        text-align: center;
+        transform: rotate(-90deg);
+        white-space: nowrap;
+        transform-origin: center;
+        padding: 40px 10px;
+        font-size: 15px !important;
+        max-width: 50px;
+        text-indent: -35px;
+    }
+    .table-wrapper{
+      overflow-y: scroll;
+      height: 580px;
+      max-height: 900px;
+    }
+    .static{
+      word-wrap: break-word;
+      z-index: 2;
+      overflow: hidden;
+      background-color: #ffffff;
+    }
+    #wrap{
+      overflow: scroll;
+      position: relative;
+    }
+    </style>
+{% endblock stylesheets %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-md-12 bg-light py-2 pt-2">
+            <div class="row d-flex justify-content-center align-items-baseline">
+                <div class="col-md-10 col-sm-12">
+                    <div class="row d-flex justify-content-center align-items-center">
+                        <div class="form-group">
+                            <form role="form" method="GET" action="{% url 'trees:kochatlar_report' %}">
+                                <div class="row d-flex align-items-center ">
+                                    <div class="col-md-5">
+                                        <div class="form-group">
+                                            {{ form.start }}
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            {{ form.end }}
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3 d-flex align-items-end flex-row justify-content-end">
+                                        <button type="submit"
+                                                class="btn btn-success btn-fab btn-fab-mini text-dark ml-1">
+                                            <i class="material-icons">search</i></button>
+                                        <a href="{% url 'trees:kochatlar_report' %}"
+                                           class="btn btn-success btn-sm text-dark ml-1">
+                                            {% trans 'reset' %}
+                                        </a>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-2  d-flex justify-content-center align-items-center">
+                    <button class="btn btn-success btn-sm text-dark">
+                        <img src="{% static 'assets/img/excel.ico' %}" style="max-width: 20px; max-height: 25px" alt="Excel">
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12 py-2 bg-light">
+          <div class="card card-plain">
+            <div class="card-header card-header-info">
+                <h5 class="card-title mt-0 text-center py-2 text-dark font-weight-bold">
+                    {% trans "Ўрмон хўжалиги давлат қўмитаси тизимидаги хўжаликларда" %}
+                         <span class="text-light">{{ start }}</span>
+                    {% trans 'дан' %}
+                        <span class="text-light">{{ end }}</span>
+                    {% trans "йил холатига мавжуд уруғлар тўғрисида" %}
+                </h5>
+                <h5 class="text-center text-dark font-weight-bold">{% trans "МАЪЛУМОТ" %}</h5>
+            </div>
+            <div class="card-body">
+              <div class="table-responsive table-wrapper border" id="wrap">
+                <table class="table table-hover styled-table table-striped">
+                  <thead class="bg-primary">
+                        <tr>
+                            <th rowspan="3" class="border  text-light static fix__table_header" style="background-color: #009879;">{% trans "T/p" %}</th>
+                            <th rowspan="3" colspan="3" class="border static text-center text-light fix__table_header" style="background-color: #009879;">
+                                {% trans 'Ўрмон хўжаликлари номи' %}</th>
+                            <th rowspan="1" class="border text-center fix__table_header" colspan="3" style=" white-space: wrap;">
+                                {% trans "Жами ёпиқ илдизли йирик ҳажмли кўчатларни етиштириш топшириғи" %}
+                                <br>
+                                {% trans 'яроқли кўчатлар' %}</th>
+                            {% for tree in tree_names %}
+                                <th colspan="2" rowspan="1" class="border text-center fix__table_header">{{ tree.name }}</th>
+                            {% endfor %}
+                        </tr>
+                        <tr style="background-color: #009879;">
+                            <th rowspan="2" class="border">{% trans 'топш' %}</th>
+                            <th rowspan="2" class="border">{% trans 'амал' %}</th>
+                            <th rowspan="2" class="border">{% trans '%' %}</th>
+                            {% for tree in tree_names %}
+                                <th rowspan="2" class=" active-row fix__table_header_second_lines"><p class="rotate_text">{% trans 'Jami' %}</p></th>
+                                <th rowspan="2" class="fix__table_header_second_lines"><p class="rotate_text">{% trans '0,2 м гача' %}</p></th>
+                                <th rowspan="2" class="fix__table_header_second_lines"><p class="rotate_text">{% trans '0,2-0,5 м гача' %}</p></th>
+                                <th rowspan="2" class="fix__table_header_second_lines"><p class="rotate_text">{% trans '0,5-1 м. гача' %}</p></th>
+                                <th rowspan="2" class="fix__table_header_second_lines"><p class="rotate_text">{% trans '1-1,5 м гача' %}</p></th>
+                                <th rowspan="2" class="fix__table_header_second_lines"><p class="rotate_text">{% trans '1,5-2 м гача' %}</p></th>
+                                <th rowspan="2" class="fix__table_header_second_lines"><p class="rotate_text">{% trans '2-дан юқори' %}</p></th>
+                            {% endfor %}
+                        </tr>
+                    </thead>
+                  <tbody>
+                      {% for items in data %}
+                         {% if items.region_name %}
+                            <tr class="table-bordered border-dark">
+                                <td class="static text-light bg-info">{{ forloop.counter }}</td>
+                                  <td class="text-center font-weight-bold static text-black bg-info" colspan="3">{{ items.region_name }}</td>
+                                  {% for item in items.all_count %}
+                                      {% if forloop.first %}
+                                          {% if items.region_tree_all_sum %}
+                                            {% for item  in items.region_tree_all_sum %}
+                                              <td class="text-center font-weight-bold text-black bg-info" colspan="3">{{ item.0 }}</td>
+                                            {% endfor %}
+                                          {% else %}
+                                                  <td class="text-center font-weight-bold text-light bg-info" colspan="3">0</td>
+                                          {% endif %}
+                                      {% endif %}
+                                      {% for i in item %}
+                                        {%  if  not i %}
+                                            <td class="text-center font-weight-bold text-black bg-info">0</td>
+                                        {% else %}
+                                            <td class="text-center font-weight-bold text-black bg-info">{{ i }}</td>
+                                        {% endif %}
+                                     {% endfor %}
+                                {% endfor %}
+
+                            </tr>
+                        {% endif %}
+                         <tr>
+                             <td class="static border">{{ forloop.counter }}</td>
+                             <td class="text-left font-weight-bold static border" colspan="3">{{ items.department_name }}</td>
+
+                            {% for department in items.tree_height_report %}
+                              {% if forloop.first %}
+                                  {% if items.department_tree_all_sum %}
+                                      {% for item in items.department_tree_all_sum %}
+                                            <td class="text-center font-weight-bold" colspan="3">{{ item.0 }}</td>
+                                      {% endfor %}
+                                  {% else %}
+                                      <td class="text-center font-weight-bold" colspan="3">0</td>
+                                  {% endif %}
+                              {% endif %}
+                              {% for item in department %}
+                                    {% if forloop.first %}
+                                        {%  if  not item %}
+                                            <td class="text-center font-weight-bold border bg-info">0</td>
+                                        {% else %}
+                                         <td class="text-center font-weight-bold border bg-info">{{ item }}</td>
+                                        {% endif %}
+                                    {% else %}
+                                        {%  if  not item %}
+                                            <td class="text-center font-weight-bold border">0</td>
+                                        {% else %}
+                                             <td class="text-center font-weight-bold border">{{ item }}</td>
+                                        {% endif %}
+                                  {% endif %}
+                                {% endfor %}
+                            {% endfor %}
+                        </tr>
+                     {% endfor %}
+                  </tbody>
+                  <tfoot class="table border-dark text-light" style="opacity: 1; background:#212529;">
+                    <th class="static text-dark border">{% trans "T/p" %}</th>
+                    <th class="text-center static text-dark" colspan="3">{% trans 'Жами' %}</th>
+                    <th class="text-center text-light" colspan="3">{{ trees_sum.0 }}</th>
+                    {% for items in departments_all_tree_sum %}
+                        {% for item in items %}
+                            {% if item %}
+                                <th class="text-center text-light border">{{ item }}</th>
+                            {% else %}
+                                 <th class="text-center text-light border">0</th>
+                            {% endif %}
+                        {% endfor %}
+                    {% endfor %}
+                  </tfoot>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+    </div>
+
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}
+    <script>
+    $("#wrap").scroll(function(){
+      var translate = "translate("+this.scrollLeft + "px,0)";
+      $('.static').css('transform',translate);
+    });
+
+    let date = new Date('December 25, 1995 23:15:30');
+    let month = date.getMonth();
+    console.log("month", month);
+
+    const child = document.querySelectorAll('.child');
+    const showHideRegionChild = (event) =>{
+        console.log(event.textContent)
+        const text = event.textContent.toLowerCase();
+        if (text == "hide"){
+            event.textContent = "show"
+        } else{
+            event.textContent = "hide"
+        }
+        child.forEach(elem => console.log(elem.classList.toggle("hidden")))
+    }
+
+    </script>
+
+{% endblock javascripts %}

@@ -1,0 +1,251 @@
+{% extends "layouts/base.html" %}
+{% load i18n %}
+
+{% block title %} {% trans 'Chorva input list ttile' %}{% endblock %}
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}{% endblock stylesheets %}
+{% block content %}
+    {% if perms.chorvachilik.view_chorvainputoutput %}
+        <div class="row ">
+         <div class="col-md-10 offset-1">
+                <form action="" method="GET">
+                    <div class="row d-flex  justify-content-center align-items-end align-content-end">
+                        <div class="col-md-3">
+                            <div class="form-group py-2">
+                                <label for="id_first_name" class="text-dark">{% trans "Department name" %}</label>
+                                <input type="text" name="department__name" id="department__name" class="form-control">
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group pb-2">
+                                <label for="">{% trans "Region" %}</label>
+                                <select name="region"
+                                        class="custom-select"
+                                        onchange="regionChangeHandler(this)" id="region">
+                                    {% for opt in filter.form.region %}
+                                   opt }}
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group pb-2">
+                                <label for="">{% trans "Department" %}</label>
+                                <select name="department" id="id_department" class="custom-select">
+                                    {% for org in filter.form.department %}
+                                       {{ org }}
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group col-md-3">
+                             <button type="submit" class="btn btn-info text-light btn-sm">Filter</button>
+                            <a class="btn btn-info text-light btn-sm" href="{% url 'chorvachilik:chorva_input_list' %}">Reset</a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="col-md-12">
+                <div class="card bg-white">
+                    <div class="card-header card-header-info py-4 d-flex justify-content-between align-items-center">
+                        <div>
+                            <h4 class="card-title text-light">{% trans 'Chorva  input list' %}</h4>
+                            <p class="card-category text-dark"></p>
+                        </div>
+                        <a type="button" class="btn btn-success btn-sm" href="{% url 'chorvachilik:chorva_input_create' %}">
+                            {% trans 'Create' %}
+                        </a>
+                    </div>
+
+                <div class="card-body">
+                    <div class="table">
+                        <table class="table table-hover table-responsive-xl table-responsive-lg table-responsive-md table-responsive-sm">
+                            <thead class=" text-info">
+                                <th class="text-light border">{% trans 'ID' %}</th>
+                                <th class="text-light border">{% trans 'date' %}</th>
+                                <th class="text-light border">{% trans 'Sababi' %}</th>
+                                <th class="text-light border">{% trans 'animal' %}</th>
+                                <th class="text-light border">{% trans 'Category' %}</th>
+                                <th class="text-light border">{% trans 'amount' %}</th>
+                                <th class="text-light border">{% trans 'weight' %}</th>
+                                <th class="text-light border">{% trans 'type' %}</th>
+                                <th class="text-light border">{% trans 'department' %}</th>
+                                <th class="text-light border">{% trans 'region' %}</th>
+                                <th class="text-light border">{% trans 'creator' %}</th>
+                                <th class="text-light border">{% trans 'status' %}</th>
+                                <th class="text-light border">{% trans 'Action' %}</th>
+                            </thead>
+                            <tbody>
+                            {% for item in object_list %}
+                                <tr>
+                                    <td class="text-dark border text-center">{{ item.id }}</td>
+                                    <td class="text-dark border">{{ item.date|date:"Y-m-d" }}</td>
+                                    <td class="text-dark border">{{ item.category.name }}</td>
+                                    <td class="text-dark border">{{ item.animal.name }}</td>
+                                    <td class="text-dark border">{{ item.animal.category }}</td>
+                                    <td class="text-dark border amount_sum">{{ item.amount|floatformat }}</td>
+                                    <td class="text-dark border amount_sum">{{ item.weight|floatformat }}</td>
+                                    {% if item.type == 1 %}
+                                        <td class="text-dark border">{% trans "Kirim" %}</td>
+                                    {% elif item.type == 2 %}
+                                        <td class="text-dark border">{% trans "Chiqim" %}</td>
+                                    {% endif %}
+                                    <td class="text-dark border">{{ item.department.name }}</td>
+                                    <td class="text-dark border">{{ item.region.name }}</td>
+                                    <td class="text-dark border">{{ item.creator }}</td>
+                                    {% if item.status == 1 %}
+                                        <td class="text-dark border">{% trans "progressing" %}</td>
+                                    {% elif item.status == 2 %}
+                                        <td class="text-dark border">{% trans "Confirm" %}</td>
+                                    {% endif %}
+                                    <td class="border">
+                                        <a
+                                           href="{% url 'chorvachilik:chorva_input_detail' item.id %}"
+                                           class="btn btn-info btn-fab btn-fab-mini btn-round text-light">
+                                            <i class="material-icons">edit</i>
+                                        </a>
+                                        <a
+                                           data-toggle="modal"
+                                           data-target="#removeUser"
+                                           onclick="removeItem({{ item.id }})"
+                                           class="btn btn-info btn-fab btn-fab-mini btn-round text-light">
+                                            <i class="material-icons">delete</i>
+                                        </a>
+                                    </td>
+                                </tr>
+                             {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+              </div>
+            </div>
+        </div>
+    {% else %}
+        <h1>{% trans 'Permission Denied' %}</h1>
+    {% endif %}
+   <nav aria-label="Page navigation example text-center" class="d-flex align-items-center justify-content-center">
+      <ul class="pagination">
+        {% if page_obj.has_previous %}
+            <li class="page-item">
+              <a class="page-link" href="?page=1&department_name={{ department_name }}&region={{ region }}&department={{ department }}" aria-label="Previous">
+                <span aria-hidden="true">&laquo;</span>
+                <span class="sr-only">begin</span>
+              </a>
+            </li>
+        {% endif %}
+        {% for n in page_obj.paginator.page_range %}
+          {% if page_obj.number == n %}
+            <li class="page-item active">
+              <span class="page-link">{{ n }}<span class="sr-only">(current)</span></span>
+            </li>
+          {% elif n > page_obj.number|add:'-3' and n < page_obj.number|add:'3' %}
+            <li class="page-item"><a class="page-link" href="?page={{ n }}&department_name={{ department_name }}&region={{ region }}&department={{ department }}">{{ n }}</a></li>
+          {% endif %}
+        {% endfor %}
+        {% if page_obj.has_next %}
+              <li class="page-item">
+                <a class="page-link" href="?page={{ page_obj.paginator.num_pages }}&department_name={{ department_name }}&region={{ region }}&department={{ department }}" aria-label="Next">
+                  <span aria-hidden="true">&raquo;</span>
+                  <span class="sr-only">end</span>
+                </a>
+              </li>
+          {% endif %}
+        </ul>
+    </nav>
+     <div class="modal fade" id="removeUser" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">{% trans 'delete' %}</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+            <div class="modal-body">
+                <span>{% trans "Sizni ishonchingiz komilmi?" %}</span>
+            </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-success btn-sm" data-dismiss="modal">{% trans 'Close' %}</button>
+            <a href="" class="btn btn-danger btn-sm" id="remove">{% trans 'confirm' %}</a>
+          </div>
+        </div>
+      </div>
+    </div>
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}
+    <script>
+    const removeItem = (id) => {
+        const anchor = document.querySelector('#remove')
+        anchor.href = `/chorvachilik/chorvachilik/input/${id}/delete`
+    }
+    const currentDepartment = document.getElementById("id_department");
+    const regionSelectContent = document.querySelector('#region');
+    let d = {% if department_json %} {{department_json|safe}} {% else %} null {% endif %}
+    let r = {% if region_json %} {{region_json|safe}} {% else %} null {% endif %}
+    if (!d && !r){
+        regionSelectContent.innerHTML = `<option value=''selected>---------</option>`
+        currentDepartment.innerHTML = `<option value=''selected>---------</option>`
+    }
+    const inputs = document.querySelectorAll("input");
+    const selects = document.querySelectorAll("select");
+    inputs.forEach(item => item.className = 'form-control');
+    selects.forEach(item => item.className = 'custom-select');
+    const departments = convertToJson(d);
+    const regions = convertToObj(r);
+
+    departments.forEach((item, index) => {
+        if(index===0){
+            currentDepartment.innerHTML = `<option value=''selected>-----------</option>`
+        }
+        currentDepartment.innerHTML += `<option value='${item.id}'>${item.name}</option>`
+    })
+
+    regions.forEach((item, index) => {
+        if(index === 0){
+            regionSelectContent.innerHTML = `<option value=''selected>---------</option>`
+        }
+        regionSelectContent.innerHTML += `<option value='${item.id}'>${item.name}</option>`
+    })
+    const setDepartment = (region_id) => {
+        if(region_id === "all"){
+         departments.forEach((elem, index) => {
+            if(elem.name && index===0) {
+                currentDepartment.innerHTML = `<option value=''selected>---------</option>`
+                currentDepartment.innerHTML += `<option value='${elem.id}'>${elem.name}</option>`
+            }
+            else if(elem.name){
+                currentDepartment.innerHTML += `<option value='${elem.id}'>${elem.name}</option>`
+            }
+         })
+        }
+        else if(region_id !== "all"){
+            const currentRegion = regions.find(elem => elem.id === +region_id);
+            const current = departments.filter(elem =>elem.region === currentRegion.id);
+            console.log("current", current)
+            if(current){
+                currentDepartment.innerHTML = ""
+                current.forEach((elem, index) => {
+                if(elem.name && index===0) {
+                    currentDepartment.innerHTML = `<option value=''selected>---------</option>`
+                    currentDepartment.innerHTML += `<option value='${elem.id}'>${elem.name}</option>`
+                }
+                else if(elem.name){
+                    currentDepartment.innerHTML += `<option value='${elem.id}'>${elem.name}</option>`
+                }
+            })
+            } else currentDepartment.innerHTML = `<option value=''selected>---------</option>`
+        }
+    }
+
+    const regionChangeHandler = (e) => {
+        const currentRegion = e.options[e.selectedIndex].value
+        currentRegion ? setDepartment(currentRegion) : setDepartment('all');
+    };
+
+    </script>
+{% endblock javascripts %}
+

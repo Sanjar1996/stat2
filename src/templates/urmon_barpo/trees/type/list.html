@@ -1,0 +1,134 @@
+{% extends "layouts/base.html" %}
+{% load i18n %}
+
+{% block title %} {% trans 'trees type list title' %} {% endblock %}
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}{% endblock stylesheets %}
+{% block content %}
+    {% if not permission_denied %}
+        <div class="row">
+            <div class="col-md-12 ">
+                <div class="card">
+                    <div class="card-header card-header-info py-4 d-flex justify-content-between align-items-center">
+                        <div>
+                            <h4 class="card-title text-light">{% trans 'Daraxt turlari list' %}</h4>
+                            <p class="card-category text-light"></p>
+                        </div>
+                        <a type="button" class="btn btn-success btn-sm" href="{% url 'trees:tree_type_create' %}">
+                            {% trans 'create' %}
+                        </a>
+                    </div>
+
+                <div class="card-body">
+                    <div class="table">
+                        <table class="table table-hover table-responsive-xl table-responsive-lg table-responsive-md table-responsive-sm">
+                            <thead class="text-info">
+                                <th>{% trans 'id' %}</th>
+                                <th>{% trans 'name' %}</th>
+                                <th>{% trans "Daromatda ko'rsatish" %}</th>
+                                <th>{% trans 'Actions' %}</th>
+                            </thead>
+                            <tbody>
+                            {% for object in object_list %}
+                                <tr>
+                                    <td class="border">{{ object.id }}</td>
+                                    <td class="border">{{ object.name }}</td>
+                                    <td class="border">{% if object.show_profit %}
+                                        <input type="checkbox" class="form-check" checked="checked" readonly>
+                                        {% else %}
+                                         <input type="checkbox" class="form-check" disabled>
+                                        {% endif %}
+                                    </td>
+
+                                    <td class="border">
+                                        <a
+                                           href="{% url 'trees:tree_type_detail' object.id %}"
+                                           class="btn btn-info btn-fab btn-fab-mini btn-round text-light">
+                                            <i class="material-icons">edit</i>
+                                        </a>
+                                        <a
+                                           data-toggle="modal"
+                                           data-target="#removeUser"
+                                           onclick="removeItem({{ object.id }})"
+                                           class="btn btn-info btn-fab btn-fab-mini btn-round text-light">
+                                            <i class="material-icons">delete</i>
+                                        </a>
+                                    </td>
+                                </tr>
+                             {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+               </div>
+            </div>
+        </div>
+    {% else %}
+        <h1>Permission Denied</h1>
+    {% endif %}
+    <nav aria-label="Page navigation example ">
+        {% if is_paginated %}
+            <ul class="pagination justify-content-center">
+                {% if page_obj.has_previous %}
+                    <li class="page-item" aria-current="page">
+                        <a href="?page={{ page_obj.previous_page_number }}" class="page-link">
+                            <span aria-hidden="true">&laquo;</span>
+                        </a>
+                    </li>
+                {% else %}
+                    <li class="page-item disabled"><a class="page-link" aria-disabled="true">
+                        <span aria-hidden="true">&laquo;</span>
+                    </a></li>
+                {% endif %}
+                {% for i in paginator.page_range %}
+                    {% if page_obj.number == i %}
+                        <li class="page-item active"><a class="page-link" href="#">{{ i }}</a></li>
+                    {% else %}
+                        <li class="page-item "><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
+                    {% endif %}
+                {% endfor %}
+                {% if page_obj.has_next %}
+                    <li class="page-item">
+                        <a class="page-link" href="?page={{ page_obj.next_page_number }}">
+                            <span aria-hidden="true">&raquo;</span>
+                        </a>
+                    </li>
+                {% else %}
+                    <li class="page-item">
+                        <a class="page-link" disabled="true" href="#">
+                            <span aria-hidden="true">&raquo;</span>
+                        </a></li>
+                {% endif %}
+            </ul>
+        {% endif %}
+    </nav>
+    <div class="modal fade" id="removeUser" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">{% trans 'delete' %}</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+        <div class="modal-body">
+            <span>{% trans "Sizni ishonchingiz komilmi?" %}</span>
+        </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-success btn-sm" data-dismiss="modal">Close</button>
+        <a href="" class="btn btn-danger btn-sm" id="remove">{% trans 'confirm' %}</a>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}
+<script>
+    const removeItem = (id) => {
+        const anchor = document.querySelector('#remove')
+        anchor.href = `/trees/tree/type/${id}/delete`
+    }
+</script>
+{% endblock javascripts %}

@@ -1,0 +1,140 @@
+{% extends "layouts/base.html" %}
+{% load static %}
+{% load i18n %}
+{% block title %} {% trans 'yillik reja' %} {% endblock %}
+
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}
+    <style>
+    body{
+        overflow: hidden;
+    }
+    .styled-table {
+        border-collapse: collapse;
+        border-radius: 10px;
+        font-size: 0.9em;
+        font-family: sans-serif;
+        min-width: 400px;
+        box-shadow: 0 0 2px rgba(0, 0, 0, 0.15);
+        z-index: -1;
+    }
+    .styled-table thead tr {
+        background-color: #009879;
+        color: #ffffff;
+        text-align: left;
+    }
+    .styled-table th,
+    .styled-table td {
+        padding: 12px 15px;
+    }
+    .styled-table tbody tr {
+        border-bottom: 1px solid #dddddd;
+    }
+
+    .styled-table tbody tr:nth-of-type(even) {
+        background-color: #eee;
+    }
+    .table-wrapper{
+      overflow-y: scroll;
+      height: 700px;
+    }
+    .fix__table_header{
+        position: sticky;
+        background-color: #009879;
+        color: #ffffff;
+        z-index: 1;
+        top: -1px;
+        outline:1px solid #ffffff;
+    }
+    .second_lines{
+        position: sticky;
+        color: #ffffff;
+        z-index: 1;
+        top: 3.2%;
+        height: 100%;
+        outline:1px solid #ffffff;
+        background-color: #009879;
+    }
+    td{
+        font-size: 16px;
+    }
+    </style>
+{% endblock stylesheets %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-md-12 py-2 bg-light">
+          <div class="card card-plain">
+            <div class="card-header card-header-info d-flex align-items-baseline justify-content-center">
+                <h5 class="card-title mt-0 text-center py-2 text-light font-weight-bold">
+                    {{ department_name }}
+                    {% trans "davlat  tizimidagi xo'jalikda" %}
+                    {{ current_year }}
+                    <span class="text-lowercase">{% trans "Year" %}</span>
+                    {% trans "ҳолатига ёпиқ илдизли йирик хажмли кўчатлар етиштириш топшириғининг бажарилиши тўғрисида тезкор маълумот" %}
+                </h5>
+            </div>
+            <div class="card-body">
+              <div class="table">
+                <table class="table table-hover styled-table table-striped table-responsive-lg table-responsive-md table-responsive-sm">
+                  <thead class="bg-primary">
+                        <tr>
+                            <th rowspan="3" class="border text-light text-center static fix__table_header" style="background-color: #009879;">
+                                {% trans "T/p" %}</th>
+                            <th rowspan="3" colspan="3" class="border static text-center text-light fix__table_header" style="background-color: #009879;">
+                                {% trans 'Ўрмон хўжаликлари номи' %}</th>
+                            <th rowspan="2" colspan="3" class="border text-center fix__table_header">
+                                {% trans "Jami ko'chatlar yetishtirish topshirig'i" %}</th>
+                        </tr>
+                        <tr style="background-color: #009879;">
+                        </tr>
+                        <tr>
+                            <th class="active-row second_lines text-center">{% trans 'Topsh' %}</th>
+                            <th class="second_lines text-center">{% trans 'Amalda' %}</th>
+                            <th class="second_lines text-center">{% trans 'Foizi' %}</th>
+                        </tr>
+                    </thead>
+                  <tbody>
+                      <tr class="table-bordered border-dark">
+                      <td class="text-center font-weight-bold static text-dark bg-info border"></td>
+                      <td class="text-center font-weight-bold static text-dark bg-info border text-left" colspan="3">
+                          {{ department_name }}</td>
+                      <td class="text-center font-weight-bold  text-dark bg-info border">
+                          {{ department_plan|floatformat:'2'|default:"0.00" }}</td>
+                      <td class="text-center font-weight-bold  text-dark bg-info border">
+                          {{ department_completed|floatformat:'2'|default:"0.00" }}</td>
+                      <td class="text-center font-weight-bold  text-dark bg-info border">
+                          {{ department_percentage|floatformat:'2'|default:"0.00" }}%</td>
+                      {% for item in data %}
+                          <tr>
+                            <td class="text-center font-weight-bold  text-black border">{{ forloop.counter }}</td>
+                            <td class="text-left font-weight-bold  text-dark border" colspan="3">{{ item.name }}</td>
+                            <td class="text-center font-weight-bold  text-dark border">
+                                {{ item.plan|floatformat:'2'|default:"0.00" }}</td>
+                            <td class="text-center font-weight-bold  text-dark border">
+                                {{ item.completed|floatformat:'2'|default:"0.00" }}</td>
+                            <td class="text-center font-weight-bold  text-dark border">
+                                {{ item.percentage|floatformat:'2'|default:"0.00" }}%</td>
+
+                          </tr>
+                      {% endfor %}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+    </div>
+
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}
+    <script>
+    $("#wrap").scroll(function(){
+      var translate = "translate("+this.scrollLeft + "px,0)";
+      $('.static').css('transform',translate);
+    });
+    </script>
+
+{% endblock javascripts %}

@@ -1,0 +1,145 @@
+{% extends "layouts/base.html" %}
+{% load static %}
+{% load i18n %}
+{% block title %} {% trans 'yillik reja' %} {% endblock %}
+
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}
+    <style>
+    body{
+        overflow: hidden;
+    }
+    .styled-table {
+        border-collapse: collapse;
+        border-radius: 10px;
+        font-size: 0.9em;
+        font-family: sans-serif;
+        min-width: 400px;
+        box-shadow: 0 0 2px rgba(0, 0, 0, 0.15);
+        z-index: -1;
+    }
+    .styled-table th,
+    .styled-table td {
+        padding: 12px 15px;
+    }
+
+    .fix__table_header{
+        position: sticky;
+        background-color: #009879;
+        color: #ffffff;
+        z-index: 1;
+        top: -1px;
+        outline:1px solid #ffffff;
+    }
+    .second_lines{
+        position: sticky;
+        color: #ffffff;
+        z-index: 1;
+        top: 5.4%;
+        height: 100%;
+        outline:1px solid #ffffff;
+        background-color: #009879;
+    }
+    .rotate_text {
+        font-weight: 400;
+        text-align: center;
+        transform: rotate(-90deg);
+        white-space: nowrap;
+        transform-origin: center;
+        padding: 40px 10px;
+        font-size: 15px !important;
+        max-width: 50px;
+        text-indent: -35px;
+    }
+    </style>
+{% endblock stylesheets %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-md-12 py-2 bg-light">
+          <div class="card card-plain">
+            <div class="card-header card-header-info d-flex align-items-baseline justify-content-center">
+                <h5 class="card-title mt-0 text-center py-2 text-light font-weight-bold">
+                    {% trans "Ўрмон хўжалиги бош бошқармаси тизимидаги ўрмон хўжаликлари томонидан" %}
+                      {{ current_year }}
+                    {% trans "йилда бажариладиган ўрмончилик тадбирларининг иш ҳажмлари" %}
+                </h5>
+            </div>
+            <div class="card-body">
+              <div class="table border">
+                <table class="table table-hover styled-table table-striped table-responsive-lg table-responsive-md table-responsive-sm">
+                  <thead class="bg-primary">
+                        <tr>
+                            <th rowspan="3" class="border text-light static fix__table_header text-center" style="background-color: #009879;">{% trans "T/p" %}</th>
+                            <th rowspan="3" class="border static text-center text-light fix__table_header" style="background-color: #009879;">{% trans 'Ўрмон хўжаликлари номи' %}</th>
+                            <th rowspan="2" colspan="5" class="border text-center fix__table_header">{% trans "Жами ўрмон барпо қилиш, га" %}</th>
+
+                        </tr>
+                        <tr style="background-color: #009879;">
+                        </tr>
+                        <tr>
+                            <td class="text-center border second_lines">Карор бўйича</td>
+                            <td class="text-center border second_lines">I</td>
+                            <td class="text-center border second_lines">II</td>
+                            <td class="text-center border second_lines">III</td>
+                            <td class="text-center border second_lines">IV</td>
+                        </tr>
+                    </thead>
+                  <tbody>
+                      <tr class="table-bordered border-dark">
+                      <td class="text-center font-weight-bold static text-dark bg-info border">1</td>
+                      <td class="text-center font-weight-bold static text-dark bg-info border">{{ department.department_name }}</td>
+                      <td class="text-center font-weight-bold  text-black bg-info border">{{ department.department_all_plan_sum }}</td>
+                      <td class="text-center font-weight-bold  text-black bg-info border">{{ department.department_first_q }}</td>
+                      <td class="text-center font-weight-bold  text-black bg-info border">{{ department.department_second_q }}</td>
+                      <td class="text-center font-weight-bold  text-black bg-info border">{{ department.department_three_q }}</td>
+                      <td class="text-center font-weight-bold  text-black bg-info border">{{ department.department_four_q }}</td>
+                      {% for item in data %}
+                          <tr>
+                            <td class="text-center font-weight-bold text-black border">{{ forloop.counter }}</td>
+                            <td class="text-left font-weight-bold  text-black border">{{ item.category }}</td>
+                            <td class="text-center font-weight-bold  text-black border">{{ item.plan_sum }}</td>
+                            <td class="text-center font-weight-bold  text-black border">{{ item.first_q }}</td>
+                            <td class="text-center font-weight-bold  text-black border">{{ item.second_q }}</td>
+                            <td class="text-center font-weight-bold  text-black border">{{ item.three_q }}</td>
+                            <td class="text-center font-weight-bold  text-black border">{{ item.four_q }}</td>
+
+                          </tr>
+                      {% endfor %}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+    </div>
+
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}
+    <script>
+    $("#wrap").scroll(function(){
+      var translate = "translate("+this.scrollLeft + "px,0)";
+      $('.static').css('transform',translate);
+    });
+
+    let date = new Date('December 25, 1995 23:15:30');
+    let month = date.getMonth();
+    console.log("month", month);
+
+    const child = document.querySelectorAll('.child');
+    const showHideRegionChild = (event) =>{
+        console.log(event.textContent)
+        const text = event.textContent.toLowerCase();
+        if (text == "viloyatlarni kesimda ko'rish"){
+            event.textContent = "Barchasini ko'rish"
+        } else{
+            event.textContent = "Viloyatlarni kesimda ko'rish"
+        }
+        child.forEach(elem => console.log(elem.classList.toggle("hidden")))
+    }
+
+    </script>
+
+{% endblock javascripts %}

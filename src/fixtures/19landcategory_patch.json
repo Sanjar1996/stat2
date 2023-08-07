@@ -1,0 +1,73 @@
+
+[
+{
+  "model": "trees.landcategory",
+  "pk": 1,
+  "fields": {
+    "created_at": "2021-02-12T13:48:52.552Z",
+    "updated_at": "2021-02-13T05:22:53.847Z",
+    "name": "\u0425\u045e\u0436\u0430\u043b\u0438\u043a \u0442\u043e\u043c\u043e\u043d\u0438\u0434\u0430\u043d \u0442\u0430\u0439\u0451\u0440\u043b\u0430\u043d\u0434\u0438",
+    "status": 1
+  }
+},
+{
+  "model": "trees.landcategory",
+  "pk": 2,
+  "fields": {
+    "created_at": "2021-02-13T05:23:02.936Z",
+    "updated_at": "2021-02-13T05:23:02.936Z",
+    "name": "\u0411\u043e\u0448\u049b\u0430 \u0442\u0430\u0448\u043a\u0438\u043b\u043e\u0442\u0434\u0430\u043d \u0441\u043e\u0442\u0438\u0431 \u043e\u043b\u0438\u043d\u0434\u0438",
+    "status": 1
+  }
+},
+{
+  "model": "trees.landcategory",
+  "pk": 3,
+  "fields": {
+    "created_at": "2021-02-13T05:23:06.693Z",
+    "updated_at": "2021-02-13T05:23:06.694Z",
+    "name": "\u041a\u045e\u0447\u0430\u0442\u0437\u043e\u0440\u043b\u0430\u0440 \u0431\u0430\u0440\u043f\u043e \u044d\u0442\u0438\u0448 \u0443\u0447\u0443\u043d",
+    "status": 1
+  }
+},
+{
+  "model": "trees.landcategory",
+  "pk": 4,
+  "fields": {
+    "created_at": "2021-02-13T05:23:16.454Z",
+    "updated_at": "2021-02-13T05:23:16.454Z",
+    "name": "\u040e\u0440\u043c\u043e\u043d\u0437\u043e\u0440\u043b\u0430\u0440 \u0431\u0430\u0440\u043f\u043e \u044d\u0442\u0438\u0448 \u0443\u0447\u0443\u043d",
+    "status": 1
+  }
+},
+{
+  "model": "trees.landcategory",
+  "pk": 5,
+  "fields": {
+    "created_at": "2021-02-13T05:23:20.689Z",
+    "updated_at": "2021-02-13T05:23:20.689Z",
+    "name": "\u040e\u0440\u043c\u043e\u043d\u043b\u0430\u0440\u043d\u0438 \u0445\u0430\u0442\u043e\u0441\u0438\u043d\u0438 \u0442\u0443\u043b\u0434\u0438\u0440\u0438\u0448 \u0443\u0447\u0443\u043d",
+    "status": 1
+  }
+},
+{
+  "model": "trees.landcategory",
+  "pk": 6,
+  "fields": {
+    "created_at": "2021-02-13T05:23:24.146Z",
+    "updated_at": "2021-02-13T05:23:24.146Z",
+    "name": "\u0411\u043e\u0448\u049b\u0430 \u0442\u0430\u0448\u043a\u0438\u043b\u043e\u0442\u043b\u0430\u0440\u0433\u0430 \u0431\u0435\u0440\u0438\u043b\u0434\u0438",
+    "status": 1
+  }
+},
+{
+  "model": "trees.landcategory",
+  "pk": 7,
+  "fields": {
+    "created_at": "2021-02-13T05:23:28.312Z",
+    "updated_at": "2021-02-13T05:23:28.312Z",
+    "name": "\u04b2\u0438\u0441\u043e\u0431\u0434\u0430\u043d \u0447\u0438\u049b\u0430\u0440\u0438\u043b\u0434\u0438",
+    "status": 1
+  }
+}
+]

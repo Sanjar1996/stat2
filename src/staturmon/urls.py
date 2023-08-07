@@ -1,0 +1,39 @@
+"""staturmon URL Configuration
+
+The `urlpatterns` list routes URLs to views. For more information please see:
+    https://docs.djangoproject.com/en/3.1/topics/http/urls/
+Examples:
+Function views
+    1. Add an import:  from my_app import views
+    2. Add a URL to urlpatterns:  path('', views.home, name='home')
+Class-based views
+    1. Add an import:  from other_app.views import Home
+    2. Add a URL to urlpatterns:  path('', Home.as_view(), name='home')
+Including another URLconf
+    1. Import the include() function: from django.urls import include, path
+    2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
+"""
+
+from django.contrib import admin
+from django.urls import path, include
+from django.conf import settings
+from django.conf.urls.static import static
+
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('i18n/', include('django.conf.urls.i18n')),
+    path("accounts/", include('apps.accounts.urls')),
+    path("", include("apps.core.urls")),
+    path("finance/", include("apps.finance.urls")),
+    path("trees/", include("apps.trees.urls")),
+    path('agriculture/', include("apps.agriculture.urls")),
+    path('chorvachilik/', include("apps.chorvachilik.urls")),
+    path('report/', include("apps.report.urls")),
+    path('tz_detect/', include('tz_detect.urls')),
+    path('api/ipsgov/v1/', include('apps.ipsgov.api.v1.urls')),
+    path('ipsgov/', include('apps.ipsgov.urls')),
+]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

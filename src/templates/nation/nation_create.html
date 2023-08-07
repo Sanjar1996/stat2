@@ -1,0 +1,60 @@
+{% extends "layouts/base.html" %}
+{% load i18n %}
+{% block title %} {% trans 'nation create page' %} {% endblock %}
+
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+    {% if perms.accounts.add_nation %}
+        <div class="row">
+            <div class="col-md-8 offset-md-2">
+                <div class="card">
+                    <div class="card-header card-header-info py-4 shadow">
+                        <h4 class="card-title text-light text-center">{% trans 'nation create form' %}</h4>
+                    </div>
+                    <div class="card-body mt-4">
+                        <form role="form" method="POST" action="{% url 'accounts:nation_create' %}">
+                            {% csrf_token %}
+                            <div class="row d-flex align-items-end">
+                                <div class="col-md-8">
+                                    <div class="form-group py-2">
+                                        <label for="" class="text-dark">{% trans "Nation name" %}</label>
+                                        {{ form.name }}
+                                    </div>
+                                </div>
+                                <div class="col-md-4 d-flex align-items-end">
+                                    <button type="submit" class="btn btn-info btn-sm">{% trans 'create' %}</button>
+                                    <a href="{% url 'accounts:nation_list' %}"
+                                       class="btn btn-success btn-sm text-light">{% trans 'back' %}</a>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% else %}
+        <h2>{% trans 'Permission Denied' %}</h2>
+    {% endif %}
+
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}
+<script>
+    let confirmPost = {{state|yesno:"true,false"}}
+    if(confirmPost){
+        Swal.fire({
+          position: 'top-center',
+          type: 'success',
+          title: '{% trans "Your work has been saved" %}',
+          showConfirmButton: false,
+          timer: 1000
+        })
+        setTimeout(() =>{
+            location.href="/accounts/nation/list"
+        }, 1300)
+    }
+</script>
+{% endblock javascripts %}

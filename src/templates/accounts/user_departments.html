@@ -1,0 +1,127 @@
+{% extends "layouts/full_base.html" %}
+{% load i18n %}
+{% block title %} {% trans "Register page" %} {% endblock %}
+
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}
+    <style>
+    tbody {
+    max-height: 100px;
+    max-width: 200px;
+    min-width: 200px;
+    overflow: auto;
+    display: block;
+    table-layout: fixed;
+    }
+
+    tr {
+    display: table;
+    }
+    </style>
+{% endblock stylesheets %}
+
+{% block content %}
+    {% if perms.accounts.add_user %}
+        <div class="row">
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-header card-header-info">
+                        <h5 class="text-center">User Regions and Departments</h5>
+                    </div>
+                    <div class="row card-body">
+                        <div class="col-md-6">
+                            <table>
+                                <tbody>
+                                <tr>
+                                    <td>
+                                        <input type="checkbox" checked name="" id="">
+                                    </td>
+                                    <td>Toshkent</td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <input type="checkbox" name="" id="">
+                                    </td>
+                                    <td>Namangan</td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <input type="checkbox" name="" id="">
+                                    </td>
+                                    <td>Andijon</td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <input type="checkbox" name="" id="">
+                                    </td>
+                                    <td>Farg'ona</td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <input type="checkbox" name="" id="">
+                                    </td>
+                                    <td>Samarqand</td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <input type="checkbox" name="" id="">
+                                    </td>
+                                    <td>Qashqadaryo</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="col-md-6">
+                            <table>
+                                <tbody>
+                                <tr>
+                                    <td>
+                                        <input type="checkbox" checked name="" id="">
+                                    </td>
+                                    <td>Bektemir</td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <input type="checkbox" checked name="" id="">
+                                    </td>
+                                    <td>Mirzo Ulug‘bek</td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <input type="checkbox" name="" id="">
+                                    </td>
+                                    <td>Mirobod</td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <input type="checkbox" name="" id="">
+                                    </td>
+                                    <td>Olmazor</td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <input type="checkbox" name="" id="">
+                                    </td>
+                                    <td>Sirg‘ali</td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <input type="checkbox" name="" id="">
+                                    </td>
+                                    <td>Uchtepa</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% else %}
+        <h2>{% trans "permision_denied" %}</h2>
+    {% endif %}
+
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}{% endblock javascripts %}

@@ -1,0 +1,313 @@
+{% extends "layouts/base.html" %}
+{% load i18n %}
+{% block title %} {% trans 'Chorva output page title' %} {% endblock %}
+
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}
+<style>
+    [v-cloak]{
+        display: none;
+    }
+</style>
+{% endblock stylesheets %}
+
+{% block content %}
+    {% if not permission_denied %}
+        <div class="row" id="chorvachilik_input_detail">
+            <div class="col-md-10 offset-md-1 mt-5">
+                <div class="card">
+                    <div class="card-header card-header-info shadow">
+                        <h4 class="card-title text-light text-center">{% trans 'Chorva output detail form' %}</h4>
+                    </div>
+                    <div class="card-body mt-4">
+                       <form role="form" method="POST" action="{% url 'chorvachilik:chorva_output_detail' chorvainput.id %}">
+                            {% csrf_token %}
+                            <div class="row d-flex align-items-end">
+                                <div class="col-md-4">
+                                    <label for="" class="text-dark">{% trans "date" %}</label>
+                                    <div class="form-group">
+                                        <input type="date" name="date" required class="form-control" id="id_date"
+                                           value="{{ form.date.value |date:"Y-m-d" }}">
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="id_region" class="text-dark">{% trans "Region" %}</label>
+                                        {{form.region}}
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="id_department" class="text-dark">{% trans "Department" %}</label>
+                                        {{ form.department }}
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group pb-2">
+                                        <label for="id_category" class="text-dark">{% trans "category" %}</label>
+                                        {{ form.category }}
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group pb-2">
+                                        <label for="id_animal" class="text-dark">{% trans "animal" %}</label>
+                                        {{ form.animal }}
+                                    </div>
+                                </div>
+<!--                                <div class="col-md-4">-->
+<!--                                    <div class="form-group">-->
+<!--                                        <label for="id_category" class="text-dark">{% trans "category" %}</label>-->
+<!--                                        {{ form.type }}-->
+<!--                                    </div>-->
+<!--                                </div>-->
+                                <div class="col-md-4">
+                                    <div class="form-group py-2">
+                                        <label for="id_amount" class="text-dark">{% trans "Amount" %}</label>
+                                        {{ form.amount }}
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="id_amount_type" class="text-dark">{% trans "weight Type" %}</label>
+                                    <div class="form-group">
+                                        {{ form.weight }}
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <input name="creator" type="hidden" value="{{ user.pk }}">
+                                    </div>
+                                </div>
+
+                                <div class="col-md-12 d-flex align-items-center justify-content-between">
+                                    <a href="{% url 'chorvachilik:chorva_output_list' %}"
+                                    class="btn btn-success btn-sm text-light">{% trans 'back' %}</a>
+                                    <button type="submit" class="btn btn-info btn-sm">{% trans 'update' %}</button>
+                                </div>
+                            </div>
+                        </form>
+                        {% if images %}
+                            <div class="col-md-12" v-if="uploadetFiles" v-cloak>
+                                <div class="row">
+                                    <div class="col-md-2" v-for="item in uploadetFiles" :key="item.id">
+                                        <div class="card" >
+                                            <img class="card-img-top" :src="item.file" rel="nofollow" :alt="item.file">
+                                            <div class="card-body d-flex justify-content-center">
+                                                <a
+                                                    data-toggle="modal"
+                                                    data-target="#preview"
+                                                   @click="previewImageHandler(item.file)"
+                                                    class="btn btn-info btn-fab btn-fab-mini btn-round text-light">
+                                                    <i class="material-icons">visibility</i>
+                                                </a>
+                                                <a
+                                                    @click="removeUploadedFile(item.id)"
+                                                    class="btn btn-info btn-fab btn-fab-mini btn-round text-light">
+                                                    <i class="material-icons">delete</i>
+                                                </a>
+                                          </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            <div class="modal fade bd-example-modal-lg" id="preview" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">{% trans 'preview' %}</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body d-flex justify-content-center align-items-center">
+                            <img :src="currentImage" alt="previewImage" height="500">
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-success btn-sm" data-dismiss="modal">{% trans "exit" %}</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% else %}
+        <h2>{% trans 'Permision Denied' %}</h2>
+    {% endif %}
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}
+<script>
+    let imgs = {{images|safe}};
+    console.log("imgs", imgs)
+    let d = {{data|safe}};
+    let r = {{ region|safe }};
+    const region = document.getElementById('id_region');
+    // const animal_type = document.getElementById('chorvachilik_type');
+    const chorvachilikOptions = document.getElementById('id_chorvachilik');
+    const departmentOptions = document.getElementById('id_department');
+    const departments = convertToJson(d)
+    const regions = convertToObj(r)
+    const images = imgs.map(item => {
+        if(item){
+            return {"id": item.pk, "file": location.origin + "/media/" + item['fields'].file}
+        }
+    });
+    console.log("images", images)
+    const setDepartment = (city) => {
+        const region = regions.find(elem => elem.name === city);
+        const current = departments.filter(elem => elem.region === region.id)
+        if(current.length > 0){
+            departmentOptions.innerHTML = ""
+            current.forEach((elem, index) => {
+            if(elem.name && index===0) {
+                departmentOptions.innerHTML += `<option value='${elem.name}' selected>${elem.name}</option>`
+            }
+            else if(elem.name){
+                departmentOptions.innerHTML += `<option value='${elem.name}'>${elem.name}</option>`
+            }
+        })
+        } else departmentOptions.innerHTML = ""
+    }
+    const setCurrentChorvachilikType = (id) => {
+        const current = chorvachilik.filter(elem =>{
+            if(elem.type){
+               const result = elem.type.find(item => item === id)
+               if(result){
+                   return elem
+               }
+            }
+        });
+        if(current){
+            chorvachilikOptions.innerHTML = ""
+            current.forEach((elem, index) => {
+            if(elem.name && index===0) {
+                chorvachilikOptions.innerHTML += `<option value='${elem.name}' selected>${elem.name}</option>`
+            }
+            else if(elem.name){
+                chorvachilikOptions.innerHTML += `<option value='${elem.name}'>${elem.name}</option>`
+            }
+
+        })
+        } else chorvachilikOptions.innerHTML = ""
+    }
+    region.addEventListener('change', (event) => {
+        const city = event.target.value;
+        city ? setDepartment(city) : departmentOptions.innerHTML = "";
+    })
+    // animal_type.addEventListener('change', (event)=> {
+    //     const tip = event.target.value;
+    //     tip ? setCurrentChorvachilikType(parseInt(tip)): ""
+    // })
+    const token = getCsrfToken(document.querySelectorAll('input'));
+    const chorvachilik_input_detail = new Vue({
+        delimiters: ['[[', ']]'],
+        el: '#chorvachilik_input_detail',
+        data: {
+            token: token,
+            images: [],
+            uploadetFiles: images,
+            previewImage: ""
+        },
+        methods: {
+            regionChangeHandler(id) {
+                this.selectedDepartments = this.departmentsRoot.filter(elem => elem.region === id)
+            },
+            animalCategoryChangeHandler(id) {
+                console.log("id", id)
+                this.animalAfterFilter = this.animalsRoot.filter(elem => elem.category === id)
+            },
+            outputCategoryChangeHandler(category) {
+                console.log(category)
+            },
+            departmentChangeHandler(id) {
+                this.department = id
+            },
+            async upload() {
+                let uploaded_files = this.$refs.files.files;
+
+                for (let i = 0; i < uploaded_files.length; ++i) {
+                    let formData = new FormData()
+                    formData.append("csrfmiddlewaretoken", this.token);
+                    formData.append('file', uploaded_files[i])
+                    formData.append('name', "chorvachilik chiqim")
+                    const url = location.origin + "/chorvachilik/chorva/upload/file/";
+                    try {
+                        const response = await fetch(url, {
+                            method: 'POST',
+                            body: formData
+                        })
+                        if (response) {
+                            console.log("response", response)
+                            const data = await response.json();
+                            if(data.id > 0){
+                                this.uploadetFiles.push(data)
+                                this.images.push(data.id)
+                            }
+                        }
+                    } catch (error) {
+                        alert('Error')
+                    }
+                }
+            },
+            async createGrowingPlan() {
+                let form = new FormData();
+                form.append("csrfmiddlewaretoken", this.token);
+                form.append("date", this.date);
+                form.append("region", this.region);
+                form.append("department", this.department);
+                form.append("category", this.category);
+                form.append("animal", this.animal);
+                form.append("amount", this.amount);
+                form.append("weight", this.weight);
+                form.append("next", this.next);
+                form.append("images", JSON.stringify(this.images));
+                const url = location.origin + "/chorvachilik/chorvachilik/output/create/";
+                try {
+                    const response = await fetch(url, {
+                        method: 'POST',
+                        body: form
+                    })
+                    if(response.status === 200){
+                        Swal.fire({
+                            position: 'top-center',
+                            type: 'success',
+                            title: '{% trans "Your work has been saved" %}',
+                            showConfirmButton: false,
+                            timer: 1000
+                        })
+                        setTimeout(() => {
+                            location.href = response.url
+                        }, 1300)
+                    }
+                } catch (error) {
+                   console.log("error", error.messages)
+                }
+            },
+           async removeUploadedFile(id){
+                let formData = new FormData();
+                formData.append("csrfmiddlewaretoken", this.token)
+                this.uploadetFiles = this.uploadetFiles.filter(item => item.id !== id)
+                const url = location.origin + "/chorvachilik/chorva/delete/file/" + `${id}`;
+                    try {const response = await fetch(url, {method: 'POST', body:formData})} catch (error) {alert('Error')}
+            },
+            saveAndNext() {
+                this.next = true
+            },
+            saveAndExit() {
+                this.next = false
+            },
+            previewImageHandler(file){
+                this.previewImage = file
+            }
+        },
+        computed:{
+            currentImage(){
+                return this.previewImage
+            }
+        }
+    });
+</script>
+{% endblock javascripts %}

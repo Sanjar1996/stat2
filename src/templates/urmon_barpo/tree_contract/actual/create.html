@@ -1,0 +1,268 @@
+{% extends "layouts/base.html" %}
+{% load i18n %}
+{% block title %} {% trans 'Kochat shartnoma' %} {% endblock %}
+
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}
+    <style>
+        #land{
+            display: block;
+            position: relative;
+        }
+        .fixed-add-btn{
+            position: fixed;
+            top:50%;
+            left: 85%;
+        }
+    </style>
+{% endblock stylesheets %}
+{% block content %}
+    {% if perms.trees.add_treecontract %}
+        <div class="row " id="land">
+            <div class="col-md-8 offset-md-2">
+                <form @submit.prevent="createGrowing" id="form">
+                    {% csrf_token %}
+                    <div class="card">
+                        <div class="card-header card-header-info py-4 shadow">
+                            <h4 class="card-title text-light text-center">{% trans 'Ташкилотлар билан тузилган шартномалар' %}</h4>
+                        </div>
+                        <div class="card-body mt-4">
+                            <div class="row d-flex align-items-end bg-light border mb-1 mx-1">
+                                <div class="col-md-4">
+                                    <div class="form-group py-2">
+                                        <label for="date" class="text-dark">{% trans 'Date' %}</label>
+                                        <input type="date" class="form-control" v-model="date" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group py-2">
+                                        <label for="region_id">{% trans 'Region' %}</label>
+                                        <select 
+                                            name="region" 
+                                            id="region_id" 
+                                            class="custom-select" 
+                                            @input="region = $event.target.value"  
+                                            @change="regionChangeHandler(region)" required>
+                                                <option value="region">[[ regionName ]]</option>
+                                                <option v-for="(item, index) in regions" :key="item.id" :value="item.id">[[ item.name ]]</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group py-2">
+                                        <label for="region">{% trans 'Department' %}</label>
+                                        <select 
+                                            name="department" 
+                                            id="department_id" 
+                                            class="custom-select" 
+                                            @input="department = $event.target.value" 
+                                            @change="departmentChangeHandler(department)" required>
+                                                <option value="department">[[ departmentName ]]</option>
+                                                <option v-for="item in selectedDepartments" :key="item.id" :value="item.id">[[ item.name ]]</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        </form>
+                        <div class="card-body" v-for="(item, i) in counts">
+                            <div class="row d-flex align-items-end bg-light border mb-1 mx-1">
+                                <div class="col-md-12 d-flex justify-content-end align-items-end">
+                                    <button class="btn btn-danger btn-sm btn-fab btn-fab-mini btn-round remove" @click="removeRow(i)">
+                                        <i class="material-icons">close</i>
+                                    </button>
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="form-group pb-2">
+                                        <label for="text">{% trans 'Categories' %}</label>
+                                        <select name="department" class="custom-select" v-model="income[i].category" required>
+                                                <template>
+                                                    <option v-for="item in categories" :key="item.id" :value="item.id">[[ item.name ]]</option>
+                                                </template>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group py-2">
+                                        <label for="text" class="text-dark">{% trans 'kochatsoni_mln_som' %}</label>
+                                        <input type="number" step="0.01" min="0.01" class="form-control" v-model="income[i].count">
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group py-2">
+                                        <label for="text" class="text-dark">{% trans 'суммаси млн.сўм' %}</label>
+                                        <input type="number" step="0.01" min="0.01" class="form-control" v-model="income[i].amount">
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group py-2">
+                                        <label for="text" class="text-dark">{% trans 'Тўланган маблағ млн.сўм' %}</label>
+                                        <input type="number" step="0.01" min="0.01" class="form-control" v-model="income[i].payout" >
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group py-2">
+                                        <label for="text" class="text-dark">{% trans 'Олиб кетилган кўчат сони, минг дона' %}</label>
+                                        <input type="number" step="0.01" min="0.01" class="form-control" v-model="income[i].output_tree">
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div class="col-md-12 d-flex align-items-center justify-content-between">
+
+                            <a href="{% url 'trees:tree_contract_list' %}"
+                                class="btn btn-success btn-sm text-light">
+                                {% trans 'back' %}
+                            </a>
+                            <div>
+                                <button @click="isSave = true"  class="btn btn-info btn-sm">{% trans 'saqlash' %}</button>
+                                <button type="submit" @click="isSave = false" class="btn btn-info btn-sm">{% trans 'save and exit' %}</button>
+                            </div>
+                        </div>
+
+                        <div class="fixed-add-btn">
+                            <button class="btn btn-success btn-sm text-dark btn-fab btn-fab-mini btn-round" @click="incrementFormRow">
+                                <i class="material-icons text-light">add</i>
+                            </button>
+                        </div>
+                    </div>
+            </div>
+        </div>
+    {% else %}
+        <h2>{% trans 'Permission Denied' %}</h2>
+    {% endif %}
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}
+    <script>
+     let checkUserPermission = {% if departments is none %} 0 {% else %} 1 {% endif %};
+     if (!checkUserPermission) {
+         let msg = "{% trans "Sizda ruxsat yoq Admin bilan boglaning!" %}"
+         warningMessage(msg)
+         setTimeout(() => {
+             location.href = '/trees/tree/tree_contract/list'
+         }, 1700)
+     }
+
+    const token = getCsrfToken(document.querySelectorAll('input'));
+    const departments = convertToJson({{ departments|safe }});
+    const regions = convertToObj({{ regions|safe }});
+    const contractCategories = convertToObj({{ contract|safe }})
+    const currentTime = new Date();
+    const year = currentTime.getFullYear();
+    const month = currentTime.getMonth() < 10 ? '0' + (currentTime.getMonth() + 1) : (currentTime.getMonth() + 1);
+    const day = currentTime.getDate() < 10 ? '0' + currentTime.getDate() : currentTime.getDate();
+    const today = `${year}-${month}-${day}`
+    const land = new Vue({
+      delimiters: ['[[', ']]'],
+      el: '#land',
+      data: {
+          counts: 1,
+          date: today,
+          region: null,
+          regionName: '',
+          department: null,
+          departmentName: '',
+          income: [{
+              category: "",
+              count: null,
+              amount: null,
+              payout: null,
+              output_tree: null
+             }
+          ],
+          regions: regions,
+          selectedDepartments: [],
+          departmentsRoot: departments,
+          categories: contractCategories,
+          token: token,
+          isSave: false
+      },
+        mounted() {
+            this.initRegionDepartment()
+        },
+      methods: {
+          regionChangeHandler(id){
+            this.selectedDepartments = this.departmentsRoot.filter(elem => elem.region == id)
+          },
+          departmentChangeHandler(id){
+              this.department = id
+          },
+          incrementFormRow(){
+              this.counts++;
+              const obj = {
+                  category: "",
+                  count: null,
+                  amount: null,
+                  payout: null,
+                  output_tree: null
+             };
+             this.income.push(obj)
+          },
+          removeRow(id){
+              this.income.splice(id, 1);
+              this.counts--
+          },
+        initRegionDepartment() {
+            // This func check if data exists in session
+            // if it does, then the func initialize region and department data
+            const data = this.getRegionDepartmentData()
+            if (data) {
+                this.region = data['region']
+                this.regionName = regions.filter(i => i['id'] == this.region)[0]['name']
+                this.regionChangeHandler(this.region)
+                this.department = data['department']
+                this.departmentName = this.selectedDepartments.filter(i => i['id'] == this.department)[0]['name']
+                this.getTreeHeights(this.department)
+            }
+        },
+        getRegionDepartmentData() {
+            return JSON.parse(sessionStorage.getItem('sapling_data'))
+        },
+         async createGrowing(){
+              let form = new FormData();
+              form.append("csrfmiddlewaretoken", this.token);
+              form.append("date", this.date);
+              form.append("region", this.region);
+              form.append("department", this.department);
+              form.append("items", JSON.stringify(this.income));
+              const url = location.origin + "/trees/tree/tree_contract/create/";
+              try{
+                const response = await fetch(url, {
+                    method: 'POST',
+                    body: form
+                })
+                if(response.status === 200){
+                    let msg = "{% trans 'Your work has been saved' %}"
+                    successMessage(msg)
+                    if (this.isSave) {
+                        this.income = [{
+                            category: "",
+                            count: null,
+                            amount: null,
+                            payout: null,
+                            output_tree: null
+                            }
+                        ]
+                        this.counts = 0
+                        setTimeout(() => {
+                            this.counts = 1
+                        }, 1500)
+                    }
+                    else {
+                        setTimeout(() => {
+                            location.href = response.url
+                        }, 1500)
+                    }
+                }
+              } catch (error) {
+                  errorMessage('Error')
+              }
+          }
+      },
+    });
+  </script>
+{% endblock javascripts %}

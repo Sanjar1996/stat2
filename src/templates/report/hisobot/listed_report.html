@@ -1,0 +1,299 @@
+{% extends "layouts/base.html" %}
+{% load static %}
+{% load i18n %}
+{% block title %} {% trans 'yillik reja' %} {% endblock %}
+
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}
+    <style>
+    .hide{
+        display: none;
+        transition: all .5s ease-in-out;
+    }
+    .top-container {
+        background-color: #f1f1f1;
+        padding: 30px;
+        text-align: center;
+    }
+    .header {
+        padding: 10px 16px;
+        background: #555;
+        color: #f1f1f1;
+    }
+    .content {
+        padding: 16px;
+    }
+    .sticky {
+        position: fixed;
+        top: 0;
+        width: 100%;
+    }
+
+    .sticky + .content {
+        padding-top: 102px;
+    }
+    th{
+        position: relative;
+        border: 1px solid #ddd;
+    }
+    .zindex{
+        z-index: 1;
+    }
+    .fix__table_header, .second_line, .fthreel{
+        z-index: 1;
+    }
+    </style>
+{% endblock stylesheets %}
+
+{% block content %}
+{% if not permission_denied %}
+    <div class="bg-light" v-cloak id="report_list" >
+        <div class="row">
+            <div class="col-md-10 pt-2 offset-1">
+                   <div class="row d-flex align-items-end justify-content-center flex-row">
+                        <div class="col-md-2">
+                            <div class="form-group py-2">
+                                <label for="date">{% trans 'Year' %}</label>
+                                <select id="years" class="custom-select" v-model="date">
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group py-2">
+                                <label for="region_id">{% trans 'Region' %}</label>
+                                <select name="region" id="region_id" class="custom-select" v-model="region"  @change="regionChangeHandler(region)" required>
+                                    <option v-for="(item, index) in regions" :key="item.id" :value="item.id">[[ item.name ]]</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group py-2">
+                                <label for="region">{% trans 'Department' %}</label>
+                                <select name="department" id="department_id" class="custom-select" v-model="department" @change="departmentChangeHandler(department)" required>
+                                    <option v-for="item in selectedDepartments" :key="item.id" :value="item">[[ item.name ]]</option>
+                                </select>
+                            </div>
+                        </div>
+                       <div class="col-md-4 d-flex justify-content-start">
+                            <button @click="filterDepartmentHandler"
+                                    class="btn btn-info btn-fab btn-fab-mini text-light ml-3 font-weight-bold">
+                                <i class="material-icons">search</i></button>
+                            <button
+                                @click="resetFilter"
+                                class="btn btn-info btn-sm text-light font-weight-bold">
+                                {% trans 'reset' %}
+                            </button>
+                            <a style="display: none" class="btn btn-success btn-sm text-light ml-1"
+                               type="button"
+                               href="{% url 'report:general_dynamic_xlsx' %}" id="general_dynamic_xlsx">
+                                <img src="{% static 'assets/img/excel.ico' %}" style="max-width: 20px; max-height: 15px" alt="Excel">
+                            </a>
+                        </div>
+                    </div>
+                    <div class="row d-flex align-items-end justify-content-center flex-row">
+                        <div class="col-md-3">
+{#                            <label for="" class="text-dark">{% trans "Start" %}</label>#}
+                            <div class="form-group">
+                                <input type="hidden" name="start" required class="form-control" id="id_start"
+                                       value="{{ form.start.value }}">
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+{#                            <label for="" class="text-dark">{% trans "End" %}</label>#}
+                            <div class="form-group ">
+                                <input type="hidden" name="end" required class="form-control" id="id_end"
+                                       value="{{ form.end.value  }}">
+                            </div>
+                        </div>
+                    </div>
+            </div>
+        </div>
+    <div class="col-md-12 bg-light">
+        <div class="card card-plain">
+            <div class="card-header card-header-info">
+                <h4 class="card-title text-center"> <span v-if="department">[[ department.name ]]</span> {{ end }} {{ report.name }}</h4>
+                <h4 class="text-right">{{ report.description }}</h4>
+            </div>
+            <div class="card-body" style="position: relative;" >
+              <div class="table table-wrapper tableFixHead" id="wrap" v-if="valuesData.length">
+                <table class="table table-hover table-responsive-lg table-responsive-md table-responsive-sm">
+                  <thead class="table table-bordered border-dark text-light header" id="myHeader" style="opacity: 1; background:#009879;" >
+                          <tr>
+                              <th class="text-center p-2 zindex" rowspan="3">T/p</th>
+                              <template v-for="item in reportGroups">
+                                  <th class="text-center fix__table_header" :colspan="item.keyLength">[[
+                                      item.firstGroupName ]]
+                                  </th>
+                              </template>
+                          </tr>
+                          <tr>
+                              <template v-for="(item, num) in secondGroupName">
+                                  <th v-if="item.keyCount > 1 && item.name"
+                                      class="text-center second_line" :colspan="[[ item.keyCount ]]">
+                                      [[ item.name ]]
+                                  </th>
+                                  <th v-if="!item.name"
+                                      class="text-center p-2 second_line"
+                                      rowspan="2"
+                                      v-for="item in item.keys">
+                                      [[ item.keyName ]]
+                                  </th>
+                              </template>
+                          </tr>
+                            <tr>
+                              <th class="text-center p-2 fthreel"
+                                  rowspan="2"
+                                  v-for="item in keys">
+                                  [[ item.keyName ]]
+                              </th>
+                            </tr>
+                  </thead>
+                  <tbody class="content" >
+                    <tr class="table-bordered border-dark region" v-for="(items, i) in valuesData">
+                      <td class="region_index text-center">[[ i+1 ]]</td>
+                        <td class="text-center font-weight-bold amount_sum" v-for="item in items">[[ item.value ]]</td>
+                    </tr>
+                  </tbody>
+
+                </table>
+              </div>
+             <div v-else class="card w-100 border bg-white h-100" >
+                <h3 class="text-center font-weight-bold">Bo'limni tanlang</h3>
+             </div>
+            </div>
+        </div>
+    </div>
+
+    {% else %}
+        <h2>{% trans "permision_denied" %}</h2>
+    {% endif %}
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}
+        <script>
+        $(document).ready(function () {$('#general_dynamic_xlsx').show();});
+        window.addEventListener('load',function(){
+            let report_id = "{{ report.id }}"
+            let a_href = document.querySelector('#general_dynamic_xlsx');
+            const from_date = document.querySelector('#id_start');
+            const to_date = document.querySelector('#id_end');
+            let current_date_start_value = from_date.value
+            let current_date_to_value = to_date.value
+            let path = a_href.getAttribute('href')
+            a_href.setAttribute('href', `${path}?report_id=${report_id}&start=${current_date_start_value}&end=${current_date_to_value}`)
+            from_date.addEventListener("change", (e) => {
+                current_date_start_value = e.target.value;
+                a_href.setAttribute('href', `${path}?report_id=${report_id}&start=${current_date_start_value}&end=${current_date_to_value}`)
+            });
+            to_date.addEventListener("change", (e) => {
+                current_date_to_value = e.target.value;
+                a_href.setAttribute('href', `${path}?report_id=${report_id}&start=${current_date_start_value}&end=${current_date_to_value}`)
+            });
+        });
+    </script>
+
+    <script>
+        const wrap = document.querySelector('#wrap').getBoundingClientRect();
+        let topSize = wrap.top
+        if(topSize < 100){
+            topSize = 269
+        }
+        $(document).ready(function() {
+            const $th = $('.main-panel').find('thead th');
+            $('.main-panel').on('scroll', function () {
+                if(this.scrollTop >topSize) {
+                    $th.css('transform', 'translateY(' + (this.scrollTop - topSize) + 'px)');
+                } else {
+                    $th.css('transform', 'translateY(' + 0 + 'px)');
+                }
+            });
+        });
+        const amount_sum = document.querySelectorAll('.amount_sum');
+        amount_sum.forEach(item => item.textContent = numberWithSpaces(item.textContent))
+        const keyAndGroups = {{ groups|safe }}
+        const departments = convertToJson({{ departments|safe }});
+        const token = getCsrfToken(document.querySelectorAll('input'));
+        const regions = convertToObj({{ regions|safe }});
+        const  years = document.querySelector('#years');
+        let currentYear = new Date().getFullYear() - 1;
+        for(let i = 0; i < 5; i++){
+            let opt = document.createElement('option')
+            opt.textContent = currentYear++
+            years.appendChild(opt)
+        }
+        const app = new Vue({
+          delimiters: ['[[', ']]'],
+          el: '#report_list',
+          data: {
+              region: null,
+              department: null,
+              date: null,
+              regions: regions,
+              selectedDepartments: [],
+              departmentsRoot: departments,
+              reportGroups: keyAndGroups,
+              keys: [],
+              valuesData: []
+          },
+            methods: {
+              regionChangeHandler(id){
+                this.department = null
+                this.selectedDepartments = this.departmentsRoot.filter(elem => elem.region === id)
+              },
+              departmentChangeHandler(item){
+                  this.department = item
+              },
+              filterDepartmentHandler(){
+                  if(this.date && this.region && this.department){
+                      let url = location.origin + `/report/get/listed/values?y=${this.date}&d=${this.department.id}&r={{ report.id }}`
+                      fetch(url, {method: 'GET'})
+                          .then(response => response.json())
+                          .then(res => {
+                              if(res.data.length === 0){
+                                  this.valuesData = []
+                                  warningMessage("Bu bo'limga uchun ma'lumotlar xozircha yo'q")
+                              } else  this.valuesData = res.data
+                          })
+                  }else {
+                      warningMessage("Barcha bo'limlar tanlanishi shart")
+                  }
+              },
+              resetFilter(){
+                  this.valuesData = []
+                  this.date = null
+                  this.department = null
+                  this.region = null
+              }
+            },
+            computed: {
+              secondGroupName(){
+                  const data = []
+                  this.reportGroups.forEach(item => {
+                      if(item.second_groups){
+                          item.second_groups.forEach(elem => {
+                              if(elem?.secondGroupId){
+                                  data.push({id:elem.secondGroupId,
+                                   name: elem.secondGroupName,
+                                   keyCount: elem.keys.length,
+                                   })
+                               this.keys.push(...elem.keys)
+                              } else {
+                               let keys = [...elem.keys]
+                               data.push({id:elem.secondGroupId,
+                                   name: elem.secondGroupName,
+                                   keyCount: elem.keys.length,
+                                   keys: keys})
+                              }
+                          })
+                      } else if(item.keys) {
+                          console.log(this.keys.push(...item.keys))
+                      }
+                  })
+                  return data
+              }
+         },
+        })
+    </script>
+
+{% endblock javascripts %}

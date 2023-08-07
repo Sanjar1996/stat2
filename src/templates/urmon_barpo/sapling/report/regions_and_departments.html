@@ -1,0 +1,253 @@
+{% extends "layouts/base.html" %}
+{% load static %}
+{% load i18n %}
+{% block title %} {% trans 'yillik reja' %} {% endblock %}
+
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}
+    <style>
+    .hidden {
+        display: none;
+        transition: all .5s ease-in-out;
+    }
+    body {
+        overflow: hidden;
+    }
+    .styled-table {
+        border-collapse: collapse;
+        border-radius: 10px;
+        font-size: 0.9em;
+        font-family: sans-serif;
+        min-width: 400px;
+        box-shadow: 0 0 2px rgba(0, 0, 0, 0.15);
+        z-index: -1;
+    }
+    .styled-table thead tr {
+        background-color: #009879;
+        color: #ffffff;
+        text-align: left;
+    }
+    .styled-table th,
+    .styled-table td {
+        padding: 12px 15px;
+    }
+    .styled-table tbody tr {
+        border-bottom: 1px solid #dddddd;
+    }
+
+    .styled-table tbody tr:nth-of-type(even) {
+        {#background-color: #dddddd;#}
+    }
+
+    .hidden{
+        display: none;
+        transition: all .5s ease-in-out;
+    }
+
+    thead {
+        position: relative;
+    }
+    .table-wrapper{
+      overflow-y: scroll;
+      outline: 1px solid white;
+    }
+    .fix__table_header{
+        position: sticky;
+        background-color: #009879;
+        color: #ffffff;
+        z-index: 1;
+        top: -1px;
+        outline:1px solid #ffffff;
+    }
+    td{
+        font-size: 15px;
+    }
+    </style>
+{% endblock stylesheets %}
+
+{% block content %}
+    {% if messages %}
+        {% for message in messages %}
+            <div class="text-warning text-center alert{% if message.tags %}alert-{{ message.tags }}{% endif %}"
+                 role="alert">{{ message }}</div>
+        {% endfor %}
+    {% endif %}
+<div class="report-page1">
+    <div class="row">
+        <div class="col-md-12 bg-light ">
+            <div class="row">
+                <div class="col-md-2 d-flex align-items-center">
+                    <a href="{% url 'trees:dashboard' %}"
+                       style="box-shadow: none; color: black" type="button"
+                       class="btn bg-light shadow-none text-black">
+                        <i class="text-black material-icons">arrow_back</i>
+                    </a>
+                </div>
+                <div class="col-md-10 form-group">
+                    <form role="form" method="GET" action="{% url 'trees:sapling_report' %}">
+                        <div class="row d-flex">
+                            <div class="col-md-3">
+                                <label for="">{% trans 'start' %}</label>
+                                <div class="form-group">
+                                    <input type="date" name="start"
+                                           required class="form-control" id="id_start"
+                                           value="{{ form.start.value }}"/>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <label for="">{% trans 'end' %}</label>
+                                <div class="form-group">
+                                    <input type="date" name="end"
+                                           required class="form-control" id="id_end"
+                                           value="{{ form.end.value }}"/>
+                                </div>
+                            </div>
+                            <div class="col-md-6 d-flex align-items-end flex-row">
+                                <button type="submit"
+                                        class="btn btn-info btn-fab btn-fab-mini text-light">
+                                    <i class="material-icons">search</i></button>
+                                <a href="{% url 'trees:sapling_report' %}"
+                                   class="btn btn-info btn-sm text-light ml-1">
+                                    {% trans 'reset' %}
+                                </a>
+                                <button class="btn btn-info btn-sm text-light ml-1"
+                                        id="1"
+                                        type="button"
+                                        onclick="showHideRegionChild(this)">{% trans "Hududlar kesimida" %}
+                                </button>
+                                <a class="btn btn-success btn-sm text-light ml-1"
+                                   type="button"
+                                   href="{% url 'trees:sapling_reports' %}" id="sapling_reports">
+                                    <img src="{% static 'assets/img/excel.ico' %}"
+                                         style="max-width: 20px; max-height: 15px"
+                                         alt="Excel">
+                                </a>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12 bg-light">
+          <div class="card card-plain">
+            <div class="card-header card-header-info">
+                <h4 class="card-title mt-0 text-center text-light">
+                    {% trans "Ўрмон хўжалиги давлат қўмитаси тизим корхоналарида" %}
+                    <span class="text-light">{{ start }}</span>
+                    {% trans "дан" %}
+                    <span class="text-light">{{ end }}</span>
+                    {% trans "ҳолатига ёпиқ илдизли йирик хажмли кўчатлар етиштириш топшириғининг бажарилиши тўғрисида тезкор маълумот" %}
+                </h4>
+            </div>
+            <div class="card-body">
+              <div class="table">
+                <table class="table table-hover table-responsive-lg table-responsive-md table-responsive-sm">
+                  <thead class="table table-bordered border-dark text-light" style="opacity: 1; background:#009879;">
+                    <th class="text-center fix__table_header">{% trans "T/p" %}</th>
+                    <th class="text-center fix__table_header">{% trans 'Ташкилот номи' %}</th>
+                    <th class="text-center fix__table_header">{% trans 'Йиллик режа' %}</th>
+                    <th class="text-center fix__table_header">{% trans 'Амалда' %}</th>
+                    <th class="text-center fix__table_header">{% trans 'Режага нисбатан' %}</th>
+                  </thead>
+                  <tbody>
+                     {% for item in data %}
+                            {% if item.region_name %}
+                                <tr class="table-bordered border-dark bg-info parrent" data-region="{{ item.region_id }}">
+                                  <td class="text-dark region_index text-center"></td>
+                                  <td class="text-center">
+                                      <a href="{% url 'trees:sapling_region' item.region_id %}" class=" font-weight-bold nav-link text-dark">{{ item.region_name }}</a>
+                                  </td>
+                                  <td class="text-center font-weight-bold text-dark amount_sum">{{ item.region_amount|floatformat:'2'|default:"0.00" }} </td>
+                                  <td class="text-center font-weight-bold text-dark amount_sum">{{ item.region_completed|floatformat:'2'|default:"0.00" }}</td>
+                                  <td class="text-center font-weight-bold text-dark">{{ item.region_percentage|floatformat:'2'|default:"0.00" }} %</td>
+
+                            {% endif %}
+                                {% if item.department_name %}
+                                    <tr class="table-bordered border-dark child"
+                                        data-department="{{ item.department_id }}">
+                                        <td class="text-center">{{ item.index }}</td>
+                                        <td class="border">
+                                            <a href="{% url 'trees:sapling_department' item.department_id %}"
+                                               class="text-left font-weight-bold nav-link text-dark">{{ item.department_name }}</a>
+                                        </td>
+                                        <td class="text-center amount_sum">{{ item.department_amount|floatformat:'2'|default:"0.00" }} </td>
+                                        <td class="text-center amount_sum">{{ item.department_completed|floatformat:'2'|default:"0.00" }} </td>
+                                        <td class="text-center">{{ item.department_percentage|floatformat:'2'|default:"0.00" }} %</td>
+
+
+                                    </tr>
+                                {% endif %}
+                        {% endfor %}
+                            </tbody>
+                            <tfoot class="table-bordered border-dark text-light"
+                                   style="opacity: 1; background:#009879;">
+                            <th class="text-light">.</th>
+                            <th class="text-center text-light">{% trans 'Жами' %}</th>
+                            <th class="text-center text-light amount_sum">{{ plan_total|floatformat }}</th>
+                            <th class="text-center text-light amount_sum">{{ completed_total|floatformat }}</th>
+                            <th class="text-center text-light">{{ total_percentage }}%</th>
+                            </tfoot>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}
+    <script>
+        const amount_sum = document.querySelectorAll('.amount_sum');
+        amount_sum.forEach(item => item.textContent =  numberWithSpaces(item.textContent))
+        const child = document.querySelectorAll('.child');
+        const parrent = document.querySelectorAll('.parrent');
+        const region_index = document.querySelectorAll('.region_index');
+        const showHideRegionChild = (event) => {
+            const iid = event.id;
+            if (iid === "1") {
+                event.id = '2'
+                event.textContent  = "{% trans 'Tashkilotlar kesimida' %}"
+                parrent.forEach(elem => {
+                    if(elem){
+                        elem.classList.toggle('bg-info')
+                        elem.children[1].classList.toggle('text-center')
+                    }
+                })
+                child.forEach(elem => elem.classList.toggle("hidden"))
+                region_index.forEach((item, index, region_index) => item.innerText = index + 1)
+            } else if (iid === '2') {
+                event.id = '1'
+                event.textContent = "{% trans 'Hududlar kesimida' %}"
+                parrent.forEach(elem => {
+                    if(elem){
+                        elem.classList.toggle('bg-info')
+                        elem.children[1].classList.toggle('text-center')
+                    }
+                })
+                region_index.forEach((item, index, region_index) => item.innerText = "")
+                child.forEach(elem => elem.classList.toggle("hidden"))
+            }
+        };
+        let a_href = document.querySelector('#sapling_reports');
+        const from_date = document.querySelector('#id_start');
+        const to_date = document.querySelector('#id_end');
+
+        let current_date_start_value = from_date.value
+        let current_date_to_value = to_date.value
+        let path = a_href.getAttribute('href')
+        a_href.setAttribute('href', `${path}?start=${current_date_start_value}&end=${current_date_to_value}`)
+        from_date.addEventListener("change", (e) => {
+            current_date_start_value = e.target.value;
+            a_href.setAttribute('href', `${path}?start=${current_date_start_value}&end=${current_date_to_value}`)
+        });
+        to_date.addEventListener("change", (e) => {
+            current_date_to_value = e.target.value;
+            a_href.setAttribute('href', `${path}?start=${current_date_start_value}&end=${current_date_to_value}`)
+        });
+    </script>
+
+{% endblock javascripts %}

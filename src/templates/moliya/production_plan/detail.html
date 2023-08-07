@@ -1,0 +1,121 @@
+{% extends "layouts/base.html" %}
+{% load i18n %}
+{% block title %} {% trans 'Production and paid service plan detail page' %} {% endblock %}
+
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+    {% if perms.finance.view_productionserviceplan %}
+        <div class="row">
+            <div class="col-md-8 offset-md-2">
+                <div class="card">
+                    <div class="card-header card-header-info shadow">
+                        <h4 class="card-title text-light text-center">{% trans 'Production and paid service plan detail  page' %}</h4>
+                    </div>
+                    <div class="card-body mt-4">
+                        <form role="form" method="POST"
+                              action="{% url 'finance:production_plan_detail' production.id %}">
+                            {% csrf_token %}
+                            <div class="row d-flex align-items-end">
+                                <div class="col-md-4">
+                                    <div class="form-group py-2">
+                                        <label for="" class="text-dark">{% trans "date" %}</label>
+                                        <input type="date" name="date" required class="form-control" id="id_date"
+                                               value="{{ form.date.value |date:"Y-m-d" }}">
+                                    </div>
+                                </div>
+
+                                <div class="col-md-4">
+                                    <div class="form-group py-2">
+                                        <label for="" class="text-dark">{% trans "Region" %}</label>
+                                        {{ form.region }}
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group py-2">
+                                        <label for="" class="text-dark">{% trans "Department" %}</label>
+                                        {{ form.department }}
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group py-2">
+                                        <label for="" class="text-dark">{% trans "Production" %}</label>
+                                        {{ form.production }}
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group py-2">
+                                        <label for="" class="text-dark">{% trans "Paid service" %}</label>
+                                        {{ form.paid_service }}
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group py-2">
+                                        <input name="creator" type="hidden" value="{{ user.pk }}">
+                                    </div>
+                                </div>
+
+                                <div class="col-md-12 d-flex align-items-end justify-content-between">
+
+                                    <a href="{% url 'finance:production_plan_list' %}"
+                                       class="btn btn-success btn-sm text-light">{% trans 'back' %}</a>
+                                    {% if perms.finance.change_productionserviceplan %}
+                                        <button type="submit" class="btn btn-info btn-sm">{% trans 'update' %}</button>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    {% else %}
+        <h2>{% trans "permision_denied" %}</h2>
+    {% endif %}
+
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}
+    <script>
+        let d = {{data|safe}};
+        let r = {{ region|safe }};
+        const region = document.getElementById('id_region');
+        const departmentOptions = document.getElementById('id_department');
+        const departments = d.map(elem => {
+            if (elem) {
+                let obj = {name: elem.fields['name'], region: elem.fields['region']}
+                return obj
+            }
+        })
+        const regions = r.map(elem => {
+            if (elem) {
+                let obj = {id: elem.pk, name: elem.fields['name']}
+                return obj
+            }
+        })
+        const setDepartment = (city) => {
+            const region = regions.find(elem => elem.name === city);
+            const current = departments.filter(elem => elem.region === region.id)
+            if (current.length > 0) {
+                departmentOptions.innerHTML = ""
+                current.forEach((elem, index) => {
+                    if (elem.name && index === 0) {
+                        departmentOptions.innerHTML += `<option value='${elem.name}' selected>${elem.name}</option>`
+                    } else if (elem.name) {
+                        departmentOptions.innerHTML += `<option value='${elem.name}'>${elem.name}</option>`
+                    }
+
+                })
+            } else departmentOptions.innerHTML = ""
+        }
+        region.addEventListener('change', (event) => {
+            const city = event.target.value;
+            city ? setDepartment(city) : departmentOptions.innerHTML = "";
+
+        })
+
+    </script>
+{% endblock javascripts %}

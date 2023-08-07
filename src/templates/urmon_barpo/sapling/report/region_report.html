@@ -1,0 +1,136 @@
+{% extends "layouts/base.html" %}
+{% load static %}
+{% load i18n %}
+{% block title %} {% trans 'yillik reja' %} {% endblock %}
+
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}
+    <style>
+    body{
+        overflow: hidden;
+    }
+    .styled-table {
+        border-collapse: collapse;
+        border-radius: 10px;
+        font-size: 0.9em;
+        font-family: sans-serif;
+        min-width: 400px;
+        box-shadow: 0 0 2px rgba(0, 0, 0, 0.15);
+        z-index: -1;
+    }
+    .styled-table thead tr {
+        background-color: #009879;
+        color: #ffffff;
+        text-align: left;
+    }
+    .styled-table th,
+    .styled-table td {
+        padding: 12px 15px;
+    }
+    .fix__table_header{
+        position: sticky;
+        background-color: #009879;
+        color: #ffffff;
+        z-index: 1;
+        top: -1px;
+        outline:1px solid #ffffff;
+    }
+    .second_lines{
+        position: sticky;
+        color: #ffffff;
+        z-index: 1;
+        top: 9.0%;
+        height: 100%;
+        outline:1px solid #ffffff;
+        background-color: #009879;
+    }
+    td{
+        font-size: 15px;
+    }
+    </style>
+{% endblock stylesheets %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-md-12 py-2 bg-light">
+          <div class="card card-plain">
+            <div class="card-header card-header-info d-flex align-items-baseline justify-content-center">
+                <h5 class="card-title mt-0 text-center py-2 text-light font-weight-bold">
+                    {% trans "Ўрмон хўжалиги давлат қўмитаси тизимидаги хўжаликларда" %}
+                    {{ current_year }}
+                    <span class="text-lowercase">{% trans "Year" %}</span>
+                    {% trans "ҳолатига ёпиқ илдизли йирик хажмли кўчатлар етиштириш топшириғининг бажарилиши тўғрисида тезкор маълумот" %}
+                </h5>
+            </div>
+            <div class="card-body">
+              <div class="table border">
+                <table class="table table-hover styled-table table-striped table-responsive-lg table-responsive-md table-responsive-sm">
+                  <thead class="bg-primary">
+                        <tr>
+                            <th rowspan="3" class="border  text-light static fix__table_header" style="background-color: #009879;">{% trans "T/p" %}</th>
+                            <th rowspan="3" colspan="3" class="border static text-center text-light fix__table_header" style="background-color: #009879;">{% trans 'Ўрмон хўжаликлари номи' %}</th>
+                            <th rowspan="2" colspan="3" class="border text-center fix__table_header" colspan="3" style=" white-space: wrap;">{% trans "Jami ko'chatlar" %}
+                                <br>
+                                {% trans "yetishtirish topshirig'i"%}</th>
+                            {% for item in tree_plants %}
+                                <th colspan="2" rowspan="2" class="border text-center fix__table_header">{{ item.name }}</th>
+                            {% endfor %}
+                        </tr>
+                        <tr style="background-color: #009879;">
+                        </tr>
+                        <tr>
+                            <th class="active-row second_lines text-center">{% trans 'Topsh' %}</th>
+                            <th class="second_lines text-center">{% trans 'Amalda' %}</th>
+                            <th class="second_lines text-center">{% trans 'Foizi' %}</th>
+                            {% for tree in tree_plants %}
+                                <th colspan="1" class="active-row second_lines text-center">{% trans 'Topsh' %}</th>
+                                <th colspan="1" class="second_lines text-center">{% trans 'Amalda' %}</th>
+                            {% endfor %}
+
+                        </tr>
+                    </thead>
+                  <tbody>
+                      <tr class="table-bordered border-dark">
+                      <td class="text-center font-weight-bold static text-dark bg-info border">1</td>
+                      <td class="text-center font-weight-bold static text-dark bg-info border" colspan="3">{{ name }}</td>
+                      <td class="text-center font-weight-bold static text-black bg-info border">{{ all_plan|floatformat:'2'|default:"0.00" }}</td>
+                      <td class="text-center font-weight-bold static text-black bg-info border">{{ all_completed|floatformat:'2'|default:"0.00" }}</td>
+                      <td class="text-center font-weight-bold static text-black bg-info border">{{ all_percentage|floatformat:'2'|default:"0.00" }}%</td>
+                      {% for item in region_data %}
+                          <td class="text-center font-weight-bold  text-black bg-info border">{{ item.plan|floatformat:'2'|default:"0.00" }}</td>
+                          <td class="text-center font-weight-bold  text-black bg-info border">{{ item.completed|floatformat:'2'|default:"0.00" }}</td>
+                      {% endfor %}
+                      {% for items in data %}
+                         <tr>
+                             <td class="static border text-center">{{ forloop.counter }}</td>
+                             <td class="text-left font-weight-bold static border" colspan="3">{{ items.department_name }}</td>
+                             <td class="text-center font-weight-bold border">{{ items.department_plan|floatformat:'2'|default:"0.00" }}</td>
+                             <td class="text-center font-weight-bold border">{{ items.department_completed|floatformat:'2'|default:"0.00" }}</td>
+                             <td class="text-center font-weight-bold border">{{ items.department_percentage|floatformat:'2'|default:"0.00" }}%</td>
+                            {% for item in items.child %}
+                                <td class="text-center font-weight-bold border">{{ item.plan|floatformat:'2'|default:"0.00" }}</td>
+                                <td class="text-center font-weight-bold border">{{ item.completed|floatformat:'2'|default:"0.00" }}</td>
+                            {% endfor %}
+                        </tr>
+                     {% endfor %}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+    </div>
+
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}
+    <script>
+    // $("#wrap").scroll(function(){
+    //   var translate = "translate("+this.scrollLeft + "px,0)";
+    //   $('.static').css('transform',translate);
+    // });
+
+    </script>
+
+{% endblock javascripts %}

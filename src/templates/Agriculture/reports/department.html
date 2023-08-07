@@ -1,0 +1,350 @@
+{% extends "layouts/base.html" %}
+{% load static %}
+{% load i18n %}
+{% block title %} {% trans 'Nihol yil hisoboti' %} {% endblock %}
+
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}
+    <style>
+        body {
+            overflow-y: hidden;
+        }
+
+        .hidden {
+            display: none;
+            transition: all .5s ease-in-out;
+        }
+
+        .styled-table {
+            border-collapse: collapse;
+            border-radius: 10px;
+            font-size: 0.9em;
+            font-family: sans-serif;
+            min-width: 400px;
+            box-shadow: 0 0 2px rgba(0, 0, 0, 0.15);
+            z-index: -1;
+        }
+
+        .styled-table thead tr {
+            background-color: #009879;
+            color: #ffffff;
+            text-align: left;
+        }
+
+        .styled-table th,
+        .styled-table td {
+            padding: 12px 15px;
+        }
+
+        .styled-table tbody tr {
+            border-bottom: 1px solid #dddddd;
+        }
+
+        .styled-table tbody tr:nth-of-type(even) {
+            background-color: #dddddd;
+        }
+
+        .styled-table tbody tr:last-of-type {
+            border-bottom: 2px solid #009879;
+        }
+
+        .styled-table tbody tr.active-row {
+            font-weight: bold;
+            color: #009879;
+        }
+
+        .hidden {
+            display: none;
+            transition: all .5s ease-in-out;
+        }
+
+        .table-wrapper {
+            overflow-y: scroll;
+            height: 700px;
+        }
+
+        thead {
+            position: relative;
+        }
+
+        .table-wrapper {
+            overflow-y: scroll;
+            max-height: 680px;
+            outline: 1px solid white;
+        }
+
+        .fix__table_header {
+            position: sticky;
+            background-color: #009879;
+            color: #ffffff;
+            z-index: 1;
+            top: -1px;
+            outline: 1px solid #ffffff;
+        }
+
+        .fix__table_second_line {
+            position: sticky;
+            background-color: #009879;
+            color: #ffffff;
+            z-index: 1;
+            top: 4.5%;
+            outline: 1px solid #ffffff;
+        }
+    </style>
+{% endblock stylesheets %}
+
+{% block content %}
+    {% if perms.agriculture.view_agricultureactual %}
+        <div class="row">
+            <div class="col-md-12 bg-light pt-2">
+                <div class="row d-flex justify-content-center align-items-center">
+                    <div class="col-md-9 col-sm-12">
+                        <div class="row d-flex justify-content-center align-items-center">
+                            <div class="form-group">
+                                <form role="form" method="GET"
+                                ">
+                                <div class="row d-flex align-items-center">
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <input type="date" name="start" required class="form-control" id="id_start"
+                                                   value="{{ form.start.value |date:"Y-m-d" }}">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <input type="date" name="end" required class="form-control" id="id_end"
+                                                   value="{{ form.end.value |date:"Y-m-d" }}">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 d-flex align-items-end flex-row justify-content-end">
+                                        <button type="submit" onclick="filterBtn(this)"
+                                                class="btn btn-info btn-fab btn-fab-mini  text-light">
+                                            <i class="material-icons">search</i></button>
+                                        <a href="{% url 'agriculture:agriculture_report_department' department.department_id %}?type={{ tipp }}"
+                                           class="btn btn-info btn-sm  text-light ml-1">
+                                            {% trans 'reset' %}
+                                        </a>
+                                    </div>
+                                </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 d-flex justify-content-center align-items-end">
+{#                        <a class="btn btn-success btn-sm text-light"#}
+{#                           href="{% url 'trees:sprout_reports' %}" id="sprout_reports">#}
+{#                            <img src="{% static 'assets/img/excel.ico' %}" style="max-width: 20px; max-height: 25px"#}
+{#                                 alt="Excel">#}
+{#                        </a>#}
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12 bg-light">
+                <div class="card card-plain">
+                    <div class="card-header card-header-info">
+                        <h4 class="card-title mt-0 text-center text-light">
+                            {{ department.depart_name }}
+                            {% trans "қўмитаси тизимидаги ўрмон хўжалигида" %}
+                            <span class="text-light">{{ start|date:"Y" }}</span>
+                            {% trans "йилда экиладиган қишлоқ хўжалиги экинларини экиш ва махсулотларини етиштириш тўғрисида тезкор маълумот" %}
+                        </h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive table-wrapper">
+                            <table class="table table-hover table-responsive-lg table-responsive-md table-responsive-sm">
+                                <thead class="table table-bordered border-dark text-light"
+                                       style="opacity: 1; background-color: #009879;">
+                                <tr>
+                                    <th class="text-center fix__table_header" rowspan="5">{% trans "T/p" %}</th>
+                                    <th class="text-center fix__table_header" rowspan="5"
+                                        colspan="2">{% trans 'Хўжалик номи' %}</th>
+                                    <th class="text-center fix__table_header" rowspan="3"
+                                        colspan="3">{% trans 'Topshiriq' %}</th>
+                                    <th class="text-center fix__table_header" rowspan="3"
+                                            {% if show_profit %}
+                                                colspan="5"
+                                            {% else %}
+                                                colspan="3"
+                                            {% endif %}
+                                        >{% trans 'Amalda' %}</th>
+                                    <th class="text-center fix__table_header" rowspan="3"
+                                        colspan="3">{% trans 'Foizi' %}</th>
+                                </tr>
+                                <tr>
+
+                                </tr>
+                                <tr>
+                                </tr>
+                                <tr>
+                                    <th class="text-center fix__table_second_line" rowspan="2"
+                                        colspan="1">{% trans "га" %}</th>
+                                    <th class="text-center fix__table_second_line" rowspan="2"
+                                        colspan="1">{% trans "ц/га" %}</th>
+                                    <th class="text-center fix__table_second_line" rowspan="2"
+                                        colspan="1">{% trans "тн" %}</th>
+                                    <th class="text-center fix__table_second_line" rowspan="2"
+                                        colspan="1">{% trans "Жами майдон, га" %}</th>
+                                    {% if show_profit %}
+                                        <th class="text-center fix__table_second_line" rowspan="2"
+                                            colspan="1">{% trans "Шундан хосилга киргани" %}</th>
+                                         <th class="text-center fix__table_second_line" rowspan="2"
+                                        colspan="1">{% trans "Даромад, млн сўм" %}</th>
+                                    {% endif %}
+                                    <th class="text-center fix__table_second_line" rowspan="2"
+                                        colspan="1">{% trans "ц/га" %}</th>
+                                    <th class="text-center fix__table_second_line" rowspan="2"
+                                        colspan="1">{% trans "тн" %}</th>
+                                    <th class="text-center fix__table_second_line" rowspan="2"
+                                        colspan="1">{% trans "га" %}</th>
+                                    <th class="text-center fix__table_second_line" rowspan="2"
+                                        colspan="1">{% trans "ц/га" %}</th>
+                                    <th class="text-center fix__table_second_line" rowspan="2"
+                                        colspan="1">{% trans "тн" %}</th>
+
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr class="table-bordered border-dark bg-info parent">
+                                    <td class="border">{{ forloop.counter }}</td>
+
+                                    <td colspan="2" class="text-dark text-center">{{ department.depart_name }}</td>
+
+                                    <td class="text-center font-weight-bold">
+                                        {{ department.depart_plan_hectare|floatformat:"0" }} </td>
+
+                                    <td class="text-center font-weight-bold">
+                                        {{ department.depart_plan_cent|floatformat:"0" }}</td>
+
+                                    <td class="text-center font-weight-bold">
+                                        {{ department.depart_plan_weight|floatformat:"0" }}</td>
+
+                                    <td class="text-center font-weight-bold">
+                                        {{ department.depart_actual_hectare|floatformat:"0" }}</td>
+                                    {% if show_profit  %}
+                                    <td class="text-center font-weight-bold">
+                                            {{ department.depart_yield_area_actual|floatformat:"0" }}</td>
+                                     <td class="text-center font-weight-bold">
+                                        {{ department.depart_profit_actual|floatformat:"0" }} </td>
+                                    {% endif %}
+                                    <td class="text-center font-weight-bold">
+                                        {{ department.depart_actual_cent|floatformat:"0" }}
+                                    </td>
+                                    <td class="text-center font-weight-bold">
+                                        {{ department.depart_actual_weight|floatformat:"0" }}</td>
+                                    <td class="text-center font-weight-bold">
+                                        {{ department.depart_hectare_percentage|floatformat:"0" }} %
+                                    </td>
+                                    <td class="text-center font-weight-bold">
+                                        {{ department.depart_cent_percentage|floatformat:"0" }} %
+                                    </td>
+                                    <td class="text-center font-weight-bold">
+                                        {{ department.depart_weight_percentage|floatformat:"0" }} %
+                                    </td>
+                                </tr>
+                                {% for item in data %}
+                                    <tr class="table-bordered border-dark child">
+                                        <td class="text-center">{{ forloop.counter }}</td>
+                                        <td colspan="2">
+                                            <a href=""
+                                               class="text-left font-weight-bold nav-link text-dark">{{ item.plant_name }}</a>
+                                        </td>
+                                        <td class="text-center">{{ item.plant_plan_hectare|floatformat:"0" }} </td>
+
+                                        <td class="text-center">{{ item.plant_plan_cent|floatformat:"0" }} </td>
+                                        <td class="text-center">{{ item.plant_plan_weight|floatformat:"0" }} </td>
+                                        <td class="text-center">{{ item.plant_actual_hectare|floatformat:"0" }} </td>
+                                        {% if show_profit %}
+                                            <td class="text-center">{{ item.plant_yield_area_actual|floatformat:"0" }} </td>
+                                            <td class="text-center">{{ item.plant_profit_actual|floatformat:"0" }} </td>
+                                        {% endif %}
+                                        <td class="text-center">{{ item.plant_actual_cent|floatformat:"0" }} </td>
+                                        <td class="text-center">{{ item.plant_actual_weight|floatformat:"0" }} </td>
+
+                                        <td class="text-center">{{ item.plant_hectare_percentage|floatformat:"0" }} %</td>
+                                        <td class="text-center">{{ item.plant_cent_percentage|floatformat:"0" }} %</td>
+                                        <td class="text-center">{{ item.plant_weight_percentage|floatformat:"0" }} %</td>
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% else %}
+        <h1>{% trans 'Permission Denied' %}</h1>
+    {% endif %}
+
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}
+
+
+    <script>
+        let a_href = document.querySelector('#sprout_reports');
+        const from_date = document.querySelector('#id_start');
+        const to_date = document.querySelector('#id_end');
+
+        let current_date_start_value = from_date.value
+        let current_date_to_value = to_date.value
+        let path = a_href.getAttribute('href')
+        a_href.setAttribute('href', `${path}?start=${current_date_start_value}&end=${current_date_to_value}`)
+        from_date.addEventListener("change", (e) => {
+            current_date_start_value = e.target.value;
+            a_href.setAttribute('href', `${path}?start=${current_date_start_value}&end=${current_date_to_value}`)
+        });
+        to_date.addEventListener("change", (e) => {
+            current_date_to_value = e.target.value;
+            a_href.setAttribute('href', `${path}?start=${current_date_start_value}&end=${current_date_to_value}`)
+        });
+    </script>
+    <script>
+        const tree_type_data = {{ tree_types|safe }};
+        const tree_types = convertToObj(tree_type_data);
+        const typesSelect = document.querySelector('#types');
+        // GET TYPE PARAMS VALUE
+        const urlParams = new URLSearchParams(window.location.search);
+        let myParam = urlParams.get('type');
+        // SET TREE TYPE AND SELECTED CURRENT TYPE
+        tree_types.forEach(elem => {
+            let opt = document.createElement('option')
+            opt.setAttribute("value", elem.id)
+            if (elem.id === parseInt(myParam)) {
+                opt.setAttribute("selected", "selected")
+            }
+            opt.textContent = elem.name
+            typesSelect.append(opt)
+        })
+        const filterBtn = async () => {
+            const url = location.origin + "/agriculture/agriculture/report/all/" + `?start=${current_date_start_value}&end=${current_date_to_value}&type=${myParam ? myParam : tree_types[0].id}`;
+            try {
+                const result = await fetch(url, {method: 'GET'})
+                location.href = result.url
+
+            } catch (error) {
+                console.log(error)
+            }
+        }
+        typesSelect.addEventListener('change', (event) => {
+            myParam = event.target.value
+
+        })
+        const child = document.querySelectorAll('.child');
+        const parentRow = document.querySelectorAll('.parent');
+        const showHideRegionChild = (event) => {
+            const text = event.textContent.toLowerCase();
+            if (text == "viloyatlarda ko'rish") {
+                event.textContent = "Barchasini ko'rish"
+                parentRow.forEach(elem => elem.classList.toggle('bg-info'));
+            } else {
+                event.textContent = "Viloyatlarda ko'rish"
+                parentRow.forEach(elem => elem.classList.toggle('bg-info'));
+
+            }
+            child.forEach(elem => elem.classList.toggle("hidden"))
+        }
+
+    </script>
+{% endblock javascripts %}

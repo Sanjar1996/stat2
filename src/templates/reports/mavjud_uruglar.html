@@ -1,0 +1,224 @@
+
+
+
+{% extends "layouts/base.html" %}
+{% load static %}
+{% load i18n %}
+{% block title %} {% trans 'yillik reja' %} {% endblock %}
+
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}
+    <style>
+    .hidden{
+        display: none;
+        transition: all .5s ease-in-out;
+    }
+    .styled-table {
+        border-collapse: collapse;
+        border-radius: 10px;
+        font-size: 0.9em;
+        font-family: sans-serif;
+        min-width: 400px;
+        box-shadow: 0 0 2px rgba(0, 0, 0, 0.15);
+    }
+    .styled-table thead tr {
+        background-color: #009879;
+        color: #ffffff;
+        text-align: left;
+    }
+    .styled-table th,
+    .styled-table td {
+        padding: 12px 15px;
+    }
+    .styled-table tbody tr {
+        border-bottom: 1px solid #dddddd;
+    }
+
+    .styled-table tbody tr:nth-of-type(even) {
+        background-color: #dddddd;
+    }
+
+    .styled-table tbody tr:last-of-type {
+        border-bottom: 2px solid #009879;
+    }
+    .styled-table tbody tr.active-row {
+        font-weight: bold;
+        color: #009879;
+    }
+    .table-wrapper{
+      overflow-y: scroll;
+      height: 700px;
+    }
+    thead {
+        position: relative;
+    }
+    </style>
+{% endblock stylesheets %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-md-10 offset-1 bg-light py-2 pt-4">
+            <div class="row d-flex justify-content-center align-items-baseline">
+                <div class="col-md-10 col-sm-12">
+                    <div class="row d-flex justify-content-center align-items-center">
+                        <div class="form-group">
+                            <form role="form" method="GET" action="{% url 'finance:report' %}">
+                                <div class="row d-flex align-items-center ">
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            {{ form.start }}
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            {{ form.end }}
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 d-flex align-items-end flex-row justify-content-end">
+                                        <button type="submit"
+                                                class="btn btn-info btn-fab btn-fab-mini  text-light ml-1">
+                                            <i class="material-icons">search</i></button>
+                                        <a href="{% url 'finance:report' %}"
+                                           class="btn btn-info btn-sm text-light ml-1">
+                                            {% trans 'reset' %}
+                                        </a>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-2  d-flex justify-content-center align-items-center">
+                    <button class="btn btn-success btn-sm text-dark" onclick="showHideRegionChild(this)">{% trans 'hide' %}</button>
+
+                    <button class="btn btn-success btn-sm text-dark">
+                        <img src="{% static 'assets/img/excel.ico' %}" style="max-width: 20px; max-height: 25px" alt="Excel">
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-10 offset-1 bg-light">
+          <div class="card card-plain">
+            <div class="card-header card-header-info">
+                <h4 class="card-title mt-0 text-center py-2">
+                    {% trans "Ўрмон хўжалиги давлат қўмитаси тизимидаги хўжаликларда" %}
+                         <span class="text-light">{{ start|date:"d-m-Y" }}</span>
+                    {% trans 'дан' %}
+                        <span class="text-light">{{ end|date:"d-m-Y" }}</span>
+                    {% trans "йил холатига мавжуд уруғлар тўғрисида" %}
+                </h4>
+                <h4 class="text-center">{% trans "МАЪЛУМОТ" %}</h4>
+            </div>
+            <div class="card-body">
+              <div class="table">
+                <table class="table table-hover styled-table">
+                  <thead class="bg-primary">
+                    <tr>
+                        <th rowspan="3" class="border">{% trans "T/p" %}</th>
+                        <th rowspan="3" class="border">{% trans 'Хўжаликлар' %}</th>
+                        <th rowspan="2" class="border text-center" colspan="2">{% trans "Жами уруғлар" %}</th>
+                        <th colspan="10" class="border text-center">{% trans "Шу жумладан" %}</th>
+                    </tr>
+                    <tr>
+                        <th colspan="2" class="border text-center">{% trans "Манзарали кўчатлар" %}</th>
+                        <th colspan="2" class="border text-center">{% trans 'Ноёб кўчатлар' %}</th>
+                        <th colspan="2" class="border text-center">{% trans "Мевали ва ёнғоқмевали" %}</th>
+                        <th colspan="2" class="border text-center">{% trans 'Бута ва гуллар' %}</th>
+                        <th colspan="2" class="border text-center">{% trans 'Чул ўсимликлари' %}</th>
+                    </tr>
+                    <tr>
+                        <th class="border text-center">{% trans 'Режа' %}</th>
+                        <th class="border text-center">{% trans 'Амалда' %}</th>
+                        <th class="border text-center">{% trans 'Режа' %}</th>
+                        <th class="border text-center">{% trans 'Амалда' %}</th>
+                        <th class="border text-center">{% trans 'Режа' %}</th>
+                        <th class="border text-center">{% trans 'Амалда' %}</th>
+                        <th class="border text-center">{% trans 'Режа' %}</th>
+                        <th class="border text-center">{% trans 'Амалда' %}</th>
+                        <th class="border text-center">{% trans 'Режа' %}</th>
+                        <th class="border text-center">{% trans 'Амалда' %}</th>
+                        <th class="border text-center">{% trans 'Режа' %}</th>
+                        <th class="border text-center">{% trans 'Амалда' %}</th>
+                    </tr>
+                    </thead>
+                  <tbody>
+                  {% for finance in finances %}
+                    {% if finance.child %}
+                        <tr class="table-bordered border-dark bg-info">
+                          <td class="border">{{ forloop.counter }}</td>
+                          <td class="text-center font-weight-bold">{{ finance.region }}</td>
+                          <td class="text-center font-weight-bold">{{ finance.amount }} $</td>
+                          <td class="text-center font-weight-bold">{{ finance.completed }} $</td>
+                            {% if finance.percentage %}
+                                <td class="text-center font-weight-bold">{{ finance.percentage|floatformat }} %</td>
+                                {% else %}
+                                <td class="text-center font-weight-bold"> 0.00 %</td>
+                            {% endif %}
+                        </tr>
+                          {% for child in finance.child %}
+                            <tr class="table-bordered border-dark child">
+                              <td class="">{{ forloop.counter }}</td>
+                              <td class="text-left">{{ child.region }}</td>
+                              <td class="text-center">{{ child.amount }} $</td>
+                              <td class="text-center">{{ child.completed }} $</td>
+                                {% if child.percentage %}
+                                    <td class="text-center">{{ child.percentage|floatformat }} %</td>
+                                    {% else %}
+                                    <td class="text-center"> 0.00 %</td>
+                                {% endif %}
+                            </tr>
+                          {% endfor %}
+                    {% else %}
+                       <tr class="table-bordered border-dark">
+                          <td class="">{{ forloop.counter }}</td>
+                          <td class="text-center font-weight-bold">{{ finance.region }}</td>
+                          <td class="text-center font-weight-bold">{{ finance.amount }} $</td>
+                          <td class="text-center font-weight-bold">{{ finance.completed }} $</td>
+                            {% if finance.percentage %}
+                                <td class="text-center font-weight-bold">{{ finance.percentage|floatformat }} %</td>
+                                {% else %}
+                                <td class="text-center font-weight-bold"> 0.00 %</td>
+                            {% endif %}
+                        </tr>
+                    {% endif %}
+                  {% endfor %}
+                  </tbody>
+                  <tfoot class="table  table-bordered border-dark text-light" style="opacity: 1; background:#212529;">
+                    <th class="text-light">.</th>
+                    <th class="text-center text-light">{% trans 'Жами' %}</th>
+                    <th class="text-center text-light">{{ plan_total }}</th>
+                    <th class="text-center text-light">{{ completed_total }}</th>
+                    <th class="text-center text-light">{{ total_percentage|floatformat }}%</th>
+                  </tfoot>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+    </div>
+
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}
+    <script>
+    console.log("data", data);
+    let date = new Date('December 25, 1995 23:15:30');
+    let month = date.getMonth();
+    console.log("month", month);
+
+    const child = document.querySelectorAll('.child');
+    const showHideRegionChild = (event) =>{
+        console.log(event.textContent)
+        const text = event.textContent.toLowerCase();
+        if (text == "hide"){
+            event.textContent = "show"
+        } else{
+            event.textContent = "hide"
+        }
+        child.forEach(elem => console.log(elem.classList.toggle("hidden")))
+    }
+
+    </script>
+
+{% endblock javascripts %}

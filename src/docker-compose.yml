@@ -1,0 +1,30 @@
+version: '3'
+
+services:
+  db:
+    container_name: db
+    image: postgres
+    environment:
+      POSTGRES_DB: db_staturmon
+      POSTGRES_USER: staturmonuser
+      POSTGRES_PASSWORD: staturmonpass
+    volumes:
+      - postgres_data:/var/lib/postgresql/datastaturmon/
+    ports:
+      - "5433:5432"
+  web:
+    container_name: backend
+    build: .
+    command: python manage.py runserver 0.0.0.0:4000
+    volumes:
+      - .:/code
+    ports:
+      - "4000:4000"
+    depends_on:
+      - db
+    env_file:
+      - ./.env.dev
+
+volumes:
+  postgres_data:
+      

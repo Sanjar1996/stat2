@@ -1,0 +1,38 @@
+{% extends "layouts/base.html" %}
+{% load i18n %}
+{% block title %} {% trans "O'rmon barpo xisobotlari title" %} {% endblock %}
+
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}
+
+{% endblock stylesheets %}
+{% block content %}
+    {% if perms.chorvachilik.view_animalcategory  %}
+        <div class="container-fluid">
+            <div class="row d-flex justify-content-start align-items-center">
+                <div class="col-md-12">
+                    <h2 class="text-center m-0">{% trans "Chorvachilik xisoboti" %}</h2>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-6">
+                    <div class="card">
+                        <div class="card-body text-right">
+                            <h4 class="card-title text-center py-3 font-weight-bold">{% trans "Chorvachilik kirim chiqim hisoboti" %}</h4>
+<!--                            <p class="card-text">{% trans "Barcha qishloq xo'jaliklar jonivorlar xisoboti" %}</p>-->
+                            <a href="{% url 'chorvachilik:chorva_in_out_all_report' %}?category={{ animal_category }}&start={{ start }}&ned={{ end }}"
+                               class="btn btn-info btn-sm">{% trans "Кириш" %}</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% else %}
+        <h1>{% trans 'Permission Denied' %}</h1>
+    {% endif %}
+
+
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}
+
+{% endblock javascripts %}

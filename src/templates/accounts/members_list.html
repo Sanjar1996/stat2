@@ -1,0 +1,516 @@
+{% extends "layouts/base.html" %}
+{% load i18n %}
+{% block title %} {% trans 'member list page' %} {% endblock %}
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}
+    <style>
+        myModal.in{
+            z-index: 999999;
+        }
+    </style>
+{% endblock stylesheets %}
+{% trans "This is the title" as the_title %}
+{% block content %}
+    {% if perms.accounts.view_user %}
+        <div class="col-md-12">
+            {% if msg %}
+                <p>{{ msg }}</p>
+            {% endif %}
+            <form action="" method="get">
+                <div class="row d-flex  justify-content-center align-items-end align-content-end">
+                    <div class="col-md-3">
+                        <label for="id_first_name" class="pt-1">{% trans "Username" %}</label>
+                        <div class="form-group ">
+                            <input type="text" name="first_name" id="id_first_name" class="form-control">
+                        </div>
+                    </div>
+                    <div class="form-group col-md-3">
+                        <label for="">{% trans "Region" %}</label>
+                        <select name="department__region" class="custom-select"
+                                onchange="regionChangeHandler(this)"
+                                id="id_department__region">
+                            {% for opt in filter.form.department__region %}
+                                {{ opt }}
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="form-group col-md-3">
+                        <label for="">{% trans "Department" %}</label>
+                        <select name="department" id="id_department" class="custom-select">
+                            {% for org in filter.form.department %}
+                                {{ org }}
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="form-group col-md-3">
+                        <button type="submit" class="btn btn-info text-light btn-sm">Filter</button>
+                        <a class="btn btn-info text-light btn-sm" href="{% url 'accounts:members_list' %}">Reset</a>
+                        <a class="btn btn-info text-light btn-sm" data-toggle="modal" data-target="#search">Full</a>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="row">
+            <div class="col-md-12 ">
+                <div class="card">
+                    <div class="card-header card-header-info py-4 d-flex justify-content-between align-items-center">
+                        <div>
+                            <h4 class="card-title text-light">{% trans 'User list' %}</h4>
+                            <p class="card-category text-light"></p>
+                        </div>
+                        <div>
+                            <a class="btn btn-info btn-sm" data-toggle="modal" data-target="#passport">PNFL</a>
+                            <a type="button" class="btn btn-success btn-sm" href="{% url 'accounts:create' %}">
+                                {% trans 'user create' %}
+                            </a>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="table">
+                            <table class="table">
+                                <thead class="text-dark">
+                                <th>{% trans 'ID' %}</th>
+                                <th>{% trans 'first name' %}</th>
+                                <th>{% trans 'last name' %}</th>
+                                {# <th>{% trans 'email' %}</th>#}
+                                <th>{% trans 'department' %}</th>
+                                <th>{% trans 'national' %}</th>
+                                <th>{% trans 'Malumoti' %}</th>
+                                <th>{% trans 'position' %}</th>
+                                <th>{% trans 'Actions' %}</th>
+                                </thead>
+                                <tbody>
+                                {% for user in users %}
+                                    <tr>
+                                        <td class="border">{{ user.id }}</td>
+                                        <td class="border">{{ user.first_name }}</td>
+                                        <td class="border">{{ user.last_name }}</td>
+                                        {# <td class="border">{{ user.email }}</td>#}
+                                        <td class="border" style="max-width: 100px">{{ user.department.name }}</td>
+                                        <td class="border">{{ user.national.name }}</td>
+                                        <td class="border">{{ user.information.name }}</td>
+                                        <td class="border" style="max-width: 100px">{{ user.position.name }}</td>
+                                        <td class="border text-center">
+                                            {% if perms.accounts.change_user %}
+                                                <a href="{{ user.get_absolute_url }}" title="{% trans 'edit' %}"
+                                                   class="btn btn-info btn-fab btn-fab-mini text-light">
+                                                    <i class="material-icons">edit</i></a>
+                                            {% endif %}
+                                            {% if perms.accounts.view_user %}
+                                                <a title="{% trans 'detail' %}"
+                                                   href="{% url 'accounts:accounts_detail' user.pk %}"
+                                                   class="btn btn-info btn-fab btn-fab-mini text-light">
+                                                    <i class="material-icons">visibility</i></a>
+                                            {% endif %}
+                                            {% if perms.accounts.delete_user %}
+                                                <a title="{% trans 'delete' %}" data-toggle="modal"
+                                                   data-toggle="modal"
+                                                   data-target="#removeUser"
+                                                   onclick="removeItem({{ user.pk }})"
+                                                   class="btn btn-info btn-fab btn-fab-mini btn-round text-light">
+                                                    <i class="material-icons">delete</i></a>
+                                            {% endif %}
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% else %}
+        <h1>{% trans 'Permission Denied' %}</h1>
+    {% endif %}
+
+    {% if is_paginated %}
+        <nav aria-label="Page navigation example text-center" class="d-flex align-items-center justify-content-center">
+            <ul class="pagination">
+                {% if page_obj.has_previous %}
+                    {% if first_name or department or department__region %}
+                        <li class="page-item">
+                            <a
+                                class="page-link"
+                                href="?page=1&first_name={{ first_name }}&department__region={{ department__region }}&department={{ department }}"
+                                aria-label="Previous"
+                            >
+                                <span aria-hidden="true">&laquo;</span>
+                                <span class="sr-only">begin</span>
+                            </a>
+                        </li>
+                    {% elif email or national or information or position or is_active %}
+                        <li class="page-item">
+                            <a
+                                    class="page-link"
+                                    href="?page=1&email={{ email }}&last_name={{ last_name }}&information={{ information }}&position={{ position }}&national={{ national }}&is_active={{ is_active }}"
+                                    aria-label="Previous"
+                            >
+                                <span aria-hidden="true">&laquo;</span>
+                                <span class="sr-only">begin</span>
+                            </a>
+                        </li>
+                    {% else %}
+                        <li class="page-item">
+                            <a class="page-link" href="?page=1" aria-label="Previous">
+                                <span aria-hidden="true">&laquo;</span>
+                                <span class="sr-only">begin</span>
+                            </a>
+                        </li>
+                    {% endif %}
+                {% endif %}
+                {% for n in page_obj.paginator.page_range %}
+                    {% if page_obj.number == n %}
+                        <li class="page-item active">
+                            <span class="page-link">{{ n }}<span class="sr-only">(current)</span></span>
+                        </li>
+                    {% elif n > page_obj.number|add:'-3' and n < page_obj.number|add:'3' %}
+                        {% if first_name or department or department__region %}
+                            <li class="page-item"><a class="page-link"
+                                                     href="?page={{ n }}&first_name={{ first_name }}&department__region={{ department__region }}&department={{ department }}">{{ n }}</a>
+                            </li>
+                        {% elif email or national or information or position or is_active %}
+                            <li class="page-item"><a class="page-link"
+                                                     href="?page={{ n }}&email={{ email }}&last_name={{ last_name }}&information={{ information }}&position={{ position }}&national={{ national }}&is_active={{ is_active }}">{{ n }}</a>
+                            </li>
+                        {% else %}
+                            <li class="page-item"><a class="page-link" href="?page={{ n }}">{{ n }}</a></li>
+                        {% endif %}
+                    {% endif %}
+                {% endfor %}
+                {% if page_obj.has_next %}
+                    <li class="page-item">
+                        {% if first_name or department or department__region %}
+                            <a class="page-link"
+                               href="?page={{ page_obj.paginator.num_pages }}&first_name={{ first_name }}&department__region={{ department__region }}&department={{ department }}"
+                               aria-label="Next">
+                        {% elif n > page_obj.number|add:'-3' and n < page_obj.number|add:'3' %}
+                            <a class="page-link"
+                               href="?page={{ page_obj.paginator.num_pages }}&email={{ email }}&last_name={{ last_name }}&information={{ information }}&position={{ position }}&national={{ national }}"
+                               aria-label="Next">
+                        {% else %}
+                            <a class="page-link" href="?page={{ page_obj.paginator.num_pages }}" aria-label="Next">
+                        {% endif %}
+                        <span aria-hidden="true">&raquo;</span>
+                        <span class="sr-only">end</span>
+                        </a>
+                    </li>
+                {% endif %}
+            </ul>
+        </nav>
+    {% endif %}
+    <div class="modal fade" id="passport" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Pnfldan ma'lumot olish</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true" @click="closeModal()">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="form" v-if="state">
+                        <div class="form-group py-2">
+                            <label for="jwwir">{% trans 'JSH SHIR' %}</label>
+                            <input
+                                    type="number"
+                                    id="jwwir"
+                                    class="form-control"
+                                    placeholder="{% trans 'JSH SHIR' %}"
+                                    v-model="jwwir">
+                        </div>
+                        <div class="form-group py-2">
+                            <label for="pnfl">{% trans 'Pasport seriya raqami' %}</label>
+                            <input
+                                type="text"
+                                id="pnfl"
+                                class="form-control"
+                                placeholder="{% trans 'Pasport seriya raqami' %}"
+                                v-model="passportNumber"
+                            >
+                        </div>
+                    </div>
+                    <div v-if="!state">
+                        <ul class="list-group">
+                          <li class="list-group-item" v-for="(value, name, index) in passInfoData">[[ index + 1 ]] [[ name ]] [[ value ]]</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button
+                            type="button"
+                            class="btn btn-success btn-sm"
+                            data-dismiss="modal"
+                            @click="closeModal()"
+                    >
+                        {% trans "Close" %}
+                    </button>
+                    <button class="btn btn-danger btn-sm" @click="getPassportData()">{% trans 'Get' %}</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="removeUser" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">{% trans 'delete' %}</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <span>{% trans "Sizni ishonchingiz komilmi?" %}</span>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-success btn-sm" data-dismiss="modal">{% trans 'Close' %}</button>
+                    <a href="" class="btn btn-danger btn-sm" id="remove">{% trans 'confirm' %}</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade bd-example-modal-lg" id="search" tabindex="-1" role="dialog" aria-labelledby="searchModal"
+         aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="searchModal"></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form action="" method="get">
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="id_email" class="text-dark">{% trans "Email" %}</label>
+                                        <input type="text" class="form-control" name="email" id="id_email"/>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group ">
+                                        <label for="" class="text-dark">{% trans "last name" %}</label>
+                                        <input type="text" class="form-control" name="last_name" id="id_last_name"/>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group ">
+                                        <label for="">{% trans "Ma'lumoti" %}</label>
+                                        {{ filter.form.information }}
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group ">
+                                        <label for="">{% trans "Lavozimi" %}</label>
+                                        {{ filter.form.position }}
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group ">
+                                        <label for="">{% trans "Millat" %}</label>
+                                        {{ filter.form.national }}
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="id_is_active">{% trans "Status" %}</label>
+                                        <select name="is_active" id="id_is_active" class="custom-select">
+                                            <option value="unknown" selected="">----------</option>
+                                            <option value="true">{% trans 'Active' %}</option>
+                                            <option value="false">{% trans 'deleted' %}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <div class="col-md-12 d-flex align-items-center justify-content-between">
+                        <button type="button" class="btn btn-success btn-sm" data-dismiss="modal">{% trans 'Close' %}</button>
+                        <button type="submit" class="btn btn-info text-light btn-sm">Filter</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}
+    <script>
+     const passportForm = new Vue({
+         delimiters: ['[[', ']]'],
+         el: '#passport',
+         data: {
+             jwwir: null,
+             passportNumber: '',
+             passInfoData: {},
+             state: true
+         },
+         methods:{
+             getPassportData(){
+                 fetch(`https://stat-urmon.uz/api/ipsgov/v1/get_citizen_info/${this.jwwir}`, {
+                     method: 'GET',
+                     headers: {"Custom-Auth": 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXV'}
+                 }).then(response => {
+                     return response.json()
+                 }).then(data => {
+                     delete data?.temproaryRegistrations;
+                     this.passInfoData = {...data}
+                     fetch(`https://stat-urmon.uz/api/ipsgov/v1/get_tin_by_pass/${this.passportNumber}`, {
+                         method: 'GET',
+                         headers: {"Custom-Auth": 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXV'}
+                     }).then(response => {
+                         return response.json()
+                     }).then(data => {
+                         console.log(data)
+                         delete data?.tin_url;
+                         this.passInfoData = {...this.passInfoData, ...data}
+                     })
+                     this.state = false
+                 })
+             },
+             closeModal(){
+                 this.state = true
+                 this.passInfoData = {}
+             }
+         }
+     });
+        const removeItem = (id) => {
+            const anchor = document.querySelector('#remove')
+            anchor.href = `/accounts/${id}/delete`
+        }
+        let d = {{department_json|safe}};
+        let r = {{ region_json|safe }};
+        const inputs = document.querySelectorAll("input");
+        const selects = document.querySelectorAll("select");
+        inputs.forEach(item => item.className = 'form-control');
+        selects.forEach(item => item.className = 'custom-select');
+        const departments = convertToJson(d);
+        const regions = convertToObj(r);
+        const currentDepartment = document.getElementById("id_department");
+        const currentDepartmentModal = document.getElementsByClassName("department");
+        const setDepartment = (region_id) => {
+            if (region_id === "all") {
+                departments.forEach((elem, index) => {
+                    if (elem.name && index === 0) {
+                        currentDepartment.innerHTML = `<option value=''selected>---------</option>`
+                        currentDepartment.innerHTML += `<option value='${elem.id}'>${elem.name}</option>`
+                    } else if (elem.name) {
+                        currentDepartment.innerHTML += `<option value='${elem.id}'>${elem.name}</option>`
+                    }
+                })
+            } else if (region_id !== "all") {
+                const currentRegion = regions.find(elem => elem.id === +region_id);
+                const current = departments.filter(elem => elem.region === currentRegion.id);
+                if (current) {
+                    currentDepartment.innerHTML = ""
+                    current.forEach((elem, index) => {
+                        if (elem.name && index === 0) {
+                            currentDepartment.innerHTML = `<option value=''selected>---------</option>`
+                            currentDepartment.innerHTML += `<option value='${elem.id}'>${elem.name}</option>`
+                        } else if (elem.name) {
+                            currentDepartment.innerHTML += `<option value='${elem.id}'>${elem.name}</option>`
+                        }
+                    })
+                } else currentDepartment.innerHTML = `<option value=''selected>---------</option>`
+            }
+        }
+
+        const regionChangeHandler = (e) => {
+            const currentRegion = e.options[e.selectedIndex].value
+            currentRegion ? setDepartment(currentRegion) : setDepartment('all');
+        };
+
+        let x, i, j, l, ll, selElmnt, a, b, c;
+        x = document.getElementsByClassName("custom-select_sa");
+
+        l = x.length;
+        for (i = 0; i < l; i++) {
+            console.log(x[i])
+            selElmnt = x[i].getElementsByTagName("select")[0];
+            ll = selElmnt.length;
+            /*for each element, create a new DIV that will act as the selected item:*/
+            a = document.createElement("DIV");
+            a.setAttribute("class", "select-selected");
+            a.innerHTML = selElmnt.options[selElmnt.selectedIndex].innerHTML;
+            x[i].appendChild(a);
+            /*for each element, create a new DIV that will contain the option list:*/
+            b = document.createElement("DIV");
+            b.setAttribute("class", "select-items select-hide");
+            for (j = 1; j < ll; j++) {
+                /*for each option in the original select element,
+                create a new DIV that will act as an option item:*/
+                c = document.createElement("DIV");
+                c.innerHTML = selElmnt.options[j].innerHTML;
+                c.addEventListener("click", function (e) {
+                    /*when an item is clicked, update the original select box,
+                    and the selected item:*/
+                    var y, i, k, s, h, sl, yl;
+                    s = this.parentNode.parentNode.getElementsByTagName("select")[0];
+                    sl = s.length;
+                    h = this.parentNode.previousSibling;
+                    for (i = 0; i < sl; i++) {
+                        if (s.options[i].innerHTML == this.innerHTML) {
+                            s.selectedIndex = i;
+                            h.innerHTML = this.innerHTML;
+                            y = this.parentNode.getElementsByClassName("same-as-selected");
+                            yl = y.length;
+                            for (k = 0; k < yl; k++) {
+                                y[k].removeAttribute("class");
+                            }
+                            this.setAttribute("class", "same-as-selected");
+                            break;
+                        }
+                    }
+                    h.click();
+                });
+                b.appendChild(c);
+            }
+            x[i].appendChild(b);
+            a.addEventListener("click", function (e) {
+                /*when the select box is clicked, close any other select boxes,
+                and open/close the current select box:*/
+                e.stopPropagation();
+                closeAllSelect(this);
+                this.nextSibling.classList.toggle("select-hide");
+                this.classList.toggle("select-arrow-active");
+            });
+        }
+
+        function closeAllSelect(elmnt) {
+            /*a function that will close all select boxes in the document,
+            except the current select box:*/
+            var x, y, i, xl, yl, arrNo = [];
+            x = document.getElementsByClassName("select-items");
+            y = document.getElementsByClassName("select-selected");
+            xl = x.length;
+            yl = y.length;
+            for (i = 0; i < yl; i++) {
+                if (elmnt == y[i]) {
+                    arrNo.push(i)
+                } else {
+                    y[i].classList.remove("select-arrow-active");
+                }
+            }
+            for (i = 0; i < xl; i++) {
+                if (arrNo.indexOf(i)) {
+                    x[i].classList.add("select-hide");
+                }
+            }
+        }
+
+        /*if the user clicks anywhere outside the select box,
+        then close all select boxes:*/
+        document.addEventListener("click", closeAllSelect);
+
+    </script>
+{% endblock javascripts %}

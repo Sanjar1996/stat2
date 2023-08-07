@@ -1,0 +1,177 @@
+{% extends "layouts/base.html" %}
+{% load static %}
+{% load i18n %}
+{% block title %} {% trans 'Nihol yil hisoboti' %} {% endblock %}
+
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}
+    <style>
+        .hidden {
+            display: none;
+            transition: all .5s ease-in-out;
+        }
+        .fix__table_header {
+            position: sticky;
+            background-color: #009879;
+            color: #ffffff;
+            z-index: 1;
+            top: -1px;
+            outline: 1px solid #ffffff;
+        }
+
+        .fix__table_second_line {
+            position: sticky;
+            background-color: #009879;
+            color: #ffffff;
+            z-index: 1;
+            top: 5.0%;
+            outline: 1px solid #ffffff;
+        }
+        @media only screen and (max-width: 998px) {
+            .fix__table_second_line{
+                top: 0;
+            }
+        }
+    </style>
+{% endblock stylesheets %}
+
+{% block content %}
+    {% if not permission_denied %}
+        <div class="row">
+            <div class="col-md-12 bg-light pt-2">
+                <div class="row d-flex justify-content-center align-items-center">
+                    <div class="col-md-8 offset-2 col-sm-12">
+                        <form role="form" method="GET"
+                              action="{% url "chorvachilik:chorva_in_out_department_report" all_sum.department.id %}">
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <label for="">{% trans "Start" %}</label>
+                                    <div class="form-group">
+                                        <input type="date" name="start" required class="form-control" id="id_start"
+                                               value="{{ form.start.value }}">
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <label for="">{% trans "End" %}</label>
+                                    <div class="form-group">
+                                        <input type="date" name="end" required class="form-control" id="id_end"
+                                               value="{{ form.end.value }}">
+                                    </div>
+                                </div>
+                                <div class="col-md-3 mb-2">
+                                    <div style="position: absolute; top:50%; display: flex; flex-direction: row;">
+                                        <button type="submit" onclick="filterBtn(this)"
+                                                class="btn btn-info btn-fab btn-fab-mini text-light">
+                                            <i class="material-icons">search</i></button>
+                                        <a href="{% url 'chorvachilik:chorva_in_out_department_report' all_sum.department.id %}"
+                                           class="btn btn-info btn-sm text-light ml-1">
+                                            {% trans 'reset' %}
+                                        </a>
+                                        <a class="btn btn-success btn-sm text-light ml-1"
+                                           type="button"
+                                           href="{% url 'chorvachilik:chorva_input_output' %}" id="chorva_input_output">
+                                            <img src="{% static 'assets/img/excel.ico' %}"
+                                                 style="max-width: 15px; max-height: 15px"
+                                                 alt="Excel">
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="col-md-2 d-flex justify-content-end align-items-center">
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12 bg-light">
+                <div class="card card-plain">
+                    <div class="card-header card-header-info">
+                        <h4 class="card-title mt-0 text-center text-light">
+                            {% trans "Ўрмон хўжалиги давлат қўмитаси" %} {{ all_sum.department.name }} {% trans "тизимидаги ўрмон" %}
+                            <span class="text-light">{{ current_year }}</span>
+                            {% trans "йилда қишлоқ хўжалиги чорвачилик  махсулотлари тўғрисида тезкор маълумот" %}
+                        </h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="table">
+                            <table class="table table-hover table-responsive-lg table-responsive-md table-responsive-sm">
+                                <thead class="table table-bordered border-dark text-light"
+                                       style="opacity: 1; background-color: #009879;">
+                                <tr>
+                                    <th class="text-center fix__table_header" rowspan="2">{% trans "T/p" %}</th>
+                                    <th class="text-center fix__table_header" rowspan="2">{% trans 'Хўжалик номи' %}</th>
+                                    <th class="text-center fix__table_header" rowspan="1" colspan="2">{% trans 'Input' %}</th>
+                                    <th class="text-center fix__table_header" rowspan="1" colspan="2">{% trans 'Output' %}</th>
+                                </tr>
+                                <tr>
+                                    <th class="text-center fix__table_second_line">{% trans 'amount(bosh)' %}</th>
+                                    <th class="text-center fix__table_second_line">{% trans 'wight' %}</th>
+                                    <th class="text-center fix__table_second_line">{% trans 'amount(bosh)' %}</th>
+                                    <th class="text-center fix__table_second_line">{% trans 'wight' %}</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr class="table-bordered border-dark bg-info parent">
+                                    <td class="border text-center">1</td>
+                                    <td class="text-center font-weight-bold text-dark">
+                                        {{ all_sum.department.name }}
+                                    </td>
+                                    <td class="text-center font-weight-bold amount_sum">{{ all_sum.all_in_amount__sum|floatformat }}</td>
+                                    <td class="text-center font-weight-bold amount_sum">{{ all_sum.all_in_weight__sum|floatformat }}</td>
+                                    <td class="text-center font-weight-bold amount_sum">{{ all_sum.all_out_amount__sum|floatformat }}</td>
+                                    <td class="text-center font-weight-bold amount_sum">{{ all_sum.all_out_weight__sum|floatformat }}</td>
+                                </tr>
+                                {% for item in data %}
+                                    {% if item.animal_name %}
+                                        <tr class="table-bordered border-dark child">
+                                            <td class="text-center">{{ forloop.counter }}</td>
+                                            <td  class="text-left text-dark"> {{ item.animal_name }}</td>
+                                            <td class="text-center amount_sum">{{ item.animal_in_amount|floatformat }} </td>
+                                            <td class="text-center amount_sum">{{ item.animal_in_weight|floatformat }} </td>
+                                            <td class="text-center amount_sum">{{ item.animal_out_amount|floatformat }}</td>
+                                            <td class="text-center amount_sum">{{ item.animal_out_weight|floatformat }} </td>
+                                        </tr>
+                                    {% endif %}
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% else %}
+        <h1>{% trans 'Permission Denied' %}</h1>
+    {% endif %}
+
+
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}
+    <script>
+        const amount_sum = document.querySelectorAll('.amount_sum');
+        amount_sum.forEach(item => item.textContent =  numberWithSpaces(item.textContent))
+        let a_href = document.querySelector('#chorva_input_output');
+        const from_date = document.querySelector('#id_start');
+        const to_date = document.querySelector('#id_end');
+
+        let current_date_to_value = to_date.value
+        let path = a_href.getAttribute('href')
+        a_href.setAttribute('href', `${path}?department={{ all_sum.department.id }}&end=${current_date_to_value}`)
+        to_date.addEventListener("change", (e) => {
+            current_date_to_value = e.target.value;
+            a_href.setAttribute('href', `${path}?department={{ all_sum.department.id }}&end=${current_date_to_value}`)
+        });
+    </script>
+    <script>
+        {#const animal_category_data  = {{ animal_category|safe }};#}
+        {#const animal_categories = convertToObj(animal_category_data);#}
+        {#const typesSelect = document.querySelector('#types');#}
+        // GET TYPE PARAMS VALUE
+        const urlParams = new URLSearchParams(window.location.search);
+        let myParam = urlParams.get('type');
+        // SET TREE TYPE AND SELECTED CURRENT TYPE
+    </script>
+{% endblock javascripts %}

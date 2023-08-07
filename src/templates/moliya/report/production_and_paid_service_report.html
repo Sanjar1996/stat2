@@ -1,0 +1,261 @@
+{% extends "layouts/base.html" %}
+{% load static %}
+{% load i18n %}
+{% block title %} {% trans 'yillik reja' %} {% endblock %}
+
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}
+    <style>
+        .hidden {
+            display: none;
+            transition: all .5s ease-in-out;
+        }
+
+        body {
+            overflow-y: hidden;
+        }
+
+        .fix__table_header {
+            position: sticky;
+            background: #009879;
+            color: #ffffff;
+            z-index: 1;
+            top: -1px;
+            outline: 1px solid #ffffff;
+        }
+
+        .fix__table_second_line {
+            position: sticky;
+            background: #009879;
+            color: #ffffff;
+            z-index: 1;
+            top: 3.2%;
+            outline: 1px solid #ffffff;
+        }
+
+        .tabler_header_title {
+            -ms-word-break: break-all;
+            word-break: break-all;
+            word-break: break-word;
+            -webkit-hyphens: auto;
+            -moz-hyphens: auto;
+            -ms-hyphens: auto;
+            hyphens: auto;
+            min-width: 120px;
+        }
+
+        @media only screen and (max-width: 998px) {
+            .fix__table_second_line {
+                top: 0;
+            }
+        }
+        @media only screen and (max-width: 1639px) {
+            .fix__table_second_line {
+                top: 6.5%;
+            }
+        }
+        @media only screen and (min-width: 1639px) and (max-width: 1720px) {
+            .fix__table_second_line {
+                top: 3.8%;
+            }
+        }
+
+        @media only screen and (min-width: 1808px) {
+            .fix__table_second_line {
+                top: 3.4%;
+            }
+        }
+    </style>
+{% endblock stylesheets %}
+
+{% block content %}
+    {% if messages %}
+        {% for message in messages %}
+            <div class="text-warning text-center alert{% if message.tags %}alert-{{ message.tags }}{% endif %}"
+                 role="alert">{{ message }}</div>
+        {% endfor %}
+    {% endif %}
+    <div class="report-page1 bg-white">
+        <div class="row d-flex justify-content-center align-items-center">
+            <div class="col-md-10 offset-1">
+                <form role="form" method="GET" action="{% url 'finance:production_service_report' %}">
+                    <div class="row d-flex align-items-center justify-content-center">
+                        <div class="col-md-3">
+                            <label for="">{% trans "start" %}</label>
+                            <div class="form-group">
+                                <input type="date" name="start" required class="form-control" id="id_start"
+                                       value="{{ form.start.value }}">
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <label for="">{% trans "end" %}</label>
+                            <div class="form-group">
+                                <input type="date" name="end" required class="form-control" id="id_end"
+                                       value="{{ form.end.value }}">
+                            </div>
+                        </div>
+                        <div class="col-md-6 mt-4">
+                            <button type="submit"
+                                    class="btn btn-info btn-fab btn-fab-mini text-light ml-1">
+                                <i class="material-icons">search</i></button>
+                            <a href="{% url 'finance:production_service_report' %}"
+                               class="btn btn-info btn-sm text-light ml-1">
+                                {% trans 'reset' %}
+                            </a>
+                            <button class="btn btn-info btn-sm text-light ml-1"
+                                    id="1" type="button"
+                                    onclick="showHideRegionChild(this)">{% trans "Hududlar kesimida" %}
+                            </button>
+                            <a class="btn btn-success btn-sm text-light ml-1"
+                               id="prod_service_by_quarter" type="button"
+                               href="{% url 'finance:prod_service_by_quarter' %}">
+                                <img src="{% static 'assets/img/excel.ico' %}"
+                                     style="max-width: 20px; max-height: 15px"
+                                     alt="Excel">
+                            </a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="col-md-12 bg-light">
+            <div class="card card-plain">
+                <div class="card-header card-header-info">
+                    <h4 class="card-title mt-0 text-center text-light">
+                        {% trans "Ўрмон маҳсулотлари ишлаб чиқариш  ва аҳолига пуллик хизмат кўрсатиш " %}
+                        <span class="text-white">{{ end|date:"Y" }}</span>
+                        {% trans "йил бўйича тўғрисида МАЪЛУМОТ" %}
+                    </h4>
+                </div>
+                <div class="card-body">
+                    <div class="table table-wrapper">
+                        <table class="table table-hover table-responsive-lg table-responsive-md table-responsive-sm">
+                            <thead class="table-bordered border-dark text-light"
+                                   style="opacity: 1; background:#009879;">
+                            <tr>
+                                <th class="fix__table_header text-center" rowspan="4">{% trans "T/p" %}</th>
+                                <th class="text-center fix__table_header" rowspan="4">{% trans 'Ташкилот номи' %}</th>
+                                <th class="text-center fix__table_header" colspan="2" rowspan="">{% trans 'Ishlab chiqarish' %}</th>
+
+                                <th class="text-center fix__table_header" colspan="2" rowspan="">{% trans "Pullik xizmat ko'rsatish" %}</th>
+                                <th class="text-center fix__table_header" colspan="2" rowspan="">{% trans "Умумий" %}</th>
+                                <th class="text-center fix__table_header" rowspan="4">{% trans "Jami foiz hisobida" %}</th>
+                            </tr>
+                            <tr>
+                                <th class="text-center fix__table_second_line" rowspan="2">{% trans 'Yillik reja' %}</th>
+                                <th class="text-center fix__table_second_line" rowspan="2">{% trans 'Amalda' %}</th>
+                                <th class="text-center fix__table_second_line" rowspan="2">{% trans 'Yillik reja' %}</th>
+                                <th class="text-center fix__table_second_line" rowspan="2">{% trans 'Amalda' %}</th>
+                                <th class="text-center fix__table_second_line" rowspan="2">{% trans 'Yillik reja' %}</th>
+                                <th class="text-center fix__table_second_line" rowspan="2">{% trans 'Amalda' %}</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for items in data %}
+                                {% if items.region_name %}
+                                    <tr class="table-bordered border-dark bg-info parrent">
+                                        <td class="region_index text-center"></td>
+                                        <td class="text-center font-weight-bold border">{{ items.region_name }}</td>
+                                        <td class="text-center font-weight-bold border amount_sum">{{ items.region_production_year_plan|floatformat:"0" }}</td>
+                                        <td class="text-center font-weight-bold border amount_sum">{{ items.region_production_actual|floatformat:"0" }}</td>
+                                        <td class="text-center font-weight-bold border amount_sum">{{ items.region_service_year_plan|floatformat:"0" }}</td>
+                                        <td class="text-center font-weight-bold border amount_sum">{{ items.region_service_actual|floatformat:"0" }}</td>
+                                        <td class="text-center font-weight-bold border amount_sum">{{ items.region_all_year_plan|floatformat:"0" }}</td>
+                                        <td class="text-center font-weight-bold border amount_sum">{{ items.region_all_actual|floatformat:"0" }}</td>
+                                        <td class="text-center font-weight-bold border amount_sum">{{ items.region_percentage|floatformat:"0" }} %</td>
+                                    </tr>
+                                {% endif %}
+                                {% if items.depart_name %}
+                                    <tr class="child">
+                                        <td class="border text-center">{{ items.index }}</td>
+                                        <td class="text-left font-weight-bold border">{{ items.depart_name }}</td>
+                                        <td class="text-center font-weight-bold border amount_sum">{{ items.depart_production_year_plan|floatformat:"0" }}</td>
+                                        <td class="text-center font-weight-bold border amount_sum">{{ items.depart_production_actual|floatformat:"0" }}</td>
+                                        <td class="text-center font-weight-bold border amount_sum">{{ items.depart_service_year_plan|floatformat:"0" }}</td>
+                                        <td class="text-center font-weight-bold border amount_sum">{{ items.depart_service_actual|floatformat:"0" }}</td>
+                                        <td class="text-center font-weight-bold border amount_sum">{{ items.depart_all_year_plan|floatformat:"0" }}</td>
+                                        <td class="text-center font-weight-bold border amount_sum">{{ items.depart_all_actula|floatformat:"0" }}</td>
+                                        <td class="text-center font-weight-bold border amount_sum">{{ items.department_percentage|floatformat:"0" }} %</td>
+                                    </tr>
+                                {% endif %}
+                            {% endfor %}
+                            </tbody>
+                            <tfoot class="table-bordered border-dark text-light"
+                                   style="opacity: 1; background:#009879;">
+                            <th class="text-light">.</th>
+                            <th class="text-center text-light">{% trans 'Жами' %}</th>
+                            <th class="text-center text-light amount_sum">{{ result.production_year_plan|floatformat:"0" }}</th>
+                            <th class="text-center text-light amount_sum">{{ result.production_actual|floatformat:"0" }}</th>
+                            <th class="text-center text-light amount_sum">{{ result.service_year_plan|floatformat:"0" }}</th>
+                            <th class="text-center text-light amount_sum">{{ result.service_actual|floatformat:"0" }}</th>
+                            <th class="text-center text-light amount_sum">{{ result.all_year_plan|floatformat:"0" }}</th>
+                            <th class="text-center text-light amount_sum">{{ result.all_year_actual|floatformat:"0" }}</th>
+                            <th class="text-center text-light amount_sum">{{ result.all_percentage|floatformat:"0" }} %</th>
+                            </tfoot>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}
+    <script>
+        const amount_sum = document.querySelectorAll('.amount_sum');
+        amount_sum.forEach(item => item.textContent = numberWithSpaces(item.textContent))
+        const child = document.querySelectorAll('.child');
+        const parrent = document.querySelectorAll('.parrent');
+        const secondLineTable = document.querySelectorAll('.fix__table_second_line');
+        const region_index = document.querySelectorAll('.region_index');
+        const showHideRegionChild = (event) => {
+            const iid = event.id;
+            if (iid === "1") {
+                event.id = '2'
+                event.textContent = "{% trans 'Tashkilotlar kesimida' %}"
+                parrent.forEach(elem => {
+                    if (elem) {
+                        elem.classList.toggle('bg-info')
+                        elem.children[1].classList.toggle('text-center')
+                    }
+                })
+                child.forEach(elem => elem.classList.toggle("hidden"))
+                region_index.forEach((item, index, region_index) => item.innerText = index + 1)
+            } else if (iid === '2') {
+                event.id = '1'
+                event.textContent = "{% trans 'Hududlar kesimida' %}"
+                parrent.forEach(elem => {
+                    if (elem) {
+                        elem.classList.toggle('bg-info')
+                        elem.children[1].classList.toggle('text-center')
+                    }
+                })
+                region_index.forEach((item, index, region_index) => item.innerText = "")
+                child.forEach(elem => elem.classList.toggle("hidden"))
+            }
+        }
+        // Script For the Generate Excel ↓ ↓ ↓
+        let a_href = document.querySelector('#prod_service_by_quarter');
+        let path = a_href.getAttribute('href')
+
+        const from_date = document.querySelector('#id_start');
+        const to_date = document.querySelector('#id_end');
+
+        let current_date_start_value = from_date.value
+        let current_date_to_value = to_date.value
+
+        a_href.setAttribute('href', `${path}?start=${current_date_start_value}&end=${current_date_to_value}`)
+
+        from_date.addEventListener("change", (e) => {
+            current_date_start_value = e.target.value;
+            a_href.setAttribute('href', `${path}?start=${current_date_start_value}&end=${current_date_to_value}`)
+        });
+        to_date.addEventListener("change", (e) => {
+            current_date_to_value = e.target.value;
+            a_href.setAttribute('href', `${path}?start=${current_date_start_value}&end=${current_date_to_value}`)
+        });
+    </script>
+
+{% endblock javascripts %}

@@ -1,0 +1,59 @@
+{% extends "layouts/base.html" %}
+{% load i18n %}
+{% block title %} {% trans 'Sprout dashboard page title' %} {% endblock %}
+
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}
+
+{% endblock stylesheets %}
+{% block content %}
+  <div class="container-fluid ">
+  <div class="row d-flex justify-content-start align-items-center">
+      <div class="col-md-12">
+          <h2 class="text-center">{% trans "Ниҳоллар" %}</h2>
+      </div>
+{#      <div class="col-lg-3 col-md-4 col-sm-6">#}
+{#          <div class="card">#}
+{#          <div class="card-body text-right">#}
+{#            <h4 class="card-title text-center py-3 font-weight-bold">{% trans "Режа" %}</h4>#}
+{#            <a href="{% url 'trees:sprout_plan_list' %}" class="btn btn-info btn-sm">{% trans "Кириш" %}</a>#}
+{#          </div>#}
+{#        </div>#}
+{#      </div>#}
+{#        <div class="col-lg-3 col-md-4 col-sm-6">#}
+{#            <div class="card">#}
+{#              <div class="card-body text-right">#}
+{#                <h4 class="card-title text-center py-3 font-weight-bold">{% trans "Aмалий ишлар" %}</h4>#}
+{#                <a href="{% url 'trees:sprout_list' %}" class="btn btn-info btn-sm">{% trans "Кириш" %}</a>#}
+{#              </div>#}
+{#            </div>#}
+{#        </div>#}
+        <div class="col-lg-3 col-md-4 col-sm-6">
+            <div class="card" >
+              <div class="card-body text-right">
+                <h4 class="card-title text-center py-3 font-weight-bold">{% trans "Кирим" %}</h4>
+<!--                <p class="card-text">{% trans "Ниҳол харакати тўғрисида киримлар" %}</p>-->
+                <a href="{% url 'trees:sprout_input_list' %}" class="btn btn-info btn-sm">{% trans "Кириш" %}</a>
+              </div>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-4 col-sm-6">
+            <div class="card shadow">
+              <div class="card-body text-right">
+                <h4 class="card-title text-center py-3 font-weight-bold">{% trans "Чиқим" %}</h4>
+<!--                <p class="card-text">{% trans "Ниҳол харакати тўғрисида чиқимлар" %}</p>-->
+                <a href="{% url 'trees:sprout_output_list' %}" class="btn btn-info btn-sm">{% trans "Кириш" %}</a>
+              </div>
+            </div>
+        </div>
+      </div>
+
+
+
+  </div>
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}
+
+{% endblock javascripts %}

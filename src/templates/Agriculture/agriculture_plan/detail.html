@@ -1,0 +1,166 @@
+{% extends "layouts/base.html" %}
+{% load i18n %}
+{% block title %} {% trans 'Agriculture plan page title' %} {% endblock %}
+
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+    {% if perms.agriculture.view_agricultureplan %}
+        <div class="row">
+            <div class="col-md-8 offset-md-2">
+                <div class="card">
+                    <div class="card-header card-header-info shadow">
+                        <h4 class="card-title text-light text-center">{% trans 'Agriculture plan detail form' %}</h4>
+                    </div>
+                    <div class="card-body mt-4">
+                        <form role="form" method="POST"
+                              action="{% url 'agriculture:agriculture_plan_detail' agriculture.id %}">
+                            {% csrf_token %}
+                            <div class="row d-flex align-items-end">
+                                <div class="col-md-6">
+                                    <label for="" class="text-dark">{% trans "date" %}</label>
+                                    <div class="form-group">
+                                        <input type="date" name="date" required class="form-control" id="id_date"
+                                               value="{{ form.date.value |date:"Y-m-d" }}">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="id_region" class="text-dark">{% trans "Region" %}</label>
+                                        {{ form.region }}
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="id_department" class="text-dark">{% trans "Department" %}</label>
+                                        {{ form.department }}
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <label for="id_hectare" class="text-dark">{% trans "hectare" %}</label>
+                                    <div class="form-group">
+                                        {{ form.hectare }}
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <label for="id_weight" class="text-dark">{% trans "weight" %}</label>
+                                    <div class="form-group">
+                                        {{ form.weight }}
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="id_tree_type" class="text-dark">{% trans "TreeType" %}</label>
+                                        {{ form.tree_type }}
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="id_tree_plant" class="text-dark">{% trans "TreePlant" %}</label>
+                                        {{ form.tree_plant }}
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <input name="creator" type="hidden" value="{{ user.pk }}">
+                                    </div>
+                                </div>
+                                <div class="col-md-12 d-flex align-items-center justify-content-between">
+                                    <a href="{% url 'agriculture:agriculture_plan_list' %}"
+                                       class="btn btn-success btn-sm text-light">{% trans 'back' %}</a>
+                                    {% if perms.agriculture.change_agricultureplan %}
+                                        <button type="submit" class="btn btn-info btn-sm">{% trans 'update' %}</button>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% else %}
+        <h2>{% trans 'Permision Denied' %}</h2>
+    {% endif %}
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}
+    <script>
+        const departments = convertToJson({{data|safe}})
+        const regions = convertToObj({{ region|safe }})
+        let tree_type_data = convertToObj({{ tree_types|safe }})
+        let tree_plant_data = {{ tree_plants|safe }};
+        const tree_plant = tree_plant_data.map(elem => {
+            if (elem) {
+                return {id: elem.pk, name: elem.fields['name'], types: elem.fields['types']}
+            }
+        });
+        let treePlantOption = document.querySelector("#id_tree_plant")
+        treePlantOption.textContent = ""
+        let currentTreePlants = tree_plant.filter(item => {
+            if(item.types.length > 0){
+                if(item.types.find(type => type === tree_type_data[0].id)){
+                    return item
+                }
+            }
+        })
+        currentTreePlants.forEach(item =>{
+            let opt = document.createElement('option')
+            opt.setAttribute("value", item.name)
+            opt.setAttribute("id", item.id)
+            opt.textContent = item.name
+            treePlantOption.append(opt)
+        })
+
+        const region = document.getElementById('id_region');
+        const tree_type = document.getElementById('id_tree_type');
+        const treeOptions = document.getElementById('id_tree_plant');
+        const departmentOptions = document.getElementById('id_department');
+
+        const setDepartment = (city) => {
+            const region = regions.find(elem => elem.name === city);
+            const current = departments.filter(elem => elem.region === region.id)
+            if (current.length > 0) {
+                departmentOptions.innerHTML = ""
+                current.forEach((elem, index) => {
+                    if (elem.name && index === 0) {
+                        departmentOptions.innerHTML += `<option value='${elem.name}' selected>${elem.name}</option>`
+                    } else if (elem.name) {
+                        departmentOptions.innerHTML += `<option value='${elem.name}'>${elem.name}</option>`
+                    }
+
+                })
+            } else departmentOptions.innerHTML = ""
+        }
+        const setCurrentTreeType = (id) => {
+            const type_id = tree_type_data.find(item => item.name === id)
+            const current = tree_plant.filter(elem => {
+                if (elem.types.length > 0) {
+                    const result = elem.types.find(item => item === type_id.id)
+                    if (result) {
+                        return elem
+                    }
+                }
+            });
+            if (current) {
+                treeOptions.innerHTML = ""
+                current.forEach((elem, index) => {
+                    if (elem.name && index === 0) {
+                        treeOptions.innerHTML += `<option value='${elem.name}' selected>${elem.name}</option>`
+                    } else {
+                        treeOptions.innerHTML += `<option value='${elem.name}'>${elem.name}</option>`
+                    }
+                })
+            } else treeOptions.innerHTML = ""
+        }
+        region.addEventListener('change', (event) => {
+            const city = event.target.value;
+            city ? setDepartment(city) : departmentOptions.innerHTML = "";
+        })
+        tree_type.addEventListener('change', (event) => {
+            const tip = event.target.value;
+            tip ? setCurrentTreeType(tip) : ""
+        })
+    </script>
+{% endblock javascripts %}

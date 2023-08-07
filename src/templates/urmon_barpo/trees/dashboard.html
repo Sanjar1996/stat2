@@ -1,0 +1,55 @@
+{% extends "layouts/base.html" %}
+{% load i18n %}
+{% block title %} {% trans "Daraxt" %} {% endblock %}
+
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}
+
+{% endblock stylesheets %}
+{% block content %}
+  <div class="container-fluid ">
+  <div class="row d-flex justify-content-start align-items-center">
+      <div class="col-md-12">
+          <h2 class="text-center m-0">{% trans "Daraxtlar" %}</h2>
+      </div>
+      <div class="col-lg-3 col-md-4 col-sm-6">
+          <div class="card">
+          <div class="card-body text-right">
+            <h4 class="card-title text-center py-3 font-weight-bold">{% trans "Daraxtlar" %}</h4>
+            <a href="{% url 'trees:name_list' %}" class="btn btn-info btn-sm">{% trans "Кириш" %}</a>
+          </div>
+        </div>
+      </div>
+        <div class="col-lg-3 col-md-4 col-sm-6">
+            <div class="card">
+              <div class="card-body text-right">
+                <h4 class="card-title text-center py-3 font-weight-bold">{% trans "Dararaxlar categoriyasi" %}</h4>
+                <a href="{% url 'trees:category_list' %}" class="btn btn-info btn-sm">{% trans "Кириш" %}</a>
+              </div>
+            </div>
+        </div>
+{#        <div class="col-lg-3 col-md-4 col-sm-6">#}
+{#            <div class="card">#}
+{#              <div class="card-body text-right">#}
+{#                <h4 class="card-title text-center py-3 font-weight-bold">{% trans "Daraxlar bo'yiga" %}</h4>#}
+{#                <a href="{% url 'trees:tree_list' %}" class="btn btn-info btn-sm">{% trans "Кириш" %}</a>#}
+{#              </div>#}
+{#            </div>#}
+{#        </div>#}
+        <div class="col-lg-3 col-md-4 col-sm-6">
+            <div class="card">
+              <div class="card-body text-right">
+                <h4 class="card-title text-center py-3 font-weight-bold">{% trans "Daraxlar turi" %}</h4>
+<!--                <p class="card-text"></p>-->
+                <a href="{% url 'trees:tree_type_list' %}" class="btn btn-info btn-sm">{% trans "Кириш" %}</a>
+              </div>
+            </div>
+        </div>
+      </div>
+  </div>
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}
+
+{% endblock javascripts %}

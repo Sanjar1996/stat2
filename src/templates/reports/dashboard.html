@@ -1,0 +1,94 @@
+{% extends "layouts/base.html" %}
+{% load i18n %}
+{% block title %} {% trans 'Sprout dashboard page title' %} {% endblock %}
+
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}
+
+{% endblock stylesheets %}
+{% block content %}
+  <div class="container-fluid">
+  <div class="row d-flex align-baseline justify-content-start">
+      <div class="col-md-12">
+          <h2 class="text-center">{% trans "Hisobotlar sahifasi" %}</h2>
+      </div>
+        <div class="col-md-3">
+            <div class="card shadow">
+              <div class="card-body">
+                <h4 class="card-title text-center py-3 font-weight-bold">{% trans "Mavjud uruglar" %}</h4>
+                <p class="card-text">Mavjud uruglar bo'yicha xisobot</p>
+                <a href="{% url 'finance:existing_sids' %}" class="btn btn-info">{% trans "Kirish" %}</a>
+              </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card shadow">
+              <div class="card-body">
+                <h4 class="card-title text-center py-3 font-weight-bold">{% trans "Moliya xisoboti" %}</h4>
+                <p class="card-text">Barcha tashkilotlar moliya xisoboti</p>
+                <a href="{% url 'finance:report' %}" class="btn btn-info">{% trans "Kirish" %}</a>
+              </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card shadow">
+              <div class="card-body">
+                <h4 class="card-title text-center py-3 font-weight-bold">{% trans "Jami ko'chatlar" %}</h4>
+                 <p class="card-text">{% trans "Кўчат харакати тўғрисида чиқимлар" %}</p>
+                <a href="{% url 'trees:kochatlar_report' %}" class="btn btn-info">{% trans "Кириш" %}</a>
+              </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card shadow">
+              <div class="card-body">
+                <h4 class="card-title text-center py-3 font-weight-bold">{% trans "Ko'chatlar xisoboti" %}</h4>
+                <p class="card-text">{% trans "Ko'chatlar xisoboti" %}</p>
+                <a href="{% url 'trees:sapling_report' %}" class="btn btn-info">{% trans "Kirish" %}</a>
+              </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card shadow">
+              <div class="card-body">
+                <h4 class="card-title text-center py-3 font-weight-bold">{% trans "Niholchilik xisoboti" %}</h4>
+                <p class="card-text">{% trans "Niholchilik xisoboti" %}</p>
+                <a href="{% url 'trees:sprout_report' %}" class="btn btn-info">{% trans "Kirish" %}</a>
+              </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card shadow">
+              <div class="card-body">
+                <h4 class="card-title text-center py-3 font-weight-bold">{% trans "Niholchilik kirim chiqim xisoboti" %}</h4>
+                <p class="card-text">{% trans "Niholchilik kirim chiqim xisoboti" %}</p>
+                <a href="{% url 'trees:sprout_all_report' %}" class="btn btn-info">{% trans "Kirish" %}</a>
+              </div>
+            </div>
+        </div>
+          <div class="col-md-3">
+                <div class="card shadow">
+                  <div class="card-body">
+                    <h4 class="card-title text-center py-3 font-weight-bold">{% trans "Ko'chatchilik kirim chiqim xisoboti" %}</h4>
+                    <p class="card-text">{% trans "Ko'chatchilik kirim chiqim xisoboti" %}</p>
+                    <a href="{% url 'trees:sapling_all_report' %}" class="btn btn-info">{% trans "Kirish" %}</a>
+                  </div>
+                </div>
+            </div>
+          <div class="col-md-3">
+                <div class="card shadow">
+                  <div class="card-body">
+                    <h4 class="card-title text-center py-3 font-weight-bold">{% trans "O'rmon barpo qilish xisoboti" %}</h4>
+                    <p class="card-text">{% trans "O'rmon barpo qilish xisoboti" %}</p>
+                    <a href="{% url 'trees:land_all_report' %}" class="btn btn-info">{% trans "Kirish" %}</a>
+                  </div>
+                </div>
+            </div>
+        </div>
+  </div>
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}
+
+{% endblock javascripts %}

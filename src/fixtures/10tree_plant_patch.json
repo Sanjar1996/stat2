@@ -1,0 +1,2423 @@
+
+[
+{
+  "model": "trees.treeplant",
+  "pk": 1,
+  "fields": {
+    "created_at": null,
+    "updated_at": "2021-02-09T13:07:52.884Z",
+    "category": 1,
+    "name": "E\u043b\u044c \u0433\u043e\u043b\u0443\u0431",
+    "description": "",
+    "status": 1,
+    "is_show_sprouting": true,
+    "is_show_seed": false,
+    "is_show_sapling": true,
+    "is_show_height": true,
+    "types": []
+  }
+},
+{
+  "model": "trees.treeplant",
+  "pk": 2,
+  "fields": {
+    "created_at": null,
+    "updated_at": "2021-02-09T13:07:45.224Z",
+    "category": 1,
+    "name": "E\u043b\u044c \u0442\u044f\u043d\u0448\u0430\u043d",
+    "description": "",
+    "status": 1,
+    "is_show_sprouting": true,
+    "is_show_seed": false,
+    "is_show_sapling": true,
+    "is_show_height": true,
+    "types": []
+  }
+},
+{
+  "model": "trees.treeplant",
+  "pk": 3,
+  "fields": {
+    "created_at": null,
+    "updated_at": "2021-02-09T13:07:34.581Z",
+    "category": 1,
+    "name": "A\u0440\u0447\u0430 \u0437\u0430\u0440\u0430\u0444\u0448\u043e\u043d",
+    "description": "",
+    "status": 1,
+    "is_show_sprouting": true,
+    "is_show_seed": false,
+    "is_show_sapling": true,
+    "is_show_height": true,
+    "types": []
+  }
+},
+{
+  "model": "trees.treeplant",
+  "pk": 4,
+  "fields": {
+    "created_at": null,
+    "updated_at": "2021-02-09T11:38:07.362Z",
+    "category": 1,
+    "name": "\u043c\u043e\u0436\u0436\u0435\u0432\u0435\u043b\u044c\u043d\u0438\u043a",
+    "description": "",
+    "status": 1,
+    "is_show_sprouting": true,
+    "is_show_seed": false,
+    "is_show_sapling": true,
+    "is_show_height": false,
+    "types": []
+  }
+},
+{
+  "model": "trees.treeplant",
+  "pk": 5,
+  "fields": {
+    "created_at": null,
+    "updated_at": "2021-02-09T11:37:59.255Z",
+    "category": 1,
+    "name": "\u0442\u0443\u044f \u0448\u0430\u0440\u049b",
+    "description": "",
+    "status": 1,
+    "is_show_sprouting": true,
+    "is_show_seed": false,
+    "is_show_sapling": true,
+    "is_show_height": false,
+    "types": []
+  }
+},
+{
+  "model": "trees.treeplant",
+  "pk": 6,
+  "fields": {
+    "created_at": null,
+    "updated_at": "2021-02-09T11:40:14.514Z",
+    "category": 1,
+    "name": "\u0442\u0443\u044f \u043a\u043e\u043c\u043f\u0430\u043a\u0442\u043d\u0430\u044f",
+    "description": "",
+    "status": 1,
+    "is_show_sprouting": true,
+    "is_show_seed": false,
+    "is_show_sapling": true,
+    "is_show_height": false,
+    "types": []
+  }
+},
+{
+  "model": "trees.treeplant",
+  "pk": 7,
+  "fields": {
+    "created_at": null,
+    "updated_at": "2021-02-09T11:37:25.168Z",
+    "category": 1,
+    "name": "\u049b\u0440\u0438\u043c \u049b\u0430\u0440\u0430\u0493\u0430\u0439\u0438",
+    "description": "",
+    "status": 1,
+    "is_show_sprouting": true,
+    "is_show_seed": false,
+    "is_show_sapling": true,
+    "is_show_height": false,
+    "types": []
+  }
+},
+{
+  "model": "trees.treeplant",
+  "pk": 8,
+  "fields": {
+    "created_at": null,
+    "updated_at": "2021-02-09T11:40:10.881Z",
+    "category": 1,
+    "name": "\u044d\u043b\u044c\u0434\u043e\u0440 \u049b\u0430\u0440\u0430\u0493\u0430\u0439\u0438",
+    "description": "",
+    "status": 1,
+    "is_show_sprouting": true,
+    "is_show_seed": false,
+    "is_show_sapling": true,
+    "is_show_height": false,
+    "types": []
+  }
+},
+{
+  "model": "trees.treeplant",
+  "pk": 9,
+  "fields": {
+    "created_at": null,
+    "updated_at": "2021-02-09T11:36:57.992Z",
+    "category": 1,
+    "name": "\u043a\u0438\u043f\u0430\u0440\u0438\u0441",
+    "description": "",
+    "status": 1,
+    "is_show_sprouting": true,
+    "is_show_seed": false,
+    "is_show_sapling": true,
+    "is_show_height": false,
+    "types": []
+  }
+},
+{
+  "model": "trees.treeplant",
+  "pk": 10,
+  "fields": {
+    "created_at": null,
+    "updated_at": "2021-02-09T11:36:07.705Z",
+    "category": 1,
+    "name": "\u043f\u0438\u0445\u0442\u0430",
+    "description": "",
+    "status": 1,
+    "is_show_sprouting": true,
+    "is_show_seed": false,
+    "is_show_sapling": true,
+    "is_show_height": false,
+    "types": []
+  }
+},
+{
+  "model": "trees.treeplant",
+  "pk": 11,
+  "fields": {
+    "created_at": null,
+    "updated_at": "2021-02-09T11:54:51.683Z",
+    "category": 2,
+    "name": "\u0442\u0435\u0440\u0430\u043a",
+    "description": "",
+    "status": 1,
+    "is_show_sprouting": true,
+    "is_show_seed": false,
+    "is_show_sapling": true,
+    "is_show_height": false,
+    "types": []
+  }
+},
+{
+  "model": "trees.treeplant",
+  "pk": 12,
+  "fields": {
+    "created_at": null,
+    "updated_at": "2021-02-09T10:26:07.802Z",
+    "category": 2,
+    "name": "\u049b\u0438\u0437\u0438\u043b \u0442\u0435\u0440\u0430\u043a",
+    "description": "",
+    "status": 1,
+    "is_show_sprouting": false,
+    "is_show_seed": false,
+    "is_show_sapling": true,
+    "is_show_height": false,
+    "types": []
+  }
+},
+{
+  "model": "trees.treeplant",
+  "pk": 13,
+  "fields": {
+    "created_at": null,
+    "updated_at": "2021-02-09T11:59:01.196Z",
+    "category": 2,
+    "name": "\u043a\u0430\u0439\u0440\u043e\u0433\u043e\u0447 (\u0432\u044f\u0437)",
+    "description": "",
+    "status": 1,
+    "is_show_sprouting": true,
+    "is_show_seed": false,
+    "is_show_sapling": true,
+    "is_show_height": false,
+    "types": []
+  }
+},
+{
+  "model": "trees.treeplant",
+  "pk": 14,
+  "fields": {
+    "created_at": null,
+    "updated_at": "2021-02-09T10:48:59.752Z",
+    "category": 2,
+    "name": "\u0441\u0430\u0434\u0430 \u049b\u0430\u0439\u0440\u043e\u0493\u043e\u0447 (\u0433\u0443\u0436\u0443\u043c)",
+    "description": "",
+    "status": 1,
+    "is_show_sprouting": false,
+    "is_show_seed": false,
+    "is_show_sapling": true,
+    "is_show_height": false,
+    "types": []
+  }
+},
+{
+  "model": "trees.treeplant",
+  "pk": 15,
+  "fields": {
+    "created_at": null,
+    "updated_at": "2021-02-09T10:53:48.712Z",
+    "category": 2,
+    "name": "\u0447\u0438\u043d\u043d\u0438 (\u0433\u0443\u0436\u0443\u043c)",
+    "description": "",
+    "status": 1,
+    "is_show_sprouting": false,
+    "is_show_seed": false,
+    "is_show_sapling": true,
+    "is_show_height": false,
+    "types": []
+  }
+},
+{
+  "model": "trees.treeplant",
+  "pk": 16,
+  "fields": {
+    "created_at": null,
+    "updated_at": "2021-02-09T11:55:43.881Z",
+    "category": 2,
+    "name": "\u044f\u0441\u0435\u043d\u044c (\u0448\u0443\u043c\u0442\u043e\u043b)",
+    "description": "",
+    "status": 1,
+    "is_show_sprouting": true,
+    "is_show_seed": false,
+    "is_show_sapling": true,
+    "is_show_height": false,
+    "types": []
+  }
+},
+{
+  "model": "trees.treeplant",
+  "pk": 17,
+  "fields": {
+    "created_at": null,
+    "updated_at": "2021-02-09T11:56:02.646Z",
+    "category": 2,
+    "name": "\u0430\u0439\u043b\u0430\u043d\u0442",
+    "description": "",
+    "status": 1,
+    "is_show_sprouting": true,
+    "is_show_seed": false,
+    "is_show_sapling": true,
+    "is_show_height": false,
+    "types": []
+  }
+},
+{
+  "model": "trees.treeplant",
+  "pk": 18,
+  "fields": {
+    "created_at": null,
+    "updated_at": "2021-02-09T11:56:09.511Z",
+    "category": 2,
+    "name": "\u0433\u043b\u0435\u0434\u0438\u0447\u0438\u044f",
+    "description": "",
+    "status": 1,
+    "is_show_sprouting": true,
+    "is_show_seed": false,
+    "is_show_sapling": true,
+    "is_show_height": false,
+    "types": []
+  }
+},
+{
+  "model": "trees.treeplant",
+  "pk": 19,
+  "fields": {
+    "created_at": null,
+    "updated_at": "2021-02-09T11:56:15.943Z",
+    "category": 2,
+    "name": "\u0442\u043e\u043b (\u0432\u0435\u0440\u0431\u0430)",
+    "description": "",
+    "status": 1,
+    "is_show_sprouting": true,
+    "is_show_seed": false,
+    "is_show_sapling": true,
+    "is_show_height": false,
+    "types": []
+  }
+},
+{
+  "model": "trees.treeplant",
+  "pk": 20,
+  "fields": {
+    "created_at": null,
+    "updated_at": "2021-02-09T10:53:11.009Z",
+    "category": 2,
+    "name": "\u0441\u0430\u0432\u0430\u0442\u0442\u043e\u043b",
+    "description": "",
+    "status": 1,
+    "is_show_sprouting": false,
+    "is_show_seed": false,
+    "is_show_sapling": true,
+    "is_show_height": false,
+    "types": []
+  }
+},
+{
+  "model": "trees.treeplant",
+  "pk": 21,
+  "fields": {
+    "created_at": null,
+    "updated_at": "2021-02-09T11:57:01.742Z",
+    "category": 2,
+    "name": "\u043c\u0430\u0436\u043d\u0443\u043d\u0442\u043e\u043b",
+    "description": "",
+    "status": 1,
+    "is_show_sprouting": true,
+    "is_show_seed": false,
+    "is_show_sapling": true,
+    "is_show_height": false,
+    "types": []
+  }
+},
+{
+  "model": "trees.treeplant",
+  "pk": 22,
+  "fields": {
+    "created_at": null,
+    "updated_at": "2021-02-09T11:56:34.843Z",
+    "category": 2,
+    "name": "\u0447\u0438\u043d\u043e\u0440",
+    "description": "",
+    "status": 1,
+    "is_show_sprouting": true,
+    "is_show_seed": false,
+    "is_show_sapling": true,
+    "is_show_height": false,
+    "types": []
+  }
+},
+{
+  "model": "trees.treeplant",
+  "pk": 23,
+  "fields": {
+    "created_at": null,
+    "updated_at": "2021-02-09T11:58:36.704Z",
+    "category": 2,
+    "name": "\u0441\u043e\u0444\u043e\u0440\u0430 (\u044f\u043f\u043e\u043d)",
+    "description": "",
+    "status": 1,
+    "is_show_sprouting": true,
+    "is_show_seed": false,
+    "is_show_sapling": true,
+    "is_show_height": false,
+    "types": []
+  }
+},
+{
+  "model": "trees.treeplant",
+  "pk": 24,
+  "fields": {
+    "created_at": null,
+    "updated_at": "2021-02-09T13:07:01.180Z",
+    "category": 2,
+    "name": "\u043f\u0430\u0432\u043b\u043e\u0432\u043d\u0438\u044f",
+    "description": "",
+    "status": 1,
+    "is_show_sprouting": true,
+    "is_show_seed": false,
+    "is_show_sapling": true,
+    "is_show_height": true,
+    "types": []
+  }
+},
+{
+  "model": "trees.treeplant",
+  "pk": 25,
+  "fields": {
+    "created_at": null,
+    "updated_at": "2021-02-09T10:51:27.202Z",
+    "category": 2,
+    "name": "\u0442\u0438\u0441\u0441 \u044f\u0433\u043e\u0434\u043d\u044b\u0439",
+    "description": "",
+    "status": 1,
+    "is_show_sprouting": false,
+    "is_show_seed": false,
+    "is_show_sapling": true,
+    "is_show_height": false,
+    "types": []
+  }
+},
+{
+  "model": "trees.treeplant",
+  "pk": 26,
+  "fields": {
+    "created_at": null,
+    "updated_at": "2021-02-09T10:51:21.409Z",
+    "category": 2,
+    "name": "\u0421\u0435\u043a\u0432\u043e\u0439\u044f\u0434\u0435\u043d\u0434\u0440\u043e\u043d",
+    "description": "",
+    "status": 1,
+    "is_show_sprouting": false,
+    "is_show_seed": false,
+    "is_show_sapling": true,
+    "is_show_height": false,
+    "types": []
+  }
+},
+{
+  "model": "trees.treeplant",
+  "pk": 27,
+  "fields": {
+    "created_at": null,
+    "updated_at": "2021-02-09T13:07:21.178Z",
+    "category": 3,
+    "name": "\u0451\u043d\u0433\u043e\u043a",
+    "description": "",
+    "status": 1,
+    "is_show_sprouting": true,
+    "is_show_seed": false,
+    "is_show_sapling": true,
+    "is_show_height": true,
+    "types": []
+  }
+},
+{
+  "model": "trees.treeplant",
+  "pk": 28,
+  "fields": {
+    "created_at": null,
+    "updated_at": "2021-02-09T11:59:56.117Z",
+    "category": 3,
+    "name": "\u0430\u0447\u0447\u0438\u049b \u0431\u043e\u0434\u043e\u043c",
+    "description": "",
+    "status": 1,
+    "is_show_sprouting": true,
+    "is_show_seed": false,
+    "is_show_sapling": true,
+    "is_show_height": false,
+    "types": [
+      13
+    ]
+  }
+},
+{
+  "model": "trees.treeplant",
+  "pk": 29,
+  "fields": {
+    "created_at": null,
+    "updated_at": "2021-02-09T12:00:00.857Z",
+    "category": 3,
+    "name": "\u0448\u0438\u0440\u0438\u043d \u0431\u043e\u0434\u043e\u043c",
+    "description": "",
+    "status": 1,
+    "is_show_sprouting": true,
+    "is_show_seed": false,
+    "is_show_sapling": true,
+    "is_show_height": false,
+    "types": [
+      13
+    ]
+  }
+},
+{
+  "model": "trees.treeplant",
+  "pk": 30,
+  "fields": {
+    "created_at": null,
+    "updated_at": "2021-02-09T12:00:11.103Z",
+    "category": 3,
+    "name": "\u043f\u0438\u0441\u0442\u0430",
+    "description": "",
+    "status": 1,
+    "is_show_sprouting": true,
+    "is_show_seed": false,
+    "is_show_sapling": true,
+    "is_show_height": false,
+    "types": [
+      13
+    ]
+  }
+},
+{
+  "model": "trees.treeplant",
+  "pk": 31,
+  "fields": {
+    "created_at": null,
+    "updated_at": "2021-02-09T12:00:16.374Z",
+    "category": 3,
+    "name": "\u0431\u0443\u043d\u0434\u0443\u043a",
+    "description": "",
+    "status": 1,
+    "is_show_sprouting": true,
+    "is_show_seed": false,
+    "is_show_sapling": true,
+    "is_show_height": false,
+    "types": []
+  }
+},
+{
+  "model": "trees.treeplant",
+  "pk": 32,
+  "fields": {
+    "created_at": null,
+    "updated_at": "2021-02-09T12:00:23.142Z",
+    "category": 3,
+    "name": "\u043f\u0435\u043a\u0430\u043d",
+    "description": "",
+    "status": 1,
+    "is_show_sprouting": true,
+    "is_show_seed": false,
+    "is_show_sapling": true,
+    "is_show_height": false,
+    "types": []
+  }
+},
+{
+  "model": "trees.treeplant",
+  "pk": 33,
+  "fields": {
+    "created_at": null,
+    "updated_at": "2021-02-09T12:00:38.988Z",
+    "category": 3,
+    "name": "\u0444\u0443\u043d\u0434\u0443\u043a",
+    "description": "",
+    "status": 1,
+    "is_show_sprouting": true,
+    "is_show_seed": false,
+    "is_show_sapling": true,
+    "is_show_height": false,
+    "types": []
+  }
+},
+{
+  "model": "trees.treeplant",
+  "pk": 34,
+  "fields": {
+    "created_at": null,
+    "updated_at": "2021-02-09T12:01:17.618Z",
+    "category": 4,
+    "name": "\u040e\u0440\u0438\u043a (\u0430\u0431\u0440\u0438\u043a\u043e\u0441)",
+    "description": "",
+    "status": 1,
+    "is_show_sprouting": true,
+    "is_show_seed": false,
+    "is_show_sapling": true,
+    "is_show_height": false,
+    "types": [
+      11
+    ]
+  }
+},
+{
+  "model": "trees.treeplant",
+  "pk": 35,
+  "fields": {
+    "created_at": null,
+    "updated_at": "2021-02-09T12:01:23.961Z",
+    "category": 4,
+    "name": "\u0448\u0430\u0444\u0442\u043e\u043b\u0438",
+    "description": "",
+    "status": 1,
+    "is_show_sprouting": true,
+    "is_show_seed": false,
+    "is_show_sapling": true,
+    "is_show_height": false,
+    "types": [
+      11
+    ]
+  }
+},
+{
+  "model": "trees.treeplant",
+  "pk": 36,
+  "fields": {
+    "created_at": null,
+    "updated_at": "2021-02-09T12:01:29.417Z",
+    "category": 4,
+    "name": "\u043e\u043b\u0447\u0430 (\u0432\u0438\u0448\u043d\u0435\u0432\u044b\u0439)",
+    "description": "",
+    "status": 1,
+    "is_show_sprouting": true,
+    "is_show_seed": false,
+    "is_show_sapling": true,
+    "is_show_height": false,
+    "types": [
+      11
+    ]
+  }
+},
+{
+  "model": "trees.treeplant",
+  "pk": 37,
+  "fields": {
+    "created_at": null,
+    "updated_at": "2021-02-09T12:02:07.209Z",
+    "category": 4,
+    "name": "\u041e\u043b\u0445\u045e\u0440\u0438(\u049b\u043e\u0440\u0430\u043b\u0438)",
+    "description": "",
+    "status": 1,
+    "is_show_sprouting": true,
+    "is_show_seed": false,
+    "is_show_sapling": true,
+    "is_show_height": false,
+    "types": [
+      11
+    ]
+  }
+},
+{
+  "model": "trees.treeplant",
+  "pk": 38,
+  "fields": {
+    "created_at": null,
+    "updated_at": "2021-02-09T12:02:12.000Z",
+    "category": 4,
+    "name": "\u043f\u0438\u0441\u0441\u0430\u0440\u0434\u0430 \u043e\u043b\u0445\u045e\u0440\u0438",
+    "description": "",
+    "status": 1,
+    "is_show_sprouting": true,
+    "is_show_seed": false,
+    "is_show_sapling": true,
+    "is_show_height": false,
+    "types": [
+      11
+    ]
+  }
+},
+{
+  "model": "trees.treeplant",
+  "pk": 39,
+  "fields": {
+    "created_at": null,
+    "updated_at": "2021-02-09T12:02:16.926Z",
+    "category": 4,
+    "name": "\u0433\u0438\u043b\u043e\u0441  (\u0432\u044b\u0448\u043d\u044f)",
+    "description": "",
+    "status": 1,
+    "is_show_sprouting": true,
+    "is_show_seed": false,
+    "is_show_sapling": true,
+    "is_show_height": false,
+    "types": [
+      11
+    ]
+  }
+},
+{
+  "model": "trees.treeplant",
+  "pk": 40,
+  "fields": {
+    "created_at": null,
+    "updated_at": "2021-02-09T12:02:24.416Z",
+    "category": 4,
+    "name": "\u043c\u0430\u0433\u0430\u043b\u0435\u043f\u043a\u0430 \u0433\u0438\u043b\u043e\u0441",
+    "description": "",
+    "status": 1,
+    "is_show_sprouting": true,
+    "is_show_seed": false,
+    "is_show_sapling": true,
+    "is_show_height": false,
+    "types": []
+  }
+},
+{
+  "model": "trees.treeplant",
+  "pk": 41,
+  "fields": {
+    "created_at": null,
+    "updated_at": "2021-02-09T13:06:52.857Z",
+    "category": 4,
+    "name": "\u0445\u0443\u0440\u043c\u043e",
+    "description": "",
+    "status": 1,
+    "is_show_sprouting": true,
+    "is_show_seed": true,
+    "is_show_sapling": true,
+    "is_show_height": true,
+    "types": [
+      10
+    ]
+  }
+},
+{
+  "model": "trees.treeplant",
+  "pk": 42,
+  "fields": {
+    "created_at": null,
+    "updated_at": "2021-02-09T13:07:12.150Z",
+    "category": 4,
+    "name": "\u043e\u043b\u043c\u0430",
+    "description": "",
+    "status": 1,
+    "is_show_sprouting": true,
+    "is_show_seed": true,
+    "is_show_sapling": true,
+    "is_show_height": true,
+    "types": [
+      10
+    ]
+  }
+},
+{
+  "model": "trees.treeplant",
+  "pk": 43,
+  "fields": {
+    "created_at": null,
+    "updated_at": "2021-02-09T12:02:45.795Z",
+    "category": 4,
+    "name": "\u0431\u0435\u0445\u0438",
+    "description": "",
+    "status": 1,
+    "is_show_sprouting": true,
+    "is_show_seed": false,
+    "is_show_sapling": true,
+    "is_show_height": false,
+    "types": [
+      10
+    ]
+  }
+},
+{
+  "model": "trees.treeplant",
+  "pk": 44,
+  "fields": {
+    "created_at": null,
+    "updated_at": "2021-02-09T12:02:58.931Z",
+    "category": 4,
+    "name": "\u043d\u043e\u043a (\u043c\u0443\u0440\u0443\u0442)",
+    "description": "",
+    "status": 1,
+    "is_show_sprouting": true,
+    "is_show_seed": false,
+    "is_show_sapling": true,
+    "is_show_height": false,
+    "types": [
+      10
+    ]
+  }
+},
+{
+  "model": "trees.treeplant",
+  "pk": 45,
+  "fields": {
+    "created_at": null,
+    "updated_at": "2021-02-09T10:56:12.206Z",
+    "category": 4,
+    "name": "\u0443\u0437\u0443\u043c (\u0442\u043e\u043a)",
+    "description": "",
+    "status": 1,
+    "is_show_sprouting": false,
+    "is_show_seed": false,
+    "is_show_sapling": true,
+    "is_show_height": false,
+    "types": [
+      12
+    ]
+  }
+},
+{
+  "model": "trees.treeplant",
+  "pk": 46,
+  "fields": {
+    "created_at": null,
+    "updated_at": "2021-02-09T12:03:52.059Z",
+    "category": 4,
+    "name": "\u0430\u043d\u043e\u0440",
+    "description": "",
+    "status": 1,
+    "is_show_sprouting": true,
+    "is_show_seed": false,
+    "is_show_sapling": true,
+    "is_show_height": false,
+    "types": [
+      10
+    ]
+  }
+},
+{
+  "model": "trees.treeplant",
+  "pk": 47,
+  "fields": {
+    "created_at": null,
+    "updated_at": "2021-02-09T10:55:57.871Z",
+    "category": 4,
+    "name": "\u0430\u043d\u0436\u0438\u0440",
+    "description": "",
+    "status": 1,
+    "is_show_sprouting": false,
+    "is_show_seed": false,
+    "is_show_sapling": true,
+    "is_show_height": false,
+    "types": [
+      10
+    ]
+  }
+},
+{
+  "model": "trees.treeplant",
+  "pk": 48,
+  "fields": {
+    "created_at": null,
+    "updated_at": "2021-02-09T12:04:00.853Z",
+    "category": 4,
+    "name": "\u049b\u0438\u0437\u0438\u043b \u0434\u045e\u043b\u0430\u043d\u0430",
+    "description": "",
+    "status": 1,
+    "is_show_sprouting": true,
+    "is_show_seed": false,
+    "is_show_sapling": true,
+    "is_show_height": false,
+    "types": []
+  }
+},
+{
+  "model": "trees.treeplant",
+  "pk": 49,
+  "fields": {
+    "created_at": null,
+    "updated_at": "2021-02-09T13:05:24.316Z",
+    "category": 4,
+    "name": "\u0442\u0443\u0442",
+    "description": "",
+    "status": 1,
+    "is_show_sprouting": true,
+    "is_show_seed": false,
+    "is_show_sapling": true,
+    "is_show_height": true,
+    "types": []
+  }
+},
+{
+  "model": "trees.treeplant",
+  "pk": 50,
+  "fields": {
+    "created_at": null,
+    "updated_at": "2021-02-09T12:04:25.873Z",
+    "category": 4,
+    "name": "\u0436\u0438\u0439\u0434\u0430 (\u043b\u043e\u0445)",
+    "description": "",
+    "status": 1,
+    "is_show_sprouting": true,
+    "is_show_seed": false,
+    "is_show_sapling": true,
+    "is_show_height": false,
+    "types": []
+  }
+},
+{
+  "model": "trees.treeplant",
+  "pk": 51,
+  "fields": {
+    "created_at": null,
+    "updated_at": "2021-02-09T10:55:32.928Z",
+    "category": 4,
+    "name": "\u043d\u043e\u043d \u0436\u0438\u0439\u0434\u0430",
+    "description": "",
+    "status": 1,
+    "is_show_sprouting": false,
+    "is_show_seed": false,
+    "is_show_sapling": true,
+    "is_show_height": false,
+    "types": []
+  }
+},
+{
+  "model": "trees.treeplant",
+  "pk": 52,
+  "fields": {
+    "created_at": null,
+    "updated_at": "2021-02-09T12:04:40.981Z",
+    "category": 4,
+    "name": "\u0447\u0438\u043b\u043e\u043d\u0436\u0438\u0439\u0434\u0430 (\u0443\u043d\u0430\u0431\u0438)",
+    "description": "",
+    "status": 1,
+    "is_show_sprouting": true,
+    "is_show_seed": false,
+    "is_show_sapling": true,
+    "is_show_height": false,
+    "types": []
+  }
+},
+{
+  "model": "trees.treeplant",
+  "pk": 53,
+  "fields": {
+    "created_at": null,
+    "updated_at": "2021-02-09T13:06:11.685Z",
+    "category": 4,
+    "name": "\u041f\u0430\u043b\u043c\u0430",
+    "description": "",
+    "status": 1,
+    "is_show_sprouting": false,
+    "is_show_seed": false,
+    "is_show_sapling": true,
+    "is_show_height": true,
+    "types": []
+  }
+},
+{
+  "model": "trees.treeplant",
+  "pk": 54,
+  "fields": {
+    "created_at": null,
+    "updated_at": "2021-02-09T13:06:36.998Z",
+    "category": 4,
+    "name": "\u043b\u0438\u043c\u043e\u043d",
+    "description": "",
+    "status": 1,
+    "is_show_sprouting": true,
+    "is_show_seed": false,
+    "is_show_sapling": true,
+    "is_show_height": true,
+    "types": []
+  }
+},
+{
+  "model": "trees.treeplant",
+  "pk": 55,
+  "fields": {
+    "created_at": null,
+    "updated_at": "2021-02-09T12:06:16.000Z",
+    "category": 5,
+    "name": "\u0431\u0430\u0433\u0440\u044f\u043d\u043d\u0438\u043a",
+    "description": "",
+    "status": 1,
+    "is_show_sprouting": true,
+    "is_show_seed": false,
+    "is_show_sapling": true,
+    "is_show_height": false,
+    "types": []
+  }
+},
+{
+  "model": "trees.treeplant",
+  "pk": 56,
+  "fields": {
+    "created_at": null,
+    "updated_at": "2021-02-09T12:06:38.788Z",
+    "category": 5,
+    "name": "\u044d\u043c\u0430\u043d \u0447\u0435\u0440\u0435\u0448\u0447 (\u0434\u0443\u0431)",
+    "description": "",
+    "status": 1,
+    "is_show_sprouting": true,
+    "is_show_seed": false,
+    "is_show_sapling": true,
+    "is_show_height": false,
+    "types": []
+  }
+},
+{
+  "model": "trees.treeplant",
+  "pk": 57,
+  "fields": {
+    "created_at": null,
+    "updated_at": "2021-02-09T12:06:47.390Z",
+    "category": 5,
+    "name": "\u044d\u043c\u0430\u043d \u043f\u0438\u0440\u0430\u043c\u0438\u0434 (\u0434\u0443\u0431)",
+    "description": "",
+    "status": 1,
+    "is_show_sprouting": true,
+    "is_show_seed": false,
+    "is_show_sapling": true,
+    "is_show_height": false,
+    "types": []
+  }
+},
+{
+  "model": "trees.treeplant",
+  "pk": 58,
+  "fields": {
+    "created_at": null,
+    "updated_at": "2021-02-09T13:06:43.736Z",
+    "category": 5,
+    "name": "\u043a\u0430\u0448\u0442\u0430\u043d",
+    "description": "",
+    "status": 1,
+    "is_show_sprouting": true,
+    "is_show_seed": false,
+    "is_show_sapling": true,
+    "is_show_height": true,
+    "types": []
+  }
+},
+{
+  "model": "trees.treeplant",
+  "pk": 59,
+  "fields": {
+    "created_at": null,
+    "updated_at": "2021-02-09T12:07:08.687Z",
+    "category": 5,
+    "name": "\u043a\u0430\u0442\u0430\u043b\u044c\u043f\u0430",
+    "description": "",
+    "status": 1,
+    "is_show_sprouting": true,
+    "is_show_seed": false,
+    "is_show_sapling": true,
+    "is_show_height": false,
+    "types": []
+  }
+},
+{
+  "model": "trees.treeplant",
+  "pk": 60,
+  "fields": {
+    "created_at": null,
+    "updated_at": "2021-02-09T12:07:28.797Z",
+    "category": 5,
+    "name": "\u0445\u0438\u043b\u043e \u043a\u0430\u0442\u0430\u043b\u043f\u0430",
+    "description": "",
+    "status": 1,
+    "is_show_sprouting": true,
+    "is_show_seed": false,
+    "is_show_sapling": true,
+    "is_show_height": false,
+    "types": []
+  }
+},
+{
+  "model": "trees.treeplant",
+  "pk": 61,
+  "fields": {
+    "created_at": null,
+    "updated_at": "2021-02-09T13:05:01.268Z",
+    "category": 5,
+    "name": "\u043e\u049b \u049b\u0430\u0439\u0438\u043d (\u0431\u0435\u0440\u0451\u0437\u0430)",
+    "description": "",
+    "status": 1,
+    "is_show_sprouting": true,
+    "is_show_seed": false,
+    "is_show_sapling": true,
+    "is_show_height": true,
+    "types": []
+  }
+},
+{
+  "model": "trees.treeplant",
+  "pk": 62,
+  "fields": {
+    "created_at": null,
+    "updated_at": "2021-02-09T12:08:33.313Z",
+    "category": 5,
+    "name": "\u043a\u043b\u0435\u043d (\u0417\u0430\u0440\u0430\u043d\u0433)",
+    "description": "",
+    "status": 1,
+    "is_show_sprouting": true,
+    "is_show_seed": false,
+    "is_show_sapling": true,
+    "is_show_height": false,
+    "types": []
+  }
+},
+{
+  "model": "trees.treeplant",
+  "pk": 63,
+  "fields": {
+    "created_at": null,
+    "updated_at": "2021-02-09T12:08:48.444Z",
+    "category": 5,
+    "name": "\u0430\u043a\u0430\u0446\u0438\u044f \u0448\u0435\u043b\u043a.",
+    "description": "",
+    "status": 1,
+    "is_show_sprouting": true,
+    "is_show_seed": false,
+    "is_show_sapling": true,
+    "is_show_height": false,
+    "types": []
+  }
+},
+{
+  "model": "trees.treeplant",
+  "pk": 64,
+  "fields": {
+    "created_at": null,
+    "updated_at": "2021-02-09T12:08:56.128Z",
+    "category": 5,
+    "name": "\u0430\u043a\u0430\u0446\u0438\u044f",
+    "description": "",
+    "status": 1,
+    "is_show_sprouting": true,
+    "is_show_seed": false,
+    "is_show_sapling": true,
+    "is_show_height": false,
+    "types": []
+  }
+},
+{
+  "model": "trees.treeplant",
+  "pk": 65,
+  "fields": {
+    "created_at": null,
+    "updated_at": "2021-02-09T12:09:24.086Z",
+    "category": 5,
+    "name": "\u043c\u0430\u043a\u043b\u044e\u0440\u0430",
+    "description": "",
+    "status": 1,
+    "is_show_sprouting": true,
+    "is_show_seed": false,
+    "is_show_sapling": true,
+    "is_show_height": false,
+    "types": []
+  }
+},
+{
+  "model": "trees.treeplant",
+  "pk": 66,
+  "fields": {
+    "created_at": null,
+    "updated_at": "2021-02-09T12:09:30.185Z",
+    "category": 5,
+    "name": "\u043b\u0438\u043f\u0430",
+    "description": "",
+    "status": 1,
+    "is_show_sprouting": true,
+    "is_show_seed": false,
+    "is_show_sapling": true,
+    "is_show_height": false,
+    "types": []
+  }
+},
+{
+  "model": "trees.treeplant",
+  "pk": 67,
+  "fields": {
+    "created_at": null,
+    "updated_at": "2021-02-09T12:09:43.150Z",
+    "category": 5,
+    "name": "\u041a\u043e\u0433\u043e\u0437 \u0434\u0430\u0440\u0430\u0445\u0442",
+    "description": "",
+    "status": 1,
+    "is_show_sprouting": true,
+    "is_show_seed": false,
+    "is_show_sapling": true,
+    "is_show_height": false,
+    "types": []
+  }
+},
+{
+  "model": "trees.treeplant",
+  "pk": 68,
+  "fields": {
+    "created_at": null,
+    "updated_at": "2021-02-09T12:09:49.395Z",
+    "category": 5,
+    "name": "\u0441\u043e\u0432\u0443\u043d \u0434\u0430\u0440\u0430\u0445\u0442\u0438",
+    "description": "",
+    "status": 1,
+    "is_show_sprouting": true,
+    "is_show_seed": false,
+    "is_show_sapling": true,
+    "is_show_height": false,
+    "types": []
+  }
+},
+{
+  "model": "trees.treeplant",
+  "pk": 69,
+  "fields": {
+    "created_at": null,
+    "updated_at": "2021-02-09T10:59:14.977Z",
+    "category": 5,
+    "name": "\u043c\u0430\u0433\u043d\u043e\u043b\u0438\u044f",
+    "description": "",
+    "status": 1,
+    "is_show_sprouting": false,
+    "is_show_seed": false,
+    "is_show_sapling": true,
+    "is_show_height": false,
+    "types": []
+  }
+},
+{
+  "model": "trees.treeplant",
+  "pk": 70,
+  "fields": {
+    "created_at": null,
+    "updated_at": "2021-02-09T12:10:14.132Z",
+    "category": 5,
+    "name": "\u043b\u043e\u043b\u0430 \u0434\u0430\u0440\u0430\u0445\u0442\u0438",
+    "description": "",
+    "status": 1,
+    "is_show_sprouting": true,
+    "is_show_seed": false,
+    "is_show_sapling": true,
+    "is_show_height": false,
+    "types": []
+  }
+},
+{
+  "model": "trees.treeplant",
+  "pk": 71,
+  "fields": {
+    "created_at": null,
+    "updated_at": "2021-02-09T12:11:26.132Z",
+    "category": 6,
+    "name": "\u043d\u0430\u044a\u043c\u0430\u0442\u0430\u043a (\u0448\u0438\u043f\u043e\u0432\u043d\u0438\u043a)",
+    "description": "",
+    "status": 1,
+    "is_show_sprouting": true,
+    "is_show_seed": false,
+    "is_show_sapling": true,
+    "is_show_height": false,
+    "types": []
+  }
+},
+{
+  "model": "trees.treeplant",
+  "pk": 72,
+  "fields": {
+    "created_at": null,
+    "updated_at": "2021-02-09T12:11:30.305Z",
+    "category": 6,
+    "name": "\u0430\u043c\u043e\u0440\u0444\u0430",
+    "description": "",
+    "status": 1,
+    "is_show_sprouting": true,
+    "is_show_seed": false,
+    "is_show_sapling": true,
+    "is_show_height": false,
+    "types": []
+  }
+},
+{
+  "model": "trees.treeplant",
+  "pk": 73,
+  "fields": {
+    "created_at": null,
+    "updated_at": "2021-02-09T12:11:37.654Z",
+    "category": 6,
+    "name": "\u043b\u044e\u0433\u0443\u0441\u0442\u0440\u0443\u043c",
+    "description": "",
+    "status": 1,
+    "is_show_sprouting": true,
+    "is_show_seed": false,
+    "is_show_sapling": true,
+    "is_show_height": false,
+    "types": []
+  }
+},
+{
+  "model": "trees.treeplant",
+  "pk": 74,
+  "fields": {
+    "created_at": null,
+    "updated_at": "2021-02-09T12:11:47.598Z",
+    "category": 6,
+    "name": "\u0431\u0435\u0440\u0435\u0441\u043a\u043b\u0435\u0442",
+    "description": "",
+    "status": 1,
+    "is_show_sprouting": false,
+    "is_show_seed": false,
+    "is_show_sapling": true,
+    "is_show_height": false,
+    "types": []
+  }
+},
+{
+  "model": "trees.treeplant",
+  "pk": 75,
+  "fields": {
+    "created_at": null,
+    "updated_at": "2021-02-09T13:04:45.808Z",
+    "category": 6,
+    "name": "\u044f\u043f\u043e\u043d \u0431\u0435\u0445\u0438",
+    "description": "",
+    "status": 1,
+    "is_show_sprouting": true,
+    "is_show_seed": true,
+    "is_show_sapling": true,
+    "is_show_height": true,
+    "types": []
+  }
+},
+{
+  "model": "trees.treeplant",
+  "pk": 76,
+  "fields": {
+    "created_at": null,
+    "updated_at": "2021-02-09T12:12:02.033Z",
+    "category": 6,
+    "name": "\u043c\u0430\u0433\u043e\u043d\u0438\u044f",
+    "description": "",
+    "status": 1,
+    "is_show_sprouting": true,
+    "is_show_seed": false,
+    "is_show_sapling": true,
+    "is_show_height": false,
+    "types": []
+  }
+},
+{
+  "model": "trees.treeplant",
+  "pk": 77,
+  "fields": {
+    "created_at": null,
+    "updated_at": "2021-02-09T12:12:14.184Z",
+    "category": 6,
+    "name": "\u0444\u043e\u0440\u0437\u0438\u0446\u0438\u044f",
+    "description": "",
+    "status": 1,
+    "is_show_sprouting": true,
+    "is_show_seed": false,
+    "is_show_sapling": true,
+    "is_show_height": false,
+    "types": []
+  }
+},
+{
+  "model": "trees.treeplant",
+  "pk": 78,
+  "fields": {
+    "created_at": null,
+    "updated_at": "2021-02-09T12:12:26.942Z",
+    "category": 6,
+    "name": "\u0441\u0430\u043c\u0448\u0438\u0442 (\u0431\u0443\u043a\u0441\u0443\u0441)",
+    "description": "",
+    "status": 1,
+    "is_show_sprouting": true,
+    "is_show_seed": false,
+    "is_show_sapling": true,
+    "is_show_height": false,
+    "types": []
+  }
+},
+{
+  "model": "trees.treeplant",
+  "pk": 79,
+  "fields": {
+    "created_at": null,
+    "updated_at": "2021-02-09T12:12:33.013Z",
+    "category": 6,
+    "name": "\u0441\u0438\u0440\u0435\u043d\u044c",
+    "description": "",
+    "status": 1,
+    "is_show_sprouting": true,
+    "is_show_seed": false,
+    "is_show_sapling": true,
+    "is_show_height": false,
+    "types": []
+  }
+},
+{
+  "model": "trees.treeplant",
+  "pk": 80,
+  "fields": {
+    "created_at": null,
+    "updated_at": "2021-02-09T12:13:10.985Z",
+    "category": 6,
+    "name": "\u04b3\u0438\u043d\u0434 \u0441\u0438\u0440\u0435\u043d\u0438",
+    "description": "",
+    "status": 1,
+    "is_show_sprouting": true,
+    "is_show_seed": false,
+    "is_show_sapling": true,
+    "is_show_height": false,
+    "types": []
+  }
+},
+{
+  "model": "trees.treeplant",
+  "pk": 81,
+  "fields": {
+    "created_at": null,
+    "updated_at": "2021-02-09T12:13:17.008Z",
+    "category": 6,
+    "name": "\u0430\u0442\u0438\u0440\u0433\u0443\u043b",
+    "description": "",
+    "status": 1,
+    "is_show_sprouting": true,
+    "is_show_seed": false,
+    "is_show_sapling": true,
+    "is_show_height": false,
+    "types": []
+  }
+},
+{
+  "model": "trees.treeplant",
+  "pk": 82,
+  "fields": {
+    "created_at": null,
+    "updated_at": "2021-02-09T12:15:40.415Z",
+    "category": 6,
+    "name": "\u0441\u0443\u0440\u0438\u044f \u0430\u0442\u0438\u0440\u0433\u0443\u043b\u0438 (\u0433\u0438\u0431\u0438\u0441\u043a\u0443\u0441)",
+    "description": "",
+    "status": 1,
+    "is_show_sprouting": true,
+    "is_show_seed": false,
+    "is_show_sapling": true,
+    "is_show_height": false,
+    "types": []
+  }
+},
+{
+  "model": "trees.treeplant",
+  "pk": 83,
+  "fields": {
+    "created_at": null,
+    "updated_at": "2021-02-09T12:13:34.252Z",
+    "category": 6,
+    "name": "\u0446\u0438\u0437\u0430\u043b\u043f\u0438\u043d\u0438\u044f",
+    "description": "",
+    "status": 1,
+    "is_show_sprouting": true,
+    "is_show_seed": false,
+    "is_show_sapling": true,
+    "is_show_height": false,
+    "types": []
+  }
+},
+{
+  "model": "trees.treeplant",
+  "pk": 84,
+  "fields": {
+    "created_at": null,
+    "updated_at": "2021-02-09T11:05:18.376Z",
+    "category": 6,
+    "name": "\u043c\u0443\u0448\u043c\u0443\u043b\u0430",
+    "description": "",
+    "status": 1,
+    "is_show_sprouting": false,
+    "is_show_seed": false,
+    "is_show_sapling": true,
+    "is_show_height": false,
+    "types": []
+  }
+},
+{
+  "model": "trees.treeplant",
+  "pk": 85,
+  "fields": {
+    "created_at": null,
+    "updated_at": "2021-02-09T12:13:48.027Z",
+    "category": 6,
+    "name": "\u043e\u0431\u043b\u0435\u043f\u0438\u0445\u0430 (\u0447\u0430\u043a\u0430\u043d\u0434\u0430)",
+    "description": "",
+    "status": 1,
+    "is_show_sprouting": true,
+    "is_show_seed": false,
+    "is_show_sapling": true,
+    "is_show_height": false,
+    "types": []
+  }
+},
+{
+  "model": "trees.treeplant",
+  "pk": 86,
+  "fields": {
+    "created_at": null,
+    "updated_at": "2021-02-09T11:05:06.599Z",
+    "category": 6,
+    "name": "\u0434\u0440\u043e\u043a \u0438\u0441\u043f\u0430\u043d\u0441\u043a\u0438\u0439",
+    "description": "",
+    "status": 1,
+    "is_show_sprouting": false,
+    "is_show_seed": false,
+    "is_show_sapling": true,
+    "is_show_height": false,
+    "types": []
+  }
+},
+{
+  "model": "trees.treeplant",
+  "pk": 87,
+  "fields": {
+    "created_at": null,
+    "updated_at": "2021-02-09T12:14:05.397Z",
+    "category": 6,
+    "name": "\u0441\u0443\u043c\u0430\u0445",
+    "description": "",
+    "status": 1,
+    "is_show_sprouting": true,
+    "is_show_seed": false,
+    "is_show_sapling": true,
+    "is_show_height": false,
+    "types": []
+  }
+},
+{
+  "model": "trees.treeplant",
+  "pk": 88,
+  "fields": {
+    "created_at": null,
+    "updated_at": "2021-02-09T11:04:52.801Z",
+    "category": 6,
+    "name": "\u044e\u043a\u043a\u0430",
+    "description": "",
+    "status": 1,
+    "is_show_sprouting": false,
+    "is_show_seed": false,
+    "is_show_sapling": true,
+    "is_show_height": false,
+    "types": []
+  }
+},
+{
+  "model": "trees.treeplant",
+  "pk": 89,
+  "fields": {
+    "created_at": null,
+    "updated_at": "2021-02-09T13:03:35.785Z",
+    "category": 6,
+    "name": "\u0441\u043c\u043e\u0440\u043e\u0434\u0438\u043d\u0430",
+    "description": "",
+    "status": 1,
+    "is_show_sprouting": false,
+    "is_show_seed": false,
+    "is_show_sapling": true,
+    "is_show_height": true,
+    "types": []
+  }
+},
+{
+  "model": "trees.treeplant",
+  "pk": 90,
+  "fields": {
+    "created_at": null,
+    "updated_at": "2021-02-09T13:04:27.661Z",
+    "category": 6,
+    "name": "\u043c\u0430\u043b\u0438\u043d\u0430",
+    "description": "",
+    "status": 1,
+    "is_show_sprouting": true,
+    "is_show_seed": true,
+    "is_show_sapling": true,
+    "is_show_height": true,
+    "types": []
+  }
+},
+{
+  "model": "trees.treeplant",
+  "pk": 91,
+  "fields": {
+    "created_at": null,
+    "updated_at": "2021-02-09T11:04:34.697Z",
+    "category": 6,
+    "name": "\u0430\u0440\u0445\u0438\u0434\u0435\u044f",
+    "description": "",
+    "status": 1,
+    "is_show_sprouting": false,
+    "is_show_seed": false,
+    "is_show_sapling": true,
+    "is_show_height": false,
+    "types": []
+  }
+},
+{
+  "model": "trees.treeplant",
+  "pk": 92,
+  "fields": {
+    "created_at": null,
+    "updated_at": "2021-02-09T13:04:18.222Z",
+    "category": 6,
+    "name": "\u0440\u044f\u0431\u0438\u043d\u0430",
+    "description": "",
+    "status": 1,
+    "is_show_sprouting": true,
+    "is_show_seed": false,
+    "is_show_sapling": true,
+    "is_show_height": true,
+    "types": []
+  }
+},
+{
+  "model": "trees.treeplant",
+  "pk": 93,
+  "fields": {
+    "created_at": null,
+    "updated_at": "2021-02-09T13:04:09.347Z",
+    "category": 6,
+    "name": "\u0431\u0440\u044e\u0447\u0438\u043d\u0430",
+    "description": "",
+    "status": 1,
+    "is_show_sprouting": false,
+    "is_show_seed": false,
+    "is_show_sapling": true,
+    "is_show_height": true,
+    "types": []
+  }
+},
+{
+  "model": "trees.treeplant",
+  "pk": 94,
+  "fields": {
+    "created_at": null,
+    "updated_at": "2021-02-09T13:03:20.489Z",
+    "category": 6,
+    "name": "\u0411\u0443\u0437\u0438\u043d\u0430 \u0447\u0451\u0440\u043d\u0430\u044f",
+    "description": "",
+    "status": 1,
+    "is_show_sprouting": false,
+    "is_show_seed": false,
+    "is_show_sapling": true,
+    "is_show_height": true,
+    "types": []
+  }
+},
+{
+  "model": "trees.treeplant",
+  "pk": 95,
+  "fields": {
+    "created_at": null,
+    "updated_at": "2021-02-09T13:03:11.472Z",
+    "category": 6,
+    "name": "\u043f\u0438\u0440\u0430\u043a\u0430\u043d\u0442\u0430",
+    "description": "",
+    "status": 1,
+    "is_show_sprouting": false,
+    "is_show_seed": false,
+    "is_show_sapling": true,
+    "is_show_height": true,
+    "types": []
+  }
+},
+{
+  "model": "trees.treeplant",
+  "pk": 96,
+  "fields": {
+    "created_at": null,
+    "updated_at": "2021-02-09T13:03:05.783Z",
+    "category": 6,
+    "name": "\u0437\u0438\u0440\u043a",
+    "description": "",
+    "status": 1,
+    "is_show_sprouting": true,
+    "is_show_seed": false,
+    "is_show_sapling": true,
+    "is_show_height": true,
+    "types": []
+  }
+},
+{
+  "model": "trees.treeplant",
+  "pk": 97,
+  "fields": {
+    "created_at": "2021-02-06T10:27:39.671Z",
+    "updated_at": "2021-02-06T10:27:39.671Z",
+    "category": null,
+    "name": "\u0411\u0443\u0493\u0434\u043e\u0439",
+    "description": "",
+    "status": 1,
+    "is_show_sprouting": false,
+    "is_show_seed": false,
+    "is_show_sapling": false,
+    "is_show_height": false,
+    "types": [
+      1
+    ]
+  }
+},
+{
+  "model": "trees.treeplant",
+  "pk": 98,
+  "fields": {
+    "created_at": "2021-02-06T10:30:02.883Z",
+    "updated_at": "2021-02-06T10:30:02.883Z",
+    "category": null,
+    "name": "\u0410\u0440\u043f\u0430",
+    "description": "",
+    "status": 1,
+    "is_show_sprouting": false,
+    "is_show_seed": false,
+    "is_show_sapling": false,
+    "is_show_height": false,
+    "types": [
+      1
+    ]
+  }
+},
+{
+  "model": "trees.treeplant",
+  "pk": 100,
+  "fields": {
+    "created_at": "2021-02-06T10:30:35.514Z",
+    "updated_at": "2021-02-06T10:30:35.514Z",
+    "category": null,
+    "name": "\u0422\u0430\u0440\u0438\u0445",
+    "description": "",
+    "status": 1,
+    "is_show_sprouting": false,
+    "is_show_seed": false,
+    "is_show_sapling": false,
+    "is_show_height": false,
+    "types": [
+      1
+    ]
+  }
+},
+{
+  "model": "trees.treeplant",
+  "pk": 101,
+  "fields": {
+    "created_at": "2021-02-06T10:30:51.173Z",
+    "updated_at": "2021-02-06T10:30:51.173Z",
+    "category": null,
+    "name": "\u0428\u043e\u043b\u0438",
+    "description": "",
+    "status": 1,
+    "is_show_sprouting": false,
+    "is_show_seed": false,
+    "is_show_sapling": false,
+    "is_show_height": false,
+    "types": [
+      1
+    ]
+  }
+},
+{
+  "model": "trees.treeplant",
+  "pk": 102,
+  "fields": {
+    "created_at": "2021-02-06T10:31:04.858Z",
+    "updated_at": "2021-02-06T10:48:05.467Z",
+    "category": null,
+    "name": "\u0421\u0430\u0440\u0438\u043c\u0441\u043e\u049b \u043f\u0438\u0451\u0437",
+    "description": "",
+    "status": 1,
+    "is_show_sprouting": false,
+    "is_show_seed": false,
+    "is_show_sapling": false,
+    "is_show_height": false,
+    "types": [
+      2,
+      9
+    ]
+  }
+},
+{
+  "model": "trees.treeplant",
+  "pk": 103,
+  "fields": {
+    "created_at": "2021-02-06T10:31:14.880Z",
+    "updated_at": "2021-02-06T10:48:00.750Z",
+    "category": null,
+    "name": "\u041f\u0438\u0451\u0437",
+    "description": "",
+    "status": 1,
+    "is_show_sprouting": false,
+    "is_show_seed": false,
+    "is_show_sapling": false,
+    "is_show_height": false,
+    "types": [
+      2,
+      9
+    ]
+  }
+},
+{
+  "model": "trees.treeplant",
+  "pk": 104,
+  "fields": {
+    "created_at": "2021-02-06T10:31:27.404Z",
+    "updated_at": "2021-02-06T10:31:27.404Z",
+    "category": null,
+    "name": "\u0410\u0447\u0447\u0438\u049b \u049b\u0430\u043b\u0430\u043c\u043f\u0438\u0440",
+    "description": "",
+    "status": 1,
+    "is_show_sprouting": false,
+    "is_show_seed": false,
+    "is_show_sapling": false,
+    "is_show_height": false,
+    "types": [
+      2
+    ]
+  }
+},
+{
+  "model": "trees.treeplant",
+  "pk": 105,
+  "fields": {
+    "created_at": "2021-02-06T10:31:38.426Z",
+    "updated_at": "2021-02-06T10:43:44.542Z",
+    "category": null,
+    "name": "\u0411\u0430\u043b\u0493\u043e\u0440",
+    "description": "",
+    "status": 1,
+    "is_show_sprouting": false,
+    "is_show_seed": false,
+    "is_show_sapling": false,
+    "is_show_height": false,
+    "types": [
+      2,
+      9
+    ]
+  }
+},
+{
+  "model": "trees.treeplant",
+  "pk": 106,
+  "fields": {
+    "created_at": "2021-02-06T10:31:49.165Z",
+    "updated_at": "2021-02-06T10:31:49.165Z",
+    "category": null,
+    "name": "\u0411\u0430\u049b\u043b\u0430\u0436\u043e\u043d",
+    "description": "",
+    "status": 1,
+    "is_show_sprouting": false,
+    "is_show_seed": false,
+    "is_show_sapling": false,
+    "is_show_height": false,
+    "types": [
+      2
+    ]
+  }
+},
+{
+  "model": "trees.treeplant",
+  "pk": 107,
+  "fields": {
+    "created_at": "2021-02-06T10:32:04.032Z",
+    "updated_at": "2021-02-06T10:32:04.032Z",
+    "category": null,
+    "name": "\u041a\u0430\u0440\u0430\u043c",
+    "description": "",
+    "status": 1,
+    "is_show_sprouting": false,
+    "is_show_seed": false,
+    "is_show_sapling": false,
+    "is_show_height": false,
+    "types": [
+      2
+    ]
+  }
+},
+{
+  "model": "trees.treeplant",
+  "pk": 108,
+  "fields": {
+    "created_at": "2021-02-06T10:32:13.414Z",
+    "updated_at": "2021-02-06T10:32:13.414Z",
+    "category": null,
+    "name": "\u041a\u0430\u0440\u0442\u043e\u0448\u043a\u0430",
+    "description": "",
+    "status": 1,
+    "is_show_sprouting": false,
+    "is_show_seed": false,
+    "is_show_sapling": false,
+    "is_show_height": false,
+    "types": [
+      2
+    ]
+  }
+},
+{
+  "model": "trees.treeplant",
+  "pk": 109,
+  "fields": {
+    "created_at": "2021-02-06T10:32:25.880Z",
+    "updated_at": "2021-02-06T10:46:14.611Z",
+    "category": null,
+    "name": "\u0421\u0430\u0431\u0437\u0438",
+    "description": "",
+    "status": 1,
+    "is_show_sprouting": false,
+    "is_show_seed": false,
+    "is_show_sapling": false,
+    "is_show_height": false,
+    "types": [
+      2,
+      9
+    ]
+  }
+},
+{
+  "model": "trees.treeplant",
+  "pk": 110,
+  "fields": {
+    "created_at": "2021-02-06T10:32:35.768Z",
+    "updated_at": "2021-02-06T10:44:53.075Z",
+    "category": null,
+    "name": "\u041f\u0430\u043c\u0438\u0434\u043e\u0440",
+    "description": "",
+    "status": 1,
+    "is_show_sprouting": false,
+    "is_show_seed": false,
+    "is_show_sapling": false,
+    "is_show_height": false,
+    "types": [
+      2,
+      9
+    ]
+  }
+},
+{
+  "model": "trees.treeplant",
+  "pk": 111,
+  "fields": {
+    "created_at": "2021-02-06T10:32:44.609Z",
+    "updated_at": "2021-02-06T10:44:41.046Z",
+    "category": null,
+    "name": "\u0411\u043e\u0434\u0440\u0438\u043d\u0433",
+    "description": "",
+    "status": 1,
+    "is_show_sprouting": false,
+    "is_show_seed": false,
+    "is_show_sapling": false,
+    "is_show_height": false,
+    "types": [
+      2,
+      9
+    ]
+  }
+},
+{
+  "model": "trees.treeplant",
+  "pk": 112,
+  "fields": {
+    "created_at": "2021-02-06T10:32:54.313Z",
+    "updated_at": "2021-02-06T10:45:13.591Z",
+    "category": null,
+    "name": "\u049a\u0438\u0437\u0438\u043b \u043b\u0430\u0432\u043b\u0430\u0433\u0438",
+    "description": "",
+    "status": 1,
+    "is_show_sprouting": false,
+    "is_show_seed": false,
+    "is_show_sapling": false,
+    "is_show_height": false,
+    "types": [
+      2,
+      9
+    ]
+  }
+},
+{
+  "model": "trees.treeplant",
+  "pk": 113,
+  "fields": {
+    "created_at": "2021-02-06T10:33:32.104Z",
+    "updated_at": "2021-02-06T10:33:32.104Z",
+    "category": null,
+    "name": "\u0422\u0443\u0440\u043f",
+    "description": "",
+    "status": 1,
+    "is_show_sprouting": false,
+    "is_show_seed": false,
+    "is_show_sapling": false,
+    "is_show_height": false,
+    "types": [
+      2
+    ]
+  }
+},
+{
+  "model": "trees.treeplant",
+  "pk": 114,
+  "fields": {
+    "created_at": "2021-02-06T10:33:43.444Z",
+    "updated_at": "2021-02-06T10:46:01.696Z",
+    "category": null,
+    "name": "\u0428\u043e\u043b\u0493\u043e\u043c",
+    "description": "",
+    "status": 1,
+    "is_show_sprouting": false,
+    "is_show_seed": false,
+    "is_show_sapling": false,
+    "is_show_height": false,
+    "types": [
+      2,
+      9
+    ]
+  }
+},
+{
+  "model": "trees.treeplant",
+  "pk": 115,
+  "fields": {
+    "created_at": "2021-02-06T10:33:51.595Z",
+    "updated_at": "2021-02-06T10:33:51.595Z",
+    "category": null,
+    "name": "\u0420\u0435\u0434\u0438\u0441\u043a\u0430",
+    "description": "",
+    "status": 1,
+    "is_show_sprouting": false,
+    "is_show_seed": false,
+    "is_show_sapling": false,
+    "is_show_height": false,
+    "types": [
+      2
+    ]
+  }
+},
+{
+  "model": "trees.treeplant",
+  "pk": 116,
+  "fields": {
+    "created_at": "2021-02-06T10:33:59.811Z",
+    "updated_at": "2021-02-06T10:33:59.811Z",
+    "category": null,
+    "name": "\u041a\u045e\u043a\u0430\u0442",
+    "description": "",
+    "status": 1,
+    "is_show_sprouting": false,
+    "is_show_seed": false,
+    "is_show_sapling": false,
+    "is_show_height": false,
+    "types": [
+      2
+    ]
+  }
+},
+{
+  "model": "trees.treeplant",
+  "pk": 117,
+  "fields": {
+    "created_at": "2021-02-06T10:34:12.627Z",
+    "updated_at": "2021-02-06T10:34:12.627Z",
+    "category": null,
+    "name": "\u0422\u0430\u0440\u0432\u0443\u0437",
+    "description": "",
+    "status": 1,
+    "is_show_sprouting": false,
+    "is_show_seed": false,
+    "is_show_sapling": false,
+    "is_show_height": false,
+    "types": [
+      3
+    ]
+  }
+},
+{
+  "model": "trees.treeplant",
+  "pk": 118,
+  "fields": {
+    "created_at": "2021-02-06T10:34:20.739Z",
+    "updated_at": "2021-02-06T10:34:20.739Z",
+    "category": null,
+    "name": "\u049a\u043e\u0432\u0443\u043d",
+    "description": "",
+    "status": 1,
+    "is_show_sprouting": false,
+    "is_show_seed": false,
+    "is_show_sapling": false,
+    "is_show_height": false,
+    "types": [
+      3
+    ]
+  }
+},
+{
+  "model": "trees.treeplant",
+  "pk": 119,
+  "fields": {
+    "created_at": "2021-02-06T10:34:33.229Z",
+    "updated_at": "2021-02-06T10:34:33.229Z",
+    "category": null,
+    "name": "\u041e\u0448\u049b\u043e\u0432\u043e\u049b",
+    "description": "",
+    "status": 1,
+    "is_show_sprouting": false,
+    "is_show_seed": false,
+    "is_show_sapling": false,
+    "is_show_height": false,
+    "types": [
+      3
+    ]
+  }
+},
+{
+  "model": "trees.treeplant",
+  "pk": 120,
+  "fields": {
+    "created_at": "2021-02-06T10:34:47.269Z",
+    "updated_at": "2021-02-06T10:34:47.269Z",
+    "category": null,
+    "name": "\u041f\u0430\u0445\u0442\u0430",
+    "description": "",
+    "status": 1,
+    "is_show_sprouting": false,
+    "is_show_seed": false,
+    "is_show_sapling": false,
+    "is_show_height": false,
+    "types": [
+      4
+    ]
+  }
+},
+{
+  "model": "trees.treeplant",
+  "pk": 121,
+  "fields": {
+    "created_at": "2021-02-06T10:34:56.246Z",
+    "updated_at": "2021-02-06T10:34:56.246Z",
+    "category": null,
+    "name": "\u0421\u0443\u043f\u0443\u0440\u0433\u0438",
+    "description": "",
+    "status": 1,
+    "is_show_sprouting": false,
+    "is_show_seed": false,
+    "is_show_sapling": false,
+    "is_show_height": false,
+    "types": [
+      4
+    ]
+  }
+},
+{
+  "model": "trees.treeplant",
+  "pk": 122,
+  "fields": {
+    "created_at": "2021-02-06T10:35:36.438Z",
+    "updated_at": "2021-02-06T10:35:36.438Z",
+    "category": null,
+    "name": "\u041c\u0430\u0445\u0441\u0430\u0440",
+    "description": "",
+    "status": 1,
+    "is_show_sprouting": false,
+    "is_show_seed": false,
+    "is_show_sapling": false,
+    "is_show_height": false,
+    "types": [
+      5
+    ]
+  }
+},
+{
+  "model": "trees.treeplant",
+  "pk": 123,
+  "fields": {
+    "created_at": "2021-02-06T10:35:43.831Z",
+    "updated_at": "2021-02-06T10:35:43.831Z",
+    "category": null,
+    "name": "\u041a\u0443\u043d\u0436\u0443\u0442",
+    "description": "",
+    "status": 1,
+    "is_show_sprouting": false,
+    "is_show_seed": false,
+    "is_show_sapling": false,
+    "is_show_height": false,
+    "types": [
+      5
+    ]
+  }
+},
+{
+  "model": "trees.treeplant",
+  "pk": 124,
+  "fields": {
+    "created_at": "2021-02-06T10:35:51.032Z",
+    "updated_at": "2021-02-06T10:35:51.032Z",
+    "category": null,
+    "name": "\u0421\u043e\u044f",
+    "description": "",
+    "status": 1,
+    "is_show_sprouting": false,
+    "is_show_seed": false,
+    "is_show_sapling": false,
+    "is_show_height": false,
+    "types": [
+      5
+    ]
+  }
+},
+{
+  "model": "trees.treeplant",
+  "pk": 125,
+  "fields": {
+    "created_at": "2021-02-06T10:35:59.905Z",
+    "updated_at": "2021-02-06T10:41:56.591Z",
+    "category": null,
+    "name": "\u0415\u0440 \u0451\u043d\u0493\u043e\u049b",
+    "description": "",
+    "status": 1,
+    "is_show_sprouting": false,
+    "is_show_seed": false,
+    "is_show_sapling": false,
+    "is_show_height": false,
+    "types": [
+      5,
+      8
+    ]
+  }
+},
+{
+  "model": "trees.treeplant",
+  "pk": 126,
+  "fields": {
+    "created_at": "2021-02-06T10:36:09.584Z",
+    "updated_at": "2021-02-06T10:36:09.584Z",
+    "category": null,
+    "name": "\u041a\u0443\u043d\u0433\u0430\u0431\u043e\u049b\u0430\u0440",
+    "description": "",
+    "status": 1,
+    "is_show_sprouting": false,
+    "is_show_seed": false,
+    "is_show_sapling": false,
+    "is_show_height": false,
+    "types": [
+      5
+    ]
+  }
+},
+{
+  "model": "trees.treeplant",
+  "pk": 127,
+  "fields": {
+    "created_at": "2021-02-06T10:36:21.191Z",
+    "updated_at": "2021-02-06T10:36:21.191Z",
+    "category": null,
+    "name": "\u0417\u0438\u0493\u0438\u0440",
+    "description": "",
+    "status": 1,
+    "is_show_sprouting": false,
+    "is_show_seed": false,
+    "is_show_sapling": false,
+    "is_show_height": false,
+    "types": [
+      5
+    ]
+  }
+},
+{
+  "model": "trees.treeplant",
+  "pk": 128,
+  "fields": {
+    "created_at": "2021-02-06T10:36:33.218Z",
+    "updated_at": "2021-02-06T10:39:53.618Z",
+    "category": null,
+    "name": "\u041d\u0443\u0445\u0430\u0442",
+    "description": "",
+    "status": 1,
+    "is_show_sprouting": false,
+    "is_show_seed": false,
+    "is_show_sapling": false,
+    "is_show_height": false,
+    "types": [
+      6,
+      8
+    ]
+  }
+},
+{
+  "model": "trees.treeplant",
+  "pk": 129,
+  "fields": {
+    "created_at": "2021-02-06T10:36:44.128Z",
+    "updated_at": "2021-02-06T10:40:58.973Z",
+    "category": null,
+    "name": "\u041c\u043e\u0448",
+    "description": "",
+    "status": 1,
+    "is_show_sprouting": false,
+    "is_show_seed": false,
+    "is_show_sapling": false,
+    "is_show_height": false,
+    "types": [
+      8,
+      6
+    ]
+  }
+},
+{
+  "model": "trees.treeplant",
+  "pk": 130,
+  "fields": {
+    "created_at": "2021-02-06T10:36:57.962Z",
+    "updated_at": "2021-02-06T10:42:15.408Z",
+    "category": null,
+    "name": "\u041b\u043e\u0432\u0438\u044f",
+    "description": "",
+    "status": 1,
+    "is_show_sprouting": false,
+    "is_show_seed": false,
+    "is_show_sapling": false,
+    "is_show_height": false,
+    "types": [
+      6,
+      8
+    ]
+  }
+},
+{
+  "model": "trees.treeplant",
+  "pk": 131,
+  "fields": {
+    "created_at": "2021-02-06T10:37:06.161Z",
+    "updated_at": "2021-02-06T10:37:06.161Z",
+    "category": null,
+    "name": "\u049a\u0438\u0437\u0438\u043b \u043b\u043e\u0432\u0438\u044f",
+    "description": "",
+    "status": 1,
+    "is_show_sprouting": false,
+    "is_show_seed": false,
+    "is_show_sapling": false,
+    "is_show_height": false,
+    "types": [
+      6
+    ]
+  }
+},
+{
+  "model": "trees.treeplant",
+  "pk": 132,
+  "fields": {
+    "created_at": "2021-02-06T10:37:46.706Z",
+    "updated_at": "2021-02-06T10:47:05.182Z",
+    "category": null,
+    "name": "\u041c\u0430\u043a\u043a\u0430\u0436\u045e\u0445\u043e\u0440\u0438",
+    "description": "",
+    "status": 1,
+    "is_show_sprouting": false,
+    "is_show_seed": false,
+    "is_show_sapling": false,
+    "is_show_height": false,
+    "types": [
+      7,
+      8,
+      1
+    ]
+  }
+},
+{
+  "model": "trees.treeplant",
+  "pk": 133,
+  "fields": {
+    "created_at": "2021-02-06T10:38:04.651Z",
+    "updated_at": "2021-02-06T10:38:04.651Z",
+    "category": null,
+    "name": "\u0411\u0435\u0434\u0430",
+    "description": "",
+    "status": 1,
+    "is_show_sprouting": false,
+    "is_show_seed": false,
+    "is_show_sapling": false,
+    "is_show_height": false,
+    "types": [
+      7
+    ]
+  }
+},
+{
+  "model": "trees.treeplant",
+  "pk": 134,
+  "fields": {
+    "created_at": "2021-02-06T10:38:12.683Z",
+    "updated_at": "2021-02-06T10:38:12.683Z",
+    "category": null,
+    "name": "\u0423\u0440\u0443\u0433\u043b\u0438\u043a \u0431\u0435\u0434\u0430",
+    "description": "",
+    "status": 1,
+    "is_show_sprouting": false,
+    "is_show_seed": false,
+    "is_show_sapling": false,
+    "is_show_height": false,
+    "types": [
+      7
+    ]
+  }
+},
+{
+  "model": "trees.treeplant",
+  "pk": 135,
+  "fields": {
+    "created_at": "2021-02-06T10:38:30.246Z",
+    "updated_at": "2021-02-06T10:38:30.246Z",
+    "category": null,
+    "name": "\u0421\u043e\u043c\u043e\u043d, \u043f\u0440\u0435\u0441\u0441",
+    "description": "",
+    "status": 1,
+    "is_show_sprouting": false,
+    "is_show_seed": false,
+    "is_show_sapling": false,
+    "is_show_height": false,
+    "types": [
+      7
+    ]
+  }
+},
+{
+  "model": "trees.treeplant",
+  "pk": 136,
+  "fields": {
+    "created_at": "2021-02-06T10:45:46.181Z",
+    "updated_at": "2021-02-06T10:45:46.181Z",
+    "category": null,
+    "name": "\u0422\u0440\u0443\u043f",
+    "description": "",
+    "status": 1,
+    "is_show_sprouting": false,
+    "is_show_seed": false,
+    "is_show_sapling": false,
+    "is_show_height": false,
+    "types": [
+      9,
+      2
+    ]
+  }
+}
+]

@@ -1,0 +1,349 @@
+{% extends "layouts/base.html" %}
+{% load i18n %}
+{% block title %} {% trans 'report title title' %} {% endblock %}
+
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}
+    <style>
+        ._title-name {
+            width: 30vw;
+            position: absolute;
+            font-size: 15px;
+            padding-top: .3rem;
+        }
+        #finance{
+            display: block;
+            position: relative;
+        }
+        .fixed-add-btn{
+            position: fixed;
+            top:50%;
+            left: 85%;
+        }
+        .report-cell {
+            height: 20px;
+            display: block;
+            margin-top: 2.5rem;
+            font-weight: 600;
+        }
+        ._buttons {
+            top: 75%;
+            left: 85%;
+            width: auto;
+            position: fixed;
+        }
+        @media only screen and (max-width: 600px) {
+            ._buttons {
+                position: static;
+                justify-content: space-between;
+                align-items: end;
+            }
+        }
+    </style>
+{% endblock stylesheets %}
+{% block content %}
+    {% if not permission_denied %}
+        {% if messages %}
+            {% for message in messages %}
+                <div class="text-warning text-center alert{% if message.tags %}alert-{{ message.tags }}{% endif %}"
+                     role="alert">{{ message }}</div>
+            {% endfor %}
+        {% endif %}
+        <div class="row" id="finance">
+            <div class="col-md-8 offset-md-2">
+                <form @submit.prevent="createFinance" id="form">
+                    {% csrf_token %}
+                    <div class="card">
+                        <div class="card-header card-header-info py-4 shadow">
+                            <h4 class="card-title text-light text-center">{% trans 'Кўчатлар баландлиги бўйича маълумот киритиш' %}</h4>
+                            <h4 class="font-weight-bold text-right text-light">{% trans "(Ming dona)" %}</h4>
+                        </div>
+                        <div class="card-body mt-4">
+                            <div class="row d-flex align-items-end bg-light border mb-1 mx-1">
+                                <div class="col-md-4">
+                                    <div class="form-group py-2">
+                                        <label for="date" class="text-dark">{% trans 'Date' %}</label>
+                                        <input type="date" class="form-control" v-model="date" id="date" required>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-4">
+                                    <div class="form-group py-2" v-if="regions">
+                                        <label for="region_id" class="text-dark">{% trans 'Region' %}</label>
+                                        <select 
+                                            name="region" 
+                                            id="region_id" 
+                                            class="custom-select" 
+                                            @input="region = $event.target.value" 
+                                            @change="regionChangeHandler(region)" 
+                                            required>
+                                                <option value="region">[[ regionName ]]</option>
+                                                <option v-for="(item, index) in regions" :key="item.id" :value="item.id">[[ item.name ]]</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group py-2">
+                                        <label for="region" class="text-dark">{% trans 'Department' %}</label>
+                                        <select 
+                                            name="department" 
+                                            id="department_id" 
+                                            class="custom-select" 
+                                            @input="department = $event.target.value" 
+                                            @change="departmentChangeHandler(department), getTreeHeights(department)" required>
+                                            <option value="department">[[ departmentName ]]</option>
+                                            <option v-for="item in selectedDepartments" :key="item.id" :value="item.id">[[ item.name ]]</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body" v-for="(item, i) in income" :key="item.id">
+                            <div class="row d-flex align-items-center bg-light border mx-1">
+                                <div class="col-md-12">
+                                    <h5 class="text-dark font-weight-bold">[[item.name]]</h5>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="form-group py-2">
+                                        <label class="text-dark">{% trans '0,2 м гача' %}</label>
+                                        <input type="number" step="0.01" placeholder="0" class="form-control" v-model="income[i].first">
+                                        <p class="_title-name">{% trans "Mavjud bo'lgan"  %} [[item.name]]</p>
+                                        <div class="report-cell">
+                                            <p v-if="treeHeights[item.id]">
+                                                [[  Math.round((treeHeights[item.id]['height_0_0_2_count'] + (income[i].first ?  parseFloat(income[i].first) : 0)) * 100) / 100 ]]
+                                            </p>
+                                            <p v-else>
+                                                [[ income[i].first ? income[i].first : 0 ]]
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="form-group py-2">
+                                        <label class="text-dark">{% trans '0,2-0,5 м гача' %}</label>
+                                        <input type="number" step="0.01" placeholder="0" class="form-control" v-model="income[i].second">
+                                        <div class="report-cell">
+                                            <p v-if="treeHeights[item.id]">
+                                                [[ Math.round((treeHeights[item.id]['height_0_2_5_count'] + (income[i].second ?  parseFloat(income[i].second) : 0)) * 100) / 100 ]]
+                                            </p>
+                                            <p v-else>
+                                                [[ income[i].second ? income[i].second : 0]]
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="form-group py-2">
+                                        <label class="text-dark">{% trans '0,5-1 м. гача' %}</label>
+                                        <input type="number" step="0.01" placeholder="0" class="form-control" v-model="income[i].three">
+                                        <div class="report-cell">
+                                            <p v-if="treeHeights[item.id]">
+                                                [[  Math.round((treeHeights[item.id]['height_0_5_1_count'] + (income[i].three ?  parseFloat(income[i].three) : 0)) * 100) / 100 ]]
+                                            </p>
+                                            <p v-else>
+                                                [[ income[i].three ? income[i].three : 0 ]]
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="form-group py-2">
+                                        <label class="text-dark">{% trans '1-1,5 м гача' %}</label>
+                                        <input type="number" step="0.01" placeholder="0" class="form-control" v-model="income[i].four">
+                                        <div class="report-cell">
+                                            <p v-if="treeHeights[item.id]">
+                                                [[  Math.round((treeHeights[item.id]['height_1_1_5_count'] + (income[i].four ?  parseFloat(income[i].four) : 0)) * 100) / 100 ]]
+                                            </p>
+                                            <p v-else>
+                                                [[ income[i].four ? income[i].four : 0 ]]
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="form-group py-2">
+                                        <label class="text-dark">{% trans '1,5-2 м гача' %}</label>
+                                        <input type="number" step="0.01" placeholder="0" class="form-control" v-model="income[i].five">
+                                        <div class="report-cell">
+                                            <p v-if="treeHeights[item.id]">
+                                                [[  Math.round((treeHeights[item.id]['height_1_5_2_count'] + (income[i].five ?  parseFloat(income[i].five) : 0)) * 100) / 100 ]]
+                                            </p>
+                                            <p v-else>
+                                                [[ income[i].five ? income[i].five : 0 ]]
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="form-group py-2">
+                                        <label class="text-dark">{% trans '2-дан юқори' %}</label>
+                                        <input type="number" step="0.01" placeholder="0" class="form-control" v-model="income[i].six">
+                                        <div class="report-cell">
+                                            <p v-if="treeHeights[item.id]">
+                                                [[  Math.round((treeHeights[item.id]['height_2_count'] + (income[i].six ?  parseFloat(income[i].six) : 0)) * 100) / 100 ]]
+                                            </p>
+                                            <p v-else>
+                                                [[ income[i].six ? income[i].six : 0 ]]
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="_buttons col-md-12 d-flex flex-column">
+                            <a href="{% url 'trees:tree_list' %}"
+                                class="btn btn-success btn-sm text-light">
+                                {% trans 'back' %}
+                            </a>
+                            <button  @click="isSave = true, createFinance()" class="btn btn-info btn-sm" :disabled="buttonState">{% trans 'saqlash' %}</button>
+                            <button type="submit" @click="isSave = false" class="btn btn-info btn-sm" :disabled="buttonState">{% trans 'save and exit' %}</button>
+                        </div>
+                </div>
+            </form>
+            </div>
+        </div>
+    {% else %}
+        <h2>{% trans 'Permission Denied' %}</h2>
+    {% endif %}
+
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}
+    <script>
+        let department = {% if departments is none %} false  {% else %}  {{ departments|safe }} {% endif %};
+        if(!department){
+            let msg = "{% trans "Sizda ruxsat yoq Admin bilan boglaning!" %}"
+            warningMessage(msg)
+            setTimeout(() => {
+                location.href = '/trees/tree/list/'
+            }, 1700)
+        }
+        let tree = convertToObj({{ tree|safe }});
+        function getTreeItems() {
+            return tree.map(item => {
+                let obj = {id: item.id,name: item.name,
+                    first: null, second: null,three: null,
+                    four: null, five: null, six: null,
+                }
+                return obj
+            });
+        }
+        const income = getTreeItems()
+        let region_data = {{ regions|safe }}
+        const departments = convertToJson(department);
+        const token =  getCsrfToken(document.querySelectorAll('input'));
+        const regions = convertToObj(region_data)
+        const currentTime = new Date();
+        const year = currentTime.getFullYear();
+        const month = currentTime.getMonth() < 10 ? '0' + (currentTime.getMonth() + 1) : (currentTime.getMonth() + 1);
+        const day = currentTime.getDate() < 10 ? '0' + currentTime.getDate() : currentTime.getDate();
+        const today = `${year}-${month}-${day}`
+        const finance = new Vue({
+          delimiters: ['[[', ']]'],
+          el: '#finance',
+          data: {
+              count: 1,
+              date: today,
+              region: null,
+              regionName: '',
+              department: null,
+              departmentName: '',
+              income: income,
+              regions: regions,
+              selectedDepartments: [],
+              departmentsRoot: departments,
+              token: token,
+              buttonState: false,
+              treeHeights: "",
+              isSave: false,
+          },
+          mounted() {
+            this.initRegionDepartment()
+          },
+          methods: {
+              async getTreeHeights(id) {
+                let resp = ""
+                const url = location.origin + "/trees/tree/height/department" + "/" + id 
+                await fetch(url)
+                .then(response => response.json())
+                .then(data => resp = data)
+                
+                this.treeHeights = resp
+              },
+              calc(val1, val2) {
+                console.log(val1, val2)
+                return val1 + parseFloat(val2)
+              },
+              regionChangeHandler(id){
+                this.selectedDepartments = this.departmentsRoot.filter(elem => elem.region == id)
+              },
+              departmentChangeHandler(id){
+                  this.department = id
+              },
+            initRegionDepartment() {
+                // This func check if data exists in session
+                // if it does, then the func initialize region and department data
+                const data = this.getRegionDepartmentData()
+                if (data) {
+                    this.region = data['region']
+                    this.regionName = regions.filter(i => i['id'] == this.region)[0]['name']
+                    this.regionChangeHandler(this.region)
+                    this.department = data['department']
+                    this.departmentName = this.selectedDepartments.filter(i => i['id'] == this.department)[0]['name']
+                    this.getTreeHeights(this.department)
+                }
+            },
+            getRegionDepartmentData() {
+                return JSON.parse(sessionStorage.getItem('sapling_data'))
+            },
+             async createFinance(){
+                  let msg = ''
+                  this.buttonState = true
+                  let form = new FormData();
+                  form.append("csrfmiddlewaretoken", this.token);
+                  form.append("date", this.date);
+                  form.append("region", this.region);
+                  form.append("department", this.department);
+                  form.append("items", JSON.stringify(this.income));
+                  const url = location.origin + "/trees/tree/create/";
+                  try{
+                    const response = await fetch(url, {
+                        method: 'POST',
+                        body: form
+                    })
+                    const data = await response
+                    if(data){
+                        msg = "{% trans 'Your work has been saved' %}"
+                        successMessage(msg)
+                        if(this.isSave) {
+                            this.income = getTreeItems()
+                            this.isSave = false
+                            setTimeout(() => {
+                                this.buttonState = false
+                            }, 1500)
+                        }
+                        else {
+                            setTimeout(() => {
+                                location.href = response.url
+                                this.buttonState = false
+                            }, 1500)
+                        }
+                    } else {
+                        msg = "{% trans "Siz tanlagan sanaga malumot kiritib bolingan" %}"
+                        warningMessage(msg)
+                        setTimeout(() => {
+                            this.buttonState = false
+                        }, 2500)
+                    }
+                  } catch (error) {
+                      console.log(error)
+                      msg = 'Error'
+                      errorMessage(msg)
+                      this.buttonState = false
+                  }
+              }
+          },
+        });
+  </script>
+{% endblock javascripts %}

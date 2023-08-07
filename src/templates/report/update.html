@@ -1,0 +1,215 @@
+{% extends "layouts/base.html" %}
+{% load i18n %}
+{% block title %} {% trans 'report title title' %} {% endblock %}
+
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}
+    <style>
+        #app{
+            display: block;
+            position: relative;
+        }
+        .fixed-add-btn{
+            position: fixed;
+            top:50%;
+            left: 85%;
+        }
+        [v-cloak] {
+            display: none;
+        }
+    </style>
+{% endblock stylesheets %}
+{% block content %}
+{#    {% if perms.report.add_report %}#}
+        <div class="row" id="create" v-cloak>
+            <div class="col-md-8 offset-md-2">
+                <form @submit.prevent="createFinance" id="form">
+                    {% csrf_token %}
+                    <div class="card">
+                        <div class="card-header card-header-info py-4">
+                            <h4 class="card-title text-light text-center">{{ report.name }}</h4>
+                            <h4 class="text-right p-0 m-0 text-uppercase">{{ report.description }}</h4>
+                        </div>
+                        <div class="card-body mt-2">
+{#                            <div class="row d-flex align-items-end bg-light border mb-1 mx-1" style="visibility:hidden;">#}
+{#                                <div class="col-md-4">#}
+{#                                    <div class="form-group py-2">#}
+{#                                        <label for="date">{% trans 'Year' %}</label>#}
+{#                                        <select id="years" class="custom-select" v-model="date">#}
+{#                                        </select>#}
+{#                                    </div>#}
+{#                                </div>#}
+{#                                <div class="col-md-4">#}
+{#                                    <div class="form-group py-2">#}
+{#                                        <label for="region_id">{% trans 'Region' %}</label>#}
+{#                                        <select name="region" id="region_id" class="custom-select" v-model="region"  @change="regionChangeHandler(region)" required>#}
+{#                                            <option v-for="(item, index) in regions" :key="item.id" :value="item.id">[[ item.name ]]</option>#}
+{#                                        </select>#}
+{#                                    </div>#}
+{#                                </div>#}
+{#                                <div class="col-md-4">#}
+{#                                    <div class="form-group py-2">#}
+{#                                        <label for="region">{% trans 'Department' %}</label>#}
+{#                                        <select name="department" id="department_id" class="custom-select" v-model="department" @change="departmentChangeHandler(department)" required>#}
+{#                                            <option v-for="item in selectedDepartments" :key="item.id" :value="item.id">[[ item.name ]]</option>#}
+{#                                        </select>#}
+{#                                    </div>#}
+{#                                </div>#}
+{#                            </div>#}
+{#                        </div>#}
+                        <div class="card-body">
+                            <div class="row d-flex align-items-end bg-light border mb-1 mx-1" v-for="(group, i) in reportGroups">
+                                <h4 class="py-2 px-2">[[ group.firstGroupName ]]</h4>
+                                <div v-if="group.second_groups.length" class="col-md-12 pt-2" v-for="(items, n) in group.second_groups">
+                                    <h6 class="text-dark">[[ items.secondGroupName ]]</h6>
+                                    <div class="row" >
+                                        <div class="col" v-for="(item, ch) in items.keys">
+                                             <div class="form-group py-1" v-if="item.keyType == 1">
+                                                 <label for="" class="text-dark">[[ item.keyName ]]</label>
+                                                 <input type="number" step="0.01" min="0" class="form-control"
+                                                        required v-model="item.keyValue">
+                                             </div>
+                                             <div class="form-group py-1" v-else>
+                                                <label for="" class="text-dark">[[ item.keyName ]]</label>
+                                                 <input type="text" class="form-control"
+                                                        required v-model="item.keyValue">
+                                             </div>
+                                         </div>
+                                     </div>
+                                </div>
+
+                                <div v-if="group.keys" class="col-md-12 pt-2">
+                                    <div class="row">
+                                        <div class="col" v-for="item in group.keys">
+                                             <div class="form-group py-1" v-if="item.keyType == 1">
+                                                 <label for="" class="text-dark">[[ item.keyName ]]</label>
+                                                 <input type="number" step="0.01" min="0" class="form-control"
+                                                        required v-model="item.keyValue">
+                                             </div>
+                                            <div class="form-group py-1" v-else>
+                                                <label for="" class="text-dark">[[ item.keyName ]]</label>
+                                                 <input type="text" class="form-control"
+                                                        required v-model="item.keyValue">
+                                            </div>
+                                         </div>
+                                     </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12 d-flex align-items-end justify-content-end">
+                            <button type="button" @click="saveAndExit(); createFinance(); " class="btn btn-info btn-sm">{% trans 'save and exit' %}</button>
+                            <button type="button" @click="saveAndNext(); createFinance(); " class="btn btn-info btn-sm">{% trans 'save' %}</button>
+                            <a href="{% url 'report:report_list' %}"
+                                class="btn btn-success btn-sm text-light">
+                                {% trans 'back' %}
+                            </a>
+                        </div>
+                    </div>
+                 </form>
+            </div>
+        </div>
+{#    {% else %}#}
+{#        <h2>{% trans 'Permission Denied' %}</h2>#}
+{#    {% endif %}#}
+
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}
+    <script>
+    let keyAndGroups = {{ report_keys|safe }};
+    const departments = convertToJson({{ departments|safe }});
+    const token = getCsrfToken(document.querySelectorAll('input'));
+    const regions = convertToObj({{ regions|safe }})
+    const app = new Vue({
+      delimiters: ['[[', ']]'],
+      el: '#create',
+      data: {
+          count: 1,
+          date: null,
+          region: null,
+          department: null,
+          years: null,
+          next:false,
+          regions: regions,
+          selectedDepartments: [],
+          departmentsRoot: departments,
+          token: token,
+          amount: null,
+          reportGroups: keyAndGroups
+      },
+      methods: {
+          regionChangeHandler(id){
+            this.selectedDepartments = this.departmentsRoot.filter(elem => elem.region === id)
+          },
+          departmentChangeHandler(id){
+              this.department = id
+          },
+         async createFinance(){
+              let form = new FormData();
+              let report_id = {{ report.id }};
+              form.append("csrfmiddlewaretoken", token);
+              {#form.append("date", this.date);#}
+              {#form.append("region", this.region);#}
+              {#form.append("department", this.department);#}
+              form.append("next", this.next);
+              form.append("report_id", report_id);
+              form.append("items", JSON.stringify(this.reportGroups));
+              const url = location.origin + "/report/report/update";
+              try{
+                const response = await fetch(url, {
+                    method: 'POST',
+                    body: form
+                })
+                  console.log("response", response);
+                if(response.status === 200){
+                    console.log("response>>>>>>>>>>>")
+                    let msg = "{% trans 'Your work has been saved' %}"
+                    successMessage(msg)
+                    this.region = null
+                    this.department = null
+                    this.years = 0
+                    setTimeout(() => {
+                        location.href = location.origin + `/report/report/detail/list/?id=${report_id}`
+                    },1000)
+                } else if(!response.redirected && response.status === 400){
+                    let msg = `{% trans 'Bu bolim uchun' %} ${this.date} {% trans 'yilga reja kiritilgan' %}`;
+                    warningMessage(msg)
+                    this.region = null
+                    this.department = null
+                    this.years = 0
+
+                }
+                else if(!response.redirected && response.status === 200){
+                    let msg = "{% trans 'Your work has been saved' %}"
+                    successMessage(msg)
+                    setTimeout(() => {
+                        location.reload()
+                    }, 1500)
+                } else {
+                    let msg = "{% trans "All fields required.." %}"
+                    warningMessage(msg)
+                }
+              } catch (error) {
+                  let msg = "Eroor что пошло не так......"
+                  errorMessage(msg)
+              }
+          },
+          allSum(){
+              this.years = this.income.reduce( (acc, item) => {
+                  if(parseInt(item['amount']) > 0){
+                    acc += parseInt(item['amount'])
+                  }
+                  return acc
+                }, 0)
+          },
+          saveAndNext(){
+              this.next = true
+          },
+          saveAndExit(){
+              this.next = false
+          }
+      },
+    });
+  </script>
+{% endblock javascripts %}

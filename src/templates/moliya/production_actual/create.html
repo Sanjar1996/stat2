@@ -1,0 +1,178 @@
+{% extends "layouts/base.html" %}
+{% load i18n %}
+{% block title %} {% trans 'Production and paid service actual create page' %} {% endblock %}
+
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}
+    <style>
+        #finance {
+            display: block;
+            position: relative;
+        }
+
+        .fixed-add-btn {
+            position: fixed;
+            top: 50%;
+            left: 85%;
+        }
+    </style>
+{% endblock stylesheets %}
+{% block content %}
+
+    {% if perms.finance.view_productionserviceactual %}
+        <div class="row" id="finance">
+            {{ msg }}
+            <div class="col-md-8 offset-md-2">
+                <form @submit.prevent="createFinance" id="form">
+                    {% csrf_token %}
+                    <div class="card">
+                        <div class="card-header card-header-info py-4 shadow">
+                            <h4 class="card-title text-light text-center">{% trans 'Production and paid service actual create form' %}</h4>
+                        </div>
+                        <div class="card-body mt-4">
+                            <div class="row d-flex align-items-end bg-light border mb-1 mx-1">
+                                <div class="col-md-4">
+                                    <div class="form-group py-2">
+                                        <label for="date" class="text-dark">{% trans 'Date' %}</label>
+                                        <input type="date" class="form-control" v-model="date" id="date" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group py-2">
+                                        <label for="region_id" class="text-dark">{% trans 'Region' %}</label>
+                                        <select name="region" id="region_id" class="custom-select" v-model="region"
+                                                @change="regionChangeHandler(region)" required>
+                                            <option v-for="(item, index) in regions" :key="item.id" :value="item.id">[[
+                                                item.name ]]
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group py-2">
+                                        <label for="region" class="text-dark">{% trans 'Department' %}</label>
+                                        <select name="department" id="department_id" class="custom-select"
+                                                v-model="department" @change="departmentChangeHandler(department)"
+                                                required>
+                                            <option v-for="item in selectedDepartments" :key="item.id" :value="item.id">
+                                                [[ item.name ]]
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                         <div class="card-body" v-for="(item, i) in count">
+                             <div class="row d-flex align-items-end bg-light border mb-1 mx-1">
+                                 <div class="col-md-6">
+                                     <div class="form-group py-2">
+                                         <label for="text" class="text-dark">{% trans 'Production' %}</label>
+                                         <input type="text" class="form-control" v-model="income[i].production"
+                                                required>
+                                     </div>
+                                 </div>
+                                 <div class="col-md-6">
+                                     <div class="form-group py-2">
+                                         <label for="text" class="text-dark">{% trans 'Paid service' %}</label>
+                                         <input type="text" class="form-control" v-model="income[i].paid_service"
+                                                required>
+                                     </div>
+                                 </div>
+                             </div>
+                         </div>
+                        <div class="col-md-12 d-flex align-items-end justify-content-between">
+                            <a href="{% url 'finance:production_actual_list' %}"
+                               class="btn btn-success btn-sm text-light">
+                                {% trans 'back' %}
+                            </a>
+                            <button type="submit" class="btn btn-info btn-sm">{% trans 'create' %}</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    {% else %}
+        <h2>{% trans 'Permission Denied' %}</h2>
+    {% endif %}
+
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}
+    <script>
+        let min_day = new Date(Date.now() - 3 * 86400000 - new Date().getTimezoneOffset() * 60000).toISOString().split('T')[0];
+        document.getElementById("date").setAttribute("min", min_day)
+        const departments = convertToJson({{ data|safe }});
+        const token = getCsrfToken(document.querySelectorAll('input'));
+        const regions = convertToObj({{ region|safe }})
+        const finance = new Vue({
+            delimiters: ['[[', ']]'],
+            el: '#finance',
+            data: {
+                count: 1,
+                date: null,
+                region: null,
+                department: null,
+                income: [{
+                    production: null,
+                    paid_service: null
+                }
+                ],
+                regions: regions,
+                selectedDepartments: [],
+                departmentsRoot: departments,
+                token: token
+            },
+            methods: {
+                regionChangeHandler(id) {
+                    this.selectedDepartments = this.departmentsRoot.filter(elem => elem.region === id)
+                },
+                departmentChangeHandler(id) {
+                    this.department = id
+                },
+                incrementFormRow() {
+                    this.count++;
+                    const obj = {
+                        production: null,
+                        paid_service: null,
+                    };
+                    this.income.push(obj)
+                },
+                removeRow(id) {
+                    this.income.splice(id, 1);
+                    this.count--
+                },
+                async createFinance() {
+                    let form = new FormData();
+                    form.append("csrfmiddlewaretoken", this.token);
+                    form.append("date", this.date);
+                    form.append("region", this.region);
+                    form.append("department", this.department);
+                    form.append("items", JSON.stringify(this.income));
+                    const url = location.origin + "/finance/production/actual/create";
+                    try {
+                        const response = await fetch(url, {
+                            method: 'POST',
+                            body: form
+                        })
+                        if (response.status === 200) {
+                            Swal.fire({
+                              position: 'top-center',
+                              type: 'success',
+                              title: '{% trans "Your work has been saved" %}',
+                              showConfirmButton: false,
+                              timer: 1500
+                            })
+                            setTimeout(() => {
+                                location.href = response.url
+                            }, 1800)
+                        }
+                    } catch (error) {
+                        alert('Error')
+                    }
+
+                }
+            },
+        });
+    </script>
+{% endblock javascripts %}

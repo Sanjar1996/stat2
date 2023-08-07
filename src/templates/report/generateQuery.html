@@ -1,0 +1,259 @@
+{% extends "layouts/base.html" %}
+{% load i18n %}
+
+{% block title %} {% trans 'Report list title' %}{% endblock %}
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}
+    <style>
+        option {
+          width: 100px;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+        }
+    </style>
+{% endblock stylesheets %}
+{% block content %}
+{#    {% if perms.report.view_report %}#}
+        <div class="row d-flex align-items-center justify-content-center" id="query-create">
+            <div class="col-md-10">
+                <div class="card bg-white">
+                    <div class="card-header card-header-info py-4 d-flex justify-content-between align-items-center">
+                        <div class="d-flex justify-content-center w-100">
+                            <h4 class="card-title text-light text-center">Generate report page</h4>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="row px-5 d-flex justify-content-center">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="report">{% trans "Reports" %}</label>
+                                    <select class="custom-select"
+                                            v-model="selectedReport"
+                                            id="report"
+                                            @change="getSelectedReport(selectedReport)">
+                                        <option v-for="item in reports" :key="item.id" :value="item.id">[[ item.name ]]
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <p class="text-dark py-0 my-1">{% trans "Formula nomi" %}</p>
+                                <div class="form-group" style="margin: 0px !important;">
+                                    <input type="text"
+                                           class="form-control"
+                                           id="formulaName"
+                                           v-model="reportKeyName"
+                                           placeholder="{% trans "Ushbu maydonga to'ldirgan ma'lumotingiz xisobotda shu amallarni ifodalaydi" %}">
+                                </div>
+                            </div>
+                            <div class="col-md-2">
+                                <p class="text-dark py-0 my-1">{% trans "tartib raqamini kiriting" %}</p>
+                                <div class="form-group" style="margin: 0px !important;">
+                                    <input type="number"
+                                           class="form-control"
+                                           id="formulaName"
+                                           v-model="sortValue"
+                                           placeholder="{% trans "Bu tartib raqam xisobotda qaysi column da chiqishi belgilab beradi" %}">
+                                </div>
+                            </div>
+                            <div class="col-md-6 py-4">
+                                <div class="form-group">
+                                    <label for="keys" class="text-dark">{% trans 'Select first gruop name' %}</label>
+                                    <select class="custom-select mt-1"
+                                        id="first-group-name"
+                                        v-model="firstGroupId">
+                                        <option v-for="item in reportGroups" :key="item.id" :value="item.id">
+                                            [[ item.name ]]
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-6 py-4">
+                                <div class="form-group">
+                                    <label for="second-group-name" class="text-dark">{% trans 'Select second gruop name' %}</label>
+                                    <select class="custom-select mt-1"
+                                        id="second-group-name"
+                                        v-model="secondGroupId">
+                                        <option v-for="item in reportGroups" :key="item.id" :value="item.id">
+                                            [[ item.name ]]
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="row d-flex justify-content-center"
+                                     v-for="(item, i) in count"
+                                     class="d-flex align-items-center">
+                                    <div class="col-md-2 py-4 ">
+                                        <p class="text-dark py-0 my-1">{% trans 'Report key value' %}</p>
+                                        <div class="form-group" style="margin: 0px !important;">
+                                            <input type='number'
+                                                   class="form-control"
+                                                   v-model="result[i].reportValue"
+                                                   @change="changeInputState(i)"
+                                                   id="numbers">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 py-4">
+                                        <div class="form-group">
+                                            <label for="keys" class="text-dark">{% trans 'Report key names' %}</label>
+                                            <select class="custom-select mt-1"
+                                                id="keys"
+                                                :disabled="result[i].state"
+                                                v-model="result[i].reportKeyId">
+                                                <option v-for="item in reportKeys" :key="item.id" :value="item.id">
+                                                    <span>[[ truncateText(item.report_group_one, 40) ]]</span> ---
+                                                    <strong class="font-weight-bold">[[ item.name ]]</strong>
+                                                    --<span>([[ truncateText(item.report_group_two, 40) ]])</span>
+                                                </option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2 py-4">
+                                        <div class="form-group">
+                                            <labe for="options" class="text-dark">{% trans 'Actions' %}</labe>
+                                            <select class="custom-select mt-1"
+                                                    id="options"
+                                                    v-model="result[i].actionValue"
+                                                    >
+                                                <option value="+">{% trans "Plus" %}</option>
+                                                <option value="-">{% trans "Minus" %}</option>
+                                                <option value="/">{% trans "Bo'lish" %}</option>
+                                                <option value="*">{% trans "Ko'paytirish" %}</option>
+                                                <option value="%">{% trans "Foizi" %}</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2 py-4">
+                                        <button class="btn btn-success btn-sm text-dark btn-fab btn-fab-mini btn-round"
+                                                @click="incrementFormRow">
+                                            <i class="material-icons text-light">add</i>
+                                        </button>
+                                        <button v-if="count > 1" class="btn btn-danger btn-sm text-dark btn-fab btn-fab-mini btn-round" @click="decrementFormRow(i)">
+                                            <i class="material-icons text-light">close</i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12 d-flex justify-content-between">
+                                <button class="btn btn-danger btn-sm" href="/">{% trans 'home' %}</button>
+                                <button class="btn btn-success btn-sm" @click="sendQueryData">{% trans 'create' %}</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+{#    {% else %}#}
+{#        <h1>{% trans 'Permission Denied' %}</h1>#}
+{#    {% endif %}#}
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}
+    <script>
+    let reportGroups = {% if groups %} {{ groups|safe }} {% else %} null {% endif %};
+    const reports = {% if reports %} {{ reports|safe }} {% else  %} null {% endif %};
+    const token = getCsrfToken(document.querySelectorAll('input'));
+    let reportsRoot = []
+    if(reports){
+        reportsRoot = reports.map(elem => {
+            if(elem){
+                return {id: elem.pk, name: elem.fields['name']}
+            }
+        })
+    }
+    if(reportGroups){
+        reportGroups = convertToObj(reportGroups)
+    }
+    const app = new Vue({
+      delimiters: ['[[', ']]'],
+      el: '#query-create',
+      data: {
+          count: 1,
+          reportKeyName: null,
+          sortValue: null,
+          result: [{reportKeyId: null,actionValue: null,reportValue: null, state: false}],
+          selectedReport: null,
+          reports: reportsRoot,
+          reportKeys: [],
+          reportGroups: reportGroups,
+          firstGroupId: null,
+          secondGroupId: null,
+      },
+      async mounted() {
+          this.getSelectedReport(3)
+      },
+      methods: {
+          getSelectedReport(id){
+            const url = location.origin + `/report/keys/list/${id}`;
+            fetch(url, {method: 'GET'})
+                .then(response => response.json())
+                .then(data => {
+                    console.log("data", data);
+                    if(data.results)
+                    {
+                        this.reportKeys = data.results;
+                    } else
+                        this.reportKeys = data;
+                });
+            this.count = 1;
+            this.result = [{reportKeyId: null,actionValue: null,reportValue: null, state: false}]
+
+          },
+          regionChangeHandler(id){
+            this.selectedDepartments = this.departmentsRoot.filter(elem => elem.region === id)
+          },
+          incrementFormRow(){
+              this.count++;
+              let newResult = {reportKeyId: null,actionValue: null,reportValue: null, state: false};
+              this.result.push(newResult);
+          },
+          decrementFormRow(num){
+              this.result.splice(num, 1);
+              if(this.count > 1)
+                  this.count--;
+          },
+          truncateText(text, length, clamp){
+                clamp = clamp || '...';
+                const node = document.createElement('div');
+                node.innerHTML = text;
+                let content = node.textContent;
+                return content.length > length ? content.slice(0, length) + clamp : content;
+          },
+          async sendQueryData() {
+            let form = new FormData();
+            form.append("csrfmiddlewaretoken", token);
+            form.append("report", this.selectedReport);
+            form.append("sortValue", this.sortValue);
+            form.append("firstGroupId", this.firstGroupId);
+            form.append("secondGroupId", this.secondGroupId);
+            form.append("reportKeyName", this.reportKeyName);
+            form.append("items", JSON.stringify(this.result));
+            const url = location.origin + "/report/query/create";
+            try {
+                const response = await fetch(url, {method: 'POST', body: form})
+                if (response.status === 200) {
+                   let msg = "{% trans "Your work has been saved" %}"
+                    successMessage(msg)
+                    setTimeout(() => {
+                        location.href = response.url
+                    }, 1800)
+                }
+            } catch (error) {
+                alert('Error')
+            }
+          },
+          changeInputState(itemNumber){
+              if(this.result[itemNumber].reportValue !== "") {
+                  this.result[itemNumber].state = true
+                  this.result[itemNumber].reportKeyId = null
+              } else {
+                  this.result[itemNumber].state = false
+              }
+          }
+      },
+    });
+    </script>
+{% endblock javascripts %}

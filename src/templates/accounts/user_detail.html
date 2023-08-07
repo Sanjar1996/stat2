@@ -1,0 +1,170 @@
+{% extends "layouts/base.html" %}
+{% load i18n %}
+{% block title %} {% trans 'user_update_title' %} {% endblock %}
+
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+    {% if perms.accounts.view_user %}
+        <div class="container-fluid">
+            {% if is_user %}
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="card-header card-header-info py-4">
+                                <h4 class="card-title text-light">{% trans "Profil Detail" %}</h4>
+                                <p class="card-category text-dark"></p>
+                            </div>
+                            <div class="card-body mt-4">
+                                <div class="row d-flex justify-content-center align-items-center">
+                                    <div class="col-md-6">
+                                        <p class="border-bottom font-weight-bold">
+                                            <addr>{% trans "ID:" %}</addr>
+                                            {{ account.id }}</p>
+                                        <p class="border-bottom font-weight-bold">{% trans 'Email' %}:&nbsp;
+                                            <addr class="text-darken-4 font-weight-light">{{ account.email }}</addr>
+                                        </p>
+                                        <p class="border-bottom font-weight-bold">{% trans 'First name' %}:&nbsp;<addr
+                                                class="text-darken-4 font-weight-light">{{ account.first_name }}</addr>
+                                        </p>
+                                        <p class="border-bottom font-weight-bold">{% trans 'Last name' %}: &nbsp;
+                                            <addr class="text-darken-4 font-weight-light">{{ account.last_name }}</addr>
+                                        </p>
+                                        <p class="border-bottom font-weight-bold">{% trans 'Mid name' %}: &nbsp;<addr
+                                                class="text-darken-4 font-weight-light">{{ account.mid_name }}</addr>
+                                        </p>
+                                        <p class="border-bottom font-weight-bold">{% trans 'Temporary work' %}: &nbsp;<addr
+                                                class="text-darken-4 font-weight-light">{{ account.temporary_work }}</addr>
+                                        </p>
+                                        <p class="border-bottom font-weight-bold">{% trans 'Information' %}: &nbsp;<addr
+                                                class="text-darken-4 font-weight-light">{{ account.information }}</addr>
+                                        </p>
+                                        <p class="border-bottom font-weight-bold">{% trans 'Position' %}: &nbsp;<addr
+                                                class="text-darken-4 font-weight-light">{{ account.position }}</addr>
+                                        </p>
+                                        <p class="border-bottom font-weight-bold">{% trans 'Department' %}: &nbsp;<addr
+                                                class="text-darken-4 font-weight-light">{{ account.department }}</addr>
+                                        </p>
+                                        <p class="border-bottom font-weight-bold">{% trans 'Crop area' %}: &nbsp;<addr
+                                                class="text-darken-4 font-weight-light">{{ account.crop_area }}</addr>
+                                        </p>
+                                        {#                                        <p class="border-bottom"><strong>{% trans 'role' %}:</strong> {{ account.groups.name }}</p>#}
+                                        <p class="border-bottom">
+                                            <strong>{% trans 'status' %}:</strong>
+                                            {% if account.status == 1 %}
+                                                <addr class="text-darken-4 font-weight-light">{% trans 'new' %}</addr>
+                                                {% elif account.status == 2 %}
+                                                <addr class="text-darken-4 font-weight-light">{% trans 'active' %}</addr>
+                                            {% else %}
+                                                <addr class="text-darken-4 font-weight-light">{% trans 'deleted' %}</addr>
+                                            {% endif %}
+                                        </p>
+                                        <p class="border-bottom font-weight-bold">{% trans "year_of_graduation" %}:
+                                            &nbsp;<addr class="text-darken-1 font-weight-light">
+                                                {{ info.year_of_graduation|date:"Y-m-d" }}</addr>&nbsp;
+                                        </p>
+                                        <p class="border-bottom font-weight-bold">{% trans "name_of_graduation" %}:
+                                            &nbsp;<addr
+                                                    class="text-darken-1 font-weight-light"> {{ info.name_of_graduation }}</addr>&nbsp;
+                                        </p>
+                                        <p class="border-bottom font-weight-bold">{% trans "birth_date" %}:&nbsp;
+                                            <addr class="text-darken-1 font-weight-light">
+                                                {{ info.birth_date|date:"Y-m-d" }}</addr>&nbsp;
+                                        </p>
+                                        <p class="border-bottom font-weight-bold">{% trans "birth_place" %}:&nbsp;
+                                            <addr class="text-darken-1 font-weight-light">{{ info.birth_place }}</addr>
+                                        </p>
+                                        <p class="border-bottom font-weight-bold">{% trans "specialization" %}:&nbsp;
+                                            <addr class="text-darken-1 font-weight-light">{{ info.specialization }}</addr>&nbsp;
+                                        </p>
+
+
+                                    </div>
+                                    <div class="col-md-6">
+                                        <p class="border-bottom font-weight-bold">{% trans "passport_number" %}: &nbsp;<addr
+                                                class="font-weight-light text-dark">{{ info.passport_number }}</addr>&nbsp;
+                                        </p>
+                                        <p class="border-bottom font-weight-bold">{% trans "start_position_date" %}:
+                                            &nbsp;<addr class="font-weight-light text-dark">
+                                                &nbsp;{{ info.start_position_date|date:"Y-m-d" }}</addr>
+                                        </p>
+                                        <p class="border-bottom font-weight-bold">{% trans "end_position_date" %}:
+                                            &nbsp;<addr class="font-weight-light text-dark">
+                                                &nbsp;{{ info.end_position_date|date:"Y-m-d" }}</addr>
+                                        </p>
+                                        <p class="border-bottom font-weight-bold">{% trans "gender" %}:<span
+                                                class="font-weight-light text-dark"></span>&nbsp;{{ info.gender }}</p>
+                                        <p class="border-bottom font-weight-bold">{% trans "residence_address" %}:
+                                            &nbsp;<addr
+                                                    class="font-weight-light text-dark">{{ info.residence_address }}</addr>&nbsp;
+                                        </p>
+                                        <p class="border-bottom font-weight-bold">{% trans "phone_number" %}:&nbsp;
+                                            <addr class="font-weight-light text-dark">{{ info.phone_number }}</addr>
+                                        </p>
+                                        <p class="border-bottom font-weight-bold">{% trans "academic_degree" %}: &nbsp;<addr
+                                                class="font-weight-light text-dark">{{ info.academic_degree }}</addr>&nbsp;
+                                        </p>
+                                        <p class="border-bottom font-weight-bold">{% trans "tour" %}: &nbsp;<addr
+                                                class="font-weight-light text-dark">{{ info.tour }}</addr>&nbsp;
+                                        </p>
+                                        <p class="border-bottom font-weight-bold">{% trans "favorite_party" %}: &nbsp;<addr
+                                                class="font-weight-light text-dark">{{ info.favorite_party }}</addr>&nbsp;
+                                        </p>
+                                        <p class="border-bottom font-weight-bold">{% trans "languages" %}:&nbsp;<addr
+                                                class="font-weight-light text-dark"> {{ info.languages }}</addr>&nbsp;
+                                        </p>
+                                        <p class="border-bottom font-weight-bold">{% trans "family_number" %}: &nbsp;<addr
+                                                class="font-weight-light text-dark">{{ info.family_number }}</addr>&nbsp;
+                                        </p>
+                                        <p class="border-bottom font-weight-bold">{% trans "people_deputy" %}: &nbsp;<addr
+                                                class="font-weight-light text-dark">{{ info.people_deputy }}</addr>&nbsp;
+                                        </p>
+                                        <p class="border-bottom font-weight-bold">{% trans "state_award" %}: &nbsp;<adrr
+                                                class="font-weight-light text-dark">{{ info.state_award }}</adrr>&nbsp;
+                                        </p>
+                                        <p class="border-bottom font-weight-bold">{% trans "cripple" %}:&nbsp;
+                                            <addr class="font-weight-light text-dark">{{ info.cripple }}</addr>&nbsp;
+                                        </p>
+                                        <p class="border-bottom font-weight-bold">{% trans "military_service" %}: &nbsp;
+                                            <addr class="font-weight-light text-dark">{{ info.military_service }}</addr>&nbsp;
+                                        </p>
+                                        <p class="border-bottom font-weight-bold">{% trans "judicial" %}:
+                                            <addr class="font-weight-light text-dark">&nbsp;
+                                                {% if info.judicial is None %} {{ info.judicial }} {% else %}
+                                                    {% trans "yo'q" %} {% endif %}</addr>
+                                        </p>
+
+                                    </div>
+                                    <div class="col-md-4">
+
+                                    </div>
+                                    <div class="col-md-12 d-flex justify-content-between align-items-center">
+                                        {% if info.resume %}
+                                            <a href="{{ info.resume.url }}"
+                                               class="btn btn-social btn-fill btn-facebook btn-sm"
+                                               download>{% trans "Resume" %}
+                                                <i class="material-icons">download</i>
+                                            </a>
+                                        {% endif %}
+                                        <a href="{% url 'accounts:members_list' %}"
+                                           class="btn btn-success btn-sm text-light">{% trans 'back' %}</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            {% else %}
+                <h2>{% trans 'Account not found.' %}</h2>
+            {% endif %}
+        </div>
+    {% else %}
+        <h2>{% trans 'Permission Denied' %}</h2>
+    {% endif %}
+
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}{% endblock javascripts %}

@@ -1,0 +1,231 @@
+{% extends "layouts/base.html" %}
+{% load i18n %}
+{% block title %} {% trans 'report title title' %} {% endblock %}
+
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}
+    <style>
+        #app{
+            display: block;
+            position: relative;
+        }
+        .fixed-add-btn{
+            position: fixed;
+            top:50%;
+            left: 85%;
+        }
+    </style>
+{% endblock stylesheets %}
+{% block content %}
+    {% if perms.finance.add_financeplan %}
+        <div class="row"  id="app">
+            <div class="col-md-8 offset-md-2">
+                <form @submit.prevent="createFinance" id="form">
+                    {% csrf_token %}
+                    <div class="card">
+                        <div class="card-header card-header-info py-4">
+                            <h4 class="card-title text-light text-center">{% trans 'Finance create form' %}</h4>
+                        </div>
+                        <div class="card-body mt-2">
+                            <div class="row d-flex align-items-end bg-light border mb-1 mx-1">
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="date">{% trans 'Year' %}</label>
+                                        <select id="years" class="custom-select" v-model="date">
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="region_id">{% trans 'Region' %}</label>
+                                        <select name="region" id="region_id" class="custom-select" v-model="region"  @change="regionChangeHandler(region)" required>
+                                            <option v-for="(item, index) in regions" :key="item.id" :value="item.id">[[ item.name ]]</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="region">{% trans 'Department' %}</label>
+                                        <select name="department" id="department_id" class="custom-select" v-model="department" @change="departmentChangeHandler(department)" required>
+                                            <option v-for="item in selectedDepartments" :key="item.id" :value="item.id">[[ item.name ]]</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group py-2">
+                                        <label for="date" class="text-dark">{% trans 'Yillik' %}</label>
+                                        <input type="number" step="0.01" class="form-control" v-model="years" readonly>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card-body">
+                            <div class="row d-flex align-items-end bg-light border mb-1 mx-1">
+                                 <div class="col-md-4 pt-2" v-for="(item, i) in months" :key="item">
+                                    <div class="form-group py-1">
+                                        <label class="text-dark">[[ item ]]</label>
+                                        <input type="number" step="0.01"  class="form-control" v-model="income[i].amount" @change="allSum()" required>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-12 d-flex align-items-end justify-content-end">
+                            <button type="button" @click="saveAndExit(); createFinance(); " class="btn btn-info btn-sm">{% trans 'save and exit' %}</button>
+                            <button type="button" @click="saveAndNext(); createFinance(); " class="btn btn-info btn-sm">{% trans 'save' %}</button>
+                            <a href="{% url 'finance:finance_plan_list' %}"
+                                class="btn btn-success btn-sm text-light">
+                                {% trans 'back' %}
+                            </a>
+                        </div>
+                    </div>
+                 </form>
+            </div>
+        </div>
+
+    {% else %}
+        <h2>{% trans 'Permission Denied' %}</h2>
+    {% endif %}
+
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}
+    <script>
+    let department;
+    {% if departments is none %}department = null;{% else %} department = {{ departments|safe }};{% endif %}
+    if(!department){
+        let msg =  "{% trans "Sizda ruxsat yoq Admin bilan boglaning!" %}"
+        warningMessage(msg)
+        setTimeout(() => {
+            location.href = '/finance/plan/list'
+        }, 1600)
+    }
+    let amount_type = {{ amount_type }};
+    let region_data = {{ region|safe }};
+    const  years = document.querySelector('#years');
+    let currentYear = new Date().getFullYear() - 1;
+    for(let i = 0; i < 5; i++){
+        let opt = document.createElement('option')
+        opt.textContent = currentYear++
+        years.appendChild(opt)
+    }
+    const departments = convertToJson(department);
+    const token = getCsrfToken(document.querySelectorAll('input'));
+    const regions = convertToObj(region_data)
+    const app = new Vue({
+      delimiters: ['[[', ']]'],
+      el: '#app',
+      data: {
+          count: 1,
+          date: null,
+          region: null,
+          months: ["{% trans 'Январ' %}", "{% trans 'Феврал' %}", "{% trans 'Март' %}", "{% trans 'Апрел' %}",
+                    "{% trans 'Май' %}", "{% trans 'Июн' %}", "{% trans 'Июл' %}", "{% trans 'Август' %}",
+                    "{% trans 'Сентябр' %}", "{% trans 'Октябр' %}", "{% trans 'Ноябр' %}", "{% trans 'Декабр' %}"],
+          department: null,
+          income: [
+              {amount: null},
+              {amount: null},
+              {amount: null},
+              {amount: null},
+              {amount: null},
+              {amount: null},
+              {amount: null},
+              {amount: null},
+              {amount: null},
+              {amount: null},
+              {amount: null},
+              {amount: null}
+          ],
+          years: null,
+          next:false,
+          regions: regions,
+          selectedDepartments: [],
+          departmentsRoot: departments,
+          token: token
+
+      },
+      methods: {
+          regionChangeHandler(id){
+            this.selectedDepartments = this.departmentsRoot.filter(elem => elem.region === id)
+          },
+          departmentChangeHandler(id){
+              this.department = id
+          },
+          incrementFormRow(){
+              this.count++;
+              const obj = {
+               amount: null,
+               type: ""
+             };
+             this.income.push(obj)
+          },
+          removeRow(id){
+              this.income.splice(id, 1);
+              this.count--
+          },
+         async createFinance(){
+              let form = new FormData();
+              form.append("csrfmiddlewaretoken", this.token);
+              form.append("date", this.date);
+              form.append("region", this.region);
+              form.append("department", this.department);
+              form.append("amount_type", amount_type);
+              form.append("next", this.next);
+              form.append("items", JSON.stringify(this.income));
+              const url = location.origin + "/finance/plan/create";
+              try{
+                const response = await fetch(url, {
+                    method: 'POST',
+                    body: form
+                })
+                if(!response.redirected && response.status === 201){
+                    let msg = "{% trans 'Your work has been saved' %}"
+                    successMessage(msg)
+                    this.income.forEach(item => item['amount'] = null)
+                    this.region = null
+                    this.department = null
+                    this.years = 0
+                } else if(!response.redirected && response.status === 400){
+                    let msg = `{% trans 'Bu bolim uchun' %} ${this.date} {% trans 'yilga reja kiritilgan' %}`;
+                    warningMessage(msg)
+                    this.income.forEach(item => item['amount'] = null)
+                    this.region = null
+                    this.department = null
+                    this.years = 0
+                }
+                else if(response.redirected){
+                    let msg = "{% trans 'Your work has been saved' %}"
+                    successMessage(msg)
+                    setTimeout(() => {
+                        location.href = response.url
+                    }, 1500)
+                } else {
+                    let msg = "{% trans "All fields required.." %}"
+                    warningMessage(msg)
+                }
+              } catch (error) {
+                  let msg = "Eroor что пошло не так......"
+                  errorMessage(msg)
+              }
+          },
+          allSum(){
+              this.years = this.income.reduce( (acc, item) => {
+                  if(parseInt(item['amount']) > 0){
+                    acc += parseInt(item['amount'])
+                  }
+                  return acc
+                }, 0)
+          },
+          saveAndNext(){
+              this.next = true
+          },
+          saveAndExit(){
+              this.next = false
+          }
+      },
+    });
+  </script>
+{% endblock javascripts %}

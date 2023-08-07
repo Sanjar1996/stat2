@@ -1,0 +1,122 @@
+{% extends "layouts/base.html" %}
+{% load i18n %}
+{% block title %} {% trans 'tree plan detail page' %} {% endblock %}
+
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+    {% if not permission_denied %}
+        <div class="row">
+            <div class="col-md-8 offset-md-2">
+                <div class="card">
+                    <div class="card-header card-header-info py-4 shadow">
+                        <h4 class="card-title text-light text-center">{% trans 'Кўчатлар баландлиги бўйича маълумот' %}</h4>
+                    </div>
+                    <div class="card-body mt-4">
+                        <form role="form" method="POST" action="{% url 'trees:tree_detail' tree.id %}">
+                            {% csrf_token %}
+                            <div class="row d-flex align-items-end">
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        {{form.tree_plan}}
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label for="">{% trans  'old_time' %} {{form.date.value|date:"d m Y"}} </label>
+                                        {{form.date}}
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <select name="region" class="form-control" onchange="regionChangeHandler(this)" required="" id="id_region">
+                                              {% for org in form.region %}
+                                                {{ org }}
+                                            {% endfor %}
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        {{ form.department }}
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        {{form.height_0_0_2_count}}
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        {{form.height_0_2_5_count}}
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        {{form.height_0_5_1_count}}
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        {{form.height_1_1_5_count}}
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        {{form.height_1_5_2_count}}
+                                    </div>
+                                </div>
+                                <div class="col-md-12 d-flex align-items-baseline justify-content-between">
+                                    <a href="{% url 'trees:tree_list' %}"
+                                           class="btn btn-success btn-sm text-light">{% trans 'back' %}</a>
+                                    <button type="submit" class="btn btn-info btn-sm">{% trans 'saqlash' %}</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% else %}
+        <h2>{% trans 'Permision Denied' %}</h2>
+    {% endif %}
+
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}
+    <script>
+    let department = {{ department|safe }};
+    let region_data = {{ region|safe }};
+    const departments = department.map(elem => {
+        if(elem){
+            let obj = {id: elem.pk, name: elem.fields['name'], region: elem.fields['region']}
+            return obj
+        }
+    });
+    const regions = convertToObj(region_data)
+    const departmentSelect = document.querySelector('#id_department')
+    const setDepartment = (city) => {
+        const region = regions.find(elem => elem.name === city);
+        const current = departments.filter(elem => elem.region === region.id);
+            if(current.length > 0){
+                departmentSelect.innerHTML = ""
+                current.forEach((elem, index) => {
+                    if(elem.name && index===0) {
+                            departmentSelect.innerHTML += `<option value='${elem.name}'selected>${elem.name}</option>`
+                        }
+                        else if(elem.name){
+                            departmentSelect.innerHTML += `<option value='${elem.name}'>${elem.name}</option>`
+                        }
+
+                    })
+            } else departmentSelect.innerHTML = ""
+    }
+    const regionChangeHandler = (e) => {
+        const city = e.value
+        city ? setDepartment(city) : departmentSelect.innerHTML = "";
+    }
+    </script>
+
+{% endblock javascripts %}

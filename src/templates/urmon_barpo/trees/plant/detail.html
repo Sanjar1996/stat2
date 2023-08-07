@@ -1,0 +1,79 @@
+{% extends "layouts/base.html" %}
+{% load i18n %}
+{% block title %} {% trans 'tree plant detail page' %} {% endblock %}
+
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+    {% if not permission_denied %}
+        <div class="row">
+            <div class="col-md-10 offset-md-1">
+                <div class="card">
+                    <div class="card-header card-header-info py-4 shadow">
+                        <h4 class="card-title text-light text-center">{% trans 'tree plant detail form' %}</h4>
+                    </div>
+                    <div class="card-body mt-4">
+                        <form role="form" method="POST" action="{% url 'trees:name_detail' tree.id %}">
+                            {% csrf_token %}
+                            <div class="row d-flex align-items-center">
+                                <div class="col-md-6">
+                                    <div class="form-group py-2 pt-2">
+                                        <label for="" class="text-dark">{% trans "Tree name" %}</label>
+                                        {{ form.name }}
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group mb-2">
+                                        <label for="" class="text-dark">{% trans "Description" %}</label>
+                                        {{ form.category }}
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label for="id_is_show_sprouting"
+                                               class="text-dark">{% trans "Nihol hisobotida ko'rsatish" %}</label>
+                                        {{ form.is_show_sprouting }}
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group py-2">
+                                        <label for="id_is_show_seed"
+                                               class="text-dark">{% trans "Urugchilik hisobotida ko'rsatish" %}</label>
+                                        {{ form.is_show_seed }}
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group py-2">
+                                        <label for="id_is_show_sapling"
+                                               class="text-dark">{% trans "Ko'chat hisobotida ko'rsatish" %}</label>
+                                        {{ form.is_show_sapling }}
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label for="id_is_show_height"
+                                               class="text-dark">{% trans "Balandlik hisobotida ko'rsatish" %}</label>
+                                        {{ form.is_show_height }}
+                                    </div>
+                                </div>
+                                <div class="col-md-12 d-flex align-items-center justify-content-between">
+                                    <a href="{% url 'trees:name_list' %}"
+                                       class="btn btn-success btn-sm text-light">{% trans 'back' %}</a>
+                                    <button type="submit" class="btn btn-info btn-sm">{% trans 'saqlash' %}</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    {% else %}
+        <h2>{% trans "permision_denied" %}</h2>
+    {% endif %}
+
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}{% endblock javascripts %}

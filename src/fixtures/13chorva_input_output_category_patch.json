@@ -1,0 +1,123 @@
+[
+{
+  "model": "chorvachilik.chorvainputoutputcategory",
+  "pk": 1,
+  "fields": {
+    "created_at": "2021-02-06T11:30:08.689Z",
+    "updated_at": "2021-02-06T11:46:33.295Z",
+    "name": "\u0431\u043e\u0448\u043a\u0430 \u0433\u0443\u0440\u0443\u0445\u0433\u0430 \u0443\u0442\u0434\u0438.",
+    "type": 2,
+    "status": 1
+  }
+},
+{
+  "model": "chorvachilik.chorvainputoutputcategory",
+  "pk": 2,
+  "fields": {
+    "created_at": "2021-02-06T11:48:22.197Z",
+    "updated_at": "2021-02-06T11:48:22.197Z",
+    "name": "\u0431\u045e\u0442\u0430\u043b\u043e\u049b, \u049b\u0443\u043b\u0443\u043d, \u0431\u0443\u0437\u043e\u049b \u0432\u0430 \u043a\u045e\u0437\u0438 \u043e\u043b\u0438\u0448 (85%)",
+    "type": 1,
+    "status": 1
+  }
+},
+{
+  "model": "chorvachilik.chorvainputoutputcategory",
+  "pk": 3,
+  "fields": {
+    "created_at": "2021-02-06T11:48:28.876Z",
+    "updated_at": "2021-02-06T11:48:28.876Z",
+    "name": "\u0431\u043e\u0448\u043a\u0430 \u0433\u0443\u0440\u0443\u0445\u0434\u0430\u043d \u043a\u0435\u043b\u0433\u0430\u043d\u0438",
+    "type": 1,
+    "status": 1
+  }
+},
+{
+  "model": "chorvachilik.chorvainputoutputcategory",
+  "pk": 4,
+  "fields": {
+    "created_at": "2021-02-06T11:48:44.920Z",
+    "updated_at": "2021-02-06T11:48:44.920Z",
+    "name": "\u0432\u0430\u0437\u043d \u043e\u043b\u0438\u0448",
+    "type": 1,
+    "status": 1
+  }
+},
+{
+  "model": "chorvachilik.chorvainputoutputcategory",
+  "pk": 5,
+  "fields": {
+    "created_at": "2021-02-06T11:48:57.063Z",
+    "updated_at": "2021-02-06T11:48:57.063Z",
+    "name": "\u0441\u043e\u0442\u0438\u0431 \u043e\u043b\u0438\u043d\u0433\u0430\u043d \u0451\u043a\u0438 \u0431\u043e\u0448\u043a\u0430 \u0445\u045e\u0436\u0430\u043b\u0438\u043a\u0434\u0430\u043d \u043a\u0435\u043b\u0433\u0430\u043d,",
+    "type": 1,
+    "status": 1
+  }
+},
+{
+  "model": "chorvachilik.chorvainputoutputcategory",
+  "pk": 6,
+  "fields": {
+    "created_at": "2021-02-06T11:49:05.214Z",
+    "updated_at": "2021-02-06T11:49:05.214Z",
+    "name": "\u0436\u0430\u043c\u0438 \u043a\u0438\u0440\u0438\u043c \u043c\u043e\u043b\u043b\u0430\u0440",
+    "type": 1,
+    "status": 1
+  }
+},
+{
+  "model": "chorvachilik.chorvainputoutputcategory",
+  "pk": 7,
+  "fields": {
+    "created_at": "2021-02-06T11:49:10.904Z",
+    "updated_at": "2021-02-06T11:49:10.905Z",
+    "name": "\u043c\u0430\u0436\u0431\u0443\u0440\u0438\u0439 \u0441\u0443\u0439\u0438\u043b\u0434\u0438",
+    "type": 1,
+    "status": 1
+  }
+},
+{
+  "model": "chorvachilik.chorvainputoutputcategory",
+  "pk": 8,
+  "fields": {
+    "created_at": "2021-02-06T11:49:19.355Z",
+    "updated_at": "2021-02-06T11:49:19.355Z",
+    "name": "\u0433\u0443\u0448\u0442\u0433\u0430 \u0441\u0443\u0439\u0438\u043b\u0434\u0438",
+    "type": 1,
+    "status": 1
+  }
+},
+{
+  "model": "chorvachilik.chorvainputoutputcategory",
+  "pk": 9,
+  "fields": {
+    "created_at": "2021-02-06T11:49:33.809Z",
+    "updated_at": "2021-02-06T11:49:33.809Z",
+    "name": "\u043d\u043e\u0431\u0443\u0434 \u0431\u045e\u043b\u0433\u0430\u043d",
+    "type": 1,
+    "status": 1
+  }
+},
+{
+  "model": "chorvachilik.chorvainputoutputcategory",
+  "pk": 10,
+  "fields": {
+    "created_at": "2021-02-06T11:49:40.703Z",
+    "updated_at": "2021-02-06T11:49:40.703Z",
+    "name": "\u0438\u0441\u0441\u0438\u049b \u043e\u0432\u049b\u0430\u0442\u0433\u0430",
+    "type": 1,
+    "status": 1
+  }
+},
+{
+  "model": "chorvachilik.chorvainputoutputcategory",
+  "pk": 11,
+  "fields": {
+    "created_at": "2021-02-06T11:49:47.334Z",
+    "updated_at": "2021-02-06T11:49:47.334Z",
+    "name": "\u049a\u045e\u043c\u0438\u0442\u0430 \u0431\u0443\u0439\u0440\u0443\u0493\u0438 \u0430\u0441\u043e\u0441\u0438\u0434\u0430 \u0441\u043e\u0442\u0438\u043b\u0433\u0430\u043d \u0451\u043a\u0438 \u0431\u043e\u0448\u043a\u0430 \u0445\u0443\u0436.\u0433\u0430 \u045e\u0442\u043a\u0430\u0437\u0438\u043b\u0433\u0430\u043d",
+    "type": 1,
+    "status": 1
+  }
+}
+]

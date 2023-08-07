@@ -1,0 +1,261 @@
+{% extends "layouts/base.html" %}
+{% load i18n %}
+{% block title %} {% trans 'chorvachilik actual page title' %} {% endblock %}
+
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}
+    <style>
+        #chorvachilik_actual_create {
+            display: block;
+            position: relative;
+        }
+
+        form#form select {
+            text-overflow: ellipsis !important;
+            padding-right: 20px !important;
+        }
+
+        .fixed-add-btn {
+            position: fixed;
+            top: 50%;
+            left: 85%;
+        }
+        [v-cloak] {
+            display: none;
+        }
+    </style>
+{% endblock stylesheets %}
+{% block content %}
+    {% if perms.chorvachilik.add_chorvachilikactual %}
+        <div class="row " id="chorvachilik_actual_create" v-cloak>
+            <div class="col-md-8 offset-md-2">
+                <form @submit.prevent="createChorvachilikActual" id="form">
+                    {% csrf_token %}
+                    <div class="card">
+                        <div class="card-header card-header-info py-4 shadow">
+                            <h4 class="card-title text-light text-center">{% trans 'chorvachilik actual create form' %}</h4>
+                        </div>
+                        <div class="card-body mt-4">
+                            <div class="row d-flex align-items-end bg-light border mb-1 mx-1">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="date" class="text-dark">{% trans 'Date' %}</label>
+                                        <input type="date" class="form-control" v-model="date" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group ">
+                                        <label for="region_id" class="text-dark">{% trans 'Region' %}</label>
+                                        <select name="region" id="region_id" class="custom-select" v-model="region"
+                                                @change="regionChangeHandler(region)" required>
+                                            <option v-for="(item, index) in regions" :key="item.id" :value="item.id">[[
+                                                item.name ]]
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group py-2">
+                                        <label for="region" class="text-dark">{% trans 'Department' %}</label>
+                                        <select name="department" id="department_id" class="custom-select"
+                                                v-model="department" @change="departmentChangeHandler(department)"
+                                                required>
+                                            <option v-for="item in selectedDepartments" :key="item.id" :value="item.id">
+                                                [[ item.name ]]
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group py-2">
+                                        <label for="chorvachilik_type_id"
+                                               class="text-dark">{% trans 'chorvachilik Type' %}</label>
+                                        <select
+                                                name="tree_type"
+                                                id="chorvachilik_type_id"
+                                                class="custom-select"
+                                                v-model="chorvachilik_type"
+                                                @change="chorvachilikTypeChangeHandler(chorvachilik_type)"
+                                                required>
+                                            <option v-for="item in chorvachilik_types" :key="item.id" :value="item.id">
+                                                [[ item.name ]]
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                </form>
+                <div class="card-body" v-for="(item, i) in counts">
+                    <div class="row d-flex align-items-end bg-light border mb-1 mx-1">
+                        <div class="col-md-12 d-flex justify-content-end align-items-end">
+                            <button class="btn btn-danger btn-sm btn-fab btn-fab-mini btn-round remove"
+                                    @click="removeRow(i)">
+                                <i class="material-icons">close</i>
+                            </button>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group py-2">
+                                <label for="text" class="text-dark"> {% trans 'Chorvachilik' %}</label>
+                                <select name="chorvachilik" :id="`chorvachilik`+i" class="custom-select"
+                                        v-model="income[i].chorvachilik" required>
+                                    <template>
+                                        <option v-for="item in selectedChorvachilik" :key="item.id" :value="item.id">[[
+                                            item.name ]]
+                                        </option>
+                                    </template>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group py-2">
+                                <label for="text" class="text-dark">{% trans 'Amount' %}</label>
+                                <input type="text" class="form-control" v-model="income[i].amount" required>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group py-2">
+                                <label for="text" class="text-dark"> {% trans 'Amount type' %}</label>
+                                <select name="amount_type" :id="`amount_type_`+i" class="custom-select"
+                                        v-model="income[i].amount_type" required>
+                                    <template>
+                                        <option v-for="item in amount_types" :key="item.id" :value="item.id">[[
+                                            item.title ]]
+                                        </option>
+                                    </template>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12 d-flex align-items-end justify-content-between">
+                    <a href="{% url 'chorvachilik:chorvachilik_actual_list' %}"
+                       class="btn btn-success btn-sm text-light">
+                        {% trans 'back' %}
+                    </a>
+                    <button type="submit" class="btn btn-info btn-sm">{% trans 'create' %}</button>
+                </div>
+                <div class="fixed-add-btn">
+                    <button class="btn btn-success btn-sm text-dark btn-fab btn-fab-mini btn-round"
+                            @click="incrementFormRow">
+                        <i class="material-icons text-light">add</i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    {% else %}
+        <h2>{% trans 'Permission Denied' %}</h2>
+    {% endif %}
+
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}
+    <script>
+        let chorvachilik_data = {{ chorvachilik|safe }};
+        const chorvachilik_types = convertToObj({{ chorvachilik_types|safe }});
+        const chorvachilik = chorvachilik_data.map(elem => {
+            if (elem) {
+                return {id: elem.pk, name: elem.fields['name'], type: elem.fields['type']}
+            }
+        });
+        const departments = convertToJson({{departments|safe}})
+        const token = getCsrfToken(document.querySelectorAll('input'));
+        const regions = convertToObj({{ regions|safe }})
+        const sapling = new Vue({
+            delimiters: ['[[', ']]'],
+            el: '#chorvachilik_actual_create',
+            data: {
+                token: token,
+                counts: 1,
+                date: null,
+                region: null,
+                department: null,
+                chorvachilik_type: null,
+                income: [{
+                    amount: null,
+                    amount_type: null,
+                    chorvachilik: null,
+                }
+                ],
+                amount_types: [{id: 1, title: "{% trans 'DONA' %}"}, {id: 2, title: "{% trans 'KG' %}"}, {id: 3, title: "{% trans 'HEAD' %}"}, {
+                    id: 4,
+                    title: "{% trans 'TON' %}"
+                }, {id: 5, title: "{% trans 'FAMILY' %}"}],
+                regions: regions,
+                selectedDepartments: [],
+                departmentsRoot: departments,
+                chorvachilikRoot: chorvachilik,
+                selectedChorvachilik: [],
+                chorvachilik_types: chorvachilik_types
+            },
+            methods: {
+                regionChangeHandler(id) {
+                    this.selectedDepartments = this.departmentsRoot.filter(elem => elem.region === id)
+                },
+                departmentChangeHandler(id) {
+                    this.department = id
+                },
+                incrementFormRow() {
+                    this.counts++;
+                    const obj = {
+                        amount: null,
+                        amount_type: null,
+                        chorvachilik: null
+                    };
+                    this.income.push(obj)
+                },
+                removeRow(id) {
+                    this.income.splice(id, 1);
+                    this.counts--
+                },
+                chorvachilikTypeChangeHandler(id) {
+                    this.selectedChorvachilik = this.chorvachilikRoot.filter(elem => {
+                        if (elem.type) {
+                            const result = elem.type.find(item => item === id)
+                            if (result) {
+                                return elem
+                            }
+                        }
+                    })
+                },
+                async createChorvachilikActual() {
+                    let form = new FormData();
+                    form.append("csrfmiddlewaretoken", this.token);
+                    form.append("date", this.date);
+                    form.append("region", this.region);
+                    form.append("department", this.department);
+                    form.append("chorvachilik_type", this.chorvachilik_type);
+                    form.append("items", JSON.stringify(this.income));
+                    const url = location.origin + "/chorvachilik/chorvachilik/actual/create/";
+                    try {
+                        const response = await fetch(url, {
+                            method: 'POST',
+                            body: form
+                        })
+                        if (response.status === 200) {
+                            let msg = "{% trans "Your work has been saved" %}"
+                            successMessage(msg)
+                            setTimeout(() => {
+                                location.href = response.url
+                            }, 2000)
+                        }
+                    } catch (error) {
+                        let msg = "Error"
+                        errorMessage(msg)
+                    }
+
+                }
+            },
+            filters: {
+                truncate: function (text, length, suffix) {
+                    if (text.length > length) {
+                        return text.substring(0, length) + suffix;
+                    } else {
+                        return text;
+                    }
+                },
+            }
+        });
+    </script>
+{% endblock javascripts %}

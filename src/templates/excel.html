@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Backup</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: "Roboto", "Lucida Grande", "DejaVu Sans", "Bitstream Vera Sans", Verdana, Arial, sans-serif;
+        }
+
+        .container {
+            display: flex;
+            justify-content: center;
+        }
+
+        .box {
+            margin-top: 150px;
+        }
+
+        table {
+            border-collapse: collapse;
+        }
+
+        td, th {
+            border: 1px solid #999;
+            padding: 0.5rem;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="box">
+        {% if messages %}
+            {% for message in messages %}
+                <div class="text-warning text-center alert{% if message.tags %}alert-{{ message.tags }}{% endif %}"
+                     role="alert">{{ message }}</div>
+            {% endfor %}
+        {% endif %}
+    </div>
+</div>
+<div style="margin-top: 20px" class="container">
+    <a style="padding: 15px; border: 1px solid; text-decoration: none" id="get_excel_file"
+       href="{% url 'report:get_excel_file' %}">
+        <img style="width: 50%" src="/media/ms-excel.png" alt="excel">
+    </a>
+</div>
+<script>
+    let a_href = document.querySelector('#get_excel_file');
+    let path = a_href.getAttribute('href')
+    a_href.setAttribute('href', `${path}?report_id=4&amount_type=1&start=2022-01-01&end=2022-12-31`)
+</script>
+</body>
+</html>

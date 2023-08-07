@@ -1,0 +1,188 @@
+{% extends "layouts/base.html" %}
+{% load i18n %}
+{% block title %} {% trans "Qishloq xo'jaligi report title" %} {% endblock %}
+
+{% block stylesheets %}
+<style>
+        .card-body {
+            display: flex;
+            flex-direction: column;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: flex-end;
+        }
+
+        .card-body .card-title {
+            text-overflow: ellipsis;
+            overflow: hidden;
+            white-space: nowrap;
+            width: 100%;
+            max-width: 100%;
+            -webkit-line-clamp: 3;
+        }
+
+</style>
+{% endblock stylesheets %}
+{% block content %}
+        <div class="container-fluid">
+            <div class="row d-flex justify-content-start align-items-center">
+                <div class="col-md-12">
+                    <h3 class="text-center m-0">{% trans "Qishloq xo'jaligi xisobotlari" %}</h3>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-6">
+                    <div class="card">
+                        <div class="card-body text-right">
+                            <h4 class="card-title text-center py-3 font-weight-bold">{% trans "All" %}</h4>
+                            <a href="{% url 'agriculture:only_all' %}?start={{ start }}&end={{ end }}&type=all"
+                               class="btn btn-info btn-sm">{% trans "Кириш" %}</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-6">
+                    <div class="card">
+                        <div class="card-body text-right">
+                            <h4 class="card-title text-center py-3 font-weight-bold">{% trans "Boshoqli don" %}</h4>
+                            <a href="{% url 'agriculture:agriculture_report_all' %}?start={{ start }}&end={{ end }}&type=1"
+                               class="btn btn-info btn-sm">{% trans "Кириш" %}</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-6">
+                    <div class="card">
+                        <div class="card-body text-right">
+                            <h4 class="card-title text-center py-3 font-weight-bold">{% trans "Sabzavod ekinlar" %}</h4>
+                            <a href="{% url 'agriculture:agriculture_report_all' %}?start={{ start }}&end={{ end }}&type=2"
+                               class="btn btn-info btn-sm">{% trans "Кириш" %}</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-6">
+                    <div class="card">
+                        <div class="card-body text-right">
+                            <h4 class="card-title text-center py-3 font-weight-bold">{% trans "Poliz ekinlar" %}</h4>
+                            <a href="{% url 'agriculture:agriculture_report_all' %}?start={{ start }}&end={{ end }}&type=3"
+                               class="btn btn-info btn-sm">{% trans "Кириш" %}</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-6">
+                    <div class="card">
+                        <div class="card-body text-right">
+                            <h4 class="card-title text-center py-3 font-weight-bold">{% trans "Texnik ekinlar" %}</h4>
+                            <a href="{% url 'agriculture:agriculture_report_all' %}?start={{ start }}&end={{ end }}&type=4"
+                               class="btn btn-info btn-sm">{% trans "Кириш" %}</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-6">
+                    <div class="card">
+                        <div class="card-body text-right">
+                            <h4 class="card-title text-center py-3 font-weight-bold">{% trans "Moyli ekinlar" %}</h4>
+                            <a href="{% url 'agriculture:agriculture_report_all' %}?start={{ start }}&end={{ end }}&type=5"
+                               class="btn btn-info btn-sm">{% trans "Кириш" %}</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-6">
+                    <div class="card">
+                        <div class="card-body text-right">
+                            <h4 class="card-title text-center py-3 font-weight-bold">{% trans "Dukkakli ekinlar" %}</h4>
+                            <a href="{% url 'agriculture:agriculture_report_all' %}?start={{ start }}&end={{ end }}&type=6"
+                               class="btn btn-info btn-sm">{% trans "Кириш" %}</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-6">
+                    <div class="card">
+                        <div class="card-body text-right">
+                            <h4 class="card-title text-center py-3 font-weight-bold">{% trans "Ozuqa ekinlar" %}</h4>
+                            <a href="{% url 'agriculture:agriculture_report_all' %}?start={{ start }}&end={{ end }}&type=7"
+                               class="btn btn-info btn-sm">{% trans "Кириш" %}</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-6">
+                    <div class="card">
+                        <div class="card-body text-right">
+                            <h4 class="card-title text-center py-3 font-weight-bold">{% trans "Takroriy ekinlar (dukkakli)" %}</h4>
+                            <a href="{% url 'agriculture:agriculture_report_all' %}?start={{ start }}&end={{ end }}&type=8"
+                               class="btn btn-info btn-sm">{% trans "Кириш" %}</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-6">
+                    <div class="card">
+                        <div class="card-body text-right">
+                            <h4 class="card-title text-center py-3 font-weight-bold">{% trans "Takroriy ekinlar (sabzavot)" %}</h4>
+                            <a href="{% url 'agriculture:agriculture_report_all' %}?start={{ start }}&end={{ end }}&type=9"
+                               class="btn btn-info btn-sm">{% trans "Кириш" %}</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-6">
+                    <div class="card">
+                        <div class="card-body text-right">
+                            <h4 class="card-title text-center py-3 font-weight-bold">{% trans "Urugli ekinlar" %}</h4>
+                            <a href="{% url 'agriculture:agriculture_report_all' %}?start={{ start }}&end={{ end }}&type=10"
+                               class="btn btn-info btn-sm">{% trans "Кириш" %}</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-6">
+                    <div class="card">
+                        <div class="card-body text-right">
+                            <h4 class="card-title text-center py-3 font-weight-bold">{% trans "Danakli ekinlar" %}</h4>
+                            <a href="{% url 'agriculture:agriculture_report_all' %}?start={{ start }}&end={{ end }}&type=11"
+                               class="btn btn-info btn-sm">{% trans "Кириш" %}</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-6">
+                    <div class="card">
+                        <div class="card-body text-right">
+                            <h4 class="card-title text-center py-3 font-weight-bold">{% trans "Uzumzor" %}</h4>
+                            <a href="{% url 'agriculture:agriculture_report_all' %}?start={{ start }}&end={{ end }}&type=12"
+                               class="btn btn-info btn-sm">{% trans "Кириш" %}</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-6">
+                    <div class="card">
+                        <div class="card-body text-right">
+                            <h4 class="card-title text-center py-3 font-weight-bold">{% trans "Yong'oq mevaliklar" %}</h4>
+                            <a href="{% url 'agriculture:agriculture_report_all' %}?start={{ start }}&end={{ end }}&type=14"
+                               class="btn btn-info btn-sm">{% trans "Кириш" %}</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-6">
+                    <div class="card">
+                        <div class="card-body text-right">
+                            <h4 class="card-title text-center py-3 font-weight-bold">{% trans "Issiq xona" %}</h4>
+                            <a href="{% url 'agriculture:agriculture_report_all' %}?start={{ start }}&end={{ end }}&type=17"
+                               class="btn btn-info btn-sm">{% trans "Кириш" %}</a>
+                        </div>
+                    </div>
+                </div>
+                {% for item in data %}
+                    <div class="col-lg-3 col-md-4 col-sm-6">
+                        <div class="card shadow">
+                            <div class="card-body text-right">
+                                <h4 class="card-title text-center py-3 font-weight-bold" title="{{ item.name }}">
+                                     {{ item.name }}
+                                </h4>
+                                {# {{ current_year }}#}
+                                <a href="{% url 'report:hisobot' item.id %}"
+                                   class="btn btn-info btn-sm">{% trans "Kirish" %}</a>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}
+
+{% endblock javascripts %}

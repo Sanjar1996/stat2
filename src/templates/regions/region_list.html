@@ -1,0 +1,125 @@
+{% extends "layouts/base.html" %}
+{% load i18n %}
+
+{% block title %} {% trans 'user_list_title' %} {% endblock %}
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}{% endblock stylesheets %}
+{% trans "This is the title" as the_title %}
+{% block content %}
+    {% if perms.accounts.view_region %}
+        <div class="row">
+            <div class="col-md-12 ">
+                <div class="card">
+                    <div class="card-header card-header-info py-4 d-flex justify-content-between align-items-center">
+                        <div>
+                            <h4 class="card-title text-light">{% trans 'region list' %}</h4>
+                            <p class="card-category text-light"></p>
+                        </div>
+                        <a type="button" class="btn btn-success btn-sm" href="{% url 'accounts:region_create' %}">
+                            {% trans 'create' %}
+                        </a>
+                    </div>
+
+                    <div class="card-body">
+                        <div class="table">
+                            <table class="table table-hover table-responsive-xl table-responsive-lg table-responsive-md table-responsive-sm">
+                                <thead class=" text-info">
+                                <th>{% trans 'id' %}</th>
+                                <th>{% trans 'name' %}</th>
+                                <th>{% trans 'Actions' %}</th>
+                                </thead>
+                                <tbody>
+                                {% for region in regions %}
+                                    <tr>
+                                        <td class="border">{{ region.id }}</td>
+                                        <td class="border">{{ region.name }}</td>
+                                        <td class="border">
+                                            {% if perms.accounts.view_region %}
+                                                <a
+                                                        href="{% url 'accounts:region_detail' region.id %}"
+                                                        class="btn btn-info btn-fab btn-fab-mini btn-round text-light">
+                                                    <i class="material-icons">edit</i>
+                                                </a>
+                                            {% endif %}
+                                            {% if perms.accounts.delete_region %}
+                                                <a
+                                                        data-toggle="modal"
+                                                        data-target="#removeUser"
+                                                        onclick="removeItem({{ region.id }})"
+                                                        class="btn btn-info btn-fab btn-fab-mini btn-round text-light">
+                                                    <i class="material-icons">delete</i>
+                                                </a>
+                                            {% endif %}
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% else %}
+        <h1>Permission Denied</h1>
+    {% endif %}
+    <nav aria-label="Page navigation example text-center" class="d-flex align-items-center justify-content-center">
+        <ul class="pagination">
+            {% if page_obj.has_previous %}
+                <li class="page-item">
+                    <a class="page-link" href="?page=1" aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                        <span class="sr-only">begin</span>
+                    </a>
+                </li>
+            {% endif %}
+            {% for n in page_obj.paginator.page_range %}
+                {% if page_obj.number == n %}
+                    <li class="page-item active">
+                        <span class="page-link">{{ n }}<span class="sr-only">(current)</span></span>
+                    </li>
+                {% elif n > page_obj.number|add:'-3' and n < page_obj.number|add:'3' %}
+                    <li class="page-item"><a class="page-link" href="?page={{ n }}">{{ n }}</a></li>
+                {% endif %}
+            {% endfor %}
+            {% if page_obj.has_next %}
+                <li class="page-item">
+                    <a class="page-link" href="?page={{ page_obj.paginator.num_pages }}" aria-label="Next">
+                        <span aria-hidden="true">&raquo;</span>
+                        <span class="sr-only">end</span>
+                    </a>
+                </li>
+            {% endif %}
+        </ul>
+    </nav>
+    <div class="modal fade" id="removeUser" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">{% trans 'delete' %}</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <span>{% trans "Sizni ishonchingiz komilmi?" %}</span>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-success btn-sm" data-dismiss="modal">Close</button>
+                    <a href="" class="btn btn-danger btn-sm" id="remove">{% trans 'confirm' %}</a>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}
+    <script>
+        const removeItem = (id) => {
+            const anchor = document.querySelector('#remove')
+            anchor.href = `/accounts/region/${id}/delete`
+        }
+    </script>
+{% endblock javascripts %}

@@ -1,0 +1,286 @@
+{% extends "layouts/base.html" %}
+
+{% block title %} UI Tables {% endblock %} 
+
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+
+        <div class="row">
+            <div class="col-md-12">
+              <div class="card">
+                <div class="card-header card-header-info">
+                  <h4 class="card-title ">Simple Table</h4>
+                  <p class="card-category"> Here is a subtitle for this table</p>
+                </div>
+                <div class="card-body">
+                  <div class="table">
+                    <table class="table">
+                      <thead class=" text-info">
+                        <th>
+                          ID
+                        </th>
+                        <th>
+                          Name
+                        </th>
+                        <th>
+                          Country
+                        </th>
+                        <th>
+                          City
+                        </th>
+                        <th>
+                          Salary
+                        </th>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td class="border">
+                            1
+                          </td>
+                          <td class="border">
+                            Dakota Rice
+                          </td>
+                          <td class="border">
+                            Niger
+                          </td>
+                          <td class="border">
+                            Oud-Turnhout
+                          </td>
+                          <td class="text-info">
+                            $36,738
+                          </td>
+                        </tr>
+                        <tr>
+                          <td class="border">
+                            2
+                          </td>
+                          <td class="border">
+                            Minerva Hooper
+                          </td>
+                          <td class="border">
+                            Curaçao
+                          </td>
+                          <td class="border">
+                            Sinaai-Waas
+                          </td>
+                          <td class="text-info">
+                            $23,789
+                          </td>
+                        </tr>
+                        <tr>
+                          <td class="border">
+                            3
+                          </td>
+                          <td class="border">
+                            Sage Rodriguez
+                          </td>
+                          <td class="border">
+                            Netherlands
+                          </td>
+                          <td class="border">
+                            Baileux
+                          </td>
+                          <td class="text-info">
+                            $56,142
+                          </td>
+                        </tr>
+                        <tr>
+                          <td class="border">
+                            4
+                          </td>
+                          <td class="border">
+                            Philip Chaney
+                          </td>
+                          <td class="border">
+                            Korea, South
+                          </td>
+                          <td class="border">
+                            Overland Park
+                          </td>
+                          <td class="text-info">
+                            $38,735
+                          </td>
+                        </tr>
+                        <tr>
+                          <td class="border">
+                            5
+                          </td>
+                          <td class="border">
+                            Doris Greene
+                          </td>
+                          <td class="border">
+                            Malawi
+                          </td>
+                          <td class="border">
+                            Feldkirchen in Kärnten
+                          </td>
+                          <td class="text-info">
+                            $63,542
+                          </td>
+                        </tr>
+                        <tr>
+                          <td class="border">
+                            6
+                          </td>
+                          <td class="border">
+                            Mason Porter
+                          </td>
+                          <td class="border">
+                            Chile
+                          </td>
+                          <td class="border">
+                            Gloucester
+                          </td>
+                          <td class="text-info">
+                            $78,615
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-12">
+              <div class="card card-plain">
+                <div class="card-header card-header-info">
+                  <h4 class="card-title mt-0"> Table on Plain Background</h4>
+                  <p class="card-category"> Here is a subtitle for this table</p>
+                </div>
+                <div class="card-body">
+                  <div class="table">
+                    <table class="table table-hover table-responsive-xl table-responsive-lg table-responsive-md table-responsive-sm">
+                      <thead class="">
+                        <th>
+                          ID
+                        </th>
+                        <th>
+                          Name
+                        </th>
+                        <th>
+                          Country
+                        </th>
+                        <th>
+                          City
+                        </th>
+                        <th>
+                          Salary
+                        </th>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td class="border">
+                            1
+                          </td>
+                          <td class="border">
+                            Dakota Rice
+                          </td>
+                          <td class="border">
+                            Niger
+                          </td>
+                          <td class="border">
+                            Oud-Turnhout
+                          </td>
+                          <td class="border">
+                            $36,738
+                          </td>
+                        </tr>
+                        <tr>
+                          <td class="border">
+                            2
+                          </td>
+                          <td class="border">
+                            Minerva Hooper
+                          </td>
+                          <td class="border">
+                            Curaçao
+                          </td>
+                          <td class="border">
+                            Sinaai-Waas
+                          </td>
+                          <td class="border">
+                            $23,789
+                          </td>
+                        </tr>
+                        <tr>
+                          <td class="border">
+                            3
+                          </td>
+                          <td class="border">
+                            Sage Rodriguez
+                          </td>
+                          <td class="border">
+                            Netherlands
+                          </td>
+                          <td class="border">
+                            Baileux
+                          </td>
+                          <td class="border">
+                            $56,142
+                          </td>
+                        </tr>
+                        <tr>
+                          <td class="border">
+                            4
+                          </td>
+                          <td class="border">
+                            Philip Chaney
+                          </td>
+                          <td class="border">
+                            Korea, South
+                          </td>
+                          <td class="border">
+                            Overland Park
+                          </td>
+                          <td class="border">
+                            $38,735
+                          </td>
+                        </tr>
+                        <tr>
+                          <td class="border">
+                            5
+                          </td>
+                          <td class="border">
+                            Doris Greene
+                          </td>
+                          <td class="border">
+                            Malawi
+                          </td>
+                          <td class="border">
+                            Feldkirchen in Kärnten
+                          </td>
+                          <td class="border">
+                            $63,542
+                          </td>
+                        </tr>
+                        <tr>
+                          <td class="border">
+                            6
+                          </td>
+                          <td class="border">
+                            Mason Porter
+                          </td>
+                          <td class="border">
+                            Chile
+                          </td>
+                          <td class="border">
+                            Gloucester
+                          </td>
+                          <td class="border">
+                            $78,615
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+        </div>
+
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}{% endblock javascripts %}

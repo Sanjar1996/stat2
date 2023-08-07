@@ -1,0 +1,300 @@
+{% extends "layouts/base.html" %}
+{% load static %}
+{% load i18n %}
+{% block title %} {% trans 'yillik reja' %} {% endblock %}
+
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}
+    <style>
+        .styled-table th,
+        .styled-table td {
+            padding: 12px 15px;
+        }
+
+        .styled-table thead tr {
+            color: #ffffff;
+        }
+
+        .fix__table_header {
+            position: sticky;
+            background-color: #009879;
+            color: #ffffff;
+            z-index: 1;
+            top: -1px;
+            outline: 1px solid #ffffff;
+        }
+
+        .fix__table_header_second_lines {
+            position: sticky;
+            color: #ffffff;
+            z-index: 1;
+            top: 3.3%;
+            height: 100%;
+            outline: 1px solid #ffffff;
+            background-color: #009879;
+            text-align: center;
+        }
+        #wrap {
+            position: relative;
+            overflow: scroll;
+        }
+
+        table {
+            text-align: left;
+            border-collapse: collapse;
+            background-color: transparent;
+        }
+        .hidden{
+            display: none;
+        }
+        @media only screen and (max-width: 1279px) {
+            .fix__table_header_second_lines {
+                top: 7%;
+            }
+            .rotate_text{
+                max-width: 50px;
+                text-indent: -35px;
+            }
+        }
+
+        @media only screen and (min-width: 381px) and (max-width: 1200px) {
+            .fix__table_header_second_lines {
+                top: 0 !important;
+            }
+        }
+        @media only screen and (min-width: 1280px) and (max-width: 1660px) {
+            .fix__table_header_second_lines {
+                top: 3.5%;
+            }
+        }
+        td{
+            font-size: 18px;
+        }
+    </style>
+{% endblock stylesheets %}
+
+{% block content %}
+    {% if messages %}
+        {% for message in messages %}
+            <div class="text-warning text-center alert{% if message.tags %}alert-{{ message.tags }}{% endif %}"
+                 role="alert">{{ message }}</div>
+        {% endfor %}
+    {% endif %}
+    <div class="container-fluid">
+        <div class="row d-flex justify-content-baseline align-items-center bg-white">
+            <div class="col-md-12 form-group d-flex align-items-center justify-content-center">
+                <form role="form" method="GET" action="{% url 'trees:tree_height_report' %}">
+                    <div class="row justify-content-center">
+                        <div class="col-md-4">
+                            <label for="id_start">{% trans "start" %}</label>
+                            <div class="form-group">
+                                {{ form.start }}
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <label for="id_end">{% trans "end" %}</label>
+                            <div class="form-group">
+                                {{ form.end }}
+                            </div>
+                        </div>
+                        <div class="col-md-4 d-flex align-items-end flex-row justify-content-start">
+                            <button type="submit"
+                                    class="btn btn-info btn-fab btn-fab-mini text-light ml-1">
+                                <i class="material-icons">search</i></button>
+                            <a href="{% url 'trees:tree_height_report' %}"
+                               class="btn btn-info btn-sm  text-light mr-1">
+                                {% trans 'reset' %}
+                            </a>
+                            <a style="display: none" href="{% url 'trees:height_reports' %}" id="height_reports">
+                                <button class="btn btn-success btn-sm text-dark" type="button">
+                                    <img src="{% static 'assets/img/excel.ico' %}"
+                                         style="max-width: 20px; max-height: 15px"
+                                         alt="Excel">
+                                </button>
+                            </a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="col-md-12 bg-light">
+                <div class="card card-plain">
+                    <div class="card-header card-header-info">
+                        <h5 class="card-title mt-0 text-center text-light font-weight-bold">
+                            {% trans "Ўрмон хўжалиги давлат қўмитаси тизимидаги хўжаликларда" %}
+                            <span class="text-light">{{ start }}</span>
+                            {% trans 'дан' %}
+                            <span class="text-light">{{ end }}</span>
+                            <span class="text-lowercase">{% trans "Year" %}</span>
+                            <span class="text-lowercase">{% trans "Кўчатлар баландлиги бўйича маълумот" %}</span>
+                        </h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="table table-wrapper border">
+                            <table class="table-hover table table-hover table-responsive-xl table-responsive-lg table-responsive-md table-responsive-sm">
+                                <thead class="bg-primary">
+                                <tr>
+                                    <th rowspan="3" class="border text-light text-center fix__table_header static"
+                                        style="background-color: #009879;">{% trans "T/p" %}
+                                    </th>
+                                    <th rowspan="3" class="border text-center text-light fix__table_header static"
+                                        style="background-color: #009879;">{% trans 'Кўчат тури' %}</th>
+                                    <th rowspan="3" class="border text-center fix__table_header"
+                                        style=" white-space: wrap;">{% trans "ЖАМИ НИХОЛ ВА КЎЧАТЛАР" %}
+                                        <th colspan="7" class="border text-center fix__table_header">{% trans 'Daraxtlar' %}</th>
+                                </tr>
+                                <tr style="background-color: #009879;">
+                                        <th rowspan="2" class="fix__table_header_second_lines"><p
+                                                class="rotate_text">{% trans '0,2 м гача' %}</p></th>
+                                        <th rowspan="2" class="fix__table_header_second_lines"><p
+                                                class="rotate_text">{% trans '0,2-0,5 м гача' %}</p></th>
+                                        <th rowspan="2" class="fix__table_header_second_lines"><p
+                                                class="rotate_text">{% trans '0,5-1 м. гача' %}</p></th>
+                                        <th rowspan="2" class="fix__table_header_second_lines"><p
+                                                class="rotate_text">{% trans '1-1,5 м гача' %}</p></th>
+                                        <th rowspan="2" class="fix__table_header_second_lines"><p
+                                                class="rotate_text">{% trans '1,5-2 м гача' %}</p></th>
+                                        <th rowspan="2" class="fix__table_header_second_lines"><p
+                                                class="rotate_text">{% trans '2-дан юқори' %}</p></th>
+                                </tr>
+                                </thead>
+                                <tbody id="wrap">
+                                {% for item in data %}
+                                    {% if item.region_name %}
+                                        <tr class="table-bordered border bg-info parent">
+                                            <td class="static text-dark text-center"></td>
+                                            <td class="text-center font-weight-bold text-black border">
+                                                {{ item.region_name }}</td>
+                                            <td class="text-center font-weight-bold text-black border">
+                                                {{ item.region_sum|floatformat:"2"|default:"0.00" }}</td>
+                                            <td class="text-center font-weight-bold text-black border">
+                                                {{ item.region_first|floatformat:"2"|default:"0.00" }}</td>
+                                            <td class="text-center font-weight-bold text-black border">
+                                                {{ item.region_second|floatformat:"2"|default:"0.00" }}</td>
+                                            <td class="text-center font-weight-bold text-black border">
+                                                {{ item.region_tree|floatformat:"2"|default:"0.00" }}</td>
+                                            <td class="text-center font-weight-bold text-black border">
+                                                {{ item.region_four|floatformat:"2"|default:"0.00" }}</td>
+                                            <td class="text-center font-weight-bold text-black border">
+                                                {{ item.region_five|floatformat:"2"|default:"0.00" }}</td>
+                                            <td class="text-center font-weight-bold text-black border">
+                                                {{ item.region_six|floatformat:"2"|default:"0.00" }}</td>
+
+                                        </tr>
+                                    {% endif %}
+                                    <tr class="child">
+                                        <td class="static border text-center bg-light">{{ item.index }}</td>
+                                        <td class="text-left font-weight-bold static border bg-white">
+                                            <a href="{% url 'trees:tree_height_department' item.department_id %}" class="text-dark">
+                                                {{ item.department_name }}
+                                            </a>
+                                        </td>
+                                        <td class="text-center font-weight-bold border bg-white">
+                                            {{ item.department_sum|floatformat:"2"|default:"0.00" }}</td>
+                                        <td class="text-center font-weight-bold border bg-white">
+                                            {{ item.department_first|floatformat:"2"|default:"0.00" }}</td>
+                                        <td class="text-center font-weight-bold border bg-white">
+                                            {{ item.department_second|floatformat:"2"|default:"0.00" }}</td>
+                                        <td class="text-center font-weight-bold border bg-white">
+                                            {{ item.department_tree|floatformat:"2"|default:"0.00" }}</td>
+                                        <td class="text-center font-weight-bold border bg-white">
+                                            {{ item.department_four|floatformat:"2"|default:"0.00" }}</td>
+                                        <td class="text-center font-weight-bold border bg-white">
+                                            {{ item.department_five|floatformat:"2"|default:"0.00" }}</td>
+                                        <td class="text-center font-weight-bold border bg-white">
+                                            {{ item.department_six|floatformat:"2"|default:"0.00" }}</td>
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                                <tfoot class="border text-light" style="opacity: 1; background:#009879;">
+                                <th class="static text-light border"
+                                    style="opacity: 1; background:#009879;">{% trans "T/p" %}</th>
+                                <th class="text-center static text-light"
+                                    style="opacity: 1; background:#009879;">{% trans 'Жами' %}</th>
+                                <th class="text-center text-light border">
+                                    {{ all_result.all_sum|floatformat:"2"|default:"0.00" }}</th>
+                                <th class="text-center text-light border">
+                                    {{ all_result.all_first|floatformat:"2"|default:"0.00" }}</th>
+                                <th class="text-center text-light border">
+                                    {{ all_result.all_second|floatformat:"2"|default:"0.00" }}</th>
+                                <th class="text-center text-light border">
+                                    {{ all_result.all_tree|floatformat:"2"|default:"0.00" }}</th>
+                                <th class="text-center text-light border">
+                                    {{ all_result.all_four|floatformat:"2"|default:"0.00" }}</th>
+                                <th class="text-center text-light border">
+                                    {{ all_result.all_five|floatformat:"2"|default:"0.00" }}</th>
+                                <th class="text-center text-light border">
+                                    {{ all_result.all_six|floatformat:"2"|default:"0.00" }}</th>
+                                </tfoot>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}
+    <script>
+        const amount_sum = document.querySelectorAll('.amount_sum');
+        amount_sum.forEach(item => item.textContent = numberWithSpaces(item.textContent))
+        const child = document.querySelectorAll('.child');
+        const parrent = document.querySelectorAll('.parent');
+        const region_index = document.querySelectorAll('.region_index');
+        const showHideRegionChild = (event) => {
+            const iid = event.id;
+            console.log("iid", iid)
+            if (iid === "1") {
+                event.id = '2'
+                event.textContent = "{% trans 'Tashkilotlar kesimida' %}"
+                console.log("top: 5.0%;", parrent)
+                parrent.forEach(elem => {
+                    if (elem) {
+                        console.log("top: 5.0%;", elem)
+                        elem.classList.toggle('bg-info')
+                        elem.children[1].classList.toggle('text-left')
+                    }
+                })
+                child.forEach(elem => elem.classList.toggle("hidden"))
+                region_index.forEach((item, index, region_index) => item.innerText = index + 1)
+            } else if (iid === '2') {
+                event.id = '1'
+                event.textContent = "{% trans 'Hududlar kesimida' %}"
+                parrent.forEach(elem => {
+                    if (elem) {
+                        elem.classList.toggle('bg-info')
+                        elem.children[1].classList.toggle('text-center')
+                    }
+                })
+                region_index.forEach((item, index, region_index) => item.innerText = "")
+                child.forEach(elem => elem.classList.toggle("hidden"))
+            }
+        }
+
+
+    </script>
+
+    <script>
+        let a_href = document.querySelector('#height_reports');
+        const from_date = document.querySelector('#id_start');
+        const to_date = document.querySelector('#id_end');
+
+        $(document).ready(function () {$('#height_reports').show();});
+
+        let current_date_start_value = from_date.value
+        let current_date_to_value = to_date.value
+        let path = a_href.getAttribute('href')
+        a_href.setAttribute('href', `${path}?start=${current_date_start_value}&end=${current_date_to_value}`)
+
+        from_date.addEventListener("change", (e) => {
+            current_date_start_value = e.target.value;
+            a_href.setAttribute('href', `${path}?start=${current_date_start_value}&end=${current_date_to_value}`)
+        });
+        to_date.addEventListener("change", (e) => {
+            current_date_to_value = e.target.value;
+            a_href.setAttribute('href', `${path}?start=${current_date_start_value}&end=${current_date_to_value}`)
+        });
+    </script>
+
+{% endblock javascripts %}

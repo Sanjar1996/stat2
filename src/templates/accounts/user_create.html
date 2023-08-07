@@ -1,0 +1,123 @@
+{% extends "layouts/base.html" %}
+{% load i18n %}
+{% block title %} {% trans 'user_update_title' %} {% endblock %}
+
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+    {% if not permission_denied %}
+        <div class="row">
+            <div class="col-md-8 offset-2">
+                <div class="card">
+                    <div class="card-header card-header-info py-4">
+                        <h4 class="card-title text-light">{% trans "Create new user" %}</h4>
+                        <p class="card-category text-light"></p>
+                    </div>
+                    <div class="card-body mt-4">
+                        <form role="form" method="post" action="">
+                              {% csrf_token %}
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="">{% trans 'Email' %}</label>
+                                        {{ form.email }}
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="">{% trans 'First name' %}</label>
+                                        {{ form.first_name }}
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="">{% trans 'Last name' %}</label>
+                                        {{ form.last_name }}
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="">{% trans 'Mid name' %}</label>
+                                        {{ form.mid_name }}
+                                    </div>
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="form-group">
+                                        <label for="">{% trans 'Teamporary  work' %}</label>
+                                        {{ form.temporary_work }}
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="">{% trans 'Information' %}</label>
+                                        {{ form.information }}
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="">{% trans 'Position' %}</label>
+                                        {{ form.position }}
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="">{% trans 'Nation' %}</label>
+                                        {{ form.national }}
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="">{% trans 'Department' %}</label>
+                                        {{ form.department }}
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="">{% trans 'Groups' %}</label>
+                                        {{ form.groups }}
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="">{% trans 'Status' %}</label>
+                                        {{ form.status }}
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="">{% trans 'Crop area' %}</label>
+                                        {{ form.crop_area }}
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="">{% trans 'Password' %}</label>
+                                        {{ form.password1 }}
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="">{% trans 'Confirm password' %}</label>
+                                        {{ form.password2 }}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="d-flex align-items-end justify-content-between">
+                                    <a class="btn btn-success btn-sm" href="{% url 'accounts:users_list' %}">{% trans "Back" %}</a>
+                                    <button class="btn btn-info btn-sm" type="submit">{% trans 'Create' %}</button>
+                                </div>
+                            </div>
+                          </form>
+                    </div>
+                </div>
+            </div>
+    {% else %}
+        <h2>permision_denied</h2>
+    {% endif %}
+
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}{% endblock javascripts %}

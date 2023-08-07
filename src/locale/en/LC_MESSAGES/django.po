@@ -1,0 +1,5342 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-02-15 09:22+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#: templates/Agriculture/agriculture_actual/create.html:3
+msgid "Agreculture actual page title"
+msgstr "Қишлоқ хўжалиги маҳсулотлари етиштириш"
+
+#: templates/Agriculture/agriculture_actual/create.html:28
+msgid "Agreculture actual create form"
+msgstr "Қишлоқ хўжалиги маҳсулотлари етиштириш"
+
+#: templates/Agriculture/agriculture_actual/create.html:34
+#: templates/Agriculture/agriculture_actual/list.html:72
+#: templates/Agriculture/agriculture_plan/list.html:31
+#: templates/chorvachilik/actual/create.html:33
+#: templates/chorvachilik/input/list.html:64
+#: templates/chorvachilik/output/list.html:64
+#: templates/moliya/finance/finance-formset-create.html:30
+#: templates/moliya/finance/finance_create.html:39
+#: templates/moliya/finance_plan/finance_plan_list.html:72
+#: templates/moliya/production_actual/create.html:34
+#: templates/moliya/production_actual/list.html:67
+#: templates/moliya/production_plan/list.html:30
+#: templates/urmon_barpo/sapling/input/create.html:33
+#: templates/urmon_barpo/sapling/input/list.html:27
+#: templates/urmon_barpo/sapling/output/create.html:33
+#: templates/urmon_barpo/sapling/output/list.html:27
+#: templates/urmon_barpo/sapling/sapling_list.html:66
+#: templates/urmon_barpo/sapling/sapling_plan/sapling_plan_list.html:29
+#: templates/urmon_barpo/seed/land/create.html:33
+#: templates/urmon_barpo/seed/land/detail.html:21
+#: templates/urmon_barpo/seed/land/list.html:66
+#: templates/urmon_barpo/seed/land_plan/detail.html:21
+#: templates/urmon_barpo/seed/land_plan/list.html:29
+#: templates/urmon_barpo/seed/seed_create.html:33
+#: templates/urmon_barpo/seed/seed_list.html:66
+#: templates/urmon_barpo/seed/seed_plan/seed_plan_list.html:29
+#: templates/urmon_barpo/sprout/create.html:33
+#: templates/urmon_barpo/sprout/input/create.html:33
+#: templates/urmon_barpo/sprout/input/list.html:27
+#: templates/urmon_barpo/sprout/list.html:66
+#: templates/urmon_barpo/sprout/output/create.html:33
+#: templates/urmon_barpo/sprout/output/list.html:27
+#: templates/urmon_barpo/sprout/sprout_plan/list.html:28
+#: templates/urmon_barpo/tree_ground_planting/create.html:33
+#: templates/urmon_barpo/tree_ground_planting/detail.html:22
+#: templates/urmon_barpo/tree_ground_planting/list.html:71
+#: templates/urmon_barpo/tree_ground_planting/plan/create.html:32
+#: templates/urmon_barpo/tree_ground_planting/plan/detail.html:21
+#: templates/urmon_barpo/tree_ground_planting/plan/list.html:27
+msgid "Date"
+msgstr "Сана"
+
+#: templates/Agriculture/agriculture_actual/create.html:40
+#: templates/Agriculture/agriculture_actual/detail.html:30
+#: templates/Agriculture/agriculture_actual/list.html:21
+#: templates/Agriculture/agriculture_actual/list.html:74
+#: templates/Agriculture/agriculture_plan/create.html:40
+#: templates/Agriculture/agriculture_plan/detail.html:30
+#: templates/Agriculture/agriculture_plan/list.html:33
+#: templates/accounts/dashboard.html:18
+#: templates/accounts/member_create1.html:53
+#: templates/accounts/members_list.html:86
+#: templates/chorvachilik/actual/create.html:39
+#: templates/chorvachilik/actual/detail.html:28
+#: templates/chorvachilik/actual/list.html:21
+#: templates/chorvachilik/input/create.html:39
+#: templates/chorvachilik/input/detail.html:29
+#: templates/chorvachilik/input/list.html:21
+#: templates/chorvachilik/input/list.html:72
+#: templates/chorvachilik/output/create.html:39
+#: templates/chorvachilik/output/detail.html:31
+#: templates/chorvachilik/output/list.html:21
+#: templates/chorvachilik/output/list.html:71
+#: templates/chorvachilik/plan/create.html:39
+#: templates/chorvachilik/plan/detail.html:28
+#: templates/moliya/finance/finance-formset-create.html:42
+#: templates/moliya/finance/finance_create.html:45
+#: templates/moliya/finance/finance_detail.html:30
+#: templates/moliya/finance/finance_list.html:26
+#: templates/moliya/finance_plan/finance_plan_create.html:40
+#: templates/moliya/finance_plan/finance_plan_detail.html:30
+#: templates/moliya/finance_plan/finance_plan_list.html:27
+#: templates/moliya/production_actual/create.html:40
+#: templates/moliya/production_actual/detail.html:30
+#: templates/moliya/production_actual/list.html:22
+#: templates/moliya/production_actual/list.html:71
+#: templates/moliya/production_plan/create.html:40
+#: templates/moliya/production_plan/detail.html:30
+#: templates/moliya/production_plan/list.html:34
+#: templates/urmon_barpo/sapling/input/create.html:39
+#: templates/urmon_barpo/sapling/input/detail.html:29
+#: templates/urmon_barpo/sapling/input/list.html:34
+#: templates/urmon_barpo/sapling/output/create.html:39
+#: templates/urmon_barpo/sapling/output/detail.html:29
+#: templates/urmon_barpo/sapling/output/list.html:37
+#: templates/urmon_barpo/sapling/sapling_create.html:39
+#: templates/urmon_barpo/sapling/sapling_detail.html:30
+#: templates/urmon_barpo/sapling/sapling_list.html:21
+#: templates/urmon_barpo/sapling/sapling_list.html:68
+#: templates/urmon_barpo/sapling/sapling_plan/sapling_plan_create.html:40
+#: templates/urmon_barpo/sapling/sapling_plan/sapling_plan_detail.html:29
+#: templates/urmon_barpo/sapling/sapling_plan/sapling_plan_list.html:31
+#: templates/urmon_barpo/seed/land/create.html:39
+#: templates/urmon_barpo/seed/land/detail.html:29
+#: templates/urmon_barpo/seed/land/list.html:21
+#: templates/urmon_barpo/seed/land/list.html:68
+#: templates/urmon_barpo/seed/land_plan/create.html:40
+#: templates/urmon_barpo/seed/land_plan/detail.html:29
+#: templates/urmon_barpo/seed/land_plan/list.html:31
+#: templates/urmon_barpo/seed/seed_create.html:39
+#: templates/urmon_barpo/seed/seed_detail.html:35
+#: templates/urmon_barpo/seed/seed_list.html:21
+#: templates/urmon_barpo/seed/seed_list.html:68
+#: templates/urmon_barpo/seed/seed_plan/seed_plan_create.html:40
+#: templates/urmon_barpo/seed/seed_plan/seed_plan_detail.html:36
+#: templates/urmon_barpo/seed/seed_plan/seed_plan_list.html:31
+#: templates/urmon_barpo/sprout/create.html:39
+#: templates/urmon_barpo/sprout/detail.html:35
+#: templates/urmon_barpo/sprout/input/create.html:39
+#: templates/urmon_barpo/sprout/input/detail.html:29
+#: templates/urmon_barpo/sprout/input/list.html:34
+#: templates/urmon_barpo/sprout/list.html:21
+#: templates/urmon_barpo/sprout/list.html:68
+#: templates/urmon_barpo/sprout/output/create.html:39
+#: templates/urmon_barpo/sprout/output/detail.html:29
+#: templates/urmon_barpo/sprout/output/list.html:37
+#: templates/urmon_barpo/sprout/sprout_plan/create.html:40
+#: templates/urmon_barpo/sprout/sprout_plan/detail.html:31
+#: templates/urmon_barpo/sprout/sprout_plan/list.html:30
+#: templates/urmon_barpo/tree_ground_planting/create.html:39
+#: templates/urmon_barpo/tree_ground_planting/detail.html:29
+#: templates/urmon_barpo/tree_ground_planting/list.html:21
+#: templates/urmon_barpo/tree_ground_planting/list.html:73
+#: templates/urmon_barpo/tree_ground_planting/plan/create.html:39
+#: templates/urmon_barpo/tree_ground_planting/plan/detail.html:28
+#: templates/urmon_barpo/tree_ground_planting/plan/list.html:29
+#: templates/urmon_barpo/trees/tree_plan_create.html:34
+msgid "Region"
+msgstr "Вилоят"
+
+#: templates/Agriculture/agriculture_actual/create.html:51
+#: templates/Agriculture/agriculture_actual/detail.html:36
+#: templates/Agriculture/agriculture_actual/list.html:31
+#: templates/Agriculture/agriculture_actual/list.html:73
+#: templates/Agriculture/agriculture_plan/create.html:56
+#: templates/Agriculture/agriculture_plan/detail.html:36
+#: templates/Agriculture/agriculture_plan/list.html:32
+#: templates/accounts/dashboard.html:27
+#: templates/accounts/member_create.html:80
+#: templates/accounts/member_create1.html:61
+#: templates/accounts/members_list.html:95
+#: templates/accounts/user_create.html:71
+#: templates/accounts/user_detail.html:46
+#: templates/accounts/user_update.html:79
+#: templates/chorvachilik/actual/create.html:47
+#: templates/chorvachilik/actual/detail.html:34
+#: templates/chorvachilik/actual/list.html:31
+#: templates/chorvachilik/input/create.html:53
+#: templates/chorvachilik/input/detail.html:35
+#: templates/chorvachilik/input/list.html:31
+#: templates/chorvachilik/input/list.html:71
+#: templates/chorvachilik/output/create.html:53
+#: templates/chorvachilik/output/detail.html:37
+#: templates/chorvachilik/output/list.html:31
+#: templates/chorvachilik/output/list.html:70
+#: templates/chorvachilik/plan/create.html:53
+#: templates/chorvachilik/plan/detail.html:34
+#: templates/moliya/finance/finance-formset-create.html:52
+#: templates/moliya/finance/finance_create.html:53
+#: templates/moliya/finance/finance_detail.html:36
+#: templates/moliya/finance/finance_list.html:34
+#: templates/moliya/finance_plan/finance_plan_create.html:48
+#: templates/moliya/finance_plan/finance_plan_detail.html:36
+#: templates/moliya/finance_plan/finance_plan_list.html:35
+#: templates/moliya/production_actual/create.html:48
+#: templates/moliya/production_actual/detail.html:36
+#: templates/moliya/production_actual/list.html:32
+#: templates/moliya/production_actual/list.html:70
+#: templates/moliya/production_plan/create.html:48
+#: templates/moliya/production_plan/detail.html:36
+#: templates/moliya/production_plan/list.html:33
+#: templates/urmon_barpo/sapling/input/create.html:47
+#: templates/urmon_barpo/sapling/input/detail.html:35
+#: templates/urmon_barpo/sapling/input/list.html:33
+#: templates/urmon_barpo/sapling/output/create.html:47
+#: templates/urmon_barpo/sapling/output/detail.html:35
+#: templates/urmon_barpo/sapling/output/list.html:36
+#: templates/urmon_barpo/sapling/sapling_create.html:47
+#: templates/urmon_barpo/sapling/sapling_detail.html:36
+#: templates/urmon_barpo/sapling/sapling_list.html:31
+#: templates/urmon_barpo/sapling/sapling_list.html:67
+#: templates/urmon_barpo/sapling/sapling_plan/sapling_plan_create.html:48
+#: templates/urmon_barpo/sapling/sapling_plan/sapling_plan_detail.html:35
+#: templates/urmon_barpo/sapling/sapling_plan/sapling_plan_list.html:30
+#: templates/urmon_barpo/seed/land/create.html:47
+#: templates/urmon_barpo/seed/land/detail.html:35
+#: templates/urmon_barpo/seed/land/list.html:31
+#: templates/urmon_barpo/seed/land/list.html:67
+#: templates/urmon_barpo/seed/land_plan/create.html:48
+#: templates/urmon_barpo/seed/land_plan/detail.html:35
+#: templates/urmon_barpo/seed/land_plan/list.html:30
+#: templates/urmon_barpo/seed/seed_create.html:47
+#: templates/urmon_barpo/seed/seed_detail.html:41
+#: templates/urmon_barpo/seed/seed_list.html:31
+#: templates/urmon_barpo/seed/seed_list.html:67
+#: templates/urmon_barpo/seed/seed_plan/seed_plan_create.html:48
+#: templates/urmon_barpo/seed/seed_plan/seed_plan_detail.html:42
+#: templates/urmon_barpo/seed/seed_plan/seed_plan_list.html:30
+#: templates/urmon_barpo/sprout/create.html:47
+#: templates/urmon_barpo/sprout/detail.html:41
+#: templates/urmon_barpo/sprout/input/create.html:47
+#: templates/urmon_barpo/sprout/input/detail.html:35
+#: templates/urmon_barpo/sprout/input/list.html:33
+#: templates/urmon_barpo/sprout/list.html:31
+#: templates/urmon_barpo/sprout/list.html:67
+#: templates/urmon_barpo/sprout/output/create.html:47
+#: templates/urmon_barpo/sprout/output/detail.html:35
+#: templates/urmon_barpo/sprout/output/list.html:36
+#: templates/urmon_barpo/sprout/sprout_plan/create.html:48
+#: templates/urmon_barpo/sprout/sprout_plan/detail.html:37
+#: templates/urmon_barpo/sprout/sprout_plan/list.html:29
+#: templates/urmon_barpo/tree_ground_planting/create.html:47
+#: templates/urmon_barpo/tree_ground_planting/detail.html:35
+#: templates/urmon_barpo/tree_ground_planting/list.html:31
+#: templates/urmon_barpo/tree_ground_planting/list.html:72
+#: templates/urmon_barpo/tree_ground_planting/plan/create.html:47
+#: templates/urmon_barpo/tree_ground_planting/plan/detail.html:34
+#: templates/urmon_barpo/tree_ground_planting/plan/list.html:28
+#: templates/urmon_barpo/trees/tree_plan_create.html:44
+msgid "Department"
+msgstr "Ташкилот номи"
+
+#: templates/Agriculture/agriculture_actual/create.html:63
+#: templates/Agriculture/agriculture_plan/create.html:72
+#: templates/Agriculture/reports/barcha_hisobot.html:107
+#: templates/chorvachilik/input/list.html:70
+#: templates/chorvachilik/output/list.html:69
+#: templates/chorvachilik/reports/department.html:107
+#: templates/chorvachilik/reports/region.html:107
+#: templates/moliya/finance/finance-formset-create.html:58
+#: templates/moliya/finance/finance_detail.html:42
+#: templates/moliya/finance_type/finance_type_list.html:28
+msgid "Type"
+msgstr "Тури"
+
+#: templates/Agriculture/agriculture_actual/create.html:90
+#: templates/Agriculture/agriculture_plan/create.html:88
+#: templates/urmon_barpo/sapling/input/create.html:65
+#: templates/urmon_barpo/sapling/output/create.html:65
+#: templates/urmon_barpo/sapling/sapling_create.html:65
+#: templates/urmon_barpo/sapling/sapling_plan/sapling_plan_create.html:56
+#: templates/urmon_barpo/seed/land_plan/create.html:56
+#: templates/urmon_barpo/seed/seed_create.html:65
+#: templates/urmon_barpo/seed/seed_plan/seed_plan_create.html:56
+#: templates/urmon_barpo/sprout/create.html:65
+#: templates/urmon_barpo/sprout/input/create.html:65
+#: templates/urmon_barpo/sprout/output/create.html:65
+#: templates/urmon_barpo/sprout/sprout_plan/create.html:56
+msgid "Tree Plant"
+msgstr "Ўсимлик номи"
+
+#: templates/Agriculture/agriculture_actual/create.html:103
+msgid "Gektar"
+msgstr "Майдони, га"
+
+#: templates/Agriculture/agriculture_actual/create.html:109
+msgid "Vazn"
+msgstr "Миқдори, тн"
+
+#: templates/Agriculture/agriculture_actual/create.html:116
+msgid "hosilga kirgan maydon"
+msgstr "Ҳосилга кирган майдон, га"
+
+#: templates/Agriculture/agriculture_actual/create.html:122
+msgid "daromad"
+msgstr "Даромад, минг сўм"
+
+#: templates/Agriculture/agriculture_actual/create.html:128
+#: templates/Agriculture/agriculture_actual/detail.html:81
+msgid "Hosilga kirgan"
+msgstr "Ҳосилга кирган"
+
+#: templates/Agriculture/agriculture_actual/create.html:138
+#: templates/Agriculture/agriculture_actual/detail.html:91
+#: templates/Agriculture/agriculture_plan/create.html:126
+#: templates/Agriculture/agriculture_plan/detail.html:71
+#: templates/accounts/user_detail.html:151 templates/chorva_permissions.html:11
+#: templates/chorvachilik/actual/create.html:108
+#: templates/chorvachilik/actual/detail.html:71
+#: templates/chorvachilik/animal/create.html:29
+#: templates/chorvachilik/animal/detail.html:31
+#: templates/chorvachilik/animal_category/create.html:29
+#: templates/chorvachilik/animal_category/detail.html:31
+#: templates/chorvachilik/chorva_category/create.html:40
+#: templates/chorvachilik/chorva_category/detail.html:34
+#: templates/chorvachilik/chorva_type/create.html:29
+#: templates/chorvachilik/chorva_type/detail.html:31
+#: templates/chorvachilik/input/create.html:119
+#: templates/chorvachilik/input/detail.html:85
+#: templates/chorvachilik/input_output_category/create.html:29
+#: templates/chorvachilik/input_output_category/detail.html:31
+#: templates/chorvachilik/output/create.html:118
+#: templates/chorvachilik/output/detail.html:84
+#: templates/chorvachilik/plan/create.html:114
+#: templates/chorvachilik/plan/detail.html:71
+#: templates/department/department_create.html:34
+#: templates/department/department_detail.html:33
+#: templates/information/information_create.html:28
+#: templates/information/information_detail.html:28
+#: templates/moliya/finance/finance-formset-create.html:68
+#: templates/moliya/finance/finance_create.html:92
+#: templates/moliya/finance/finance_detail.html:60
+#: templates/moliya/finance_plan/finance_plan_create.html:79
+#: templates/moliya/finance_plan/finance_plan_detail.html:55
+#: templates/moliya/finance_type/finance_type_create.html:29
+#: templates/moliya/finance_type/finance_type_detail.html:30
+#: templates/moliya/production_actual/create.html:82
+#: templates/moliya/production_actual/detail.html:61
+#: templates/moliya/production_plan/create.html:99
+#: templates/moliya/production_plan/detail.html:61
+#: templates/nation/nation_create.html:29
+#: templates/nation/nation_detail.html:28
+#: templates/organization/organization_create.html:31
+#: templates/organization/organization_detail.html:33
+#: templates/position/position_create.html:29
+#: templates/position/position_detail.html:28
+#: templates/regions/region_create.html:29
+#: templates/regions/region_detail.html:28 templates/trres_permissions.html:11
+#: templates/urmon_barpo/sapling/input/create.html:97
+#: templates/urmon_barpo/sapling/input/detail.html:71
+#: templates/urmon_barpo/sapling/output/create.html:115
+#: templates/urmon_barpo/sapling/output/detail.html:88
+#: templates/urmon_barpo/sapling/sapling_create.html:85
+#: templates/urmon_barpo/sapling/sapling_detail.html:61
+#: templates/urmon_barpo/sapling/sapling_plan/sapling_plan_create.html:89
+#: templates/urmon_barpo/sapling/sapling_plan/sapling_plan_detail.html:60
+#: templates/urmon_barpo/seed/land/create.html:86
+#: templates/urmon_barpo/seed/land/detail.html:58
+#: templates/urmon_barpo/seed/land_plan/create.html:89
+#: templates/urmon_barpo/seed/land_plan/detail.html:59
+#: templates/urmon_barpo/seed/seed_create.html:85
+#: templates/urmon_barpo/seed/seed_detail.html:58
+#: templates/urmon_barpo/seed/seed_plan/seed_plan_create.html:89
+#: templates/urmon_barpo/seed/seed_plan/seed_plan_detail.html:60
+#: templates/urmon_barpo/sprout/create.html:85
+#: templates/urmon_barpo/sprout/detail.html:60
+#: templates/urmon_barpo/sprout/input/create.html:97
+#: templates/urmon_barpo/sprout/input/detail.html:71
+#: templates/urmon_barpo/sprout/output/create.html:115
+#: templates/urmon_barpo/sprout/output/detail.html:88
+#: templates/urmon_barpo/sprout/sprout_plan/create.html:89
+#: templates/urmon_barpo/sprout/sprout_plan/detail.html:62
+#: templates/urmon_barpo/tree_ground_planting/create.html:111
+#: templates/urmon_barpo/tree_ground_planting/detail.html:88
+#: templates/urmon_barpo/tree_ground_planting/plan/create.html:103
+#: templates/urmon_barpo/tree_ground_planting/plan/detail.html:89
+#: templates/urmon_barpo/trees/category/create.html:29
+#: templates/urmon_barpo/trees/category/detail.html:30
+#: templates/urmon_barpo/trees/plant/create.html:68
+#: templates/urmon_barpo/trees/plant/detail.html:62
+#: templates/urmon_barpo/trees/tree_plan_create.html:80
+#: templates/urmon_barpo/trees/tree_plan_detail.html:73
+#: templates/urmon_barpo/trees/type/create.html:35
+#: templates/urmon_barpo/trees/type/detail.html:35
+msgid "back"
+msgstr "ортга"
+
+#: templates/Agriculture/agriculture_actual/create.html:140
+#: templates/chorvachilik/actual/create.html:110
+#: templates/chorvachilik/animal/create.html:27
+#: templates/chorvachilik/animal/list.html:19
+#: templates/chorvachilik/animal_category/create.html:27
+#: templates/chorvachilik/animal_category/list.html:19
+#: templates/chorvachilik/chorva_category/create.html:41
+#: templates/chorvachilik/chorva_category/list.html:19
+#: templates/chorvachilik/chorva_type/create.html:27
+#: templates/chorvachilik/chorva_type/list.html:19
+#: templates/chorvachilik/input_output_category/create.html:27
+#: templates/chorvachilik/input_output_category/list.html:19
+#: templates/department/department_create.html:35
+#: templates/department/department_list.html:19
+#: templates/information/information_create.html:26
+#: templates/information/information_list.html:19
+#: templates/moliya/finance/finance-formset-create.html:66
+#: templates/moliya/finance/finance_create.html:94
+#: templates/moliya/finance_plan/finance_plan_list.html:60
+#: templates/moliya/finance_plan/finance_plan_list.html:63
+#: templates/moliya/finance_type/finance_type_create.html:27
+#: templates/moliya/finance_type/finance_type_list.html:19
+#: templates/moliya/production_actual/create.html:84
+#: templates/moliya/production_actual/list.html:57
+#: templates/moliya/production_plan/list.html:20
+#: templates/nation/nation_create.html:27 templates/nation/nation_list.html:19
+#: templates/organization/organization_create.html:29
+#: templates/position/position_create.html:27
+#: templates/position/position_list.html:19
+#: templates/regions/region_create.html:27
+#: templates/regions/region_list.html:19
+#: templates/urmon_barpo/sapling/input/create.html:99
+#: templates/urmon_barpo/sapling/output/create.html:117
+#: templates/urmon_barpo/sapling/sapling_create.html:87
+#: templates/urmon_barpo/seed/land/create.html:88
+#: templates/urmon_barpo/seed/seed_create.html:87
+#: templates/urmon_barpo/sprout/create.html:87
+#: templates/urmon_barpo/sprout/input/create.html:99
+#: templates/urmon_barpo/sprout/output/create.html:117
+#: templates/urmon_barpo/tree_ground_planting/create.html:113
+#: templates/urmon_barpo/trees/category/create.html:27
+#: templates/urmon_barpo/trees/category/list.html:19
+#: templates/urmon_barpo/trees/plant/create.html:69
+#: templates/urmon_barpo/trees/plant/list.html:19
+#: templates/urmon_barpo/trees/tree_plan_create.html:81
+#: templates/urmon_barpo/trees/tree_plan_list.html:19
+#: templates/urmon_barpo/trees/type/create.html:33
+#: templates/urmon_barpo/trees/type/detail.html:33
+#: templates/urmon_barpo/trees/type/list.html:18
+msgid "create"
+msgstr "Қўшиш"
+
+#: templates/Agriculture/agriculture_actual/create.html:151
+#: templates/Agriculture/agriculture_actual/list.html:115
+#: templates/Agriculture/agriculture_plan/create.html:135
+#: templates/Agriculture/agriculture_plan/list.html:73
+#: templates/Agriculture/reports/barcha_hisobot.html:286
+#: templates/Agriculture/reports/department.html:257
+#: templates/Agriculture/reports/region.html:257
+#: templates/accounts/members_list.html:178
+#: templates/accounts/user_detail.html:164
+#: templates/accounts/users_list.html:99
+#: templates/chorvachilik/actual/create.html:120
+#: templates/chorvachilik/actual/list.html:122
+#: templates/chorvachilik/animal_category/list.html:60
+#: templates/chorvachilik/chorva_category/list.html:69
+#: templates/chorvachilik/chorva_type/list.html:60
+#: templates/chorvachilik/in_out_report/dashboard.html:29
+#: templates/chorvachilik/in_out_report/department.html:213
+#: templates/chorvachilik/in_out_report/regions_and_departments.html:228
+#: templates/chorvachilik/input/create.html:130
+#: templates/chorvachilik/input/list.html:128
+#: templates/chorvachilik/input_output_category/list.html:59
+#: templates/chorvachilik/output/create.html:129
+#: templates/chorvachilik/output/list.html:126
+#: templates/chorvachilik/plan/create.html:125
+#: templates/chorvachilik/plan/list.html:86
+#: templates/chorvachilik/reports/dashboard.html:39
+#: templates/chorvachilik/reports/department.html:203
+#: templates/chorvachilik/reports/region.html:204
+#: templates/chorvachilik/reports/regions_and_departments.html:198
+#: templates/department/department_list.html:62
+#: templates/information/information_create.html:38
+#: templates/information/information_list.html:62
+#: templates/moliya/finance/finance-formset-create.html:77
+#: templates/moliya/finance/finance_create.html:105
+#: templates/moliya/finance/finance_list.html:125
+#: templates/moliya/finance_plan/finance_plan_create.html:87
+#: templates/moliya/finance_type/finance_type_list.html:60
+#: templates/moliya/production_actual/create.html:95
+#: templates/moliya/production_plan/create.html:106
+#: templates/nation/nation_create.html:39 templates/nation/nation_list.html:60
+#: templates/position/position_create.html:39
+#: templates/position/position_list.html:59
+#: templates/urmon_barpo/sapling/input/create.html:112
+#: templates/urmon_barpo/sapling/input/detail.html:83
+#: templates/urmon_barpo/sapling/input/list.html:77
+#: templates/urmon_barpo/sapling/output/create.html:130
+#: templates/urmon_barpo/sapling/output/detail.html:100
+#: templates/urmon_barpo/sapling/output/list.html:89
+#: templates/urmon_barpo/sapling/sapling_create.html:101
+#: templates/urmon_barpo/sapling/sapling_detail.html:74
+#: templates/urmon_barpo/sapling/sapling_list.html:110
+#: templates/urmon_barpo/sapling/sapling_plan/sapling_plan_create.html:97
+#: templates/urmon_barpo/sapling/sapling_plan/sapling_plan_list.html:73
+#: templates/urmon_barpo/seed/land/create.html:101
+#: templates/urmon_barpo/seed/land/detail.html:71
+#: templates/urmon_barpo/seed/land/list.html:110
+#: templates/urmon_barpo/seed/land_plan/create.html:97
+#: templates/urmon_barpo/seed/land_plan/detail.html:72
+#: templates/urmon_barpo/seed/land_plan/list.html:73
+#: templates/urmon_barpo/seed/seed_create.html:100
+#: templates/urmon_barpo/seed/seed_list.html:112
+#: templates/urmon_barpo/seed/seed_plan/seed_plan_create.html:97
+#: templates/urmon_barpo/seed/seed_plan/seed_plan_detail.html:73
+#: templates/urmon_barpo/seed/seed_plan/seed_plan_list.html:73
+#: templates/urmon_barpo/sprout/create.html:100
+#: templates/urmon_barpo/sprout/detail.html:73
+#: templates/urmon_barpo/sprout/input/create.html:112
+#: templates/urmon_barpo/sprout/input/detail.html:84
+#: templates/urmon_barpo/sprout/input/list.html:81
+#: templates/urmon_barpo/sprout/list.html:110
+#: templates/urmon_barpo/sprout/output/create.html:130
+#: templates/urmon_barpo/sprout/output/detail.html:100
+#: templates/urmon_barpo/sprout/output/list.html:85
+#: templates/urmon_barpo/sprout/sprout_plan/create.html:97
+#: templates/urmon_barpo/sprout/sprout_plan/detail.html:75
+#: templates/urmon_barpo/sprout/sprout_plan/list.html:72
+#: templates/urmon_barpo/tree_ground_planting/create.html:126
+#: templates/urmon_barpo/tree_ground_planting/detail.html:101
+#: templates/urmon_barpo/tree_ground_planting/list.html:120
+#: templates/urmon_barpo/tree_ground_planting/plan/create.html:111
+#: templates/urmon_barpo/tree_ground_planting/plan/detail.html:102
+#: templates/urmon_barpo/tree_ground_planting/plan/list.html:85
+#: templates/urmon_barpo/trees/tree_plan_list.html:76
+msgid "Permission Denied"
+msgstr "Рухсат берилмади"
+
+#: templates/Agriculture/agriculture_actual/detail.html:3
+msgid "Agriculture actual page title"
+msgstr "Қишлоқ хўжалиги маҳсулотлари етиштириш"
+
+#: templates/Agriculture/agriculture_actual/detail.html:14
+msgid "Agriculture actual detail form"
+msgstr "Қишлоқ хўжалиги маҳсулотлари етиштиришни таҳрирлаш"
+
+#: templates/Agriculture/agriculture_actual/detail.html:23
+#: templates/Agriculture/agriculture_plan/create.html:33
+#: templates/Agriculture/agriculture_plan/detail.html:22
+#: templates/chorvachilik/actual/list.html:64
+#: templates/chorvachilik/input/create.html:33
+#: templates/chorvachilik/input/detail.html:21
+#: templates/chorvachilik/output/create.html:33
+#: templates/chorvachilik/output/detail.html:23
+#: templates/chorvachilik/plan/create.html:33
+#: templates/chorvachilik/plan/list.html:27
+#: templates/moliya/finance/finance_detail.html:22
+#: templates/moliya/finance/finance_list.html:71
+#: templates/moliya/finance_plan/finance_plan_detail.html:22
+#: templates/moliya/production_actual/detail.html:22
+#: templates/moliya/production_plan/detail.html:22
+#: templates/urmon_barpo/sapling/input/detail.html:22
+#: templates/urmon_barpo/sapling/output/detail.html:22
+#: templates/urmon_barpo/sapling/sapling_create.html:33
+#: templates/urmon_barpo/sapling/sapling_detail.html:22
+#: templates/urmon_barpo/sapling/sapling_plan/sapling_plan_detail.html:22
+#: templates/urmon_barpo/seed/seed_detail.html:22
+#: templates/urmon_barpo/seed/seed_plan/seed_plan_detail.html:22
+#: templates/urmon_barpo/sprout/detail.html:22
+#: templates/urmon_barpo/sprout/input/detail.html:22
+#: templates/urmon_barpo/sprout/output/detail.html:22
+#: templates/urmon_barpo/sprout/sprout_plan/detail.html:22
+#: templates/urmon_barpo/trees/tree_plan_create.html:28
+#: templates/urmon_barpo/trees/tree_plan_list.html:34
+msgid "date"
+msgstr "Сана"
+
+#: templates/Agriculture/agriculture_actual/detail.html:42
+#: templates/moliya/finance_plan/finance_plan_list.html:74
+#: templates/moliya/report/all_report.html:80
+#: templates/moliya/report/index.html:85
+#: templates/moliya/report/profit_types.html:88
+msgid "Turi"
+msgstr "Тури"
+
+#: templates/Agriculture/agriculture_actual/detail.html:48
+msgid "O'simlik"
+msgstr "Ўсимлик тури"
+
+#: templates/Agriculture/agriculture_actual/detail.html:54
+#: templates/Agriculture/agriculture_plan/create.html:104
+#: templates/Agriculture/agriculture_plan/detail.html:41
+msgid "hectare"
+msgstr "Майдони, га"
+
+#: templates/Agriculture/agriculture_actual/detail.html:60
+#: templates/Agriculture/agriculture_plan/create.html:111
+#: templates/Agriculture/agriculture_plan/detail.html:47
+#: templates/chorvachilik/input/create.html:110
+#: templates/chorvachilik/output/create.html:109
+msgid "weight"
+msgstr "Миқдори, тн"
+
+#: templates/Agriculture/agriculture_actual/detail.html:66
+msgid "Daromad"
+msgstr "Даромад, минг сўм"
+
+#: templates/Agriculture/agriculture_actual/detail.html:73
+msgid "Hosilga kirgan maydon"
+msgstr "Ҳосилга кирган майдон, га"
+
+#: templates/Agriculture/agriculture_actual/detail.html:93
+#: templates/Agriculture/agriculture_plan/detail.html:73
+#: templates/chorva_permissions.html:13
+#: templates/chorvachilik/actual/detail.html:72
+#: templates/chorvachilik/animal/detail.html:29
+#: templates/chorvachilik/animal_category/detail.html:29
+#: templates/chorvachilik/chorva_category/detail.html:35
+#: templates/chorvachilik/chorva_type/detail.html:29
+#: templates/chorvachilik/input/detail.html:86
+#: templates/chorvachilik/input_output_category/detail.html:29
+#: templates/chorvachilik/output/detail.html:85
+#: templates/chorvachilik/plan/detail.html:72
+#: templates/department/department_detail.html:35
+#: templates/information/information_detail.html:30
+#: templates/information/information_list.html:29
+#: templates/moliya/finance/finance_detail.html:61
+#: templates/moliya/finance_plan/finance_plan_detail.html:56
+#: templates/moliya/finance_type/finance_type_detail.html:28
+#: templates/moliya/production_actual/detail.html:62
+#: templates/moliya/production_plan/detail.html:62
+#: templates/nation/nation_detail.html:30 templates/nation/nation_list.html:29
+#: templates/organization/organization_detail.html:31
+#: templates/position/position_detail.html:30
+#: templates/position/position_list.html:29
+#: templates/regions/region_detail.html:30 templates/trres_permissions.html:13
+#: templates/urmon_barpo/sapling/input/detail.html:73
+#: templates/urmon_barpo/sapling/output/detail.html:90
+#: templates/urmon_barpo/sapling/sapling_detail.html:63
+#: templates/urmon_barpo/sapling/sapling_plan/sapling_plan_detail.html:62
+#: templates/urmon_barpo/seed/land/detail.html:60
+#: templates/urmon_barpo/seed/land_plan/detail.html:61
+#: templates/urmon_barpo/seed/seed_detail.html:60
+#: templates/urmon_barpo/seed/seed_plan/seed_plan_detail.html:62
+#: templates/urmon_barpo/sprout/detail.html:62
+#: templates/urmon_barpo/sprout/input/detail.html:73
+#: templates/urmon_barpo/sprout/output/detail.html:90
+#: templates/urmon_barpo/sprout/sprout_plan/detail.html:64
+#: templates/urmon_barpo/tree_ground_planting/detail.html:90
+#: templates/urmon_barpo/tree_ground_planting/plan/detail.html:91
+#: templates/urmon_barpo/trees/category/detail.html:28
+#: templates/urmon_barpo/trees/plant/detail.html:63
+#: templates/urmon_barpo/trees/tree_plan_detail.html:71
+msgid "update"
+msgstr "Янгилаш"
+
+#: templates/Agriculture/agriculture_actual/detail.html:103
+#: templates/Agriculture/agriculture_plan/detail.html:83
+#: templates/chorvachilik/actual/detail.html:82
+#: templates/chorvachilik/input/detail.html:95
+#: templates/chorvachilik/output/detail.html:94
+#: templates/chorvachilik/plan/detail.html:81
+#: templates/urmon_barpo/sapling/sapling_plan/sapling_plan_detail.html:73
+#: templates/urmon_barpo/trees/category/create.html:39
+#: templates/urmon_barpo/trees/category/detail.html:41
+#: templates/urmon_barpo/trees/tree_plan_create.html:90
+#: templates/urmon_barpo/trees/tree_plan_detail.html:82
+#: templates/urmon_barpo/trees/type/create.html:45
+#: templates/urmon_barpo/trees/type/detail.html:45
+msgid "Permision Denied"
+msgstr "Рухсат берилмади"
+
+#: templates/Agriculture/agriculture_actual/list.html:4
+msgid "Agriculture Actual list ttile"
+msgstr "Қишлоқ хўжалиги маҳсулотлари етиштириш"
+
+#: templates/Agriculture/agriculture_actual/list.html:15
+#: templates/chorvachilik/actual/list.html:15
+#: templates/chorvachilik/input/list.html:15
+#: templates/chorvachilik/output/list.html:15
+#: templates/department/department_create.html:28
+#: templates/department/department_detail.html:28
+#: templates/moliya/finance/finance_list.html:15
+#: templates/moliya/finance_plan/finance_plan_list.html:16
+#: templates/moliya/production_actual/list.html:16
+#: templates/urmon_barpo/sapling/sapling_list.html:15
+#: templates/urmon_barpo/seed/land/list.html:15
+#: templates/urmon_barpo/seed/seed_list.html:15
+#: templates/urmon_barpo/sprout/list.html:15
+#: templates/urmon_barpo/tree_ground_planting/list.html:15
+msgid "Department name"
+msgstr "Ташкилот номи"
+
+#: templates/Agriculture/agriculture_actual/list.html:52
+msgid "Agriculture Actual list"
+msgstr "Қишлоқ хўжалиги маҳсулотлари етиштириш"
+
+#: templates/Agriculture/agriculture_actual/list.html:57
+#: templates/Agriculture/agriculture_plan/list.html:19
+#: templates/accounts/member_create.html:262
+#: templates/accounts/member_create1.html:252
+#: templates/accounts/user_create.html:109
+#: templates/chorvachilik/actual/list.html:55
+#: templates/chorvachilik/input/list.html:55
+#: templates/chorvachilik/output/list.html:55
+#: templates/chorvachilik/plan/list.html:18
+#: templates/urmon_barpo/sapling/input/list.html:18
+#: templates/urmon_barpo/sapling/output/list.html:18
+#: templates/urmon_barpo/sapling/sapling_list.html:55
+#: templates/urmon_barpo/sapling/sapling_plan/sapling_plan_list.html:18
+#: templates/urmon_barpo/seed/land/list.html:55
+#: templates/urmon_barpo/seed/land_plan/list.html:18
+#: templates/urmon_barpo/seed/seed_list.html:55
+#: templates/urmon_barpo/seed/seed_plan/seed_plan_list.html:18
+#: templates/urmon_barpo/sprout/input/list.html:18
+#: templates/urmon_barpo/sprout/list.html:55
+#: templates/urmon_barpo/sprout/output/list.html:18
+#: templates/urmon_barpo/sprout/sprout_plan/list.html:18
+#: templates/urmon_barpo/tree_ground_planting/list.html:55
+#: templates/urmon_barpo/tree_ground_planting/plan/list.html:18
+msgid "Create"
+msgstr "Қўшиш"
+
+#: templates/Agriculture/agriculture_actual/list.html:65
+#: templates/Agriculture/agriculture_plan/list.html:26
+#: templates/accounts/members_list.html:127
+#: templates/chorvachilik/actual/list.html:63
+#: templates/chorvachilik/input/list.html:63
+#: templates/chorvachilik/output/list.html:63
+#: templates/chorvachilik/plan/list.html:26
+#: templates/moliya/production_actual/list.html:66
+#: templates/moliya/production_plan/list.html:29
+#: templates/urmon_barpo/sapling/input/list.html:26
+#: templates/urmon_barpo/sapling/output/list.html:26
+#: templates/urmon_barpo/sapling/sapling_list.html:63
+#: templates/urmon_barpo/sapling/sapling_plan/sapling_plan_list.html:26
+#: templates/urmon_barpo/seed/land/list.html:63
+#: templates/urmon_barpo/seed/land_plan/list.html:26
+#: templates/urmon_barpo/seed/seed_list.html:63
+#: templates/urmon_barpo/seed/seed_plan/seed_plan_list.html:26
+#: templates/urmon_barpo/sprout/input/list.html:26
+#: templates/urmon_barpo/sprout/list.html:63
+#: templates/urmon_barpo/sprout/output/list.html:26
+#: templates/urmon_barpo/sprout/sprout_plan/list.html:25
+#: templates/urmon_barpo/tree_ground_planting/list.html:63
+#: templates/urmon_barpo/tree_ground_planting/plan/list.html:26
+msgid "ID"
+msgstr "Т/р"
+
+#: templates/Agriculture/agriculture_actual/list.html:66
+#: templates/Agriculture/agriculture_plan/detail.html:60
+#: templates/Agriculture/agriculture_plan/list.html:27
+#: templates/urmon_barpo/sapling/input/detail.html:41
+#: templates/urmon_barpo/sapling/input/list.html:28
+#: templates/urmon_barpo/sapling/output/detail.html:41
+#: templates/urmon_barpo/sapling/output/list.html:28
+#: templates/urmon_barpo/sapling/sapling_list.html:64
+#: templates/urmon_barpo/sapling/sapling_plan/sapling_plan_detail.html:42
+#: templates/urmon_barpo/sapling/sapling_plan/sapling_plan_list.html:27
+#: templates/urmon_barpo/seed/seed_list.html:64
+#: templates/urmon_barpo/seed/seed_plan/seed_plan_list.html:27
+#: templates/urmon_barpo/sprout/input/detail.html:41
+#: templates/urmon_barpo/sprout/input/list.html:28
+#: templates/urmon_barpo/sprout/list.html:64
+#: templates/urmon_barpo/sprout/output/detail.html:41
+#: templates/urmon_barpo/sprout/output/list.html:28
+#: templates/urmon_barpo/sprout/sprout_plan/list.html:26
+msgid "TreePlant"
+msgstr "Ўсимлик гуруҳи"
+
+#: templates/Agriculture/agriculture_actual/list.html:67
+#: templates/Agriculture/agriculture_plan/detail.html:54
+#: templates/Agriculture/agriculture_plan/list.html:28
+msgid "TreeType"
+msgstr "Ўсимлик тури"
+
+#: templates/Agriculture/agriculture_actual/list.html:68
+#: templates/Agriculture/agriculture_plan/list.html:29
+#: templates/urmon_barpo/seed/land/create.html:75
+#: templates/urmon_barpo/seed/land/detail.html:46
+#: templates/urmon_barpo/seed/land/list.html:65
+#: templates/urmon_barpo/seed/land_plan/detail.html:46
+#: templates/urmon_barpo/seed/land_plan/list.html:28
+msgid "Hectare"
+msgstr "Майдони, га"
+
+#: templates/Agriculture/agriculture_actual/list.html:69
+#: templates/Agriculture/agriculture_plan/list.html:30
+#: templates/chorvachilik/input/list.html:69
+#: templates/chorvachilik/output/list.html:68
+msgid "Weight"
+msgstr "Миқдори, тн"
+
+#: templates/Agriculture/agriculture_actual/list.html:70
+msgid "yield_area"
+msgstr "Ҳосилга кирган майдон, га"
+
+#: templates/Agriculture/agriculture_actual/list.html:71
+msgid "Profit"
+msgstr "Даромад, минг сўм"
+
+#: templates/Agriculture/agriculture_actual/list.html:75
+#: templates/Agriculture/agriculture_plan/list.html:34
+#: templates/chorvachilik/input/list.html:73
+#: templates/chorvachilik/output/list.html:72
+#: templates/moliya/finance_plan/finance_plan_list.html:77
+#: templates/moliya/production_actual/list.html:73
+#: templates/moliya/production_plan/list.html:36
+#: templates/urmon_barpo/sapling/input/list.html:35
+#: templates/urmon_barpo/sapling/output/list.html:38
+#: templates/urmon_barpo/sapling/sapling_list.html:69
+#: templates/urmon_barpo/sapling/sapling_plan/sapling_plan_list.html:32
+#: templates/urmon_barpo/seed/land/list.html:69
+#: templates/urmon_barpo/seed/land_plan/list.html:32
+#: templates/urmon_barpo/seed/seed_list.html:69
+#: templates/urmon_barpo/seed/seed_plan/seed_plan_list.html:32
+#: templates/urmon_barpo/sprout/input/list.html:35
+#: templates/urmon_barpo/sprout/list.html:69
+#: templates/urmon_barpo/sprout/output/list.html:38
+#: templates/urmon_barpo/sprout/sprout_plan/list.html:31
+#: templates/urmon_barpo/tree_ground_planting/list.html:74
+#: templates/urmon_barpo/tree_ground_planting/plan/list.html:38
+msgid "Creator"
+msgstr "Масъул шахс"
+
+#: templates/Agriculture/agriculture_actual/list.html:76
+#: templates/Agriculture/agriculture_plan/list.html:35
+#: templates/accounts/members_list.html:135
+#: templates/accounts/users_list.html:33
+#: templates/chorvachilik/actual/list.html:72
+#: templates/chorvachilik/animal/list.html:29
+#: templates/chorvachilik/animal_category/list.html:29
+#: templates/chorvachilik/chorva_category/list.html:30
+#: templates/chorvachilik/chorva_type/list.html:29
+#: templates/chorvachilik/input_output_category/list.html:28
+#: templates/chorvachilik/plan/list.html:35
+#: templates/department/department_list.html:30
+#: templates/moliya/finance/finance_list.html:79
+#: templates/moliya/finance_plan/finance_plan_list.html:79
+#: templates/moliya/finance_type/finance_type_list.html:29
+#: templates/moliya/production_actual/list.html:74
+#: templates/moliya/production_plan/list.html:37
+#: templates/organization/organization_list.html:31
+#: templates/regions/region_list.html:29
+#: templates/urmon_barpo/sapling/input/list.html:36
+#: templates/urmon_barpo/sapling/output/list.html:39
+#: templates/urmon_barpo/sapling/sapling_list.html:70
+#: templates/urmon_barpo/sapling/sapling_plan/sapling_plan_list.html:33
+#: templates/urmon_barpo/seed/land/list.html:70
+#: templates/urmon_barpo/seed/land_plan/list.html:33
+#: templates/urmon_barpo/seed/seed_list.html:70
+#: templates/urmon_barpo/seed/seed_plan/seed_plan_list.html:33
+#: templates/urmon_barpo/sprout/input/list.html:36
+#: templates/urmon_barpo/sprout/list.html:70
+#: templates/urmon_barpo/sprout/output/list.html:39
+#: templates/urmon_barpo/sprout/sprout_plan/list.html:32
+#: templates/urmon_barpo/tree_ground_planting/list.html:75
+#: templates/urmon_barpo/tree_ground_planting/plan/list.html:39
+#: templates/urmon_barpo/trees/category/list.html:29
+#: templates/urmon_barpo/trees/plant/list.html:31
+#: templates/urmon_barpo/trees/tree_plan_list.html:37
+#: templates/urmon_barpo/trees/type/list.html:29
+msgid "Actions"
+msgstr "Амаллар"
+
+#: templates/Agriculture/agriculture_actual/list.html:157
+#: templates/Agriculture/agriculture_plan/list.html:109
+#: templates/accounts/members_list.html:161
+#: templates/accounts/members_list.html:262
+#: templates/accounts/users_list.html:80 templates/accounts/users_list.html:136
+#: templates/chorvachilik/actual/list.html:157
+#: templates/chorvachilik/animal/list.html:95
+#: templates/chorvachilik/animal_category/list.html:95
+#: templates/chorvachilik/chorva_category/list.html:104
+#: templates/chorvachilik/chorva_type/list.html:95
+#: templates/chorvachilik/input/list.html:163
+#: templates/chorvachilik/input_output_category/list.html:94
+#: templates/chorvachilik/output/list.html:161
+#: templates/chorvachilik/plan/list.html:121
+#: templates/department/department_list.html:98
+#: templates/information/information_list.html:105
+#: templates/moliya/finance/finance_list.html:160
+#: templates/moliya/finance_plan/finance_plan_list.html:159
+#: templates/moliya/finance_type/finance_type_list.html:95
+#: templates/moliya/production_actual/list.html:146
+#: templates/moliya/production_plan/list.html:109
+#: templates/nation/nation_list.html:103
+#: templates/organization/organization_list.html:45
+#: templates/organization/organization_list.html:97
+#: templates/position/position_list.html:102
+#: templates/regions/region_list.html:100
+#: templates/urmon_barpo/sapling/input/list.html:112
+#: templates/urmon_barpo/sapling/output/list.html:125
+#: templates/urmon_barpo/sapling/sapling_list.html:145
+#: templates/urmon_barpo/sapling/sapling_plan/sapling_plan_list.html:108
+#: templates/urmon_barpo/seed/land/list.html:145
+#: templates/urmon_barpo/seed/land_plan/list.html:108
+#: templates/urmon_barpo/seed/seed_list.html:147
+#: templates/urmon_barpo/seed/seed_plan/seed_plan_list.html:108
+#: templates/urmon_barpo/sprout/input/list.html:116
+#: templates/urmon_barpo/sprout/list.html:145
+#: templates/urmon_barpo/sprout/output/list.html:120
+#: templates/urmon_barpo/sprout/sprout_plan/list.html:107
+#: templates/urmon_barpo/tree_ground_planting/list.html:155
+#: templates/urmon_barpo/tree_ground_planting/plan/list.html:120
+#: templates/urmon_barpo/trees/category/list.html:102
+#: templates/urmon_barpo/trees/plant/list.html:100
+#: templates/urmon_barpo/trees/tree_plan_list.html:111
+#: templates/urmon_barpo/trees/type/list.html:109
+msgid "delete"
+msgstr "Ўчириш"
+
+#: templates/Agriculture/agriculture_actual/list.html:163
+#: templates/Agriculture/agriculture_plan/list.html:115
+#: templates/accounts/members_list.html:268
+#: templates/accounts/users_list.html:142
+#: templates/chorvachilik/actual/list.html:163
+#: templates/chorvachilik/animal/list.html:101
+#: templates/chorvachilik/animal_category/list.html:101
+#: templates/chorvachilik/chorva_category/list.html:110
+#: templates/chorvachilik/chorva_type/list.html:101
+#: templates/chorvachilik/input/list.html:169
+#: templates/chorvachilik/input_output_category/list.html:100
+#: templates/chorvachilik/output/list.html:167
+#: templates/chorvachilik/plan/list.html:127
+#: templates/department/department_list.html:104
+#: templates/information/information_list.html:111
+#: templates/moliya/finance/finance_list.html:166
+#: templates/moliya/finance_plan/finance_plan_list.html:165
+#: templates/moliya/finance_type/finance_type_list.html:101
+#: templates/moliya/production_actual/list.html:152
+#: templates/moliya/production_plan/list.html:115
+#: templates/nation/nation_list.html:109
+#: templates/organization/organization_list.html:103
+#: templates/position/position_list.html:108
+#: templates/regions/region_list.html:106
+#: templates/urmon_barpo/sapling/input/list.html:118
+#: templates/urmon_barpo/sapling/output/list.html:131
+#: templates/urmon_barpo/sapling/sapling_list.html:151
+#: templates/urmon_barpo/sapling/sapling_plan/sapling_plan_list.html:114
+#: templates/urmon_barpo/seed/land/list.html:151
+#: templates/urmon_barpo/seed/land_plan/list.html:114
+#: templates/urmon_barpo/seed/seed_list.html:153
+#: templates/urmon_barpo/seed/seed_plan/seed_plan_list.html:114
+#: templates/urmon_barpo/sprout/input/list.html:122
+#: templates/urmon_barpo/sprout/list.html:151
+#: templates/urmon_barpo/sprout/output/list.html:126
+#: templates/urmon_barpo/sprout/sprout_plan/list.html:113
+#: templates/urmon_barpo/tree_ground_planting/list.html:161
+#: templates/urmon_barpo/tree_ground_planting/plan/list.html:126
+#: templates/urmon_barpo/trees/category/list.html:108
+#: templates/urmon_barpo/trees/plant/list.html:106
+#: templates/urmon_barpo/trees/tree_plan_list.html:117
+#: templates/urmon_barpo/trees/type/list.html:115
+msgid "Sizni ishonchingiz komilmi?"
+msgstr "Ишончингиз комилми?"
+
+#: templates/Agriculture/agriculture_actual/list.html:167
+#: templates/Agriculture/agriculture_plan/list.html:119
+#: templates/chorvachilik/actual/list.html:166
+#: templates/chorvachilik/input/list.html:172
+#: templates/chorvachilik/output/list.html:170
+#: templates/chorvachilik/plan/list.html:130
+#: templates/moliya/finance/finance_list.html:169
+#: templates/moliya/finance_plan/finance_plan_list.html:168
+#: templates/urmon_barpo/sapling/input/list.html:121
+#: templates/urmon_barpo/sapling/output/list.html:135
+#: templates/urmon_barpo/sapling/sapling_list.html:154
+#: templates/urmon_barpo/sapling/sapling_plan/sapling_plan_list.html:117
+#: templates/urmon_barpo/seed/land/list.html:154
+#: templates/urmon_barpo/seed/land_plan/list.html:117
+#: templates/urmon_barpo/seed/seed_list.html:156
+#: templates/urmon_barpo/seed/seed_plan/seed_plan_list.html:117
+#: templates/urmon_barpo/sprout/input/list.html:125
+#: templates/urmon_barpo/sprout/list.html:154
+#: templates/urmon_barpo/sprout/output/list.html:129
+#: templates/urmon_barpo/sprout/sprout_plan/list.html:116
+#: templates/urmon_barpo/tree_ground_planting/list.html:164
+#: templates/urmon_barpo/tree_ground_planting/plan/list.html:129
+msgid "Close"
+msgstr "Бекор қилиш"
+
+#: templates/Agriculture/agriculture_actual/list.html:168
+#: templates/Agriculture/agriculture_plan/list.html:120
+#: templates/accounts/members_list.html:272
+#: templates/accounts/users_list.html:146
+#: templates/chorvachilik/actual/list.html:167
+#: templates/chorvachilik/animal/list.html:105
+#: templates/chorvachilik/animal_category/list.html:105
+#: templates/chorvachilik/chorva_category/list.html:114
+#: templates/chorvachilik/chorva_type/list.html:105
+#: templates/chorvachilik/input/list.html:173
+#: templates/chorvachilik/input_output_category/list.html:104
+#: templates/chorvachilik/output/list.html:171
+#: templates/chorvachilik/plan/list.html:131
+#: templates/department/department_list.html:108
+#: templates/information/information_list.html:115
+#: templates/moliya/finance/finance_list.html:170
+#: templates/moliya/finance_plan/finance_plan_list.html:169
+#: templates/moliya/finance_type/finance_type_list.html:105
+#: templates/moliya/production_actual/list.html:156
+#: templates/moliya/production_plan/list.html:119
+#: templates/nation/nation_list.html:113
+#: templates/organization/organization_list.html:107
+#: templates/position/position_list.html:112
+#: templates/regions/region_list.html:110
+#: templates/urmon_barpo/sapling/input/list.html:122
+#: templates/urmon_barpo/sapling/output/list.html:136
+#: templates/urmon_barpo/sapling/sapling_list.html:155
+#: templates/urmon_barpo/sapling/sapling_plan/sapling_plan_list.html:118
+#: templates/urmon_barpo/seed/land/list.html:155
+#: templates/urmon_barpo/seed/land_plan/list.html:118
+#: templates/urmon_barpo/seed/seed_list.html:157
+#: templates/urmon_barpo/seed/seed_plan/seed_plan_list.html:118
+#: templates/urmon_barpo/sprout/input/list.html:126
+#: templates/urmon_barpo/sprout/list.html:155
+#: templates/urmon_barpo/sprout/output/list.html:130
+#: templates/urmon_barpo/sprout/sprout_plan/list.html:117
+#: templates/urmon_barpo/tree_ground_planting/list.html:165
+#: templates/urmon_barpo/tree_ground_planting/plan/list.html:130
+#: templates/urmon_barpo/trees/category/list.html:112
+#: templates/urmon_barpo/trees/plant/list.html:110
+#: templates/urmon_barpo/trees/tree_plan_list.html:121
+#: templates/urmon_barpo/trees/type/list.html:119
+msgid "confirm"
+msgstr "Тасдиқлаш"
+
+#: templates/Agriculture/agriculture_plan/create.html:3
+msgid "Agriculture Plan page"
+msgstr "Қишлоқ хўжалиги маҳсулотларини етиштириш режаси"
+
+#: templates/Agriculture/agriculture_plan/create.html:28
+msgid "Agriculture Plan create form"
+msgstr "Қишлоқ хўжалиги маҳсулотларини етиштириш режасини киритиш"
+
+#: templates/Agriculture/agriculture_plan/create.html:121
+#: templates/chorvachilik/input/create.html:122
+#: templates/chorvachilik/output/create.html:121
+#: templates/chorvachilik/plan/create.html:117
+#: templates/moliya/finance_plan/finance_plan_create.html:75
+#: templates/moliya/production_plan/create.html:95
+#: templates/urmon_barpo/sapling/sapling_plan/sapling_plan_create.html:85
+#: templates/urmon_barpo/seed/land_plan/create.html:85
+#: templates/urmon_barpo/seed/seed_plan/seed_plan_create.html:85
+#: templates/urmon_barpo/sprout/sprout_plan/create.html:85
+#: templates/urmon_barpo/tree_ground_planting/plan/create.html:99
+msgid "save and exit"
+msgstr "Сақлаш ва чиқиш"
+
+#: templates/Agriculture/agriculture_plan/create.html:123
+#: templates/chorvachilik/input/create.html:121
+#: templates/chorvachilik/output/create.html:120
+#: templates/chorvachilik/plan/create.html:116
+#: templates/moliya/finance_plan/finance_plan_create.html:76
+#: templates/moliya/production_plan/create.html:96
+#: templates/urmon_barpo/sapling/sapling_plan/sapling_plan_create.html:86
+#: templates/urmon_barpo/seed/land_plan/create.html:86
+#: templates/urmon_barpo/seed/seed_plan/seed_plan_create.html:86
+#: templates/urmon_barpo/sprout/sprout_plan/create.html:86
+#: templates/urmon_barpo/tree_ground_planting/plan/create.html:100
+msgid "save"
+msgstr "Сақлаш"
+
+#: templates/Agriculture/agriculture_plan/detail.html:3
+msgid "Agriculture plan page title"
+msgstr "Қишлоқ хўжалиги маҳсулотларини етиштириш режаси"
+
+#: templates/Agriculture/agriculture_plan/detail.html:14
+msgid "Agriculture plan detail form"
+msgstr "Қишлоқ хўжалиги маҳсулотларини етиштириш режасини таҳрирлаш"
+
+#: templates/Agriculture/agriculture_plan/list.html:4
+msgid "Agriculture list ttile"
+msgstr "Қишлоқ хўжалиги маҳсулотлари рўйхати"
+
+#: templates/Agriculture/agriculture_plan/list.html:14
+msgid "Agriculture-Plan list"
+msgstr "Қишлоқ хўжалиги маҳсулотларини етиштириш режаси рўйхати"
+
+#: templates/Agriculture/reports/barcha_hisobot.html:4
+#: templates/Agriculture/reports/department.html:4
+#: templates/Agriculture/reports/region.html:4
+#: templates/chorvachilik/in_out_report/department.html:4
+#: templates/chorvachilik/in_out_report/regions_and_departments.html:4
+#: templates/chorvachilik/reports/department.html:4
+#: templates/chorvachilik/reports/region.html:4
+#: templates/chorvachilik/reports/regions_and_departments.html:4
+#: templates/urmon_barpo/sapling/report/input_output_regions_and_department_report.html:4
+#: templates/urmon_barpo/seed/reports/regions_and_departments.html:4
+#: templates/urmon_barpo/sprout/report/input_output_regions_and_department_report.html:4
+#: templates/urmon_barpo/sprout/report/regions_and_departments.html:4
+msgid "Nihol yil hisoboti"
+msgstr "Ниҳол йил ҳисоботи"
+
+#: templates/Agriculture/reports/barcha_hisobot.html:113
+#: templates/moliya/report/all_report.html:86
+#: templates/moliya/report/production_and_paid_service_report.html:96
+#: templates/urmon_barpo/sapling/report/input_output_regions_and_department_report.html:68
+#: templates/urmon_barpo/sapling/report/regions_and_departments.html:78
+#: templates/urmon_barpo/sapling/report/sapling_height_report.html:125
+msgid "start"
+msgstr "Боши"
+
+#: templates/Agriculture/reports/barcha_hisobot.html:120
+#: templates/moliya/report/all_report.html:93
+#: templates/moliya/report/production_and_paid_service_report.html:103
+#: templates/urmon_barpo/sapling/report/input_output_regions_and_department_report.html:75
+#: templates/urmon_barpo/sapling/report/regions_and_departments.html:85
+#: templates/urmon_barpo/sapling/report/sapling_height_report.html:131
+msgid "end"
+msgstr "Якуни"
+
+#: templates/Agriculture/reports/barcha_hisobot.html:133
+#: templates/Agriculture/reports/department.html:125
+#: templates/Agriculture/reports/region.html:125
+#: templates/chorvachilik/in_out_report/department.html:120
+#: templates/chorvachilik/in_out_report/regions_and_departments.html:124
+#: templates/chorvachilik/reports/department.html:132
+#: templates/chorvachilik/reports/region.html:132
+#: templates/chorvachilik/reports/regions_and_departments.html:111
+#: templates/moliya/report/all_report.html:105
+#: templates/moliya/report/index.html:110
+#: templates/moliya/report/production_and_paid_service_report.html:115
+#: templates/moliya/report/profit_types.html:113
+#: templates/reports/02_report.html:131
+#: templates/reports/mavjud_uruglar.html:83
+#: templates/urmon_barpo/sapling/report/input_output_regions_and_department_report.html:86
+#: templates/urmon_barpo/sapling/report/input_output_report.html:128
+#: templates/urmon_barpo/sapling/report/regions_and_departments.html:97
+#: templates/urmon_barpo/sapling/report/sapling_height_report.html:142
+#: templates/urmon_barpo/seed/reports/regions_and_departments.html:101
+#: templates/urmon_barpo/sprout/report/input_output_regions_and_department_report.html:97
+#: templates/urmon_barpo/sprout/report/input_output_report.html:145
+#: templates/urmon_barpo/sprout/report/regions_and_departments.html:108
+#: templates/urmon_barpo/tree_ground_planting/reports/regions_and_departments.html:160
+msgid "reset"
+msgstr "Бекор қилиш"
+
+#: templates/Agriculture/reports/barcha_hisobot.html:137
+msgid "All"
+msgstr "Барчаси"
+
+#: templates/Agriculture/reports/barcha_hisobot.html:145
+#: templates/chorvachilik/in_out_report/regions_and_departments.html:133
+#: templates/chorvachilik/reports/regions_and_departments.html:120
+msgid "Viloyatlarda ko'rish"
+msgstr "Ҳудудлар кесимида"
+
+#: templates/Agriculture/reports/barcha_hisobot.html:158
+#: templates/chorvachilik/in_out_report/regions_and_departments.html:141
+#: templates/chorvachilik/reports/regions_and_departments.html:133
+msgid "Ўрмон хўжалиги давлат қўмитаси тизимидаги ўрмон хўжаликларида"
+msgstr "Ўрмон хўжалиги давлат қўмитаси тизимидаги ташкилотларида"
+
+#: templates/Agriculture/reports/barcha_hisobot.html:160
+#: templates/Agriculture/reports/department.html:149
+#: templates/Agriculture/reports/region.html:149
+#: templates/chorvachilik/reports/department.html:153
+#: templates/chorvachilik/reports/region.html:154
+msgid ""
+"йилда экиладиган қишлоқ хўжалиги экинларини экиш ва маҳсулотларини етиштириш "
+"тўғрисида тезкор маълумот"
+msgstr ""
+"йилда экиладиган қишлоқ хўжалиги экинлари экиш ва маҳсулотларни "
+"етиштириш тўғрисида тезкор маълумот"
+
+#: templates/Agriculture/reports/barcha_hisobot.html:171
+#: templates/Agriculture/reports/department.html:160
+#: templates/Agriculture/reports/region.html:160
+#: templates/chorvachilik/in_out_report/department.html:153
+#: templates/chorvachilik/in_out_report/regions_and_departments.html:154
+#: templates/chorvachilik/reports/department.html:164
+#: templates/chorvachilik/reports/region.html:165
+#: templates/chorvachilik/reports/regions_and_departments.html:146
+msgid "Хўжалик номи"
+msgstr "Ташкилот номи"
+
+#: templates/Agriculture/reports/barcha_hisobot.html:173
+#: templates/Agriculture/reports/department.html:162
+#: templates/Agriculture/reports/region.html:162
+#: templates/chorvachilik/reports/department.html:165
+#: templates/chorvachilik/reports/region.html:166
+#: templates/chorvachilik/reports/regions_and_departments.html:147
+msgid "Topshiriq"
+msgstr "Режа"
+
+#: templates/Agriculture/reports/barcha_hisobot.html:175
+#: templates/Agriculture/reports/department.html:164
+#: templates/Agriculture/reports/region.html:164
+#: templates/chorvachilik/reports/department.html:166
+#: templates/chorvachilik/reports/region.html:167
+#: templates/chorvachilik/reports/regions_and_departments.html:148
+#: templates/includes/sidebar.html:209 templates/includes/sidebar.html:233
+#: templates/includes/sidebar.html:263
+#: templates/urmon_barpo/sapling/report/department_report.html:130
+#: templates/urmon_barpo/sapling/report/region_report.html:143
+#: templates/urmon_barpo/sapling/report/region_report.html:147
+#: templates/urmon_barpo/sprout/report/department_report.html:131
+#: templates/urmon_barpo/sprout/report/region_report.html:143
+#: templates/urmon_barpo/sprout/report/region_report.html:147
+msgid "Amalda"
+msgstr "Амалда"
+
+#: templates/Agriculture/reports/barcha_hisobot.html:177
+#: templates/Agriculture/reports/department.html:166
+#: templates/Agriculture/reports/region.html:166
+#: templates/chorvachilik/reports/department.html:167
+#: templates/chorvachilik/reports/region.html:168
+#: templates/chorvachilik/reports/regions_and_departments.html:149
+#: templates/urmon_barpo/sapling/report/department_report.html:131
+#: templates/urmon_barpo/sapling/report/region_report.html:144
+#: templates/urmon_barpo/sprout/report/department_report.html:132
+#: templates/urmon_barpo/sprout/report/region_report.html:144
+msgid "Foizi"
+msgstr "Фоиз"
+
+#: templates/Agriculture/reports/barcha_hisobot.html:185
+#: templates/Agriculture/reports/barcha_hisobot.html:204
+#: templates/Agriculture/reports/department.html:175
+#: templates/Agriculture/reports/department.html:191
+#: templates/Agriculture/reports/region.html:175
+#: templates/Agriculture/reports/region.html:191
+msgid "га"
+msgstr "га"
+
+#: templates/Agriculture/reports/barcha_hisobot.html:187
+#: templates/Agriculture/reports/barcha_hisobot.html:197
+#: templates/Agriculture/reports/barcha_hisobot.html:206
+#: templates/Agriculture/reports/department.html:177
+#: templates/Agriculture/reports/department.html:185
+#: templates/Agriculture/reports/department.html:193
+#: templates/Agriculture/reports/region.html:177
+#: templates/Agriculture/reports/region.html:185
+#: templates/Agriculture/reports/region.html:193
+msgid "ц/га"
+msgstr "ц/га"
+
+#: templates/Agriculture/reports/barcha_hisobot.html:189
+#: templates/Agriculture/reports/barcha_hisobot.html:199
+#: templates/Agriculture/reports/barcha_hisobot.html:208
+#: templates/Agriculture/reports/department.html:179
+#: templates/Agriculture/reports/department.html:187
+#: templates/Agriculture/reports/department.html:195
+#: templates/Agriculture/reports/region.html:179
+#: templates/Agriculture/reports/region.html:187
+#: templates/Agriculture/reports/region.html:195
+msgid "тн"
+msgstr "тн"
+
+#: templates/Agriculture/reports/barcha_hisobot.html:192
+#: templates/Agriculture/reports/department.html:181
+#: templates/Agriculture/reports/region.html:181
+msgid "Жами майдон, га"
+msgstr "Жами майдон, га"
+
+#: templates/Agriculture/reports/barcha_hisobot.html:194
+#: templates/Agriculture/reports/department.html:183
+#: templates/Agriculture/reports/region.html:183
+msgid "Шундан хосилга киргани"
+msgstr "Шундан ҳосилга киргани"
+
+#: templates/Agriculture/reports/barcha_hisobot.html:201
+#: templates/Agriculture/reports/department.html:189
+#: templates/Agriculture/reports/region.html:189
+msgid "Даромад, минг сўм"
+msgstr "Даромад, минг сўм"
+
+#: templates/Agriculture/reports/barcha_hisobot.html:264
+#: templates/chorvachilik/in_out_report/regions_and_departments.html:215
+#: templates/chorvachilik/reports/regions_and_departments.html:186
+#: templates/moliya/report/all_report.html:277
+#: templates/moliya/report/all_report.html:278
+#: templates/moliya/report/index.html:199
+#: templates/moliya/report/production_and_paid_service_report.html:275
+#: templates/moliya/report/profit_types.html:190
+#: templates/reports/02_report.html:251
+#: templates/reports/mavjud_uruglar.html:188
+#: templates/urmon_barpo/sapling/report/input_output_regions_and_department_report.html:147
+#: templates/urmon_barpo/sapling/report/input_output_report.html:325
+#: templates/urmon_barpo/sapling/report/regions_and_departments.html:176
+#: templates/urmon_barpo/sapling/report/sapling_height_report.html:278
+#: templates/urmon_barpo/seed/reports/regions_and_departments.html:189
+#: templates/urmon_barpo/sprout/report/input_output_regions_and_department_report.html:161
+#: templates/urmon_barpo/sprout/report/input_output_report.html:342
+#: templates/urmon_barpo/sprout/report/regions_and_departments.html:186
+msgid "Жами"
+msgstr "Жами"
+
+#: templates/Agriculture/reports/dashboard.html:3
+msgid "Qishloq xo'jaligi report title"
+msgstr "Қишлоқ хўжалиги ҳисоботи"
+
+#: templates/Agriculture/reports/dashboard.html:12
+msgid "Qishloq xo'jaligi xisobotlari"
+msgstr "Қишлоқ хўжалиги маҳсулотлари етиштириш хисоботлари"
+
+#: templates/Agriculture/reports/dashboard.html:17
+msgid "Barcha hisobot"
+msgstr "Чорвачилик ҳисоботи"
+
+#: templates/Agriculture/reports/dashboard.html:18
+msgid "Barcha qishloq xo'jaliklar don hisoboti"
+msgstr "Барча қишлоқ хўжалиги ҳисоботлари"
+
+#: templates/Agriculture/reports/dashboard.html:20
+#: templates/accounts/dashboard.html:20 templates/accounts/dashboard.html:29
+#: templates/accounts/dashboard.html:38 templates/accounts/dashboard.html:47
+#: templates/accounts/dashboard.html:56 templates/accounts/dashboard.html:65
+#: templates/accounts/dashboard.html:74 templates/accounts/dashboard.html:83
+#: templates/accounts/dashboard.html:92
+#: templates/chorvachilik/in_out_report/dashboard.html:22
+#: templates/chorvachilik/reports/dashboard.html:22
+#: templates/chorvachilik/reports/dashboard.html:32
+#: templates/moliya/dashboard.html:20 templates/moliya/dashboard.html:29
+#: templates/moliya/dashboard.html:38 templates/reports/dashboard.html:38
+#: templates/urmon_barpo/dashboard.html:22
+#: templates/urmon_barpo/dashboard.html:32
+#: templates/urmon_barpo/dashboard.html:42
+#: templates/urmon_barpo/dashboard.html:51
+#: templates/urmon_barpo/sapling/dashboard.html:20
+#: templates/urmon_barpo/sapling/dashboard.html:29
+#: templates/urmon_barpo/sapling/dashboard.html:38
+#: templates/urmon_barpo/sapling/dashboard.html:47
+#: templates/urmon_barpo/seed/dashboard.html:20
+#: templates/urmon_barpo/seed/dashboard.html:29
+#: templates/urmon_barpo/seed/dashboard.html:38
+#: templates/urmon_barpo/seed/dashboard.html:47
+#: templates/urmon_barpo/seed/dashboard.html:56
+#: templates/urmon_barpo/seed/dashboard.html:65
+#: templates/urmon_barpo/sprout/dashboard.html:21
+#: templates/urmon_barpo/sprout/dashboard.html:30
+#: templates/urmon_barpo/sprout/dashboard.html:39
+#: templates/urmon_barpo/sprout/dashboard.html:48
+#: templates/urmon_barpo/trees/dashboard.html:20
+#: templates/urmon_barpo/trees/dashboard.html:29
+#: templates/urmon_barpo/trees/dashboard.html:38
+#: templates/urmon_barpo/trees/dashboard.html:47
+msgid "Кириш"
+msgstr "Кириш"
+
+#: templates/Agriculture/reports/department.html:147
+#: templates/Agriculture/reports/region.html:147
+#: templates/chorvachilik/reports/department.html:151
+#: templates/chorvachilik/reports/region.html:152
+msgid "қўмитаси тизимидаги ўрмон хўжалигида"
+msgstr "қўмитаси тизимидаги ўрмон хўжалигида"
+
+#: templates/accounts/dashboard.html:3
+#: templates/chorvachilik/in_out_report/dashboard.html:3
+#: templates/chorvachilik/reports/dashboard.html:3
+#: templates/urmon_barpo/dashboard.html:3
+#: templates/urmon_barpo/trees/dashboard.html:3
+msgid "O'rmon barpo xisobotlari title"
+msgstr "Ўрмончилик ҳисоботлари"
+
+#: templates/accounts/dashboard.html:13
+msgid "Barcha qo'shimcha amallar"
+msgstr "Барча қўшимча амаллар"
+
+#: templates/accounts/dashboard.html:36
+#: templates/accounts/member_create.html:74
+#: templates/accounts/member_create1.html:77
+#: templates/accounts/user_create.html:65
+#: templates/accounts/user_update.html:73
+msgid "Nation"
+msgstr "Миллати"
+
+#: templates/accounts/dashboard.html:45
+#: templates/accounts/member_create.html:62
+#: templates/accounts/member_create1.html:85
+#: templates/accounts/user_create.html:53
+#: templates/accounts/user_detail.html:40
+#: templates/accounts/user_update.html:61
+#: templates/information/information_detail.html:22
+msgid "Information"
+msgstr "Ма`лумоти"
+
+#: templates/accounts/dashboard.html:54
+#: templates/chorvachilik/input/create.html:94
+#: templates/chorvachilik/input/list.html:66
+#: templates/chorvachilik/output/create.html:93
+#: templates/chorvachilik/output/list.html:66
+msgid "Animal"
+msgstr "Ҳайвон тури"
+
+#: templates/accounts/dashboard.html:63
+msgid "Chorva kirim-chiqim categoriya"
+msgstr "Чорвачилик кирим-чиқим ҳисоботи"
+
+#: templates/accounts/dashboard.html:72
+msgid "Chorva turi"
+msgstr "Чорвачилик чиқим рўйхати"
+
+#: templates/accounts/dashboard.html:81
+msgid "Chorva categoriya"
+msgstr "Чорва тоифалари рўйхати"
+
+#: templates/accounts/dashboard.html:90
+msgid "Animal categoriya"
+msgstr "Ҳайвон тоифаси"
+
+#: templates/accounts/login.html:3
+msgid "Login page"
+msgstr "Кириш саҳифаси"
+
+#: templates/accounts/login.html:15 templates/accounts/login.html:46
+#: templates/accounts/register.html:81
+msgid "Login"
+msgstr "Кириш"
+
+#: templates/accounts/login.html:40 templates/accounts/member_create.html:238
+#: templates/accounts/register.html:59 templates/accounts/user_create.html:95
+#: templates/accounts/user_update.html:254
+msgid "Password"
+msgstr "Махфий код"
+
+#: templates/accounts/member_create.html:3
+#: templates/accounts/member_create1.html:3
+#: templates/accounts/user_create.html:3 templates/accounts/user_detail.html:3
+#: templates/accounts/user_update.html:3
+#: templates/department/department_create.html:3
+#: templates/department/department_detail.html:3
+#: templates/moliya/finance/finance_detail.html:3
+#: templates/moliya/finance_type/finance_type_create.html:3
+#: templates/moliya/finance_type/finance_type_detail.html:3
+msgid "user_update_title"
+msgstr "Фойдаланувчини янгилаш"
+
+#: templates/accounts/member_create.html:22
+#: templates/accounts/user_update.html:21
+msgid "Update user"
+msgstr "Фойдаланувчини янгилаш"
+
+#: templates/accounts/member_create.html:32
+#: templates/accounts/member_create1.html:23
+#: templates/accounts/members_list.html:294 templates/accounts/register.html:49
+#: templates/accounts/user_create.html:23
+#: templates/accounts/user_detail.html:25
+#: templates/accounts/user_update.html:31
+msgid "Email"
+msgstr "Электрон почта манзили"
+
+#: templates/accounts/member_create.html:38
+#: templates/accounts/member_create1.html:29
+#: templates/accounts/user_create.html:29
+#: templates/accounts/user_detail.html:28
+#: templates/accounts/user_update.html:37
+msgid "First name"
+msgstr "Исми"
+
+#: templates/accounts/member_create.html:44
+#: templates/accounts/member_create1.html:35
+#: templates/accounts/user_create.html:35
+#: templates/accounts/user_detail.html:31
+#: templates/accounts/user_update.html:43
+msgid "Last name"
+msgstr "Фамилияси"
+
+#: templates/accounts/member_create.html:50
+#: templates/accounts/member_create1.html:41
+#: templates/accounts/user_create.html:41
+#: templates/accounts/user_detail.html:34
+#: templates/accounts/user_update.html:49
+msgid "Mid name"
+msgstr "Шарифи"
+
+#: templates/accounts/member_create.html:56
+#: templates/accounts/member_create1.html:47
+#: templates/accounts/user_create.html:47
+#: templates/accounts/user_update.html:55
+msgid "Teamporary  work"
+msgstr "Вақтинчалик иш жойи"
+
+#: templates/accounts/member_create.html:68
+#: templates/accounts/member_create1.html:69
+#: templates/accounts/user_create.html:59
+#: templates/accounts/user_detail.html:43
+#: templates/accounts/user_update.html:67
+#: templates/position/position_create.html:22
+#: templates/position/position_detail.html:22
+msgid "Position"
+msgstr "Лавозими"
+
+#: templates/accounts/member_create.html:86
+#: templates/accounts/user_create.html:77
+#: templates/accounts/user_update.html:85
+msgid "Groups"
+msgstr "Гуруҳлар"
+
+#: templates/accounts/member_create.html:92
+#: templates/accounts/user_create.html:83
+#: templates/accounts/user_update.html:91
+#: templates/chorvachilik/input/detail.html:71
+#: templates/chorvachilik/input/list.html:74
+#: templates/chorvachilik/output/detail.html:73
+#: templates/chorvachilik/output/list.html:73
+msgid "Status"
+msgstr "Ҳолати"
+
+#: templates/accounts/member_create.html:98
+#: templates/accounts/user_create.html:89
+#: templates/accounts/user_detail.html:49
+#: templates/accounts/user_update.html:97
+msgid "Crop area"
+msgstr "Экин майдони"
+
+#: templates/accounts/member_create.html:105
+#: templates/accounts/member_create1.html:101
+#: templates/accounts/user_detail.html:63
+#: templates/accounts/user_update.html:104
+msgid "year_of_graduation"
+msgstr "Олий таълим муассасасини тугатган йили, диплом рақами"
+
+#: templates/accounts/member_create.html:113
+#: templates/accounts/member_create1.html:107
+#: templates/accounts/user_detail.html:67
+#: templates/accounts/user_update.html:114
+msgid "name_of_graduation"
+msgstr "Олий таълим муассасаси номи"
+
+#: templates/accounts/member_create.html:119
+#: templates/accounts/member_create1.html:113
+#: templates/accounts/user_detail.html:71
+#: templates/accounts/user_update.html:120
+msgid "birth_date"
+msgstr "Туғилган санаси"
+
+#: templates/accounts/member_create.html:127
+#: templates/accounts/member_create1.html:119
+#: templates/accounts/user_detail.html:75
+#: templates/accounts/user_update.html:128
+msgid "birth_place"
+msgstr "Туғилган жойи"
+
+#: templates/accounts/member_create.html:133
+#: templates/accounts/member_create1.html:125
+#: templates/accounts/user_detail.html:78
+#: templates/accounts/user_update.html:134
+msgid "specialization"
+msgstr "Мутахассислиги"
+
+#: templates/accounts/member_create.html:139
+#: templates/accounts/member_create1.html:131
+#: templates/accounts/user_detail.html:85
+#: templates/accounts/user_update.html:140
+msgid "passport_number"
+msgstr "Паспорт рақами"
+
+#: templates/accounts/member_create.html:145
+#: templates/accounts/member_create1.html:137
+#: templates/accounts/user_detail.html:88
+#: templates/accounts/user_update.html:146
+msgid "start_position_date"
+msgstr "Лавозимга тайинланган вақти"
+
+#: templates/accounts/member_create.html:153
+#: templates/accounts/member_create1.html:143
+#: templates/accounts/user_detail.html:92
+#: templates/accounts/user_update.html:154
+msgid "end_position_date"
+msgstr "Лавозимни тугаллаган вақти"
+
+#: templates/accounts/member_create.html:159
+#: templates/accounts/member_create1.html:93
+#: templates/accounts/user_detail.html:96
+#: templates/accounts/user_update.html:164
+msgid "gender"
+msgstr "Жинси"
+
+#: templates/accounts/member_create.html:165
+#: templates/accounts/user_detail.html:126
+#: templates/accounts/user_update.html:170
+msgid "cripple"
+msgstr "Ногирон"
+
+#: templates/accounts/member_create.html:171
+#: templates/accounts/member_create1.html:149
+#: templates/accounts/user_detail.html:98
+#: templates/accounts/user_update.html:176
+msgid "residence_address"
+msgstr "Яшаш манзили"
+
+#: templates/accounts/member_create.html:177
+#: templates/accounts/member_create1.html:155
+#: templates/accounts/user_detail.html:102
+#: templates/accounts/user_update.html:182
+msgid "phone_number"
+msgstr "Телефон рақами"
+
+#: templates/accounts/member_create.html:183
+#: templates/accounts/member_create1.html:161
+#: templates/accounts/user_detail.html:105
+#: templates/accounts/user_update.html:188
+msgid "academic_degree"
+msgstr "Академик даражаси"
+
+#: templates/accounts/member_create.html:189
+#: templates/accounts/member_create1.html:167
+#: templates/accounts/user_detail.html:108
+#: templates/accounts/user_update.html:194
+msgid "tour"
+msgstr "Қайси давлатларда бўлган"
+
+#: templates/accounts/member_create.html:195
+#: templates/accounts/member_create1.html:173
+#: templates/accounts/user_detail.html:111
+#: templates/accounts/user_update.html:200
+msgid "favorite_party"
+msgstr "Партиявийлиги"
+
+#: templates/accounts/member_create.html:201
+#: templates/accounts/member_create1.html:179
+#: templates/accounts/user_detail.html:114
+#: templates/accounts/user_update.html:206
+msgid "languages"
+msgstr "Қандай тилларни билади"
+
+#: templates/accounts/member_create.html:207
+#: templates/accounts/member_create1.html:185
+#: templates/accounts/user_detail.html:117
+#: templates/accounts/user_update.html:212
+msgid "family_number"
+msgstr "Оила аъзолари сони"
+
+#: templates/accounts/member_create.html:213
+#: templates/accounts/member_create1.html:191
+#: templates/accounts/user_detail.html:120
+#: templates/accounts/user_update.html:218
+msgid "people_deputy"
+msgstr "Депутат аъзоси"
+
+#: templates/accounts/member_create.html:219
+#: templates/accounts/member_create1.html:197
+#: templates/accounts/user_detail.html:123
+#: templates/accounts/user_update.html:224
+msgid "state_award"
+msgstr "Давлат мукофотлари"
+
+#: templates/accounts/member_create.html:226
+#: templates/accounts/member_create1.html:211
+#: templates/accounts/user_detail.html:129
+#: templates/accounts/user_update.html:230
+msgid "military_service"
+msgstr "Ҳарбий хизматни ўтаганми"
+
+#: templates/accounts/member_create.html:232
+#: templates/accounts/member_create1.html:217
+#: templates/accounts/user_detail.html:132
+msgid "judicial"
+msgstr "Судланганлиги"
+
+#: templates/accounts/member_create.html:244
+msgid "Confirm Password"
+msgstr "Паролни тасдиқланг"
+
+#: templates/accounts/member_create.html:250
+msgid "Upload resume"
+msgstr "Резюмени юклаш"
+
+#: templates/accounts/member_create.html:261
+#: templates/accounts/member_create1.html:251
+#: templates/accounts/user_create.html:108
+#: templates/accounts/user_update.html:266
+msgid "Back"
+msgstr "Ортга"
+
+#: templates/accounts/member_create.html:271
+#: templates/accounts/member_create1.html:261
+#: templates/accounts/register.html:91 templates/accounts/user_update.html:276
+#: templates/chorvachilik/animal/create.html:39
+#: templates/chorvachilik/animal_category/create.html:38
+#: templates/chorvachilik/animal_category/detail.html:42
+#: templates/chorvachilik/chorva_category/create.html:51
+#: templates/chorvachilik/chorva_category/detail.html:45
+#: templates/chorvachilik/chorva_type/create.html:39
+#: templates/chorvachilik/chorva_type/detail.html:42
+#: templates/chorvachilik/input_output_category/create.html:39
+#: templates/moliya/production_actual/detail.html:72
+#: templates/moliya/production_plan/detail.html:72
+#: templates/moliya/report/all_report.html:309
+#: templates/moliya/report/index.html:209
+#: templates/urmon_barpo/dashboard.html:58
+#: templates/urmon_barpo/trees/plant/create.html:79
+#: templates/urmon_barpo/trees/plant/detail.html:73
+#: templates/urmon_barpo/trees/plant/list.html:64
+msgid "permision_denied"
+msgstr "Рухсат берилмади"
+
+#: templates/accounts/member_create1.html:14
+#: templates/accounts/user_create.html:14
+msgid "Create new user"
+msgstr "Янги фойдаланувчи қўшиш"
+
+#: templates/accounts/member_create1.html:203
+msgid "Cripple"
+msgstr "Ногиронлиги"
+
+#: templates/accounts/member_create1.html:220
+msgid "Sudlanganmisiz ?"
+msgstr "Судланганмисиз ?"
+
+#: templates/accounts/member_create1.html:225
+msgid "Sudlanganingiz sababini kiriting..."
+msgstr "Судланганлигиз сабабини киритинг..."
+
+#: templates/accounts/member_create1.html:230
+msgid "password"
+msgstr "Махфий код"
+
+#: templates/accounts/members_list.html:3
+msgid "member list page"
+msgstr "Фойдаланувчилар рўйхати"
+
+#: templates/accounts/members_list.html:70 templates/accounts/users_list.html:7
+#: templates/chorvachilik/animal/list.html:7
+#: templates/chorvachilik/animal_category/list.html:7
+#: templates/chorvachilik/chorva_category/list.html:7
+#: templates/chorvachilik/chorva_type/list.html:7
+#: templates/chorvachilik/input_output_category/list.html:7
+#: templates/department/department_list.html:7
+#: templates/information/information_list.html:7
+#: templates/moliya/finance_plan/finance_plan_list.html:7
+#: templates/moliya/finance_type/finance_type_list.html:7
+#: templates/moliya/production_actual/list.html:7
+#: templates/moliya/production_plan/list.html:7
+#: templates/nation/nation_list.html:7
+#: templates/organization/organization_list.html:7
+#: templates/position/position_list.html:7 templates/regions/region_list.html:7
+#: templates/urmon_barpo/trees/category/list.html:7
+#: templates/urmon_barpo/trees/plant/list.html:7
+#: templates/urmon_barpo/trees/tree_plan_list.html:7
+msgid "This is the title"
+msgstr "Фойдаланувчилар рўйхати"
+
+#: templates/accounts/members_list.html:80 templates/accounts/register.html:39
+msgid "Username"
+msgstr "Исми"
+
+#: templates/accounts/members_list.html:115
+#: templates/accounts/users_list.html:15
+msgid "User list"
+msgstr "Фойдаланувчилар рўйхати"
+
+#: templates/accounts/members_list.html:119
+#: templates/accounts/users_list.html:19
+#: templates/organization/organization_list.html:19
+msgid "user create"
+msgstr "Фойдаланувчи яратиш"
+
+#: templates/accounts/members_list.html:128
+#: templates/accounts/users_list.html:27
+msgid "first name"
+msgstr "Исми"
+
+#: templates/accounts/members_list.html:129
+#: templates/accounts/members_list.html:300
+#: templates/accounts/users_list.html:28
+msgid "last name"
+msgstr "Фамилияси"
+
+#: templates/accounts/members_list.html:131
+#: templates/chorvachilik/actual/list.html:68
+#: templates/chorvachilik/plan/list.html:31
+#: templates/department/department_list.html:28
+#: templates/moliya/finance/finance_list.html:76
+#: templates/moliya/finance_plan/finance_plan_list.html:76
+#: templates/urmon_barpo/trees/tree_plan_list.html:36
+msgid "department"
+msgstr "Ташкилот номи"
+
+#: templates/accounts/members_list.html:132
+msgid "national"
+msgstr "Миллати"
+
+#: templates/accounts/members_list.html:133
+msgid "Malumoti"
+msgstr "Маълумоти"
+
+#: templates/accounts/members_list.html:134
+msgid "position"
+msgstr "Лавозими"
+
+#: templates/accounts/members_list.html:150
+#: templates/accounts/users_list.html:32 templates/accounts/users_list.html:61
+#: templates/nation/nation_list.html:38
+#: templates/organization/organization_list.html:42
+msgid "edit"
+msgstr "Таҳрирлаш"
+
+#: templates/accounts/members_list.html:155
+#: templates/accounts/users_list.html:71
+msgid "detail"
+msgstr "Тафсилот"
+
+#: templates/accounts/members_list.html:306
+msgid "Ma'lumoti"
+msgstr "Маълумоти"
+
+#: templates/accounts/members_list.html:312
+msgid "Lavozimi"
+msgstr "Лавозими"
+
+#: templates/accounts/members_list.html:318
+msgid "Millat"
+msgstr "Миллати"
+
+#: templates/accounts/register.html:3
+msgid "Register page"
+msgstr "Рўйхатдан ўтиш саҳифаси"
+
+#: templates/accounts/register.html:69
+msgid "Password Check"
+msgstr "Паролни текшириш"
+
+#: templates/accounts/register.html:77
+msgid "Register"
+msgstr "Рўйхатдан ўтиш"
+
+#: templates/accounts/register.html:80
+msgid "Have an account?"
+msgstr "Ҳисобингиз борми?"
+
+#: templates/accounts/user_create.html:101
+msgid "Confirm password"
+msgstr "Паролни тасдиқлаш"
+
+#: templates/accounts/user_detail.html:37
+msgid "Temporary work"
+msgstr "Вақтинчалик иш жойи"
+
+#: templates/accounts/user_detail.html:54 templates/accounts/users_list.html:31
+#: templates/organization/organization_list.html:30
+msgid "status"
+msgstr "Ҳолати"
+
+#: templates/accounts/user_detail.html:56
+msgid "new"
+msgstr "Янги"
+
+#: templates/accounts/user_detail.html:58
+msgid "active"
+msgstr "Фаол"
+
+#: templates/accounts/user_detail.html:60
+msgid "deleted"
+msgstr "Ўчирилган"
+
+#: templates/accounts/user_detail.html:135
+msgid "yo'q"
+msgstr "йўқ"
+
+#: templates/accounts/user_detail.html:146
+msgid "Resume"
+msgstr "Резюме"
+
+#: templates/accounts/user_detail.html:160
+msgid "Account not found."
+msgstr "Ҳисоб топилмади."
+
+#: templates/accounts/user_update.html:236
+msgid "Sudlangan"
+msgstr "Судланган"
+
+#: templates/accounts/user_update.html:242
+msgid "Faollashtirish"
+msgstr "Фаоллаштириш"
+
+#: templates/accounts/user_update.html:248
+msgid "Sudlanganligi sababi:"
+msgstr "Судланганлиги сабаби:"
+
+#: templates/accounts/user_update.html:268
+msgid "Update"
+msgstr "Янгилаш"
+
+#: templates/accounts/users_list.html:4
+#: templates/chorvachilik/animal/list.html:4
+#: templates/moliya/finance_plan/finance_plan_list.html:4
+#: templates/position/position_list.html:4 templates/regions/region_list.html:4
+msgid "user_list_title"
+msgstr "Фойдаланувчилар рўйхати"
+
+#: templates/accounts/users_list.html:26
+#: templates/organization/organization_list.html:27
+msgid "Tartib raqami"
+msgstr "Тартиб рақами"
+
+#: templates/accounts/users_list.html:29
+msgid "email"
+msgstr "Электрон почта манзили"
+
+#: templates/accounts/users_list.html:30
+msgid "role"
+msgstr "Рол"
+
+#: templates/chorvachilik/actual/create.html:3
+#: templates/chorvachilik/actual/detail.html:3
+msgid "chorvachilik actual page title"
+msgstr "Чорвачилик ҳисоботи амалда"
+
+#: templates/chorvachilik/actual/create.html:27
+msgid "chorvachilik actual create form"
+msgstr "Чорвачилик ҳисоботини киритиш"
+
+#: templates/chorvachilik/actual/create.html:55
+#: templates/chorvachilik/actual/detail.html:40
+#: templates/chorvachilik/plan/create.html:67
+#: templates/chorvachilik/plan/detail.html:40
+msgid "chorvachilik Type"
+msgstr "Чорвачилик тури"
+
+#: templates/chorvachilik/actual/create.html:79
+#: templates/includes/sidebar.html:221
+msgid "Chorvachilik"
+msgstr "Чорвачилик"
+
+#: templates/chorvachilik/actual/create.html:89
+#: templates/chorvachilik/actual/detail.html:51
+#: templates/chorvachilik/input/detail.html:58
+#: templates/chorvachilik/input/list.html:68
+#: templates/chorvachilik/output/detail.html:60
+#: templates/chorvachilik/output/list.html:67
+#: templates/chorvachilik/plan/detail.html:51
+#: templates/moliya/finance/finance-formset-create.html:36
+#: templates/moliya/finance/finance_create.html:80
+#: templates/moliya/finance/finance_detail.html:48
+#: templates/moliya/finance_plan/finance_plan_detail.html:42
+#: templates/moliya/finance_plan/finance_plan_list.html:73
+msgid "Amount"
+msgstr "Миқдори"
+
+#: templates/chorvachilik/actual/create.html:95
+#: templates/chorvachilik/plan/create.html:95
+msgid "Amount type"
+msgstr "Ўлчов бирлиги"
+
+#: templates/chorvachilik/actual/detail.html:14
+msgid "chorvachilik actual detail form"
+msgstr "Чорвачилик амалда тафсифи"
+
+#: templates/chorvachilik/actual/detail.html:46
+#: templates/chorvachilik/actual/list.html:65
+#: templates/chorvachilik/plan/create.html:81
+#: templates/chorvachilik/plan/detail.html:46
+#: templates/chorvachilik/plan/list.html:28
+msgid "chorvachilik"
+msgstr "Чорвачилик"
+
+#: templates/chorvachilik/actual/detail.html:57
+#: templates/chorvachilik/plan/detail.html:57
+msgid "Amount Type"
+msgstr "Ўлчов бирлиги"
+
+#: templates/chorvachilik/actual/list.html:4
+msgid "chorvachilik Actual list ttile"
+msgstr "Чорвачилик амалда рўйхат"
+
+#: templates/chorvachilik/actual/list.html:51
+msgid "chorvachilik Actual list"
+msgstr "Чорвачилик амалда рўйхат"
+
+#: templates/chorvachilik/actual/list.html:66
+#: templates/chorvachilik/plan/list.html:29
+msgid "chorvachilik_type"
+msgstr "Чорвачилик тури"
+
+#: templates/chorvachilik/actual/list.html:67
+#: templates/chorvachilik/input/create.html:104
+#: templates/chorvachilik/output/create.html:103
+#: templates/chorvachilik/plan/create.html:105
+#: templates/chorvachilik/plan/list.html:30
+#: templates/moliya/finance/finance_list.html:73
+msgid "amount"
+msgstr "Миқдори"
+
+#: templates/chorvachilik/actual/list.html:69
+#: templates/chorvachilik/plan/list.html:32
+#: templates/department/department_list.html:29
+#: templates/moliya/finance/finance_list.html:75
+#: templates/moliya/finance_plan/finance_plan_list.html:75
+#: templates/urmon_barpo/trees/tree_plan_list.html:35
+msgid "region"
+msgstr "Ҳудудлар номи"
+
+#: templates/chorvachilik/actual/list.html:70
+#: templates/chorvachilik/plan/list.html:33
+#: templates/moliya/finance/finance_list.html:77
+msgid "creator"
+msgstr "Масъул шахс"
+
+#: templates/chorvachilik/actual/list.html:71
+#: templates/chorvachilik/plan/list.html:34
+msgid "amount_type"
+msgstr "Ўлчов бирлиги"
+
+#: templates/chorvachilik/actual/list.html:87
+#: templates/chorvachilik/plan/list.html:51
+msgid "DONA"
+msgstr "дона"
+
+#: templates/chorvachilik/actual/list.html:89
+#: templates/chorvachilik/plan/list.html:53
+msgid "KG"
+msgstr "кг"
+
+#: templates/chorvachilik/actual/list.html:91
+#: templates/chorvachilik/plan/list.html:55
+msgid "BOSH"
+msgstr "бош"
+
+#: templates/chorvachilik/actual/list.html:93
+#: templates/chorvachilik/actual/list.html:95
+#: templates/chorvachilik/plan/list.html:57
+#: templates/chorvachilik/plan/list.html:59
+msgid "TONNA"
+msgstr "тонна"
+
+#: templates/chorvachilik/animal/create.html:3
+msgid "Animal create page"
+msgstr "Ҳайвон қўшиш"
+
+#: templates/chorvachilik/animal/create.html:14
+msgid "Animal create form"
+msgstr "Ҳайвон қўшиш формаси"
+
+#: templates/chorvachilik/animal/create.html:22
+#: templates/chorvachilik/animal/detail.html:22
+#: templates/chorvachilik/input_output_category/detail.html:22
+msgid "Animal name"
+msgstr "Ҳайвон номи"
+
+#: templates/chorvachilik/animal/detail.html:3
+msgid "Animal detail page"
+msgstr "Ҳайвон тафсифи"
+
+#: templates/chorvachilik/animal/detail.html:14
+msgid "Animal detail form"
+msgstr "Ҳайвон тафсифи формаси"
+
+#: templates/chorvachilik/animal/list.html:15
+msgid "Animal list"
+msgstr "Ҳайвонлар рўйхати"
+
+#: templates/chorvachilik/animal/list.html:27
+#: templates/chorvachilik/animal_category/list.html:27
+#: templates/chorvachilik/chorva_category/list.html:27
+#: templates/chorvachilik/chorva_type/list.html:27
+#: templates/chorvachilik/input_output_category/list.html:26
+#: templates/department/department_list.html:27
+#: templates/information/information_list.html:27
+#: templates/moliya/finance_type/finance_type_list.html:27
+#: templates/nation/nation_list.html:27
+#: templates/position/position_list.html:27
+#: templates/regions/region_list.html:27
+#: templates/urmon_barpo/trees/category/list.html:27
+#: templates/urmon_barpo/trees/plant/list.html:27
+#: templates/urmon_barpo/trees/tree_plan_list.html:27
+#: templates/urmon_barpo/trees/type/list.html:26
+msgid "id"
+msgstr "Т/р"
+
+#: templates/chorvachilik/animal/list.html:28
+#: templates/chorvachilik/animal_category/detail.html:22
+#: templates/chorvachilik/animal_category/list.html:28
+#: templates/chorvachilik/chorva_category/list.html:28
+#: templates/chorvachilik/chorva_type/list.html:28
+#: templates/chorvachilik/input_output_category/list.html:27
+#: templates/organization/organization_list.html:28
+#: templates/regions/region_list.html:28
+#: templates/urmon_barpo/trees/category/list.html:28
+#: templates/urmon_barpo/trees/plant/list.html:28
+#: templates/urmon_barpo/trees/tree_plan_list.html:28
+#: templates/urmon_barpo/trees/type/list.html:27
+msgid "name"
+msgstr "Исми"
+
+#: templates/chorvachilik/animal_category/create.html:3
+msgid "Animal category create page"
+msgstr "Ҳайвон тоифасини қўшиш"
+
+#: templates/chorvachilik/animal_category/create.html:14
+msgid "Animal category create form"
+msgstr "Ҳайвонлар тоифасини қўшиш формаси"
+
+#: templates/chorvachilik/animal_category/create.html:22
+#: templates/chorvachilik/chorva_category/create.html:22
+#: templates/chorvachilik/chorva_category/detail.html:22
+#: templates/chorvachilik/chorva_type/create.html:22
+#: templates/chorvachilik/input_output_category/create.html:22
+#: templates/urmon_barpo/trees/category/create.html:22
+#: templates/urmon_barpo/trees/category/detail.html:22
+#: templates/urmon_barpo/trees/type/detail.html:22
+msgid "Category name"
+msgstr "Тоифа"
+
+#: templates/chorvachilik/animal_category/detail.html:3
+msgid "Animal category detail page"
+msgstr "Ҳайвон тоифаси тафсифи"
+
+#: templates/chorvachilik/animal_category/detail.html:14
+msgid "Animal category detail form"
+msgstr "Ҳайвон тоифаси тафсифи форма"
+
+#: templates/chorvachilik/animal_category/list.html:4
+msgid "Animal category title"
+msgstr "Ҳайвонлар тоифаси"
+
+#: templates/chorvachilik/animal_category/list.html:15
+msgid "Animal category list"
+msgstr "Ҳайвонлар тоифаси рўйхати"
+
+#: templates/chorvachilik/chorva_category/create.html:3
+#: templates/chorvachilik/chorva_type/create.html:3
+msgid "Type create page"
+msgstr "Тоифа киритиш"
+
+#: templates/chorvachilik/chorva_category/create.html:14
+#: templates/chorvachilik/chorva_type/create.html:14
+msgid "Type create form"
+msgstr "Тоифа киритиш формаси"
+
+#: templates/chorvachilik/chorva_category/create.html:28
+#: templates/chorvachilik/chorva_category/detail.html:28
+msgid "Category type"
+msgstr "Тоифа тури"
+
+#: templates/chorvachilik/chorva_category/create.html:34
+msgid "Xosilga kirgan"
+msgstr "Хосилга кирган"
+
+#: templates/chorvachilik/chorva_category/detail.html:3
+msgid "Chorva category detail page"
+msgstr "Чорва тоифаси тафсифи"
+
+#: templates/chorvachilik/chorva_category/detail.html:14
+msgid "Chorva category detail form"
+msgstr "Чорва тоифаси тафсифи формаси"
+
+#: templates/chorvachilik/chorva_category/list.html:4
+#: templates/chorvachilik/chorva_type/list.html:4
+msgid "Type title"
+msgstr "Тури"
+
+#: templates/chorvachilik/chorva_category/list.html:15
+msgid "Chorva Category list"
+msgstr "Чорва тоифалар рўйхати"
+
+#: templates/chorvachilik/chorva_category/list.html:29
+#: templates/chorvachilik/reports/regions_and_departments.html:86
+#: templates/moliya/finance/finance_list.html:72
+msgid "type"
+msgstr "Тури"
+
+#: templates/chorvachilik/chorva_type/detail.html:3
+#: templates/chorvachilik/input_output_category/detail.html:3
+msgid "Input Output category detail page"
+msgstr "Кирим-чиқим тоифаси тафсифи"
+
+#: templates/chorvachilik/chorva_type/detail.html:14
+#: templates/chorvachilik/input_output_category/detail.html:14
+msgid "Input Output category detail form"
+msgstr "Кирим-чиқим тоифаси тафсифи формаси"
+
+#: templates/chorvachilik/chorva_type/detail.html:22
+msgid "Type name"
+msgstr "Тури"
+
+#: templates/chorvachilik/chorva_type/list.html:15
+msgid "Type list"
+msgstr "Турлар рўйхати"
+
+#: templates/chorvachilik/in_out_report/dashboard.html:14
+#: templates/chorvachilik/reports/dashboard.html:14
+#: templates/includes/sidebar.html:177
+msgid "Chorvachilik xisoboti"
+msgstr "Чорвачилик ҳисоботи"
+
+#: templates/chorvachilik/in_out_report/dashboard.html:19
+#: templates/chorvachilik/reports/dashboard.html:29
+msgid "Chorvachilik kirim chiqim hisoboti"
+msgstr "Чорвачилик кирим-чиқим ҳисоботи"
+
+#: templates/chorvachilik/in_out_report/dashboard.html:20
+#: templates/chorvachilik/reports/dashboard.html:20
+#: templates/chorvachilik/reports/dashboard.html:30
+msgid "Barcha qishloq xo'jaliklar jonivorlar xisoboti"
+msgstr "Барча қишлоқ хўжалиги жониворлари ҳисоботи"
+
+#: templates/chorvachilik/in_out_report/department.html:100
+#: templates/chorvachilik/in_out_report/regions_and_departments.html:104
+#: templates/chorvachilik/reports/department.html:112
+#: templates/chorvachilik/reports/region.html:112
+#: templates/chorvachilik/reports/regions_and_departments.html:91
+#: templates/moliya/report/index.html:91
+#: templates/moliya/report/profit_types.html:94
+msgid "Start"
+msgstr "Боши"
+
+#: templates/chorvachilik/in_out_report/department.html:107
+#: templates/chorvachilik/in_out_report/regions_and_departments.html:111
+#: templates/chorvachilik/reports/department.html:119
+#: templates/chorvachilik/reports/region.html:119
+#: templates/chorvachilik/reports/regions_and_departments.html:98
+#: templates/moliya/report/index.html:98
+#: templates/moliya/report/profit_types.html:101
+msgid "End"
+msgstr "Якуни"
+
+#: templates/chorvachilik/in_out_report/department.html:140
+msgid "Ўрмон хўжалиги давлат қўмитаси"
+msgstr "Ўрмон хўжалиги давлат қўмитаси"
+
+#: templates/chorvachilik/in_out_report/department.html:140
+msgid "тизимидаги ўрмон"
+msgstr "тизимидаги ўрмон"
+
+#: templates/chorvachilik/in_out_report/department.html:142
+#: templates/chorvachilik/in_out_report/regions_and_departments.html:143
+#: templates/chorvachilik/reports/regions_and_departments.html:135
+msgid ""
+"йилда қишлоқ хўжалиги чорвачилик  махсулотлари тўғрисида тезкор маълумот"
+msgstr ""
+"йилда қишлоқ хўжалиги чорвачилик маҳсулотлари тўғрисида тезкор маълумот"
+
+#: templates/chorvachilik/in_out_report/department.html:155
+#: templates/chorvachilik/in_out_report/regions_and_departments.html:156
+msgid "Input"
+msgstr "Кирим"
+
+#: templates/chorvachilik/in_out_report/department.html:157
+#: templates/chorvachilik/in_out_report/regions_and_departments.html:158
+msgid "Output"
+msgstr "Чиқим"
+
+#: templates/chorvachilik/in_out_report/department.html:163
+#: templates/chorvachilik/in_out_report/department.html:167
+#: templates/chorvachilik/in_out_report/regions_and_departments.html:165
+#: templates/chorvachilik/in_out_report/regions_and_departments.html:169
+msgid "amount(bosh)"
+msgstr "Миқдори(бош)"
+
+#: templates/chorvachilik/in_out_report/department.html:165
+#: templates/chorvachilik/in_out_report/department.html:169
+#: templates/chorvachilik/in_out_report/regions_and_departments.html:167
+#: templates/chorvachilik/in_out_report/regions_and_departments.html:171
+msgid "wight"
+msgstr "Вазни"
+
+#: templates/chorvachilik/in_out_report/regions_and_departments.html:99
+#: templates/chorvachilik/input/detail.html:41
+#: templates/chorvachilik/input/detail.html:53
+#: templates/chorvachilik/output/detail.html:43
+#: templates/chorvachilik/output/detail.html:55
+#: templates/urmon_barpo/trees/plant/list.html:29
+msgid "category"
+msgstr "Тоифаси"
+
+#: templates/chorvachilik/input/create.html:3
+#: templates/chorvachilik/output/create.html:3
+msgid "Chorva input output create page"
+msgstr "Чорва кирим-чиқим яратиш"
+
+#: templates/chorvachilik/input/create.html:27
+#: templates/chorvachilik/output/create.html:27
+msgid "Chorva input output create form"
+msgstr "Чорва кирим-чиқим яратиш"
+
+#: templates/chorvachilik/input/create.html:67
+msgid "Categoty"
+msgstr "Тоифа"
+
+#: templates/chorvachilik/input/create.html:80
+#: templates/chorvachilik/output/create.html:79
+msgid "Animal Categories"
+msgstr "Ҳайвон тоифалари"
+
+#: templates/chorvachilik/input/detail.html:3
+msgid "chorva input page title"
+msgstr "Чорвачилик кирим саҳифаси"
+
+#: templates/chorvachilik/input/detail.html:14
+msgid "chorva input detail form"
+msgstr "Чорвачилик кирим тафсифи формаси"
+
+#: templates/chorvachilik/input/detail.html:47
+#: templates/chorvachilik/output/detail.html:49
+msgid "animal"
+msgstr "Ҳайвон"
+
+#: templates/chorvachilik/input/detail.html:64
+#: templates/chorvachilik/output/detail.html:66
+msgid "weight Type"
+msgstr "Ўлчов бирлиги"
+
+#: templates/chorvachilik/input/list.html:4
+msgid "Chorva input list ttile"
+msgstr "Чорвачилик кирим рўйхати"
+
+#: templates/chorvachilik/input/list.html:51
+msgid "Chorva  input list"
+msgstr "Чорвачилик кирим рўйхати"
+
+#: templates/chorvachilik/input/list.html:65
+msgid "Sababi"
+msgstr "Сабаби"
+
+#: templates/chorvachilik/input/list.html:67
+#: templates/chorvachilik/output/list.html:65
+#: templates/urmon_barpo/sapling/input/list.html:29
+#: templates/urmon_barpo/sapling/output/list.html:29
+#: templates/urmon_barpo/sprout/input/list.html:29
+#: templates/urmon_barpo/sprout/output/list.html:29
+msgid "Category"
+msgstr "Тоифа"
+
+#: templates/chorvachilik/input/list.html:75
+#: templates/chorvachilik/output/list.html:74
+msgid "Action"
+msgstr "Амаллар"
+
+#: templates/chorvachilik/input/list.html:88
+#: templates/chorvachilik/output/list.html:86
+#: templates/includes/sidebar.html:239
+#: templates/urmon_barpo/sapling/dashboard.html:36
+msgid "Kirim"
+msgstr "Кирим"
+
+#: templates/chorvachilik/input/list.html:90
+#: templates/chorvachilik/output/list.html:88
+#: templates/includes/sidebar.html:245
+msgid "Chiqim"
+msgstr "Чиқим"
+
+#: templates/chorvachilik/input/list.html:97
+#: templates/chorvachilik/output/list.html:95
+msgid "NEW"
+msgstr "Янги"
+
+#: templates/chorvachilik/input/list.html:99
+#: templates/chorvachilik/output/list.html:97
+msgid "CONFIRM"
+msgstr "Тасдиқлаш"
+
+#: templates/chorvachilik/input/list.html:101
+#: templates/chorvachilik/output/list.html:99
+msgid "DELETE"
+msgstr "Бекор қилиш"
+
+#: templates/chorvachilik/input_output_category/create.html:3
+msgid "Input Output category create page"
+msgstr "Кирим-чиқим тоифасини яратиш"
+
+#: templates/chorvachilik/input_output_category/create.html:14
+msgid "Input Output category create form"
+msgstr "Кирим-чиқим тоифасини яратиш формаси"
+
+#: templates/chorvachilik/input_output_category/list.html:4
+msgid "Input Output categories title"
+msgstr "Кирим-чиқим тоифаси"
+
+#: templates/chorvachilik/input_output_category/list.html:15
+msgid "Input Output categories list"
+msgstr "Кирим-чиқим тоифаси рўйхати"
+
+#: templates/chorvachilik/output/create.html:67
+msgid "Output Categoty"
+msgstr "Чиқим тоифаси"
+
+#: templates/chorvachilik/output/detail.html:3
+msgid "Chorva output page title"
+msgstr "Чиқим тоифаси"
+
+#: templates/chorvachilik/output/detail.html:16
+msgid "Chorva output detail form"
+msgstr "Чорвачилик чиқим тоифа тафсиф формаси"
+
+#: templates/chorvachilik/output/list.html:4
+msgid "Chorva output list ttile"
+msgstr "Чорвачилик чиқим рўйхати"
+
+#: templates/chorvachilik/output/list.html:51
+msgid "Chorva  output list"
+msgstr "Чорвачилик чиқим рўйхати"
+
+#: templates/chorvachilik/plan/create.html:3
+msgid "chorvachilik Plan page"
+msgstr "Чорвачилик ҳисоботи режаси"
+
+#: templates/chorvachilik/plan/create.html:27
+msgid "chorvachilik Plan create form"
+msgstr "Чорвачилик ҳисоботи режасини киритиш формаси"
+
+#: templates/chorvachilik/plan/detail.html:3
+msgid "Animal plan page title"
+msgstr "Ҳайвон режа"
+
+#: templates/chorvachilik/plan/detail.html:14
+msgid "chorvachilik plan detail form"
+msgstr "Чорвачилик режа тафсиф формаси"
+
+#: templates/chorvachilik/plan/list.html:4
+msgid "Chorvachilik Plan list ttile"
+msgstr "Чорвачилик режа рўйхати"
+
+#: templates/chorvachilik/plan/list.html:14
+msgid "Chorvachilik Plan list"
+msgstr "Чорвачилик режа рўйхати"
+
+#: templates/chorvachilik/reports/dashboard.html:19
+
+msgid "Chorvachilik hisobot"
+msgstr "Чорвачилик ҳисоботи"
+
+#: templates/department/department_create.html:14
+msgid "department create form"
+msgstr "Ташкилотни номини киритиш формаси"
+
+#: templates/department/department_create.html:22
+#: templates/department/department_detail.html:22
+#: templates/regions/region_create.html:22
+#: templates/regions/region_detail.html:22
+msgid "Region name"
+msgstr "Ҳудуд номи"
+
+#: templates/department/department_create.html:45
+#: templates/department/department_detail.html:46
+#: templates/information/information_detail.html:40
+#: templates/moliya/finance_type/finance_type_detail.html:40
+#: templates/nation/nation_detail.html:41
+#: templates/organization/organization_create.html:41
+#: templates/organization/organization_detail.html:44
+#: templates/position/position_detail.html:41
+#: templates/urmon_barpo/seed/seed_detail.html:70
+msgid "Permision denied"
+msgstr "Рухсат берилмади"
+
+#: templates/department/department_detail.html:14
+#: templates/organization/organization_detail.html:14
+msgid "detail form"
+msgstr "Тафсилот формаси"
+
+#: templates/department/department_list.html:4
+msgid "user list title"
+msgstr "Фойдаланувчилар рўйхати"
+
+#: templates/department/department_list.html:15
+msgid "Department List"
+msgstr "Ташкилот номлари рўйхати"
+
+#: templates/includes/navigation.html:24
+msgid "Foydalanuvchi"
+msgstr "Фойдаланувчи"
+
+#: templates/includes/sidebar.html:42
+msgid "Dashboard"
+msgstr "Барча хисоботлар"
+
+#: templates/includes/sidebar.html:51
+msgid "Kadrlar bo'limi"
+msgstr "Кадрлар бўлими"
+
+#: templates/includes/sidebar.html:57
+msgid "Members"
+msgstr "Кадрлар"
+
+#: templates/includes/sidebar.html:63
+msgid "Other actions"
+msgstr "Умумий амаллар"
+
+#: templates/includes/sidebar.html:75
+msgid "Moliya bolimi"
+msgstr "Молиявий ҳисоботлар"
+
+#: templates/includes/sidebar.html:81
+msgid "finance type"
+msgstr "Даромад турлари"
+
+#: templates/includes/sidebar.html:87
+msgid "Moliya reja"
+msgstr "Даромад режаси"
+
+#: templates/includes/sidebar.html:93
+msgid "Moliya Amalda"
+msgstr "Даромад амалда"
+
+#: templates/includes/sidebar.html:105
+msgid "O'rmon barpo qilish"
+msgstr "Ўрмон барпо қилиш"
+
+#: templates/includes/sidebar.html:112
+msgid "Ko'chatchilik"
+msgstr "Кўчатлар харакати"
+
+#: templates/includes/sidebar.html:120
+msgid "Niholchilik"
+msgstr "Нихоллар харакати"
+
+#: templates/includes/sidebar.html:128
+msgid "Urug'chilik"
+msgstr "Уруғ харакати"
+
+#: templates/includes/sidebar.html:135
+#: templates/urmon_barpo/trees/dashboard.html:18
+msgid "Daraxtlar"
+msgstr "Дарахтлар"
+
+#: templates/includes/sidebar.html:146
+msgid "All Reports"
+msgstr "Барча ҳисоботлар"
+
+#: templates/includes/sidebar.html:153
+msgid "O'rmon hisoboti"
+msgstr "Ўрмончилик ҳисоботлари"
+
+#: templates/includes/sidebar.html:161
+msgid "Moliya hisoboti"
+msgstr "Молиявий ҳисоботлар"
+
+#: templates/includes/sidebar.html:169
+msgid "Qishloq xo'jaligi xisobot"
+msgstr "Қишлоқ хўжалиги ҳисоботлари"
+
+#: templates/includes/sidebar.html:185 templates/includes/sidebar.html:257
+msgid "Mahsulotlar va xizmat"
+msgstr "Ўрмон маҳсулотлари ишлаб чиқариш ва пуллик хизмат"
+
+#: templates/includes/sidebar.html:197
+msgid "Qishloq xo'jaligi"
+msgstr "Қишлоқ хўжалиги ҳисоботлари"
+
+#: templates/includes/sidebar.html:203 templates/includes/sidebar.html:227
+msgid "Plan"
+msgstr "Режа"
+
+#: templates/includes/sidebar.html:269
+msgid "Reja"
+msgstr "Режа"
+
+#: templates/includes/sidebar.html:279
+msgid "Logout"
+msgstr "Чиқиш"
+
+#: templates/index.html:9
+msgid "DASHBOARD"
+msgstr "Барча хисоботлар"
+
+#: templates/information/information_create.html:3
+msgid "information create page"
+msgstr "Маълумот киритиш"
+
+#: templates/information/information_create.html:14
+msgid "information create form"
+msgstr "Маълумот киритиш"
+
+#: templates/information/information_detail.html:3
+msgid "information detail page"
+msgstr "Маълумотлар тафсифи"
+
+#: templates/information/information_detail.html:14
+msgid "information detail form"
+msgstr "Маълумотлар"
+
+#: templates/information/information_list.html:4
+msgid "information list page title"
+msgstr "Маълумотлар рўйхати"
+
+#: templates/information/information_list.html:15
+msgid "information list"
+msgstr "Маълумотлар рўйхати"
+
+#: templates/information/information_list.html:28
+msgid "information name"
+msgstr "Маълумот номи"
+
+#: templates/moliya/dashboard.html:3
+msgid "Moliyaviy hisobotlar title"
+msgstr "Молиявий ҳисоботлар"
+
+#: templates/moliya/dashboard.html:13
+msgid "Moliyaviy hisobotlar"
+msgstr "Молиявий ҳисоботлар"
+
+#: templates/moliya/dashboard.html:18 templates/moliya/dashboard.html:19
+msgid "Umumiy hisobot"
+msgstr "Умумий ҳисобот"
+
+#: templates/moliya/dashboard.html:27
+msgid "Kunlik daromad"
+msgstr "Кунлик даромад"
+
+#: templates/moliya/dashboard.html:28
+msgid "Kunlik daromad hisoboti"
+msgstr "Кунлик даромад ҳисоботи"
+
+#: templates/moliya/dashboard.html:36
+msgid "Daromad turlari"
+msgstr "Даромад турлари бўйича ҳисобот"
+
+#: templates/moliya/dashboard.html:37
+msgid "Daromad turlari hisoboti"
+msgstr "Даромад турлари бўйича ҳисобот"
+
+#: templates/moliya/finance/finance-formset-create.html:3
+#: templates/moliya/finance/finance_create.html:3
+#: templates/moliya/finance_plan/finance_plan_create.html:3
+msgid "report title title"
+msgstr "Ҳисобот"
+
+#: templates/moliya/finance/finance-formset-create.html:14
+#: templates/moliya/finance/finance_create.html:33
+#: templates/moliya/finance_plan/finance_plan_create.html:27
+msgid "Finance create form"
+msgstr "Ташкилот учун режа киритиш"
+
+#: templates/moliya/finance/finance_create.html:70
+msgid "Finance Type"
+msgstr "Даромад тури"
+
+#: templates/moliya/finance/finance_detail.html:14
+msgid "finance detail form page"
+msgstr "Даромад тафсилотлари"
+
+#: templates/moliya/finance/finance_list.html:4
+msgid "finanace list title"
+msgstr "Даромад амалда рўйхат"
+
+#: templates/moliya/finance/finance_list.html:19
+#: templates/moliya/finance_plan/finance_plan_list.html:20
+msgid "Sum"
+msgstr "Сўм"
+
+#: templates/moliya/finance/finance_list.html:53
+msgid "finance list page"
+msgstr "Даромад амалда рўйхат"
+
+#: templates/moliya/finance/finance_list.html:58
+#: templates/moliya/finance/finance_list.html:61
+msgid "create "
+msgstr "Яратиш"
+
+#: templates/moliya/finance/finance_list.html:58
+#: templates/moliya/finance_plan/finance_plan_list.html:60
+msgid "(Xususiy sector)"
+msgstr "(Хусусий сектор)"
+
+#: templates/moliya/finance/finance_list.html:61
+#: templates/moliya/finance_plan/finance_plan_list.html:63
+msgid "(xo'jalik)"
+msgstr "(Хўжалик ҳисоби)"
+
+#: templates/moliya/finance/finance_list.html:74
+msgid "turi"
+msgstr "Тури"
+
+#: templates/moliya/finance/finance_list.html:78
+msgid "created_at"
+msgstr "Киритилган вақт"
+
+#: templates/moliya/finance/finance_list.html:91
+#: templates/moliya/finance_plan/finance_plan_list.html:90
+msgid "Ho'jalik"
+msgstr "Хўжалик ҳисоби"
+
+#: templates/moliya/finance/finance_list.html:93
+#: templates/moliya/finance_plan/finance_plan_list.html:92
+msgid "Xususiy"
+msgstr "Хусусий сектор"
+
+#: templates/moliya/finance_plan/finance_plan_create.html:33
+#: templates/moliya/production_plan/create.html:33
+#: templates/urmon_barpo/sapling/sapling_plan/sapling_plan_create.html:33
+#: templates/urmon_barpo/seed/land_plan/create.html:33
+#: templates/urmon_barpo/seed/seed_plan/seed_plan_create.html:33
+#: templates/urmon_barpo/sprout/sprout_plan/create.html:33
+msgid "Year"
+msgstr "Йил"
+
+#: templates/moliya/finance_plan/finance_plan_create.html:56
+#: templates/urmon_barpo/sapling/sapling_plan/sapling_plan_create.html:66
+#: templates/urmon_barpo/seed/land_plan/create.html:66
+#: templates/urmon_barpo/seed/seed_plan/seed_plan_create.html:66
+#: templates/urmon_barpo/sprout/sprout_plan/create.html:66
+msgid "Yillik"
+msgstr "Йиллик"
+
+#: templates/moliya/finance_plan/finance_plan_detail.html:3
+msgid "finance plan detail title"
+msgstr "Даромад режасининг батафсил маълумоти"
+
+#: templates/moliya/finance_plan/finance_plan_detail.html:14
+msgid "finance plan detail form page"
+msgstr "Даромад режаси - батафсил маълумоти"
+
+#: templates/moliya/finance_plan/finance_plan_list.html:55
+msgid "finance plan list page"
+msgstr "Даромад режа рўйхати"
+
+#: templates/moliya/finance_plan/finance_plan_list.html:78
+#: templates/moliya/production_actual/list.html:72
+#: templates/moliya/production_plan/list.html:35
+msgid "Created_at"
+msgstr "Киритилган вақт"
+
+#: templates/moliya/finance_type/finance_type_create.html:14
+msgid "finance type create"
+msgstr "Даромад турини киритиш"
+
+#: templates/moliya/finance_type/finance_type_create.html:22
+#: templates/moliya/finance_type/finance_type_detail.html:22
+msgid "Finance type"
+msgstr "Даромад тури"
+
+#: templates/moliya/finance_type/finance_type_detail.html:14
+msgid "finance type detail"
+msgstr "Молиявий тушум тури - тафсифи"
+
+#: templates/moliya/finance_type/finance_type_list.html:4
+msgid "finance type list title"
+msgstr "Даромад турлари рўйхати"
+
+#: templates/moliya/finance_type/finance_type_list.html:15
+msgid "finance type list "
+msgstr "Даромад тури рўйхати"
+
+#: templates/moliya/production_actual/create.html:3
+msgid "Production and paid service actual create page"
+msgstr "Ўрмон маҳсулотларини ишлаб чиқариш ва пуллик хизмат кўрсатиш амалда саҳифа"
+
+#: templates/moliya/production_actual/create.html:28
+msgid "Production and paid service actual create form"
+msgstr "Ўрмон маҳсулотларини ишлаб чиқариш ва пуллик хизмат корсатиш амалда формаси"
+
+#: templates/moliya/production_actual/create.html:66
+#: templates/moliya/production_actual/detail.html:42
+#: templates/moliya/production_actual/list.html:68
+#: templates/moliya/production_plan/detail.html:42
+#: templates/moliya/production_plan/list.html:31
+msgid "Production"
+msgstr "Ўрмон маҳсулотларини ишлаб чиқариш"
+
+#: templates/moliya/production_actual/create.html:72
+#: templates/moliya/production_actual/detail.html:48
+#: templates/moliya/production_plan/detail.html:48
+msgid "Paid service"
+msgstr "Пуллик хизмат"
+
+#: templates/moliya/production_actual/detail.html:3
+msgid "Production and paid service actual detail page"
+msgstr "Ўрмон маҳсулотларини ишлаб чиқариш ва пуллик хизмат амалда тафсифи саҳифаси"
+
+#: templates/moliya/production_actual/detail.html:14
+msgid "Production and paid service actual detail  page"
+msgstr "Ўрмон маҳсулотларини ишлаб чиқариш ва пуллик хизмат амалда тафсифи саҳифаси"
+
+#: templates/moliya/production_actual/list.html:4
+msgid "Production and paid service actual page"
+msgstr "Ўрмон маҳсулотларини ишлаб чиқариш ва пуллик хизмат амалда саҳифаси"
+
+#: templates/moliya/production_actual/list.html:52
+msgid "Production and paid service actual list page"
+msgstr "Ўрмон маҳсулотларини ишлаб чиқариш ва пуллик хизмат амалда"
+
+#: templates/moliya/production_actual/list.html:69
+#: templates/moliya/production_plan/list.html:32
+msgid "Paid Service"
+msgstr "Пуллик хизмат"
+
+#: templates/moliya/production_plan/create.html:3
+msgid "Procution and padi service plan page"
+msgstr "Ўрмон маҳсулотларини ишлаб чиқариш ва пуллик хизмат режа саҳифаси"
+
+#: templates/moliya/production_plan/create.html:27
+msgid "Procution and padi service plan create form"
+msgstr "Ўрмон маҳсулотларини ишлаб чиқариш ва пуллик хизмат режа киритиш формаси"
+
+#: templates/moliya/production_plan/create.html:56
+msgid "Ishlab chiqarish(yillik)"
+msgstr "Ўрмон маҳсулотларини ишлаб чиқариш (йиллик)"
+
+#: templates/moliya/production_plan/create.html:62
+msgid "Pullik xizmat(yillik)"
+msgstr "Пуллик хизмат (йиллик)"
+
+#: templates/moliya/production_plan/create.html:78
+#: templates/moliya/report/production_and_paid_service_report.html:153
+msgid "Ishlab chiqarish"
+msgstr "Ўрмон маҳ ишлаб чиқариш"
+
+#: templates/moliya/production_plan/create.html:84
+msgid "Pullik xizmat"
+msgstr "Пуллик хизмат"
+
+#: templates/moliya/production_plan/detail.html:3
+msgid "Production and paid service plan detail page"
+msgstr "Ўрмон маҳсулотларини ишлаб чиқариш ва пуллик хизмат режа тафсифи саҳифаси"
+
+#: templates/moliya/production_plan/detail.html:14
+msgid "Production and paid service plan detail  page"
+msgstr "Ўрмон маҳсулотларини ишлаб чиқариш ва пуллик хизмат режа тафсифи саҳифаси"
+
+#: templates/moliya/production_plan/list.html:4
+msgid "Production and paid service plan page"
+msgstr "Ўрмон маҳсулотларини ишлаб чиқариш ва пуллик хизмат режа саҳифаси"
+
+#: templates/moliya/production_plan/list.html:15
+msgid "Production and paid service plan list page"
+msgstr "Ўрмон маҳсулотларини ишлаб чиқариш ва пуллик хизмат режа рўйхати саҳифаси"
+
+#: templates/moliya/report/all_report.html:4
+msgid "All report page"
+msgstr "Барча ҳисоботлар"
+
+#: templates/moliya/report/all_report.html:115
+#: templates/moliya/report/index.html:117
+#: templates/moliya/report/production_and_paid_service_report.html:125
+#: templates/moliya/report/profit_types.html:120
+#: templates/urmon_barpo/sapling/report/input_output_regions_and_department_report.html:95
+#: templates/urmon_barpo/sapling/report/regions_and_departments.html:107
+#: templates/urmon_barpo/tree_ground_planting/reports/regions_and_departments.html:170
+msgid "kesimda ko'rish"
+msgstr "Ташкилотлар кесимида"
+
+#: templates/moliya/report/all_report.html:162
+#: templates/moliya/report/all_report.html:168
+msgid "Ҳудудлар"
+msgstr "Ташкилот номи"
+
+#: templates/moliya/report/all_report.html:164
+#: templates/moliya/report/all_report.html:170
+#: templates/moliya/report/index.html:151
+#: templates/urmon_barpo/sapling/report/regions_and_departments.html:133
+#: templates/urmon_barpo/sprout/report/regions_and_departments.html:144
+msgid "Йиллик режа"
+msgstr "Йиллик режа"
+
+#: templates/moliya/report/all_report.html:178
+#: templates/moliya/report/production_and_paid_service_report.html:167
+#: templates/moliya/report/production_and_paid_service_report.html:176
+#: templates/moliya/report/production_and_paid_service_report.html:185
+msgid "I-чорак"
+msgstr "I чорак"
+
+#: templates/moliya/report/all_report.html:186
+msgid "Yil boshidan"
+msgstr "Йил бошидан"
+
+#: templates/moliya/report/all_report.html:191
+#: templates/moliya/report/all_report.html:201
+msgid "режа"
+msgstr "Режа"
+
+#: templates/moliya/report/all_report.html:193
+msgid "Тушум"
+msgstr "Тушум"
+
+#: templates/moliya/report/all_report.html:195
+msgid " режага нисбатан"
+msgstr " Режага нисбатан"
+
+#: templates/moliya/report/all_report.html:203
+msgid "Bajarilgan"
+msgstr "Амалда"
+
+#: templates/moliya/report/all_report.html:205
+#: templates/moliya/report/all_report.html:210
+msgid "Percentage"
+msgstr "Фоиз"
+
+#: templates/moliya/report/all_report.html:208
+msgid "Йиллик режага нисбатан"
+msgstr "Йиллик режага нисбатан"
+
+#: templates/moliya/report/index.html:4
+#: templates/moliya/report/production_and_paid_service_report.html:4
+#: templates/moliya/report/profit_types.html:4
+#: templates/reports/02_report.html:4 templates/reports/mavjud_uruglar.html:7
+#: templates/urmon_barpo/sapling/report/department_report.html:4
+#: templates/urmon_barpo/sapling/report/input_output_report.html:4
+#: templates/urmon_barpo/sapling/report/region_report.html:4
+#: templates/urmon_barpo/sapling/report/regions_and_departments.html:6
+#: templates/urmon_barpo/sapling/report/sapling_height_report.html:4
+#: templates/urmon_barpo/seed/reports/department_detail.html:4
+#: templates/urmon_barpo/sprout/report/department_report.html:4
+#: templates/urmon_barpo/sprout/report/input_output_report.html:7
+msgid "yillik reja"
+msgstr "Йиллик режа"
+
+#: templates/moliya/report/index.html:129
+#: templates/urmon_barpo/sapling/report/regions_and_departments.html:120
+msgid "Ўрмон хўжалиги давлат қўмитаси тизим корхоналарида"
+msgstr "Ўрмон хўжалиги давлат қўмитаси тизим ташкилотларида"
+
+#: templates/moliya/report/index.html:131
+#: templates/moliya/report/index.html:139
+#: templates/moliya/report/profit_types.html:134
+#: templates/moliya/report/profit_types.html:142
+#: templates/reports/02_report.html:152
+#: templates/reports/mavjud_uruglar.html:106
+#: templates/urmon_barpo/sapling/report/regions_and_departments.html:122
+#: templates/urmon_barpo/sapling/report/sapling_height_report.html:167
+msgid "дан"
+msgstr "дан"
+
+#: templates/moliya/report/index.html:133
+#: templates/moliya/report/index.html:141
+msgid "ҳолатига даромад тушуми тўғрисида"
+msgstr "ҳолатига даромад тушуми тўғрисида"
+
+#: templates/moliya/report/index.html:137
+#: templates/moliya/report/profit_types.html:140
+msgid "Ўрмон хўжалиги хусусий сектор корхоналарида"
+msgstr "Ўрмон хўжалиги давлат қўмитаси тизим ташкилотларида"
+
+#: templates/moliya/report/index.html:150
+#: templates/moliya/report/production_and_paid_service_report.html:149
+#: templates/moliya/report/profit_types.html:153
+#: templates/urmon_barpo/sapling/report/input_output_regions_and_department_report.html:115
+#: templates/urmon_barpo/sapling/report/regions_and_departments.html:132
+#: templates/urmon_barpo/seed/reports/regions_and_departments.html:136
+#: templates/urmon_barpo/sprout/report/regions_and_departments.html:143
+msgid "Ташкилот номи"
+msgstr "Ташкилот номи"
+
+#: templates/moliya/report/index.html:152
+#: templates/reports/mavjud_uruglar.html:131
+#: templates/reports/mavjud_uruglar.html:133
+#: templates/reports/mavjud_uruglar.html:135
+#: templates/reports/mavjud_uruglar.html:137
+#: templates/reports/mavjud_uruglar.html:139
+#: templates/reports/mavjud_uruglar.html:141
+#: templates/urmon_barpo/sapling/report/regions_and_departments.html:134
+#: templates/urmon_barpo/sprout/report/regions_and_departments.html:145
+msgid "Амалда"
+msgstr "Амалда"
+
+#: templates/moliya/report/index.html:153
+#: templates/urmon_barpo/sapling/report/regions_and_departments.html:135
+#: templates/urmon_barpo/sprout/report/regions_and_departments.html:146
+msgid "Режага нисбатан"
+msgstr "Режага нисбатан"
+
+#: templates/moliya/report/production_and_paid_service_report.html:136
+msgid "Ўрмон маҳсулотлари ишлаб чиқариш  ва аҳолига пуллик хизмат кўрсатиш "
+msgstr "Ўрмон маҳсулотлари ишлаб чиқариш ва аҳолига пуллик хизмат кўрсатиш тўғрисида"
+
+#: templates/moliya/report/production_and_paid_service_report.html:138
+msgid "йил бўйича тўғрисида МАЪЛУМОТ"
+msgstr "йил бўйича маълумот"
+
+#: templates/moliya/report/production_and_paid_service_report.html:151
+#: templates/moliya/report/production_and_paid_service_report.html:155
+msgid "Yillik reja"
+msgstr "Йиллик режа"
+
+#: templates/moliya/report/production_and_paid_service_report.html:157
+msgid "Pullik xizmat ko'rsatish"
+msgstr "Пуллик хизмат кўрсатиш"
+
+#: templates/moliya/report/production_and_paid_service_report.html:159
+msgid "Jami Yillik reja"
+msgstr "Жами йиллик режа"
+
+#: templates/moliya/report/production_and_paid_service_report.html:161
+msgid "Ishlab chiqarish va pullik xizmat ko'rsatish"
+msgstr "Ўрмон маҳсулотлари ишлаб чиқариш ва пуллик хизмат кўрсатиш"
+
+#: templates/moliya/report/production_and_paid_service_report.html:169
+#: templates/moliya/report/production_and_paid_service_report.html:178
+#: templates/moliya/report/production_and_paid_service_report.html:187
+msgid "II-чорак"
+msgstr "II чорак"
+
+#: templates/moliya/report/production_and_paid_service_report.html:171
+#: templates/moliya/report/production_and_paid_service_report.html:180
+#: templates/moliya/report/production_and_paid_service_report.html:189
+msgid "III-чорак"
+msgstr "III чорак"
+
+#: templates/moliya/report/production_and_paid_service_report.html:173
+#: templates/moliya/report/production_and_paid_service_report.html:182
+#: templates/moliya/report/production_and_paid_service_report.html:191
+msgid "IV-чорак"
+msgstr "IV чорак"
+
+#: templates/moliya/report/profit_types.html:132
+msgid "Ўрмон хўжалиги давлат қўмитаси ташкилотларининг"
+msgstr "Ўрмон хўжалиги давлат қўмитаси тизим ташкилотларининг"
+
+#: templates/moliya/report/profit_types.html:136
+#: templates/moliya/report/profit_types.html:144
+msgid "давомида топилган даромадлари тўғрисида МАЪЛУМОТ"
+msgstr "давомида топилган даромадлари тўғрисида маълумот"
+
+#: templates/moliya/report/profit_types.html:157
+#: templates/reports/02_report.html:179
+#: templates/urmon_barpo/sapling/report/sapling_height_report.html:196
+msgid "Jami"
+msgstr "Жами"
+
+#: templates/nation/nation_create.html:3
+msgid "nation create page"
+msgstr "Миллат киритиш саҳифаси"
+
+#: templates/nation/nation_create.html:14
+msgid "nation create form"
+msgstr "Миллат киритиш формаси"
+
+#: templates/nation/nation_create.html:22
+#: templates/nation/nation_detail.html:22
+msgid "Nation name"
+msgstr "Миллат номи"
+
+#: templates/nation/nation_detail.html:3
+msgid "nation detail page"
+msgstr "Миллат тафсив саҳифаси"
+
+#: templates/nation/nation_detail.html:14
+msgid "nation detail form"
+msgstr "Миллат тафсив формаси"
+
+#: templates/nation/nation_list.html:4
+msgid "nation list page title"
+msgstr "Миллатлар рўйхати"
+
+#: templates/nation/nation_list.html:15
+msgid "nation list"
+msgstr "Миллатлар рўйхати"
+
+#: templates/nation/nation_list.html:28
+msgid "nation name"
+msgstr "Миллат"
+
+#: templates/organization/organization_create.html:3
+#: templates/organization/organization_detail.html:3
+#: templates/organization/organization_list.html:4
+msgid "organization page title"
+msgstr "Ташкилот номи"
+
+#: templates/organization/organization_create.html:14
+msgid "organization create form"
+msgstr "Ташкилот номини киритиш"
+
+#: templates/organization/organization_list.html:15
+msgid "Organization list"
+msgstr "Ташкилотлар рўйхати"
+
+#: templates/organization/organization_list.html:29
+msgid "owner"
+msgstr "эгаси"
+
+#: templates/organization/organization_list.html:39
+msgid "Active"
+msgstr "Фаол"
+
+#: templates/organization/organization_list.html:39
+msgid "Deleted"
+msgstr "Ўчирилган"
+
+#: templates/position/position_create.html:3
+msgid "position create page"
+msgstr "Лавозимни киритиш"
+
+#: templates/position/position_create.html:14
+msgid "position create form"
+msgstr "Лавозимни киритиш"
+
+#: templates/position/position_detail.html:3
+#: templates/regions/region_detail.html:3
+msgid "region detail page"
+msgstr "Ҳудудларнинг батафсил маълумоти"
+
+#: templates/position/position_detail.html:14
+msgid "position detail form"
+msgstr "Жойлашиш тафсилотлари"
+
+#: templates/position/position_list.html:15
+msgid "position list"
+msgstr "Лавозимлар рўйхати"
+
+#: templates/position/position_list.html:28
+msgid "position name"
+msgstr "Лавозим номи"
+
+#: templates/regions/region_create.html:3
+msgid "region create page"
+msgstr "Ҳудудларни киритиш"
+
+#: templates/regions/region_create.html:14
+#: templates/regions/region_detail.html:14
+msgid "region create form"
+msgstr "Ҳудудларни киритиш"
+
+#: templates/regions/region_list.html:15
+msgid "region list"
+msgstr "Ҳудудлар рўйхати"
+
+#: templates/reports/02_report.html:150
+#: templates/reports/mavjud_uruglar.html:104
+#: templates/urmon_barpo/sapling/report/region_report.html:112
+#: templates/urmon_barpo/sapling/report/sapling_height_report.html:165
+#: templates/urmon_barpo/sprout/report/department_report.html:112
+#: templates/urmon_barpo/sprout/report/region_report.html:112
+msgid "Ўрмон хўжалиги давлат қўмитаси тизимидаги хўжаликларда"
+msgstr "Ўрмон хужалиги давлат қўмитаси тизим ташкилотларида"
+
+#: templates/reports/02_report.html:154
+#: templates/reports/mavjud_uruglar.html:108
+msgid "йил холатига мавжуд уруғлар тўғрисида"
+msgstr "йил ҳолатига мавжуд уруғлар тўғрисида"
+
+#: templates/reports/02_report.html:156
+#: templates/reports/mavjud_uruglar.html:110
+#: templates/urmon_barpo/sapling/report/input_output_report.html:154
+#: templates/urmon_barpo/sapling/report/region_report.html:114
+#: templates/urmon_barpo/sapling/report/sapling_height_report.html:171
+#: templates/urmon_barpo/sprout/report/department_report.html:114
+#: templates/urmon_barpo/sprout/report/input_output_report.html:171
+#: templates/urmon_barpo/sprout/report/region_report.html:114
+msgid "МАЪЛУМОТ"
+msgstr "маълумот"
+
+#: templates/reports/02_report.html:165
+#: templates/urmon_barpo/sapling/report/department_report.html:122
+#: templates/urmon_barpo/sapling/report/region_report.html:131
+#: templates/urmon_barpo/seed/reports/department_detail.html:123
+#: templates/urmon_barpo/sprout/report/department_report.html:123
+#: templates/urmon_barpo/sprout/report/region_report.html:131
+#: templates/urmon_barpo/tree_ground_planting/reports/regions_and_departments.html:196
+msgid "Ўрмон хўжаликлари номи"
+msgstr "Ташкилотлар номи"
+
+#: templates/reports/02_report.html:167
+msgid "Жами ёпиқ илдизли йирик ҳажмли кўчатларни етиштириш топшириғи"
+msgstr "Жами ёпиқ илдизли йирик хажмли кўчатларни етиштириш топшириғи"
+
+#: templates/reports/02_report.html:169
+#: templates/urmon_barpo/sapling/report/sapling_height_report.html:187
+msgid "яроқли кўчатлар"
+msgstr "Яроқли кўчатлар"
+
+#: templates/reports/02_report.html:175
+msgid "топш"
+msgstr "Режа"
+
+#: templates/reports/02_report.html:176
+msgid "амал"
+msgstr "Амалда"
+
+#: templates/reports/02_report.html:177
+#: templates/urmon_barpo/tree_ground_planting/reports/regions_and_departments.html:228
+#, python-format
+msgid "%%"
+msgstr "%%"
+
+#: templates/reports/02_report.html:180
+#: templates/urmon_barpo/sapling/report/sapling_height_report.html:198
+#: templates/urmon_barpo/trees/tree_plan_list.html:29
+msgid "0,2 м гача"
+msgstr "0,2 м. гача"
+
+#: templates/reports/02_report.html:181
+#: templates/urmon_barpo/sapling/report/sapling_height_report.html:200
+msgid "0,2-0,5 м гача"
+msgstr "0,2-0,5 м. гача"
+
+#: templates/reports/02_report.html:182
+#: templates/urmon_barpo/sapling/report/sapling_height_report.html:202
+msgid "0,5-1 м гача"
+msgstr "0,5-1 м. гача"
+
+#: templates/reports/02_report.html:183
+#: templates/urmon_barpo/sapling/report/sapling_height_report.html:204
+#: templates/urmon_barpo/trees/tree_plan_list.html:32
+msgid "1-1,5 м гача"
+msgstr "1-1,5 м. гача"
+
+#: templates/reports/02_report.html:184
+#: templates/urmon_barpo/sapling/report/sapling_height_report.html:206
+#: templates/urmon_barpo/trees/tree_plan_list.html:33
+msgid "1,5-2 м гача"
+msgstr "1,5-2 м. гача"
+
+#: templates/reports/02_report.html:185
+#: templates/urmon_barpo/sapling/report/sapling_height_report.html:208
+msgid "2 м дан юқори"
+msgstr "2 м. дан юқори"
+
+#: templates/reports/dashboard.html:3
+#: templates/urmon_barpo/sapling/dashboard.html:3
+#: templates/urmon_barpo/sapling/report/dashboard.html:3
+#: templates/urmon_barpo/seed/reports/dashboard.html:3
+#: templates/urmon_barpo/sprout/dashboard.html:3
+#: templates/urmon_barpo/sprout/report/dashboard.html:3
+msgid "Sprout dashboard page title"
+msgstr "Ниҳол ҳисоботи саҳифаси"
+
+#: templates/reports/dashboard.html:13
+msgid "Hisobotlar sahifasi"
+msgstr "Ҳисоботлар саҳифаси"
+
+#: templates/reports/dashboard.html:18
+msgid "Mavjud uruglar"
+msgstr "Мавжуд уруғлар"
+
+#: templates/reports/dashboard.html:20 templates/reports/dashboard.html:29
+#: templates/reports/dashboard.html:47 templates/reports/dashboard.html:56
+#: templates/reports/dashboard.html:65 templates/reports/dashboard.html:74
+#: templates/reports/dashboard.html:83
+#: templates/urmon_barpo/sapling/report/dashboard.html:19
+#: templates/urmon_barpo/sapling/report/dashboard.html:28
+#: templates/urmon_barpo/sapling/report/dashboard.html:37
+#: templates/urmon_barpo/seed/reports/dashboard.html:20
+#: templates/urmon_barpo/sprout/report/dashboard.html:20
+#: templates/urmon_barpo/sprout/report/dashboard.html:29
+msgid "Kirish"
+msgstr "Кириш"
+
+#: templates/reports/dashboard.html:27
+msgid "Moliya xisoboti"
+msgstr "Молиявий ҳисоботлар"
+
+#: templates/reports/dashboard.html:36
+#: templates/urmon_barpo/sapling/report/region_report.html:132
+#: templates/urmon_barpo/sprout/report/region_report.html:132
+msgid "Jami ko'chatlar"
+msgstr "Жами кўчатлар"
+
+#: templates/reports/dashboard.html:37
+#: templates/urmon_barpo/sapling/dashboard.html:46
+msgid "Кўчат харакати тўғрисида чиқимлар"
+msgstr "Кўчат ҳаракати тўғрисида чиқимлар"
+
+#: templates/reports/dashboard.html:45 templates/reports/dashboard.html:46
+msgid "Ko'chatlar xisoboti"
+msgstr "Кўчатчилик ҳисоботи"
+
+#: templates/reports/dashboard.html:54 templates/reports/dashboard.html:55
+msgid "Niholchilik xisoboti"
+msgstr "Ниҳолчилик ҳисоботи"
+
+#: templates/reports/dashboard.html:63 templates/reports/dashboard.html:64
+msgid "Niholchilik kirim chiqim xisoboti"
+msgstr "Ниҳолчилик кирим-чиқим ҳисоботи"
+
+#: templates/reports/dashboard.html:72 templates/reports/dashboard.html:73
+msgid "Ko'chatchilik kirim chiqim xisoboti"
+msgstr "Кўчатлар ҳисоботи"
+
+#: templates/reports/dashboard.html:81 templates/reports/dashboard.html:82
+msgid "O'rmon barpo qilish xisoboti"
+msgstr "Ўрмончилик ҳисоботи"
+
+#: templates/reports/mavjud_uruglar.html:92
+msgid "hide"
+msgstr "яшириш"
+
+#: templates/reports/mavjud_uruglar.html:118
+msgid "Хўжаликлар"
+msgstr "Ташкилотлар номи"
+
+#: templates/reports/mavjud_uruglar.html:119
+msgid "Жами уруғлар"
+msgstr "Жами уруғлар"
+
+#: templates/reports/mavjud_uruglar.html:120
+msgid "Шу жумладан"
+msgstr "Шу жумладан"
+
+#: templates/reports/mavjud_uruglar.html:123
+msgid "Манзарали кўчатлар"
+msgstr "Манзарали кўчатлар"
+
+#: templates/reports/mavjud_uruglar.html:124
+msgid "Ноёб кўчатлар"
+msgstr "Ноёб кўчатлар"
+
+#: templates/reports/mavjud_uruglar.html:125
+msgid "Мевали ва ёнғоқмевали"
+msgstr "Мевали ва ёнғоқмевали"
+
+#: templates/reports/mavjud_uruglar.html:126
+msgid "Бута ва гуллар"
+msgstr "Бута ва гуллар"
+
+#: templates/reports/mavjud_uruglar.html:127
+msgid "Чул ўсимликлари"
+msgstr "Чўл ўсимликлари"
+
+#: templates/reports/mavjud_uruglar.html:130
+#: templates/reports/mavjud_uruglar.html:132
+#: templates/reports/mavjud_uruglar.html:134
+#: templates/reports/mavjud_uruglar.html:136
+#: templates/reports/mavjud_uruglar.html:138
+#: templates/reports/mavjud_uruglar.html:140
+#: templates/urmon_barpo/sapling/dashboard.html:18
+#: templates/urmon_barpo/seed/dashboard.html:18
+#: templates/urmon_barpo/sprout/dashboard.html:19
+msgid "Режа"
+msgstr "Режа"
+
+#: templates/urmon_barpo/dashboard.html:14
+msgid "O'rmon barpo xisobotlari"
+msgstr "Ўрмонларни барпо қилиш ривожлантириш ва қайта тиклаш бошқармаси маълумотлари"
+
+#: templates/urmon_barpo/dashboard.html:19
+msgid "Ko'chatchilik hisoboti"
+msgstr "Кўчатчилик харакати"
+
+#: templates/urmon_barpo/dashboard.html:20
+msgid "Ko'chatlar yuzasidan hisobot"
+msgstr "Кўчатлар юзасидан ҳисобот"
+
+#: templates/urmon_barpo/dashboard.html:29
+#: templates/urmon_barpo/dashboard.html:30
+msgid "Yerni tayyorlash hisoboti"
+msgstr "Уруғ харакати"
+
+#: templates/urmon_barpo/dashboard.html:39
+msgid "Niholchilik hisoboti"
+msgstr "Ниҳолчилик харакати"
+
+#: templates/urmon_barpo/dashboard.html:40
+#: templates/urmon_barpo/dashboard.html:50
+msgid "Niholar yuzasidan hisobot"
+msgstr "Ниҳолар юзасидан ҳисобот"
+
+#: templates/urmon_barpo/dashboard.html:49
+msgid "the_ground_report"
+msgstr "Дарахт экиш (4850-Қарор бўйича)"
+
+#: templates/urmon_barpo/sapling/dashboard.html:13
+#: templates/urmon_barpo/sapling/report/dashboard.html:12
+msgid "Кўчатлар"
+msgstr "Кўчатлар харакати"
+
+#: templates/urmon_barpo/sapling/dashboard.html:19
+msgid "Кўчат харакати тўғрисида режалар"
+msgstr "Кўчат ҳаракати тўғрисида режалар"
+
+#: templates/urmon_barpo/sapling/dashboard.html:27
+msgid "Aмалий иш"
+msgstr "Амалий иш"
+
+#: templates/urmon_barpo/sapling/dashboard.html:28
+msgid "Кўчат харакати тўғрисида амалий ишлар"
+msgstr "Кўчат ҳаракати тўғрисида амалий ишлар"
+
+#: templates/urmon_barpo/sapling/dashboard.html:37
+msgid "Кўчат харакати тўғрисида киримлар"
+msgstr "Кўчат ҳаракати тўғрисида киримлар"
+
+#: templates/urmon_barpo/sapling/dashboard.html:45
+#: templates/urmon_barpo/sprout/dashboard.html:46
+msgid "Чиқим"
+msgstr "Чиқим"
+
+#: templates/urmon_barpo/sapling/input/create.html:3
+#: templates/urmon_barpo/sprout/input/create.html:3
+#: templates/urmon_barpo/sprout/output/create.html:3
+msgid "Seed input page title"
+msgstr "Уруғ кирими саҳифаси"
+
+#: templates/urmon_barpo/sapling/input/create.html:27
+msgid "Sapling input create form"
+msgstr "Кўчат кирим киритиш формаси"
+
+#: templates/urmon_barpo/sapling/input/create.html:75
+#: templates/urmon_barpo/sapling/input/detail.html:46
+#: templates/urmon_barpo/sapling/input/list.html:30
+#: templates/urmon_barpo/sapling/output/create.html:75
+#: templates/urmon_barpo/sapling/output/detail.html:46
+#: templates/urmon_barpo/sapling/output/list.html:31
+#: templates/urmon_barpo/sprout/input/create.html:75
+#: templates/urmon_barpo/sprout/input/detail.html:47
+#: templates/urmon_barpo/sprout/input/list.html:30
+#: templates/urmon_barpo/sprout/output/create.html:75
+#: templates/urmon_barpo/sprout/output/detail.html:47
+#: templates/urmon_barpo/sprout/output/list.html:31
+msgid "Donation"
+msgstr "Беъғараз"
+
+#: templates/urmon_barpo/sapling/input/create.html:81
+#: templates/urmon_barpo/sapling/input/detail.html:52
+#: templates/urmon_barpo/sapling/input/list.html:31
+#: templates/urmon_barpo/sprout/input/create.html:81
+#: templates/urmon_barpo/sprout/input/detail.html:53
+#: templates/urmon_barpo/sprout/input/list.html:31
+msgid "Buying"
+msgstr "Сотиб олиш"
+
+#: templates/urmon_barpo/sapling/input/create.html:87
+#: templates/urmon_barpo/sapling/input/detail.html:58
+#: templates/urmon_barpo/sprout/input/create.html:87
+#: templates/urmon_barpo/sprout/input/detail.html:59
+msgid "New sprout"
+msgstr "Янги ниҳол"
+
+#: templates/urmon_barpo/sapling/input/detail.html:3
+#: templates/urmon_barpo/sapling/sapling_detail.html:3
+msgid "Sapling detail page"
+msgstr "Кўчатларнинг тафсифи саҳифаси"
+
+#: templates/urmon_barpo/sapling/input/detail.html:14
+msgid "Sapling Input detail form"
+msgstr "Кўчат кирим тафсифи формаси"
+
+#: templates/urmon_barpo/sapling/input/list.html:4
+msgid "Sapling Input list page"
+msgstr "Кўчат кирим рўйхати"
+
+#: templates/urmon_barpo/sapling/input/list.html:14
+msgid "Sapling Input list"
+msgstr "Кўчат кирим рўйхати"
+
+#: templates/urmon_barpo/sapling/input/list.html:32
+#: templates/urmon_barpo/sprout/input/list.html:32
+msgid "New_sprout"
+msgstr "Янги ниҳол"
+
+#: templates/urmon_barpo/sapling/output/create.html:3
+msgid "Sapling  output page title"
+msgstr "Кўчат чиқими саҳифаси"
+
+#: templates/urmon_barpo/sapling/output/create.html:27
+msgid "Sapling Output create form"
+msgstr "Кўчат чиқим киритиш формаси"
+
+#: templates/urmon_barpo/sapling/output/create.html:81
+#: templates/urmon_barpo/sapling/output/detail.html:58
+#: templates/urmon_barpo/sapling/output/list.html:30
+#: templates/urmon_barpo/sprout/output/create.html:81
+#: templates/urmon_barpo/sprout/output/detail.html:59
+#: templates/urmon_barpo/sprout/output/list.html:30
+msgid "For the forest"
+msgstr "Ўрмон учун"
+
+#: templates/urmon_barpo/sapling/output/create.html:87
+#: templates/urmon_barpo/sapling/output/detail.html:52
+#: templates/urmon_barpo/sapling/output/list.html:32
+#: templates/urmon_barpo/sprout/output/create.html:87
+#: templates/urmon_barpo/sprout/output/detail.html:53
+#: templates/urmon_barpo/sprout/output/list.html:32
+msgid "Selling"
+msgstr "Сотилди"
+
+#: templates/urmon_barpo/sapling/output/create.html:93
+#: templates/urmon_barpo/sapling/output/detail.html:64
+#: templates/urmon_barpo/sprout/output/create.html:93
+#: templates/urmon_barpo/sprout/output/detail.html:65
+msgid "Unsuccessful"
+msgstr "Муваффақиятсиз экилган"
+
+#: templates/urmon_barpo/sapling/output/create.html:99
+#: templates/urmon_barpo/sapling/output/detail.html:70
+#: templates/urmon_barpo/sapling/output/detail.html:76
+#: templates/urmon_barpo/sapling/output/list.html:35
+#: templates/urmon_barpo/sprout/output/create.html:99
+#: templates/urmon_barpo/sprout/output/detail.html:71
+#: templates/urmon_barpo/sprout/output/detail.html:77
+#: templates/urmon_barpo/sprout/output/list.html:34
+msgid "Place changed"
+msgstr "Жойи ўзгартирилди"
+
+#: templates/urmon_barpo/sapling/output/create.html:105
+msgid "Xisobdan chiqarilgab"
+msgstr "Ҳисобдан чиқарилган"
+
+#: templates/urmon_barpo/sapling/output/detail.html:3
+msgid "Sapling output detail page"
+msgstr "Кўчатларни чиқим тафсифи саҳифаси"
+
+#: templates/urmon_barpo/sapling/output/detail.html:14
+msgid "Sapling Output detail form"
+msgstr "Кўчатларни чиқим тафсиф формаси"
+
+#: templates/urmon_barpo/sapling/output/list.html:4
+msgid "Sapling Output list page"
+msgstr "Кўчат чиқим рўйхати"
+
+#: templates/urmon_barpo/sapling/output/list.html:14
+msgid "Sapling Output list"
+msgstr "Кўчат чиқим рўйхати"
+
+#: templates/urmon_barpo/sapling/output/list.html:33
+#: templates/urmon_barpo/sprout/output/list.html:33
+msgid "unsuccessful"
+msgstr "Муваффақиятсиз экилган"
+
+#: templates/urmon_barpo/sapling/output/list.html:34
+#: templates/urmon_barpo/sprout/output/create.html:105
+msgid "Xisobdan chiqarildi"
+msgstr "Ҳисобдан чиқарилди"
+
+#: templates/urmon_barpo/sapling/report/dashboard.html:17
+msgid "Kirim chiqim hisoboti"
+msgstr "Кирим-чиқим ҳисоботи"
+
+#: templates/urmon_barpo/sapling/report/dashboard.html:18
+msgid "Ko'chatlar kirim chiqim hisoboti"
+msgstr "Кўчатлар кирим-чиқим ҳисоботи"
+
+#: templates/urmon_barpo/sapling/report/dashboard.html:26
+msgid "Ko'chatlar bo'yiga hisoboti"
+msgstr "Кўчатлар бўйи бўйича ҳисобот"
+
+#: templates/urmon_barpo/sapling/report/dashboard.html:27
+msgid "Ko'chatlar bo'yiga hisobot"
+msgstr "Кўчатлар бўйи бўйича ҳисобот"
+
+#: templates/urmon_barpo/sapling/report/dashboard.html:35
+msgid "Ko'chatlar holati hisoboti"
+msgstr "Кўчатлар ҳолати бўйича ҳисоботи"
+
+#: templates/urmon_barpo/sapling/report/dashboard.html:36
+msgid "Ko'chatlar reja va amaldagi holat yusasidan hisobot"
+msgstr "Кўчатлар режаси бажарилиши юсасидан ҳисобот"
+
+#: templates/urmon_barpo/sapling/report/department_report.html:111
+msgid "davlat  tizimidagi xo'jalikda"
+msgstr "давлат  тизимидаги хўжаликда"
+
+#: templates/urmon_barpo/sapling/report/department_report.html:112
+msgid "yil xolati mavjud ko'chatlar to'g'risida"
+msgstr "йил ҳолатига мавжуд кўчатлар тўғрисида"
+
+#: templates/urmon_barpo/sapling/report/department_report.html:113
+msgid "ma'lumot"
+msgstr "маълумот"
+
+#: templates/urmon_barpo/sapling/report/department_report.html:123
+msgid "Jami ko'chatlar yetishtirish topshirig'i"
+msgstr "Жами кўчатлар етиштириш топшириғи"
+
+#: templates/urmon_barpo/sapling/report/department_report.html:129
+#: templates/urmon_barpo/sapling/report/region_report.html:142
+#: templates/urmon_barpo/sapling/report/region_report.html:146
+#: templates/urmon_barpo/sprout/report/department_report.html:130
+#: templates/urmon_barpo/sprout/report/region_report.html:142
+#: templates/urmon_barpo/sprout/report/region_report.html:146
+msgid "Topsh"
+msgstr "Режа"
+
+#: templates/urmon_barpo/sapling/report/input_output_regions_and_department_report.html:103
+#: templates/urmon_barpo/seed/reports/regions_and_departments.html:124
+#: templates/urmon_barpo/sprout/report/input_output_regions_and_department_report.html:117
+#: templates/urmon_barpo/sprout/report/regions_and_departments.html:131
+msgid "O'rmon xo'jaligi davlat qo'mitasi tizim korxonalarida"
+msgstr "Ўрмон хўжалиги давлат қўмитаси тизим ташкилотларида"
+
+#: templates/urmon_barpo/sapling/report/input_output_regions_and_department_report.html:105
+#: templates/urmon_barpo/seed/reports/regions_and_departments.html:126
+#: templates/urmon_barpo/sprout/report/input_output_regions_and_department_report.html:119
+#: templates/urmon_barpo/sprout/report/regions_and_departments.html:133
+msgid "dan"
+msgstr "дан"
+
+#: templates/urmon_barpo/sapling/report/input_output_regions_and_department_report.html:107
+msgid "yil gacha holati  tog'risida  ma'lumot"
+msgstr "йил гача ҳолати тўғрисида  маълумот"
+
+#: templates/urmon_barpo/sapling/report/input_output_regions_and_department_report.html:116
+msgid "Жами кирим"
+msgstr "Жами кирим"
+
+#: templates/urmon_barpo/sapling/report/input_output_regions_and_department_report.html:117
+msgid "Жами chiqim"
+msgstr "Жами чиқим"
+
+#: templates/urmon_barpo/sapling/report/input_output_regions_and_department_report.html:118
+msgid "қолдиқ"
+msgstr "Қолдиқ"
+
+#: templates/urmon_barpo/sapling/report/input_output_report.html:150
+msgid "давлат ўрмон хўжалигида КЎЧАТЧИЛИК харакати тўғрисида "
+msgstr "да кўчатчилик харакати тўғрисида"
+
+#: templates/urmon_barpo/sapling/report/input_output_report.html:152
+#: templates/urmon_barpo/sprout/report/input_output_report.html:169
+msgid "ҳолатига бўлган қолдиқ хисобот"
+msgstr "ҳолатига маълумот"
+
+#: templates/urmon_barpo/sapling/report/input_output_report.html:163
+#: templates/urmon_barpo/sprout/report/input_output_report.html:180
+msgid "Кўчатлар тури"
+msgstr "Кўчат тури"
+
+#: templates/urmon_barpo/sapling/report/input_output_report.html:165
+#: templates/urmon_barpo/sprout/report/input_output_report.html:182
+msgid "йил холатига қолдиқ (йиллик)"
+msgstr "йил холатига қолдиқ (йиллик)"
+
+#: templates/urmon_barpo/sapling/report/input_output_report.html:167
+#: templates/urmon_barpo/sprout/report/input_output_report.html:184
+msgid "Беғараз олинди"
+msgstr "Беғараз олинди"
+
+#: templates/urmon_barpo/sapling/report/input_output_report.html:169
+#: templates/urmon_barpo/sprout/report/input_output_report.html:186
+msgid "Сотиб олинди"
+msgstr "Сотиб олинди"
+
+#: templates/urmon_barpo/sapling/report/input_output_report.html:171
+#: templates/urmon_barpo/sprout/report/input_output_report.html:188
+msgid "Янгидан униб чиқан нихоллар"
+msgstr "Янгидан униб чиққан ниҳоллар"
+
+#: templates/urmon_barpo/sapling/report/input_output_report.html:173
+#: templates/urmon_barpo/sprout/report/input_output_report.html:190
+msgid "Жами кирим қилинди"
+msgstr "Жами кирим қилинди"
+
+#: templates/urmon_barpo/sapling/report/input_output_report.html:175
+#: templates/urmon_barpo/sprout/report/input_output_report.html:192
+msgid "ЧИҚИМ (йиллик)"
+msgstr "Чиқим (йиллик)"
+
+#: templates/urmon_barpo/sapling/report/input_output_report.html:178
+#: templates/urmon_barpo/sprout/report/input_output_report.html:195
+msgid "Ўрмон ва плантация барпо қилиш учун"
+msgstr "Ўрмон ва плантасия барпо қилиш учун"
+
+#: templates/urmon_barpo/sapling/report/input_output_report.html:180
+#: templates/urmon_barpo/sprout/report/input_output_report.html:197
+msgid "Хатосига экилди"
+msgstr "Хатосига экилди"
+
+#: templates/urmon_barpo/sapling/report/input_output_report.html:182
+#: templates/urmon_barpo/sprout/report/input_output_report.html:199
+msgid "Кўчириб экилди (школка)"
+msgstr "Кўчириб экилди (школка)"
+
+#: templates/urmon_barpo/sapling/report/input_output_report.html:184
+#: templates/urmon_barpo/sprout/report/input_output_report.html:201
+msgid "Сотилди"
+msgstr "Сотилди"
+
+#: templates/urmon_barpo/sapling/report/input_output_report.html:186
+#: templates/urmon_barpo/sprout/report/input_output_report.html:203
+msgid "Беғараз берилди"
+msgstr "Беғараз берилди"
+
+#: templates/urmon_barpo/sapling/report/input_output_report.html:188
+#: templates/urmon_barpo/sprout/report/input_output_report.html:205
+msgid "Ҳисобдан чиқарилган нихоллар(қарор, фармойиш, буйруқ, акт)"
+msgstr "Ҳисобдан чиқарилган ниҳоллар (қарор, фармойиш, буйруқ, далолатнома)"
+
+#: templates/urmon_barpo/sapling/report/input_output_report.html:190
+#: templates/urmon_barpo/sprout/report/input_output_report.html:207
+msgid " йилга қолдиқ"
+msgstr "йилга қолдиқ"
+
+#: templates/urmon_barpo/sapling/report/region_report.html:113
+#: templates/urmon_barpo/sprout/report/department_report.html:113
+#: templates/urmon_barpo/sprout/report/region_report.html:113
+msgid "йил холатига мавжуд ko'chatlar тўғрисида"
+msgstr "йил ҳолатига мавжуд кўчатлар тўғрисида"
+
+#: templates/urmon_barpo/sapling/report/region_report.html:134
+#: templates/urmon_barpo/sprout/report/region_report.html:134
+msgid "yetishtirish topshirig'i"
+msgstr "етиштириш топшириғи"
+
+#: templates/urmon_barpo/sapling/report/regions_and_departments.html:124
+msgid "йил гача ҳолатига кўчатлар тўғрисида малумот"
+msgstr "йил гача кўчатлар тўғрисида маълумот"
+
+#: templates/urmon_barpo/sapling/report/sapling_height_report.html:169
+msgid "йил холатига мавжуд қўчатлар тўғрисида"
+msgstr "йил ҳолатига мавжуд кўчатлар тўғрисида"
+
+#: templates/urmon_barpo/sapling/report/sapling_height_report.html:183
+msgid "Кўчат тури"
+msgstr "Кўчат тури"
+
+#: templates/urmon_barpo/sapling/report/sapling_height_report.html:185
+msgid "Жами экиш ва сотишга "
+msgstr "Жами экиш ва сотишга "
+
+#: templates/urmon_barpo/sapling/sapling_create.html:3
+msgid "GrowingPlant title"
+msgstr "Етиштирувчи ўсимлик номи"
+
+#: templates/urmon_barpo/sapling/sapling_create.html:27
+msgid "Sapling create form"
+msgstr "Кўчат киритиш формаси"
+
+#: templates/urmon_barpo/sapling/sapling_create.html:75
+#: templates/urmon_barpo/sapling/sapling_detail.html:48
+#: templates/urmon_barpo/sapling/sapling_list.html:65
+#: templates/urmon_barpo/sapling/sapling_plan/sapling_plan_detail.html:47
+#: templates/urmon_barpo/sapling/sapling_plan/sapling_plan_list.html:28
+#: templates/urmon_barpo/seed/seed_create.html:75
+#: templates/urmon_barpo/seed/seed_detail.html:29
+#: templates/urmon_barpo/seed/seed_list.html:65
+#: templates/urmon_barpo/seed/seed_plan/seed_plan_detail.html:30
+#: templates/urmon_barpo/seed/seed_plan/seed_plan_list.html:28
+#: templates/urmon_barpo/sprout/create.html:75
+#: templates/urmon_barpo/sprout/detail.html:29
+#: templates/urmon_barpo/sprout/list.html:65
+#: templates/urmon_barpo/sprout/sprout_plan/detail.html:49
+#: templates/urmon_barpo/sprout/sprout_plan/list.html:27
+#: templates/urmon_barpo/trees/tree_plan_create.html:50
+#: templates/urmon_barpo/trees/tree_plan_create.html:56
+#: templates/urmon_barpo/trees/tree_plan_create.html:62
+#: templates/urmon_barpo/trees/tree_plan_create.html:68
+#: templates/urmon_barpo/trees/tree_plan_create.html:74
+msgid "Count"
+msgstr "Ҳисоб"
+
+#: templates/urmon_barpo/sapling/sapling_detail.html:14
+msgid "Sapling detail form"
+msgstr "Кўчат тафсифи формаси"
+
+#: templates/urmon_barpo/sapling/sapling_detail.html:42
+#: templates/urmon_barpo/seed/seed_detail.html:47
+#: templates/urmon_barpo/seed/seed_plan/seed_plan_detail.html:48
+#: templates/urmon_barpo/sprout/detail.html:47
+#: templates/urmon_barpo/sprout/sprout_plan/detail.html:43
+msgid "Plant"
+msgstr "Ўсимлик"
+
+#: templates/urmon_barpo/sapling/sapling_list.html:4
+#: templates/urmon_barpo/sapling/sapling_list.html:51
+msgid "Sapling list page"
+msgstr "Кўчатлар рўйхати"
+
+#: templates/urmon_barpo/sapling/sapling_plan/sapling_plan_create.html:3
+#: templates/urmon_barpo/seed/land_plan/create.html:3
+msgid "Sapling Plan page"
+msgstr "Кўчат режа саҳифаси"
+
+#: templates/urmon_barpo/sapling/sapling_plan/sapling_plan_create.html:27
+msgid "Sapling Plan create form"
+msgstr "Кўчат режа киритиш саҳифаси"
+
+#: templates/urmon_barpo/sapling/sapling_plan/sapling_plan_detail.html:3
+msgid "Sapling plan page"
+msgstr "Кўчат режа саҳифаси"
+
+#: templates/urmon_barpo/sapling/sapling_plan/sapling_plan_detail.html:14
+msgid "Sapling plan detail form"
+msgstr "Кўчат режа тафсифи формаси"
+
+#: templates/urmon_barpo/sapling/sapling_plan/sapling_plan_list.html:4
+msgid "GrowingPlant list page"
+msgstr "Ўсимликлар рўйхати"
+
+#: templates/urmon_barpo/sapling/sapling_plan/sapling_plan_list.html:14
+msgid "Sapling-Plant-Plan list page"
+msgstr "Кўчат экиш режаси рўйхати"
+
+#: templates/urmon_barpo/seed/dashboard.html:3
+#: templates/urmon_barpo/seed/seed_create.html:3
+msgid "Seed page title"
+msgstr "Уруғ"
+
+#: templates/urmon_barpo/seed/dashboard.html:13
+msgid "Уруғчилик"
+msgstr "Уруғ харакати"
+
+#: templates/urmon_barpo/seed/dashboard.html:19
+msgid "Urug'chilik reja xarakati xusudida jadval"
+msgstr "Уруғчилик режа ҳаракати тўғрисида жадвал"
+
+#: templates/urmon_barpo/seed/dashboard.html:27
+#: templates/urmon_barpo/sprout/dashboard.html:28
+msgid "Aмалий ишлар"
+msgstr "Aмалий ишлар"
+
+#: templates/urmon_barpo/seed/dashboard.html:28
+msgid "Urug'chilik amliy ish xarakati xusudida jadval"
+msgstr "Уруғчилик амалий иш ҳаракати тўғрисида жадвал"
+
+#: templates/urmon_barpo/seed/dashboard.html:36
+msgid "O'rmon barpo qilish reja"
+msgstr "Ўрмон барпо қилиш режа"
+
+#: templates/urmon_barpo/seed/dashboard.html:37
+msgid "O'rmon barpo qilish reja xarakati xusudida jadval"
+msgstr "Ўрмон барпо қилиш режа ҳаракати тўғрисида жадвал"
+
+#: templates/urmon_barpo/seed/dashboard.html:45
+msgid "O'rmon barpo qilish amalda"
+msgstr "Ўрмон барпо қилиш амалда"
+
+#: templates/urmon_barpo/seed/dashboard.html:46
+#: templates/urmon_barpo/seed/dashboard.html:64
+msgid "O'rmon barpo qilish amliy ish xarakati xusudida jadval"
+msgstr "Ўрмон барпо қилиш амалий иш ҳаракати тўғрисида жадвал"
+
+#: templates/urmon_barpo/seed/dashboard.html:54
+#: templates/urmon_barpo/seed/dashboard.html:55
+msgid "The growing planting"
+msgstr "Дарахт экиш"
+
+#: templates/urmon_barpo/seed/dashboard.html:63
+msgid "The growing planting Plan"
+msgstr "Дарахт экиш режаси"
+
+#: templates/urmon_barpo/seed/land/create.html:3
+msgid "PrepairLand page title"
+msgstr "Ерни тайёрлаш"
+
+#: templates/urmon_barpo/seed/land/create.html:27
+msgid "PrepairLand create form"
+msgstr "Ерни тайёрлаш"
+
+#: templates/urmon_barpo/seed/land/create.html:65
+#: templates/urmon_barpo/seed/land/detail.html:41
+#: templates/urmon_barpo/seed/land/list.html:64
+#: templates/urmon_barpo/seed/land_plan/detail.html:41
+#: templates/urmon_barpo/seed/land_plan/list.html:27
+msgid "Categories"
+msgstr "Тоифалар"
+
+#: templates/urmon_barpo/seed/land/detail.html:3
+msgid "PrepairLand detail page"
+msgstr "Ерни тайёрлаш тафсифи саҳифаси"
+
+#: templates/urmon_barpo/seed/land/detail.html:14
+msgid "PrepairLand detail form"
+msgstr "Ерни тайёрлаш тафсифи формаси"
+
+#: templates/urmon_barpo/seed/land/list.html:4
+#: templates/urmon_barpo/seed/land/list.html:51
+msgid "PrepairLand list page"
+msgstr "Ерни тайёрлаш рўйхати"
+
+#: templates/urmon_barpo/seed/land_plan/create.html:27
+msgid "PrepairLandPlan create form"
+msgstr "Ерни таёрлаш режа киритиш формаси"
+
+#: templates/urmon_barpo/seed/land_plan/detail.html:3
+msgid "PrepairLandPlan detail page"
+msgstr "Ерни тайёрлаш режа тафсифи саҳифаси"
+
+#: templates/urmon_barpo/seed/land_plan/detail.html:14
+msgid "PrepairLandPlan detail form"
+msgstr "Ерни тайёрлаш режа тафсифи формаси"
+
+#: templates/urmon_barpo/seed/land_plan/list.html:4
+#: templates/urmon_barpo/seed/land_plan/list.html:14
+msgid "PrepairLandPlan list page"
+msgstr "Ерни тайёрлаш рўйхати"
+
+#: templates/urmon_barpo/seed/reports/dashboard.html:13
+msgid "Seed report page"
+msgstr "Уруғчилик ҳисоботи саҳифаси"
+
+#: templates/urmon_barpo/seed/reports/dashboard.html:18
+msgid "Yerni tayorlash"
+msgstr "Уруғ харакати"
+
+#: templates/urmon_barpo/seed/reports/department_detail.html:112
+msgid "Ўрмон хўжалиги бош бошқармаси тизимидаги ўрмон хўжаликлари томонидан"
+msgstr "Ўрмон хўжалиги давлат қўмитаси тизим ташкилотларида"
+
+#: templates/urmon_barpo/seed/reports/department_detail.html:114
+msgid "йилда бажариладиган ўрмончилик тадбирларининг иш ҳажмлари"
+msgstr "йилда бажариладиган ўрмончилик тадбирларининг иш ҳажмлари"
+
+#: templates/urmon_barpo/seed/reports/department_detail.html:124
+msgid "Жами ўрмон барпо қилиш, га"
+msgstr "Жами ўрмон барпо қилиш, га"
+
+#: templates/urmon_barpo/seed/reports/regions_and_departments.html:111
+#: templates/urmon_barpo/sprout/report/input_output_regions_and_department_report.html:106
+#: templates/urmon_barpo/sprout/report/regions_and_departments.html:118
+msgid "Viloyatlarni kesimda ko'rish"
+msgstr "Ҳудудлар кесимида"
+
+#: templates/urmon_barpo/seed/reports/regions_and_departments.html:128
+msgid "yil o'rmon barpo qilish hisoboti"
+msgstr "йил барпо қилиш режа ҳисоботи"
+
+#: templates/urmon_barpo/seed/reports/regions_and_departments.html:137
+msgid "Карор бўйича"
+msgstr "Қарор бўйича"
+
+#: templates/urmon_barpo/seed/reports/regions_and_departments.html:143
+msgid "Карорга нисбатан"
+msgstr "Қарорга нисбатан"
+
+#: templates/urmon_barpo/seed/seed_create.html:27
+msgid "Seed create form"
+msgstr "Уруғчилик амалда киритиш формаси"
+
+#: templates/urmon_barpo/seed/seed_detail.html:3
+msgid "Seed detail page"
+msgstr "Уруғчилик амалда тафсифи саҳифаси"
+
+#: templates/urmon_barpo/seed/seed_detail.html:14
+msgid "Seed detail form"
+msgstr "Уруғчилик амалда тафсифи саҳифаси"
+
+#: templates/urmon_barpo/seed/seed_list.html:4
+#: templates/urmon_barpo/seed/seed_list.html:51
+msgid "Seed list page"
+msgstr "Уруғчилик амалда рўйхати"
+
+#: templates/urmon_barpo/seed/seed_plan/seed_plan_create.html:3
+#: templates/urmon_barpo/sprout/sprout_plan/create.html:3
+#: templates/urmon_barpo/tree_ground_planting/plan/create.html:3
+msgid "Seed Plan page"
+msgstr "Уруғчилик режа саҳифаси"
+
+#: templates/urmon_barpo/seed/seed_plan/seed_plan_create.html:27
+msgid "Seed Plan create form"
+msgstr "Уруғ режасини киритиш"
+
+#: templates/urmon_barpo/seed/seed_plan/seed_plan_detail.html:3
+msgid "SeedPlan detail page"
+msgstr "Уруғчилик режа тафсифи саҳифаси"
+
+#: templates/urmon_barpo/seed/seed_plan/seed_plan_detail.html:14
+msgid "SeedPlan detail form"
+msgstr "Уруғчилик режа тафсифи формаси"
+
+#: templates/urmon_barpo/seed/seed_plan/seed_plan_list.html:4
+#: templates/urmon_barpo/seed/seed_plan/seed_plan_list.html:14
+msgid "SeedPlan list page"
+msgstr "Уруғчилик режа рўйхати"
+
+#: templates/urmon_barpo/sprout/create.html:3
+msgid "Sprout page title"
+msgstr "Ниҳол амалда саҳифаси"
+
+#: templates/urmon_barpo/sprout/create.html:27
+msgid "Sprout create form"
+msgstr "Ниҳол амалда киритиш формаси"
+
+#: templates/urmon_barpo/sprout/dashboard.html:13
+msgid "Ниҳоллар"
+msgstr "Ниҳоллар харакати"
+
+#: templates/urmon_barpo/sprout/dashboard.html:20
+msgid "Ниҳол харакати тўғрисида режалар"
+msgstr "Ниҳол ҳаракати тўғрисида режалар"
+
+#: templates/urmon_barpo/sprout/dashboard.html:29
+msgid "Ниҳол харакати тўғрисида амалий ишлар"
+msgstr "Ниҳол ҳаракати тўғрисида амалий ишлар"
+
+#: templates/urmon_barpo/sprout/dashboard.html:37
+msgid "Кирим"
+msgstr "Кирим"
+
+#: templates/urmon_barpo/sprout/dashboard.html:38
+msgid "Ниҳол харакати тўғрисида киримлар"
+msgstr "Ниҳол ҳаракати тўғрисида киримлар"
+
+#: templates/urmon_barpo/sprout/dashboard.html:47
+msgid "Ниҳол харакати тўғрисида чиқимлар"
+msgstr "Ниҳол ҳаракати тўғрисида чиқимлар"
+
+#: templates/urmon_barpo/sprout/detail.html:3
+#: templates/urmon_barpo/sprout/input/detail.html:3
+msgid "Sprout detail page"
+msgstr "Ниҳол амалда тафсифи саҳифаси"
+
+#: templates/urmon_barpo/sprout/detail.html:14
+msgid "Sprout detail form"
+msgstr "Ниҳол амалда тафсифи формаси"
+
+#: templates/urmon_barpo/sprout/input/create.html:27
+msgid "Sprout input create form"
+msgstr "Ниҳол кирим киритиш формаси"
+
+#: templates/urmon_barpo/sprout/input/detail.html:14
+msgid "Sprout Input detail form"
+msgstr "Ниҳол кирим батафсил маълумоти"
+
+#: templates/urmon_barpo/sprout/input/list.html:4
+msgid "Sprout Input list page"
+msgstr "Ниҳол кирим рўйхати"
+
+#: templates/urmon_barpo/sprout/input/list.html:14
+msgid "Sprout Input list"
+msgstr "Ниҳол кирим рўйхати"
+
+#: templates/urmon_barpo/sprout/list.html:4
+#: templates/urmon_barpo/sprout/list.html:51
+msgid "Sprout list page"
+msgstr "Ниҳол амалда рўйхати"
+
+#: templates/urmon_barpo/sprout/output/create.html:27
+msgid "Seed Output create form"
+msgstr "Уруғлик чиқим киритиш формаси"
+
+#: templates/urmon_barpo/sprout/output/detail.html:3
+msgid "Sprout output detail page"
+msgstr "Ниҳол чиқим тафсифи саҳифаси"
+
+#: templates/urmon_barpo/sprout/output/detail.html:14
+msgid "Sprout Output detail form"
+msgstr "Ниҳол чиқим тафсифи формаси"
+
+#: templates/urmon_barpo/sprout/output/list.html:4
+msgid "Sprout Output list page"
+msgstr "Ниҳол чиқим рўйхати саҳифаси"
+
+#: templates/urmon_barpo/sprout/output/list.html:14
+msgid "Sprout Output list"
+msgstr "Ниҳол чиқим рўйхати"
+
+#: templates/urmon_barpo/sprout/output/list.html:35
+msgid "Xisobdan chiqildi"
+msgstr "Ҳисобдан чиқарилди"
+
+#: templates/urmon_barpo/sprout/report/dashboard.html:13
+msgid "Niholchikik hisobotlari"
+msgstr "Ниҳолчилик ҳисоботлари"
+
+#: templates/urmon_barpo/sprout/report/dashboard.html:18
+msgid "Kirim chiqim xisoboti"
+msgstr "Кирим-чиқим ҳисоботи"
+
+#: templates/urmon_barpo/sprout/report/dashboard.html:19
+msgid "Nihol kirim chiqim yuzasidan hisobot"
+msgstr "Ниҳол кирим-чиқим юзасидан ҳисобот"
+
+#: templates/urmon_barpo/sprout/report/dashboard.html:27
+msgid "Reja va amaldagi"
+msgstr "Режа ва амалдаги"
+
+#: templates/urmon_barpo/sprout/report/dashboard.html:28
+msgid "Reja va amaldagi nihollar yuzasidan xisobot"
+msgstr "Режа ва амалдаги ниҳоллар юзасидан ҳисобот"
+
+#: templates/urmon_barpo/sprout/report/department_report.html:124
+msgid "Jami nihollar yetishtirish topshirig'i"
+msgstr "Жами ниҳоллар етиштириш топшириғи"
+
+#: templates/urmon_barpo/sprout/report/input_output_regions_and_department_report.html:121
+#: templates/urmon_barpo/sprout/report/regions_and_departments.html:135
+msgid "yil gacha holati nihollar tog'risida  ma'lumot"
+msgstr "йил гача ҳолати ниҳоллар тўғрисида маълумот"
+
+#: templates/urmon_barpo/sprout/report/input_output_regions_and_department_report.html:129
+msgid "Tashkilot nomi "
+msgstr "Ташкилот номи"
+
+#: templates/urmon_barpo/sprout/report/input_output_regions_and_department_report.html:130
+msgid "Jami kirim"
+msgstr "Жами кирим"
+
+#: templates/urmon_barpo/sprout/report/input_output_regions_and_department_report.html:131
+msgid "Jami chiqim"
+msgstr "Жами чиқим"
+
+#: templates/urmon_barpo/sprout/report/input_output_regions_and_department_report.html:132
+msgid "qoldiq"
+msgstr "Қолдиқ"
+
+#: templates/urmon_barpo/sprout/report/input_output_report.html:167
+msgid "давлат ўрмон хўжалигида НИҲОЛЛАР харакати тўғрисида "
+msgstr "да НИҲОЛЛАР харакати тўғрисида"
+
+#: templates/urmon_barpo/sprout/report/region_report.html:4
+msgid "Nihol yillik reja"
+msgstr "Йиллик режа"
+
+#: templates/urmon_barpo/sprout/sprout_plan/create.html:27
+#: templates/urmon_barpo/tree_ground_planting/plan/create.html:27
+msgid "Sprout Plan create form"
+msgstr "Ниҳол амалда киртиш формаси"
+
+#: templates/urmon_barpo/sprout/sprout_plan/detail.html:3
+msgid "SproutPlan detail page"
+msgstr "Ниҳол режа тафсифи саҳифаси"
+
+#: templates/urmon_barpo/sprout/sprout_plan/detail.html:14
+msgid "SproutPlan detail form"
+msgstr "Ниҳол режа тафсифи формаси"
+
+#: templates/urmon_barpo/sprout/sprout_plan/list.html:4
+msgid "SproutPlan list page"
+msgstr "Ниҳол режаси рўйхати"
+
+#: templates/urmon_barpo/sprout/sprout_plan/list.html:14
+msgid "SproutPlan list"
+msgstr "Ниҳол режаси рўйхати"
+
+#: templates/urmon_barpo/tree_ground_planting/create.html:3
+msgid "Tree Ground planting create title"
+msgstr "Дарахт экиш амалда киритиш"
+
+#: templates/urmon_barpo/tree_ground_planting/create.html:27
+msgid "Tree Ground planting create form"
+msgstr "Дарахт экиш амалда киритиш формаси"
+
+#: templates/urmon_barpo/tree_ground_planting/create.html:65
+#: templates/urmon_barpo/tree_ground_planting/detail.html:41
+#: templates/urmon_barpo/tree_ground_planting/plan/create.html:55
+#: templates/urmon_barpo/tree_ground_planting/plan/detail.html:41
+msgid "desert_plant"
+msgstr "Чўл ўсимликлари"
+
+#: templates/urmon_barpo/tree_ground_planting/create.html:71
+#: templates/urmon_barpo/tree_ground_planting/detail.html:47
+#: templates/urmon_barpo/tree_ground_planting/plan/create.html:61
+#: templates/urmon_barpo/tree_ground_planting/plan/detail.html:47
+msgid "walnut"
+msgstr "Ёнғоқ"
+
+#: templates/urmon_barpo/tree_ground_planting/create.html:77
+#: templates/urmon_barpo/tree_ground_planting/plan/create.html:67
+msgid "pistachios"
+msgstr "Писта"
+
+#: templates/urmon_barpo/tree_ground_planting/create.html:83
+#: templates/urmon_barpo/tree_ground_planting/detail.html:59
+#: templates/urmon_barpo/tree_ground_planting/plan/create.html:73
+#: templates/urmon_barpo/tree_ground_planting/plan/detail.html:59
+msgid "nut"
+msgstr "Бодом"
+
+#: templates/urmon_barpo/tree_ground_planting/create.html:89
+#: templates/urmon_barpo/tree_ground_planting/detail.html:65
+#: templates/urmon_barpo/tree_ground_planting/plan/create.html:79
+#: templates/urmon_barpo/tree_ground_planting/plan/detail.html:65
+msgid "poplar"
+msgstr "Терак"
+
+#: templates/urmon_barpo/tree_ground_planting/create.html:95
+#: templates/urmon_barpo/tree_ground_planting/detail.html:71
+#: templates/urmon_barpo/tree_ground_planting/plan/create.html:85
+#: templates/urmon_barpo/tree_ground_planting/plan/detail.html:71
+msgid "paulownia"
+msgstr "Павловния"
+
+#: templates/urmon_barpo/tree_ground_planting/create.html:101
+#: templates/urmon_barpo/tree_ground_planting/detail.html:77
+#: templates/urmon_barpo/tree_ground_planting/plan/create.html:91
+#: templates/urmon_barpo/tree_ground_planting/plan/detail.html:77
+msgid "other_plants"
+msgstr "Бошқа ўсимликлар"
+
+#: templates/urmon_barpo/tree_ground_planting/detail.html:3
+msgid "The Growing planting detail page"
+msgstr "Дарахт экиш амалда тафсифи саҳифаси"
+
+#: templates/urmon_barpo/tree_ground_planting/detail.html:14
+msgid "The Growing planting detail form"
+msgstr "Дарахт экиш амалда тафсифи формаси"
+
+#: templates/urmon_barpo/tree_ground_planting/detail.html:53
+#: templates/urmon_barpo/tree_ground_planting/plan/detail.html:53
+msgid "pistachoise"
+msgstr "Писта"
+
+#: templates/urmon_barpo/tree_ground_planting/list.html:4
+msgid "The growing planting list page"
+msgstr "Дарахт экиш амалда рўйхати"
+
+#: templates/urmon_barpo/tree_ground_planting/list.html:51
+msgid "The growing planting list"
+msgstr "Дарахт экиш амалда рўйхати"
+
+#: templates/urmon_barpo/tree_ground_planting/list.html:64
+#: templates/urmon_barpo/tree_ground_planting/plan/list.html:30
+msgid "Cho'l usimliklari"
+msgstr "Чўл ўсимликлари"
+
+#: templates/urmon_barpo/tree_ground_planting/list.html:65
+#: templates/urmon_barpo/tree_ground_planting/plan/list.html:31
+msgid "Grek yong'ogi"
+msgstr "Грек ёнғоғи"
+
+#: templates/urmon_barpo/tree_ground_planting/list.html:66
+#: templates/urmon_barpo/tree_ground_planting/plan/list.html:32
+msgid "Pista"
+msgstr "Писта"
+
+#: templates/urmon_barpo/tree_ground_planting/list.html:67
+#: templates/urmon_barpo/tree_ground_planting/plan/list.html:33
+msgid "Bodom"
+msgstr "Бодом"
+
+#: templates/urmon_barpo/tree_ground_planting/list.html:68
+#: templates/urmon_barpo/tree_ground_planting/plan/list.html:34
+msgid "Terak"
+msgstr "Терак"
+
+#: templates/urmon_barpo/tree_ground_planting/list.html:69
+#: templates/urmon_barpo/tree_ground_planting/plan/list.html:35
+msgid "Povlovniya"
+msgstr "Павловния"
+
+#: templates/urmon_barpo/tree_ground_planting/list.html:70
+#: templates/urmon_barpo/tree_ground_planting/plan/list.html:36
+msgid "Boshqa d-lar"
+msgstr "Бошқа даромадлар"
+
+#: templates/urmon_barpo/tree_ground_planting/plan/detail.html:3
+msgid "The Growing planting plan detail page"
+msgstr "Дарахт экиш режа тафсифи саҳифаси"
+
+#: templates/urmon_barpo/tree_ground_planting/plan/detail.html:14
+msgid "The Growing planting plan detail form"
+msgstr "Дарахт экиш режа тафсифи формаси"
+
+#: templates/urmon_barpo/tree_ground_planting/plan/list.html:4
+msgid "The growing planting plan page"
+msgstr "Дарахт экиш режа рўйхати"
+
+#: templates/urmon_barpo/tree_ground_planting/plan/list.html:14
+msgid "The growing planting plan list"
+msgstr "Дарахт экиш режа рўйхати"
+
+#: templates/urmon_barpo/tree_ground_planting/reports/regions_and_departments.html:4
+msgid "Maxsus daraxtlar ekish yil hisoboti"
+msgstr "Махсус дарахтлар экиш йил ҳисоботи"
+
+#: templates/urmon_barpo/tree_ground_planting/reports/regions_and_departments.html:183
+msgid ""
+"Қарор, ташриф ва баёнлар ижроси бўйича (ПҚ-4424, 70-Баён ва ташрифлар) ўрмон "
+"фонди ерларида"
+msgstr ""
+"Қарор, ташриф ва баёнлар ижроси бўйича (ПҚ-4424, 70-Баён ва ташрифлар) "
+"ўрмон фонди ерларида"
+
+#: templates/urmon_barpo/tree_ground_planting/reports/regions_and_departments.html:185
+msgid ""
+"йил якунига қадар ўрмон барпо қилиш кўрсатгичларининг таҳлили ва бажарилиши "
+"тўғрисида тезкор маълумот"
+msgstr ""
+"йил якунига қадар ўрмон барпо қилиш кўрсатгичларининг таҳлили ва "
+"бажарилиши тўғрисида тезкор маълумот"
+
+#: templates/urmon_barpo/tree_ground_planting/reports/regions_and_departments.html:198
+msgid "Ўрмон барпо қилиш- йиллик жами"
+msgstr "Ўрмон барпо қилиш йиллик жами"
+
+#: templates/urmon_barpo/tree_ground_planting/reports/regions_and_departments.html:200
+msgid "Шу жумладан:"
+msgstr "Шу жумладан"
+
+#: templates/urmon_barpo/tree_ground_planting/reports/regions_and_departments.html:204
+msgid "чўл ўсимликлари"
+msgstr "Чўл ўсимликлари"
+
+#: templates/urmon_barpo/tree_ground_planting/reports/regions_and_departments.html:206
+msgid "ёнғоқмевалилар"
+msgstr "Ёнғоқмевалилар"
+
+#: templates/urmon_barpo/tree_ground_planting/reports/regions_and_departments.html:208
+msgid "тез ўсувчилар"
+msgstr "Тез ўсувчилар"
+
+#: templates/urmon_barpo/tree_ground_planting/reports/regions_and_departments.html:210
+msgid "бошқа дарахт турлари"
+msgstr "Бошқа дарахт турлари"
+
+#: templates/urmon_barpo/tree_ground_planting/reports/regions_and_departments.html:214
+#: templates/urmon_barpo/tree_ground_planting/reports/regions_and_departments.html:218
+msgid "жами"
+msgstr "жами"
+
+#: templates/urmon_barpo/tree_ground_planting/reports/regions_and_departments.html:216
+msgid "жумладан:"
+msgstr "жумладан:"
+
+#: templates/urmon_barpo/tree_ground_planting/reports/regions_and_departments.html:220
+msgid "шундан"
+msgstr "шундан"
+
+#: templates/urmon_barpo/tree_ground_planting/reports/regions_and_departments.html:224
+#: templates/urmon_barpo/tree_ground_planting/reports/regions_and_departments.html:230
+#: templates/urmon_barpo/tree_ground_planting/reports/regions_and_departments.html:254
+#: templates/urmon_barpo/tree_ground_planting/reports/regions_and_departments.html:258
+#: templates/urmon_barpo/tree_ground_planting/reports/regions_and_departments.html:262
+#: templates/urmon_barpo/tree_ground_planting/reports/regions_and_departments.html:266
+#: templates/urmon_barpo/tree_ground_planting/reports/regions_and_departments.html:270
+#: templates/urmon_barpo/tree_ground_planting/reports/regions_and_departments.html:274
+msgid "топшириқ"
+msgstr "Режа"
+
+#: templates/urmon_barpo/tree_ground_planting/reports/regions_and_departments.html:226
+#: templates/urmon_barpo/tree_ground_planting/reports/regions_and_departments.html:232
+#: templates/urmon_barpo/tree_ground_planting/reports/regions_and_departments.html:242
+#: templates/urmon_barpo/tree_ground_planting/reports/regions_and_departments.html:250
+#: templates/urmon_barpo/tree_ground_planting/reports/regions_and_departments.html:256
+#: templates/urmon_barpo/tree_ground_planting/reports/regions_and_departments.html:260
+#: templates/urmon_barpo/tree_ground_planting/reports/regions_and_departments.html:264
+#: templates/urmon_barpo/tree_ground_planting/reports/regions_and_departments.html:268
+#: templates/urmon_barpo/tree_ground_planting/reports/regions_and_departments.html:272
+#: templates/urmon_barpo/tree_ground_planting/reports/regions_and_departments.html:276
+msgid "амалда"
+msgstr "Амалда"
+
+#: templates/urmon_barpo/tree_ground_planting/reports/regions_and_departments.html:234
+msgid "грек ёнғоғи"
+msgstr "грек ёнғоғи"
+
+#: templates/urmon_barpo/tree_ground_planting/reports/regions_and_departments.html:236
+msgid "писта"
+msgstr "Писта"
+
+#: templates/urmon_barpo/tree_ground_planting/reports/regions_and_departments.html:238
+msgid "бодом"
+msgstr "Бодом"
+
+#: templates/urmon_barpo/tree_ground_planting/reports/regions_and_departments.html:240
+#: templates/urmon_barpo/tree_ground_planting/reports/regions_and_departments.html:248
+msgid " топшириқ"
+msgstr "Режа"
+
+#: templates/urmon_barpo/tree_ground_planting/reports/regions_and_departments.html:244
+msgid "терак"
+msgstr "Терак"
+
+#: templates/urmon_barpo/tree_ground_planting/reports/regions_and_departments.html:246
+msgid "павловния"
+msgstr "павловния"
+
+#: templates/urmon_barpo/trees/category/create.html:3
+#: templates/urmon_barpo/trees/tree_plan_create.html:3
+msgid "tree create page"
+msgstr "Дарахтни киритиш"
+
+#: templates/urmon_barpo/trees/category/create.html:14
+msgid "tree category create form"
+msgstr "Дарахтлар тоифасини киритиш формаси"
+
+#: templates/urmon_barpo/trees/category/detail.html:3
+msgid "tree category detail page"
+msgstr "Дарахт тоифасининг тафсифи саҳифаси"
+
+#: templates/urmon_barpo/trees/category/detail.html:14
+msgid "tree category detail form"
+msgstr "Дарахт тоифасининг тафсифи формаси"
+
+#: templates/urmon_barpo/trees/category/list.html:4
+msgid "trees category list title"
+msgstr "Дарахт тоифасининг рўйхати"
+
+#: templates/urmon_barpo/trees/category/list.html:15
+msgid "Trees category list"
+msgstr "Дарахт тоифалари рўйхати"
+
+#: templates/urmon_barpo/trees/dashboard.html:13
+msgid "Daraxt"
+msgstr "Дарахт"
+
+#: templates/urmon_barpo/trees/dashboard.html:27
+msgid "Dararaxlar categoriyasi"
+msgstr "Дарахтлар тоифаси"
+
+#: templates/urmon_barpo/trees/dashboard.html:36
+msgid "Daraxlar bo'yiga"
+msgstr "Дарахтлар бўйига"
+
+#: templates/urmon_barpo/trees/dashboard.html:45
+msgid "Daraxlar turi"
+msgstr "Дарахт тури"
+
+#: templates/urmon_barpo/trees/plant/create.html:3
+msgid "tree plant create page"
+msgstr "Дарахт киритиш саҳифаси"
+
+#: templates/urmon_barpo/trees/plant/create.html:14
+msgid "tree plant create form"
+msgstr "Дарахт киритиш формаси"
+
+#: templates/urmon_barpo/trees/plant/create.html:22
+msgid "Tree categories"
+msgstr "Дарахт тоифалари"
+
+#: templates/urmon_barpo/trees/plant/create.html:28
+#: templates/urmon_barpo/trees/plant/detail.html:22
+msgid "Tree name"
+msgstr "Дарахтнинг номи"
+
+#: templates/urmon_barpo/trees/plant/create.html:34
+#: templates/urmon_barpo/trees/plant/detail.html:28
+msgid "Description"
+msgstr "Тавсиф"
+
+#: templates/urmon_barpo/trees/plant/create.html:41
+#: templates/urmon_barpo/trees/plant/detail.html:35
+msgid "Nihol hisobotida ko'rsatish"
+msgstr "Ниҳол ҳисоботида кўрсатиш"
+
+#: templates/urmon_barpo/trees/plant/create.html:48
+#: templates/urmon_barpo/trees/plant/detail.html:42
+msgid "Urugchilik hisobotida ko'rsatish"
+msgstr "Уруғчилик ҳисоботида кўрсатиш"
+
+#: templates/urmon_barpo/trees/plant/create.html:55
+#: templates/urmon_barpo/trees/plant/detail.html:49
+msgid "Ko'chat hisobotida ko'rsatish"
+msgstr "Кўчат ҳисоботида кўрсатиш"
+
+#: templates/urmon_barpo/trees/plant/create.html:62
+#: templates/urmon_barpo/trees/plant/detail.html:56
+msgid "Balandlik hisobotida ko'rsatish"
+msgstr "Баландлик ҳисоботида кўрсатиш"
+
+#: templates/urmon_barpo/trees/plant/detail.html:3
+msgid "tree plant detail page"
+msgstr "Дарахт тафсифи саҳифаси"
+
+#: templates/urmon_barpo/trees/plant/detail.html:14
+msgid "tree plant detail form"
+msgstr "Дарахт тафсифи саҳифаси формаси"
+
+#: templates/urmon_barpo/trees/plant/list.html:4
+#: templates/urmon_barpo/trees/tree_plan_list.html:4
+msgid "trees plan list title"
+msgstr "Дарахт режа рўйхати"
+
+#: templates/urmon_barpo/trees/plant/list.html:15
+msgid "Trees plant list"
+msgstr "Дарахтлар ва ўсимликлар рўйхати"
+
+#: templates/urmon_barpo/trees/plant/list.html:30
+msgid "description"
+msgstr "Тавсиф"
+
+#: templates/urmon_barpo/trees/tree_plan_create.html:14
+msgid "tree create form"
+msgstr "Дарахт киритиш формаси"
+
+#: templates/urmon_barpo/trees/tree_plan_create.html:22
+msgid "Tree"
+msgstr "Дарахт"
+
+#: templates/urmon_barpo/trees/tree_plan_detail.html:3
+msgid "tree plan detail page"
+msgstr "Дарахт режа тафсифи саҳифаси"
+
+#: templates/urmon_barpo/trees/tree_plan_detail.html:14
+msgid "tree detail form"
+msgstr "Дарахт тафсифи формаси"
+
+#: templates/urmon_barpo/trees/tree_plan_detail.html:27
+msgid "old_time"
+msgstr "Ўтган вақт"
+
+#: templates/urmon_barpo/trees/tree_plan_list.html:15
+msgid "Trees list"
+msgstr "Дарахтлар рўйхати"
+
+#: templates/urmon_barpo/trees/tree_plan_list.html:30
+msgid "0,2 дан 0,5 м гача"
+msgstr "0,2 дан 0,5 м. гача"
+
+#: templates/urmon_barpo/trees/tree_plan_list.html:31
+msgid "0,5 -1 м. гача"
+msgstr "0,5 -1 м. гача"
+
+#: templates/urmon_barpo/trees/type/create.html:3
+#: templates/urmon_barpo/trees/type/detail.html:3
+msgid "tree type create page"
+msgstr "Дарахт тури киритиш саҳифаси"
+
+#: templates/urmon_barpo/trees/type/create.html:14
+#: templates/urmon_barpo/trees/type/detail.html:14
+msgid "tree type create form"
+msgstr "Дарахт тури киритиш формаси"
+
+#: templates/urmon_barpo/trees/type/create.html:22
+msgid "Daraxt Turi"
+msgstr "Дарахт тури"
+
+#: templates/urmon_barpo/trees/type/create.html:28
+#: templates/urmon_barpo/trees/type/detail.html:28
+#: templates/urmon_barpo/trees/type/list.html:28
+msgid "Daromatda ko'rsatish"
+msgstr "Дароматда кўрсатиш"
+
+#: templates/urmon_barpo/trees/type/list.html:4
+msgid "trees type list title"
+msgstr "Дарахтлар тури рўйхати"
+
+#: templates/urmon_barpo/trees/type/list.html:14
+msgid "Daraxt turlari list"
+msgstr "Дарахт турлари лист"
+
+
+#: templates/urmon_barpo/trees/type/list.html:14
+msgid "Male"
+msgstr "Еркак"
+
+msgid "Female"
+msgstr "Аёл"
+
+msgid "yes"
+msgstr "ха"
+
+msgid "no"
+msgstr "йўқ"
+
+msgid "Select Information"
+msgstr "Маълумотни танланг"
+
+
+msgid "Select position"
+msgstr "Жойни танланг"
+
+
+msgid "Select nation"
+msgstr "Миллатни танланг"
+
+msgid "Select department"
+msgstr "Бўлимни танланг"
+
+msgid "Xojalik hisobi"
+msgstr "Хўжалик ҳисоби"
+
+msgid "Xususiy sektor"
+msgstr "Хусусий сектор"
+
+msgid "progressing"
+msgstr "Жараёнда"
+
+msgid "Confirm"
+msgstr "Якунланди"
+
+msgid "Hududlar kesimida"
+msgstr "Ҳудудлар кесимида"
+
+msgid "Tashkilotlar kesimida"
+msgstr "Ташкилотлар кесимида"
+
+
+msgid "Your work has been saved"
+msgstr "Сақланди!"
+
+msgid "All fields required.."
+msgstr "Ҳамма катакчалар тўлдириш талаб қилинади"
+
+msgid "Siz tanlagan sanaga malumot kiritib bolingan"
+msgstr "Ушбу санага маълумот киритилган"
+
+msgid "Profile"
+msgstr "Профил"
+
+
+msgid "Profil Detail"
+msgstr "Профил Маълумотлари"
+
+
+msgid "Tushum"
+msgstr "Тушум"
+
+msgid "tasdiqlash"
+msgstr "Тасдиқлаш"
+
+msgid "ID:"
+msgstr "ИД:"
+
+msgid "Stat-Urmon"
+msgstr "Стат-Урмон"
+
+msgid "Bu bolim uchun"
+msgstr "Бу бўлим учун"
+
+msgid "yilga reja kiritilgan"
+msgstr "йилга режа киритилган."
+
+msgid "Sizda ruxsat yoq Admin bilan boglaning!"
+msgstr "Сизда рухсат ёқ, Админ билан боғланинг!"
+
+msgid "Январ"
+msgstr "Январ"
+msgid "Феврал"
+msgstr "Феврал"
+msgid "Март"
+msgstr "Март"
+msgid "Апрел"
+msgstr "Апрел"
+msgid "Май"
+msgstr "Май"
+msgid "Июн"
+msgstr "Июн"
+msgid "Июл"
+msgstr "Июл"
+msgid "Август"
+msgstr "Август"
+msgid "Сентябр"
+msgstr "Сентябр"
+msgid "Октябр"
+msgstr "Октябр"
+msgid "Ноябр"
+msgstr "Ноябр"
+msgid "Декабр"
+msgstr "Декабр"
+
+msgid "T/p"
+msgstr "T/p"
+
+msgid "yil reja va amalda"
+msgstr "йил режа ва амалда"
+
+msgid "ming(so'mda)"
+msgstr "минг(сўмда)"
+
+msgid "Kunlik tushim"
+msgstr "Кунлик тушим"
+
+msgid "oyi uchun."
+msgstr "ойи учун"
+
+msgid "Daromad turlari bo'yicha"
+msgstr "Даромад турлари бўйича"
+
+msgid "Batafsil"
+msgstr "Батафсил"
+
+msgid "Barchasi"
+msgstr "Барчаси"
+
+msgid "Boshoqli don"
+msgstr "Бошоқли дон"
+
+msgid "Sabzavod ekinlar"
+msgstr "Сабзавод экинлар"
+
+msgid "Poliz ekinlar"
+msgstr "Полиз экинлар"
+
+msgid "Texnik ekinlar"
+msgstr "Техник экинлар"
+
+msgid "Moyli ekinlar"
+msgstr "Мойли экинлар"
+
+msgid "Dukkakli ekinlar"
+msgstr "Дуккакли экинлар"
+
+msgid "Ozuqa ekinlar"
+msgstr "Озуқа экинлар"
+
+msgid "Takroriy ekinlar (dukkakli)"
+msgstr "Такрорий экинлар (дуккакли)"
+
+msgid "Takroriy ekinlar (sabzavot)"
+msgstr "Такрорий экинлар (сабзавот)"
+
+msgid "Urugli ekinlar"
+msgstr "Уругли экинлар"
+
+msgid "Danakli ekinlar"
+msgstr "Данакли экинлар"
+
+msgid "Uzumzor"
+msgstr "Узумзор"
+
+msgid "Yong'oq mevaliklar"
+msgstr "Йонғоқ меваликлар"
+
+msgid "O'rmon maxsulotlarini ishlab chiqarish va pullik xizmat"
+msgstr "Ўрмон махсулотларини ишлаб чиқариш ва пуллик хизмат"
+
+msgid "Ishlab chiqarish ch"
+msgstr "Ишлаб чиқариш"
+
+msgid "HEAD"
+msgstr "Бош"
+msgid "TON"
+msgstr "Тонна"
+msgid "FAMILY"
+msgstr "Оила"
+
+msgid "Техник қўллаб қувватлаш"
+msgstr "Техник қўллаб қувватлаш"
+
+msgid "Ўрмонтехносервис"
+msgstr "Ўрмонтехносервис"
+
+msgid "ДУК"
+msgstr "ДУК"
+
+msgid "Ўрмон хўжалиги ҳисобини юритиш ахборот тизими"
+msgstr "Ўрмон хўжалиги ҳисобини юритиш ахборот тизими"
+
+msgid "Daromad kiritish"
+msgstr "Даромад киритиш"
+
+msgid "Тизимнинг эски версияси"
+msgstr "Тизимнинг эски версиясига ўтиш"
+
+msgid "1 кунда"
+msgstr "1 кунда"
+
+msgid "Ой бошидан"
+msgstr "Ой бошидан"
+
+
+msgid "йил ҳолатига даромад тушуми тўғрисида"
+msgstr "йил ҳолатига даромад тушуми тўғрисида"
+
+msgid "Кўчатлар баландлиги бўйича маълумот киритиш"
+msgstr "Кўчатлар баландлиги бўйича маълумот киритиш"
+
+msgid "Ko'chatlar balandligi"
+msgstr "Кўчатлар баландлиги"
+
+msgid "Кўчатлар баландлиги бўйича маълумот"
+msgstr "Кўчатлар баландлиги бўйича маълумот"
+
+msgid "Кўчатлар баландлиги бўйича киримлар рўйхати"
+msgstr "Ko'chatlar balandligi bo'yicha ma'lumotlar ro'yxati"
+
+msgid "4424 Қарор бўйича"
+msgstr "4850-Қарор бўйича"
+
+msgid "Ёпиқ илдизлик йирик хажмли кўчатлар"
+msgstr "Ёпиқ илдизлик йирик хажмли кўчатлар"
+
+msgid "Ёпиқ илдизлик йирик хажмли кўчатлар режа киритиш"
+msgstr "Ёпиқ илдизли йирик хажмли кўчатлар режа киритиш"
+
+msgid "Ёпиқ илдизлик йирик хажмли кўчатлар режа таҳрирлаш"
+msgstr "Ёпиқ илдизли йирик хажмли кўчатлар режа таҳрирлаш"
+
+msgid "Ёпиқ илдизлик йирик хажмли кўчатлар режа рўйхати"
+msgstr "Ёпиқ илдизли йирик хажмли кўчатлар режа рўйхати"
+
+msgid "Ёпиқ илдизлик йирик хажмли кўчатлар киритиш"
+msgstr "Ёпиқ илдизли йирик хажмли кўчатлар киритиш"
+
+msgid "Ёпиқ илдизлик йирик хажмли кўчатлар таҳрирлаш"
+msgstr "Ёпиқ илдизли йирик хажмли кўчатлар таҳрирлаш"
+
+msgid "Ёпиқ илдизлик йирик хажмли кўчатлар амалда рўйхати"
+msgstr "Ёпиқ илдизли йирик хажмли кўчатлар амалда рўйхати"
+
+msgid "ҳолатига ёпиқ илдизли йирик хажмли кўчатлар етиштириш топшириғининг бажарилиши тўғрисида тезкор маълумот"
+msgstr "ҳолатига ёпиқ илдизли йирик хажмли кўчатлар етиштириш топшириғининг бажарилиши тўғрисида тезкор маълумот"
+
+msgid "(Ming dona)"
+msgstr "(Минг дона)"
+
+msgid "Kochat shartnoma"
+msgstr "Кўчат шартнома"
+
+msgid "Kochat shartnoma kiritish formasi"
+msgstr "Кўчат шартнома киритиш формаси"
+
+msgid "Kochat shartnoma tafsisi"
+msgstr "Кўчат шартнома тафсифи"
+
+msgid "Kochat shartnoma tafsisi formasi"
+msgstr "Кўчат шартнома тафсифи формаси"
+
+msgid "Kochat shartnomalar royxati"
+msgstr "Кўчат шартномалар рўйхати"
+
+msgid "count_c"
+msgstr "Минг дона"
+
+msgid "amount_c"
+msgstr "Млн сўм"
+
+msgid "payout_c"
+msgstr "Тўланган маблағ"
+
+msgid "output_tree_c"
+msgstr "Олиб кетилган кўчат"
+
+msgid "Ko'chat shartnoma"
+msgstr "Кўчат шартнома"
+
+msgid "tree_count_c"
+msgstr "Минг дона"
+
+msgid "Kochat shartnomalar reja royxati"
+msgstr "Кўчат шартномалар режа рўйхати"
+
+msgid "Kochat shartnoma reja kiritish formasi"
+msgstr "Кўчат шартнома режа киритиш формаси"
+
+msgid "Kochat shartnoma reja"
+msgstr "Кўчат шартнома режа"
+
+msgid "Shartnoma"
+msgstr "Шартнома"
+
+msgid "Reja_c"
+msgstr "Режа"
+
+msgid "Amalda_c"
+msgstr "Амалда"
+
+msgid "Bu bolim uchun malumot kiritib bolingan!"
+msgstr "Бу бўлим учун маълумот киритиб бўлинган."
+
+msgid "Фармойиш бўйича кўчат етказиб бериш топшириғи, минг дона"
+msgstr "Фармойиш бўйича кўчат етказиб бериш топшириғи, минг дона"
+
+msgid "Республикада ўрмон хўжаликлари томонидан дарахт ва бута кўчатларини харид қилиш учун тузилган шартномалар ва амалга оширилган тўловлар тўғрисида"
+msgstr "Республикада ўрмон хўжаликлари томонидан дарахт ва бута кўчатларини харид қилиш учун тузилган шартномалар ва амалга оширилган тўловлар тўғрисида"
+
+msgid "ҳолатига тезкор маълумот"
+msgstr "ҳолатига тезкор маълумот"
+
+msgid "Жами барча ташкилотлар билан тузилган шартномалар"
+msgstr "Жами барча ташкилотлар билан тузилган шартномалар"
+
+msgid "Жами шартнома бўйича"
+msgstr "Жами шартнома бўйича"
+
+msgid "кўчат сони, минг дона"
+msgstr "Kўчат сони, минг дона"
+
+msgid "суммаси млн. сўм"
+msgstr "суммаси млн. сўм"
+
+msgid "Тўланган маблағ"
+msgstr "Тўланган маблағ"
+
+msgid "Олиб кетилган кўчат сони, минг дона"
+msgstr "Олиб кетилган кўчат сони, минг дона"
+
+msgid "томонидан дарахт ва бута кўчатларини харид қилиш учун тузилган шартномалар ва амалга оширилган тўловлар тўғрисида"
+msgstr "томонидан дарахт ва бута кўчатларини харид қилиш учун тузилган шартномалар ва амалга оширилган тўловлар тўғрисида"
+
+msgid "saqlash"
+msgstr "Сақлаш"
+
+msgid "production_warning"
+msgstr "Ушбу бўлим учун йиллик режа киритилган"
+
+msgid "2м дан ортиқ"
+msgstr "2м дан ортиқ"
+
+msgid "Ташкилотлар билан тузилган шартномалар"
+msgstr "Ташкилотлар билан тузилган шартномалар"
+
+msgid "Тўланган маблағ млн.сўм"
+msgstr "Тўланган маблағ млн.сўм"
+
+msgid "суммаси млн.сўм"
+msgstr "Cуммаси млн.сўм"
+
+msgid "kochatsoni_mln_som"
+msgstr "Kўчат сони, минг дона"
+
+msgid "million"
+msgstr "млн. сўм"
+
+msgid "report_key"
+msgstr "Тури"
+
+msgid "double"
+msgstr "Ракамда"
+
+msgid "string"
+msgstr "Текстда"
+
+msgid "report"
+msgstr "Хисобот"
+
+msgid "Report Generate"
+msgstr "Ҳисобот яратиш"
+
+msgid "Умумий"
+msgstr "Умумий"
+
+msgid "Jami foiz hisobida"
+msgstr "Жами фоиз ҳисобида"
+
+msgid "кўчат нихол номи"
+msgstr "кўчат нихол номи"
+
+msgid "New report name"
+msgstr "Янги ҳисобот номи"
+
+msgid "Faoliyat turi"
+msgstr "Фаолият тури"
+
+msgid "Moliya"
+msgstr "Молия"
+
+msgid "O'rmon barpo"
+msgstr "Ўрмон барпо"
+
+msgid "Qishloq-xo'jaligi"
+msgstr "Қишлоқ-хўжалиги"
+
+msgid "O'rmon maxsulotlari"
+msgstr "Ўрмон махсулотлари"
+
+msgid "Tanlanmagan"
+msgstr "Танланмаган"
+
+msgid "Select first gruop name"
+msgstr "Биринчи грух номини танланг"
+
+msgid "Select second gruop name"
+msgstr "Иккинчи грух номини танланг"
+
+msgid "Report key name"
+msgstr "Бўлим номи"
+
+msgid "String"
+msgstr "Ҳарф"
+
+msgid "Number"
+msgstr "Рақам"
+
+msgid "tartib raqamini kiriting"
+msgstr "Тартиб рақамини киритинг"
+
+msgid "Reports"
+msgstr "Ҳисоботлар рўйхати"
+
+msgid "Formula nomi"
+msgstr "Формула номи"
+
+msgid "Ushbu maydonga to'ldirgan ma'lumotingiz xisobotda shu amallarni ifodalaydi"
+msgstr "Ушбу майдонга тўлдирган маълумотингиз хисоботда шу амалларни ифодалайди"
+
+msgid "Bu tartib raqam xisobotda qaysi column da chiqishi belgilab beradi"
+msgstr "Бу тартиб рақам хисоботда қайси чолумн да чиқиши белгилаб беради"
+
+msgid "Report key value"
+msgstr "Қиймат учун"
+
+msgid "Report key names"
+msgstr "Бўлимлар рўйхати"
+
+
+
+msgid "Plus"
+msgstr "Қўшиш"
+
+msgid "Minus"
+msgstr "Айриш"
+
+msgid "Bo'lish"
+msgstr "Бўлиш"
+
+msgid "Ko'paytirish"
+msgstr "Кўпайтириш"
+
+
+msgid "Universal xisobot"
+msgstr "Янги ҳисобот"
+
+msgid "xlikst"
+msgstr "Ҳисоботлар рўйхати"
+
+msgid "Formula yaratish"
+msgstr "Формула яратиш"
+
+msgid "Yangi xisobot yaratish"
+msgstr "Янги хисобот шакллантириш"
+
+msgid "Issiq xona"
+msgstr "иссиқ хона"
+
+msgid "Get"
+msgstr "Маълумотни олиш"
+
+msgid "Паспортные данные физического лица"
+msgstr "Жисмоний шахснинг паспорт маълумотлари"
+
+msgid "Адрес постоянной и временной прописки"
+msgstr "Доимий ва вақтинчалик рўйхатдан ўтиш манзили"
+
+msgid "Получение информации об ИНН по серии и номеру паспорта"
+msgstr "Серия ва паспорт рақами бўйича ТИН ҳақида маълумот оли"
+
+msgid "Информация о размерах пенсии паспорта"
+msgstr "Паспортнинг пенсия миқдори ҳақида маълумот"
+
+msgid "Информация о факте назначения пенсии"
+msgstr "Пенсия тайинлаш факти тўғрисида маълумот"
+
+msgid "Информация о размерах выданных пенсий, пособий (в разрезе периода)"
+msgstr "Берилган пенсиялар,  нафақалар миқдори тўғрисидаги маълумотлар (давр контекстида)"
+
+msgid "Получение данных о бракосочетании"
+msgstr "Никоҳ тўғрисидаги маълумотларни олиш"
+
+msgid "Информация о разводе физических лиц"
+msgstr "Жисмоний шахслар учун ажралиш ҳақида маълумот"
+
+msgid "Получение информации касательно свидетельства о смерти"
+msgstr "Ўлим тўғрисидаги гувоҳнома ҳақида маълумот олиш"
+
+msgid "Информация о текущей должности"
+msgstr "Жорий лавозим ҳақида маълумот"
+
+msgid "Получение информации о истории должностей"
+msgstr "Иш тарихи маълумотларини олиш"
+
+msgid "Получение данных из психоневрологического диспансера"
+msgstr "Нейропсикиятрик диспансердан маълумотларни олиш"
+
+msgid "Получение данных из наркологического диспансера"
+msgstr "Наркологик диспансердан маълумотларни олиш"
+
+msgid "Получение данных о людях, с ограниченными возможностями"
+msgstr "Ногиронлар ҳақида маълумот олиш"
+
+msgid "Получение данных о недвижимости."
+msgstr "Кўчмас мулк ҳақида маълумот олиш. "
+
+msgid "Проверка на наличие судимости."
+msgstr "Жиноий ишларини текширинг."
+
+msgid "Маълумотнома олиш ПФ-6191"
+msgstr "Маълумотнома олиш ПФ-6191"
+
+msgid "pnfl"
+msgstr "Жисмоний шахснинг шахсий идентификацион рақами"
+
+msgid "pass_series"
+msgstr "Жисмоний шахснинг шахсий паспорт серия рақами"
+
+msgid "jsh_shir"
+msgstr "Жисмоний шахснинг шахсий идентификацион рақами"
+
+msgid "first_name"
+msgstr "Исм"
+
+msgid "last_name"
+msgstr "Фамилия"
+
+msgid "midd_name"
+msgstr "Отасининг исми"
+
+msgid "birth_year"
+msgstr "Туғилган йили"
+
+msgid "time"
+msgstr "Вақт"
+
+msgid "Информация о размерах выданных пенсий, пособий"
+msgstr "Берилган пенсия ва нафақалар миқдори тўғрисида маълумот"
+
+msgid "request_id"
+msgstr "Натижа олиш учун идентификатор рақам"
+
+msgid "Jismoniy shaxslarga ko'rsatiladi"
+msgstr "Жисмоний шахсларга кўрсатилади"
+
+msgid "Avtomatik"
+msgstr "Автоматик"
+
+msgid "ERI talab qilinadi"
+msgstr "ЭРИ талаб қилинади"
+
+msgid "Pasport seriya raqami"
+msgstr "Паспорт серия рақами"
+
+msgid "Familyasi"
+msgstr "Фамиляси"
+
+msgid "Ismi"
+msgstr "Исми"
+
+msgid "Sharifi"
+msgstr "Шарифи"
+
+msgid "Tug'ilgan joyi"
+msgstr "Туғилган жойи"
+
+msgid "Tug'ilgan davlati"
+msgstr "Туғилган давлати"
+
+msgid "Millati"
+msgstr "Миллати"
+
+msgid "Jinsi"
+msgstr "Жинси"
+
+msgid "Kim tomonidan berilgan"
+msgstr "Ким томонидан берилган"
+
+msgid "Berilgan vaqti"
+msgstr "Берилган вақти"
+
+msgid "Amal qilish muddati"
+msgstr "Амал қилиш муддати"
+
+msgid "Shaxar"
+msgstr "Шахар"
+
+msgid "Mamlakat"
+msgstr "Мамлакат"
+
+msgid "Viloyat"
+msgstr "Вилоят"
+
+msgid "Kadastra"
+msgstr "Кадастра"
+
+msgid "Manzil"
+msgstr "Манзил"
+
+msgid "Ro'yxatdan o'tgan vaqti"
+msgstr "Рўйхатдан ўтган вақти"
+
+msgid "Vaqtinchalik yashash manzili"
+msgstr "Вақтинчалик яшаш манзили"
+
+msgid "tin_url"
+msgstr "ИНН Илова"
+
+msgid "tin"
+msgstr "ИНН"
+
+msgid "fio"
+msgstr "Ф.И.О"
+
+msgid "surnamelatin"
+msgstr "Фамиля"
+
+msgid "namelatin"
+msgstr "Исми"
+
+msgid "patronymlatin"
+msgstr "Шарифи"
+
+msgid "pinp"
+msgstr "Жисмоний шахснинг идентификацион рақами"
+
+msgid "document"
+msgstr "Документ"
+
+msgid "summa"
+msgstr "Қиймати"
+
+msgid "address"
+msgstr "Манзили"
+
+msgid "datepens"
+msgstr "Пенсия куни"
+
+msgid "datepay"
+msgstr "Тўлов куни"
+
+msgid "experience"
+msgstr "Тажрибаси"
+
+msgid "salarysumma"
+msgstr "Жами олган нафақаси"
+
+msgid "penstype"
+msgstr "Нафақа тури"
+
+msgid "Result"
+msgstr "Натижа"
+
+msgid "out_text"
+msgstr "Хулоса матни"
+
+msgid "Faoliyat tarixi"
+msgstr "Фаолият тарихи"
+
+msgid "pinnp"
+msgstr "Жисмоний шахснинг идентификацион рақами"
+
+msgid "date_begin"
+msgstr "Бошланган сана"
+
+msgid "date_end"
+msgstr "Тугалланган сана"
+
+msgid "pens_type"
+msgstr "Нафақа тури"
+
+msgid "msg"
+msgstr "Хулоса матни"
+
+msgid "pinpp"
+msgstr "Жисмоний шахснинг идентификацион рақами"
+
+msgid "apptype"
+msgstr "Қурилма тури"
+
+msgid "Natija"
+msgstr "Натижа"
+
+msgid "surname_latin"
+msgstr "Фамиля"
+
+msgid "name_latin"
+msgstr "Исми"
+
+msgid "passport"
+msgstr "Паспорт"
+
+msgid "result_message"
+msgstr "Хулоса матни"
+
+msgid "result_code"
+msgstr "Хулоса коди"
+
+msgid "patronym_latin"
+msgstr "Шарифи"
+
+msgid "date_start"
+msgstr "Бошланган сана"
+
+msgid "contract_date"
+msgstr "Шартнома санаси"
+
+msgid "company_tin"
+msgstr "Ташкилот инн си"
+
+msgid "company_name"
+msgstr "Ташкилот номи"
+
+msgid "company_address"
+msgstr "Ташкилот манзили"
+
+msgid "position_name"
+msgstr "Мансаби"
+
+msgid "order_date"
+msgstr "Ариза куни"
+
+msgid "contract_number"
+msgstr "Шартнома рақами"
+
+msgid "PROFILE"
+msgstr "Маълумоти"
+
+# work history
+
+msgid "EXPERIENCES"
+msgstr "Тажрибаси"
+
+msgid "person_surname"
+msgstr "Фамиляси"
+
+msgid "person_name"
+msgstr "Исми"
+
+msgid "person_patronymic"
+msgstr "Шарифи"
+
+msgid "structure_name"
+msgstr "Ташкилот номи"
+
+msgid "company_inn"
+msgstr "Ташкилот инн си"
+
+msgid "workplace_address"
+msgstr "Ташкилот манзили"
+
+msgid "transaction_id"
+msgstr "Ўтказма идентификациони"
+
+msgid "soato_code"
+msgstr "Коди"
+
+msgid "kodp"
+msgstr "Код"
+# end work history
+
+# ko'chmas mulk response data
+
+msgid "code"
+msgstr "Код"
+
+msgid "cadastr_list"
+msgstr "Кадастр рўйхати"
+
+msgid "pinfi"
+msgstr "Жисмоний шахснинг идентификацион рақами"
+
+msgid "pinfl"
+msgstr "Жисмоний шахснинг идентификацион рақами"
+
+msgid "cadastr_count"
+msgstr "Кадастр сони"
+
+msgid "response_id"
+msgstr "Натижа рақами"
+
+msgid "message"
+msgstr "Хулоса матни"
+
+# end cadastr data
+
+msgid "So'rovingizni tekshirish uchun maxfiy raqam"
+msgstr "Сўровингизни текшириш учун махфий рақам"
+
+msgid "Holati"
+msgstr "Ҳолати"
+
+msgid "So'rov natijasi Searched"
+msgstr "Сўров натижаси"
+
+msgid "So'rovning holati"
+msgstr "Сўровнинг ҳолати"
+
+msgid "Yarim avtomat"
+msgstr "Ярим автомат"
+
+msgid "Получение данных о выпускниках школ"
+msgstr "Мактаб битирувчилари ҳақида маълумот олиш"
+
+msgid "Данные свидетельства о государственной регистрации субъекта предпринимательства"
+msgstr "Тадбиркорлик субъектини давлат рўйхатидан ўтказилганлиги тўғрисидаги гувоҳнома маълумотлари"
+
+msgid "pas_ser"
+msgstr "Паспорт серияси"
+
+msgid "Финансовые отчетности (форма-1)"
+msgstr "Молиявий ҳисобот (шакл-1)"
+
+msgid "quarter"
+msgstr "Чорак"
+
+msgid "request_date"
+msgstr "Сўров санаси"
+
+msgid "Финансовые отчетности (форма-2)"
+msgstr "Молиявий ҳисобот (шакл-2)"
+
+msgid "Информация о зар. плате физ. лиц за 12 месяцев"
+msgstr "Жисмоний шахсларнинг 12 ойлик иш ҳақи ҳақида маълумот"
+
+msgid "Информация о самозанятых лицах"
+msgstr "Якка тартибдаги тадбиркорлар тўғрисидаги маълумотлар"
+
+msgid "Данные о наличии лицензий"
+msgstr "Лицензия мавжудлиги тўғрисидаги маълумотлар"
+
+msgid "Получение информации об учащихся колледжей и лицеев"
+msgstr "Коллеж ва лицей ўқувчилари ҳақида маълумот олиш"
+
+msgid "doc_serial"
+msgstr "Ҳужжат серияси"
+
+msgid "doc_numr"
+msgstr "Ҳужжат рақами"
+
+msgid "Получение информации о наличии гражданина в женской тетради"
+msgstr "Aёллар дафтарида фуқаронинг мавжудлиги ҳақида маълумот олиш"
+
+msgid "passport_sn"
+msgstr "Паспорт серия рақами"
+
+msgid "Получение информации о наличии гражданина в молодёжной тетради"
+msgstr "Ёшлар дафтарида фуқаронинг мавжудлиги ҳақида маълумот олиш"
+
+msgid "passport_seria"
+msgstr "Паспорт серияси"
+
+msgid "pin"
+msgstr "Жисмоний шахснинг шахсий идентификация рақами"
+
+msgid "Единый реестр социальной защиты"
+msgstr "Ягона ижтимоий ҳимоя реестри"
+
+msgid "Mavjud bo'lgan"
+msgstr "Мавжуд бўлган"

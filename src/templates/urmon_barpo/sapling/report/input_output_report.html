@@ -1,0 +1,349 @@
+{% extends "layouts/base.html" %}
+{% load static %}
+{% load i18n %}
+{% block title %} {% trans 'yillik reja' %} {% endblock %}
+
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}
+    <style>
+        .hidden {
+            display: none;
+            transition: all .5s ease-in-out;
+        }
+        body {
+            overflow: hidden;
+        }
+        .styled-table th,
+        .styled-table td {
+            padding: 12px 15px;
+        }
+
+        .styled-table tbody tr {
+            border-bottom: 1px solid #eee;
+        }
+
+        .fix__table_header {
+            position: sticky;
+            background-color: #009879;
+            color: #ffffff;
+            z-index: 1;
+            top: -1px;
+            outline: 1px solid #ffffff;
+        }
+
+        .second_lines {
+            position: sticky;
+            color: #ffffff;
+            z-index: 1;
+            top: 3.4%;
+            height: 100%;
+            outline: 1px solid #ffffff;
+            background-color: #009879;
+        }
+        @media only screen and (max-width: 998px) {
+            .second_lines{
+                top: 0;
+            }
+        }
+    </style>
+{% endblock stylesheets %}
+
+{% block content %}
+    {% if messages %}
+            {% for message in messages %}
+                <div class="text-warning text-center alert{% if message.tags %}alert-{{ message.tags }}{% endif %}"
+                     role="alert">{{ message }}</div>
+            {% endfor %}
+        {% endif %}
+    <div class="row">
+        <div class="col-md-12 bg-light pt-4">
+            <div class="row d-flex justify-content-center align-items-baseline">
+                <div class="col-md-10 col-sm-12">
+                    <div class="row d-flex justify-content-center align-items-center">
+                        <div class="form-group">
+                            <form role="form" method="GET"
+                                  action="{% url 'trees:sapling_in_out_department' department.id %}">
+                                <div class="row d-flex align-items-center ">
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <input type="date" name="start" required class="form-control" id="id_start"
+                                                   value="{{ form.start.value }}">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <input type="date" name="end" required class="form-control" id="id_end"
+                                                   value="{{ form.end.value }}">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 d-flex align-items-end flex-row justify-content-end">
+                                        <button type="submit"
+                                                class="btn btn-info btn-fab btn-fab-mini text-light ml-1">
+                                            <i class="material-icons">search</i></button>
+                                        <a href="{% url 'trees:sprout_in_out_department' department.id %}"
+                                           class="btn btn-info btn-sm text-light ml-1">
+                                            {% trans 'reset' %}
+                                        </a>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-2  d-flex justify-content-center align-items-center">
+                    <a class="btn btn-success btn-sm text-dark" id="sapling_io_xlsx"
+                       href="{% url 'trees:sapling_io_xlsx' department.id %}">
+                        <img src="{% static 'assets/img/excel.ico' %}" style="max-width: 20px; max-height: 25px"
+                             alt="Excel">
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12 bg-light">
+            <div class="card card-plain">
+                <div class="card-header card-header-info">
+                    <h4 class="card-title mt-0 text-center py-2">
+                        {{ department.name }}{% trans "давлат ўрмон хўжалигида КЎЧАТЧИЛИК харакати тўғрисида " %}
+                        <span class="text-light">{{ end }}</span>
+                        {% trans "ҳолатига бўлган қолдиқ хисобот" %}
+                    </h4>
+                    <h4 class="text-center">{% trans "МАЪЛУМОТ" %}</h4>
+                </div>
+                <div class="card-body">
+                    <div class="table">
+                        <table class="table table-hover styled-table table-responsive-lg table-responsive-md table-responsive-sm">
+                            <thead class="bg-primary table-wrapper">
+                            <tr>
+                                <th rowspan="3" class="border text-center fix__table_header">{% trans "T/p" %}</th>
+                                <th rowspan="3"
+                                    class="border text-center fix__table_header">{% trans 'Кўчатлар тури' %}</th>
+                                <th rowspan="3" class="border text-center fix__table_header">
+                                    {{ start|date:"d-m-Y" }}{% trans "йил холатига қолдиқ (йиллик)" %}</th>
+                                <th  rowspan="3"
+                                    class="border text-center fix__table_header">{% trans "Беғараз олинди" %}</th>
+                                <th  rowspan="3"
+                                    class="border text-center fix__table_header">{% trans "Сотиб олинди" %}</th>
+                                <th  rowspan="3"
+                                    class="border text-center fix__table_header">{% trans "Янгидан униб чиқан нихоллар" %}</th>
+                                <th rowspan="3"
+                                    class="border text-center fix__table_header">{% trans "Жами кирим қилинди" %}</th>
+                                <th colspan="7" rowspan="1" class="border text-center fix__table_header">
+                                {% trans "ЧИҚИМ (йиллик)" %}</tr>
+                            <tr>
+                                <th rowspan="2"
+                                    class="border text-center second_lines">{% trans 'Ўрмон ва плантация барпо қилиш учун' %}</th>
+                                <th rowspan="2"
+                                    class="border text-center second_lines">{% trans 'Хатосига экилди' %}</th>
+                                <th rowspan="2"
+                                    class="border text-center second_lines">{% trans 'Кўчириб экилди (школка)' %}</th>
+                                <th rowspan="2"
+                                    class="border text-center second_lines">{% trans 'Сотилди' %}</th>
+                                <th rowspan="2"
+                                    class="border text-center second_lines">{% trans 'Беғараз берилди' %}</th>
+                                <th rowspan="3"
+                                    class="border text-center second_lines">{% trans 'Ҳисобдан чиқарилган нихоллар(қарор, фармойиш, буйруқ, акт)' %}</th>
+                                <th rowspan="3" class="border text-center second_lines">
+                                    {{ end|date:"d-m-Y" }} {% trans ' йилга қолдиқ' %}</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for items in data %}
+                                <tr class="table-bordered border-dark ">
+
+                                {% if items.1 == -1 %}
+                                    <td class="text-center font-weight-bold bg-info"></td>
+                                    {% for item in items %}
+                                        {% if forloop.counter == 3 %}
+                                            {# daraxt nomi #}
+                                            <td class="font-weight-bold bg-info text-left">{{ item }}</td>
+                                        {% endif %}
+                                        {% if forloop.counter == 4 %}
+                                            {#  qoldiq #}
+                                            <td class="text-center font-weight-bold bg-info">
+                                                {{ item|floatformat:'2'|default:'0.00' }}</td>
+                                        {% endif %}
+                                        {% if forloop.counter == 5 %}
+                                            {#  input donation#}
+                                            <td class="text-center font-weight-bold bg-info">{{ item|floatformat:'2'|default:'0.00' }}</td>
+                                        {% endif %}
+                                        {% if forloop.counter == 6 %}
+                                            {# input buying#}
+                                            <td class="text-center font-weight-bold bg-info">{{ item|floatformat:'2'|default:'0.00' }}</td>
+                                        {% endif %}
+                                        {% if forloop.counter == 7 %}
+                                            {# input new_sprouting#}
+                                            <td class="text-center font-weight-bold bg-info"> {{ item|floatformat:'2'|default:'0.00' }}</td>
+                                        {% endif %}
+                                        {% if forloop.counter == 8 %}
+                                            {#  input all__sum#}
+                                            <td class="text-center font-weight-bold bg-info">{{ item|floatformat:'2'|default:'0.00' }}</td>
+                                        {% endif %}
+                                        {% if forloop.counter == 9 %}
+                                            {#  out for_the_forest#}
+                                            <td class="text-center font-weight-bold bg-info">{{ item|floatformat:'2'|default:'0.00' }}</td>
+                                        {% endif %}
+                                        {% if forloop.counter == 10 %}
+                                            {# out unsuccessful#}
+                                            <td class="text-center font-weight-bold bg-info">{{ item|floatformat:'2'|default:'0.00' }}</td>
+                                        {% endif %}
+                                        {% if forloop.counter == 11 %}
+                                            {#  out place_changed#}
+                                            <td class="text-center font-weight-bold bg-info">{{ item|floatformat:'2'|default:'0.00' }}</td>
+                                        {% endif %}
+                                        {% if forloop.counter == 12 %}
+                                            {# out selling#}
+                                            <td class="text-center font-weight-bold bg-info">{{ item|floatformat:'2'|default:'0.00' }}</td>
+                                        {% endif %}
+                                        {% if forloop.counter == 13 %}
+                                            {# out donation#}
+                                            <td class="text-center font-weight-bold bg-info">{{ item|floatformat:'2'|default:'0.00' }}</td>
+                                        {% endif %}
+                                        {% if forloop.counter == 14 %}
+                                            {#  out out_of_count#}
+                                            <td class="text-center font-weight-bold bg-info">{{ item|floatformat:'2'|default:'0.00' }}</td>
+                                        {% endif %}
+                                        {% if forloop.counter == 15 %}
+                                            {# out qoldiq last#}
+                                            <td class="text-center font-weight-bold bg-info">{{ item|floatformat:'2'|default:'0.00'}}</td>
+                                        {% endif %}
+                                    {% endfor %}
+                                {% else %}
+                                    <td class="text-center font-weight-bold"></td>
+                                    {% for item in items %}
+                                        {% if forloop.counter == 3 %}
+                                            {#  daraxt nomi #}
+                                            <td class="text-center font-weight-bold">{{ item }}</td>
+                                        {% endif %}
+                                        {% if forloop.counter == 4 %}
+                                            {#  qoldiq #}
+                                            <td class="text-center font-weight-bold">{{ item|floatformat:'2'|default:'0.00' }}</td>
+                                        {% endif %}
+                                        {% if forloop.counter == 5 %}
+                                            {# input donation#}
+                                            <td class="text-center font-weight-bold">{{ item|floatformat:'2'|default:'0.00' }}</td>
+                                        {% endif %}
+                                        {% if forloop.counter == 6 %}
+                                            {# input buying#}
+                                            <td class="text-center font-weight-bold">{{ item|floatformat:'2'|default:'0.00' }}</td>
+                                        {% endif %}
+                                        {% if forloop.counter == 7 %}
+                                            {# input new_sprouting#}
+                                            <td class="text-center font-weight-bold"> {{ item|floatformat:'2'|default:'0.00' }}</td>
+                                        {% endif %}
+                                        {% if forloop.counter == 8 %}
+                                            {# input all__sum#}
+                                            <td class="text-center font-weight-bold">{{ item|floatformat:'2'|default:'0.00' }}</td>
+                                        {% endif %}
+                                        {% if forloop.counter == 9 %}
+                                            {# out for_the_forest#}
+                                            <td class="text-center font-weight-bold">{{ item|floatformat:'2'|default:'0.00' }}</td>
+                                        {% endif %}
+                                        {% if forloop.counter == 10 %}
+                                            {# out unsuccessful#}
+                                            <td class="text-center font-weight-bold">{{ item|floatformat:'2'|default:'0.00' }}</td>
+                                        {% endif %}
+                                        {% if forloop.counter == 11 %}
+                                            {# out place_changed#}
+                                            <td class="text-center font-weight-bold">{{ item|floatformat:'2'|default:'0.00' }}</td>
+                                        {% endif %}
+                                        {% if forloop.counter == 12 %}
+                                            {# out selling#}
+                                            <td class="text-center font-weight-bold">{{ item|floatformat:'2'|default:'0.00' }}</td>
+                                        {% endif %}
+                                        {% if forloop.counter == 13 %}
+                                            {# out donation#}
+                                            <td class="text-center font-weight-bold">{{ item|floatformat:'2'|default:'0.00' }}</td>
+                                        {% endif %}
+                                        {% if forloop.counter == 14 %}
+                                            {# out out_of_count#}
+                                            <td class="text-center font-weight-bold">{{ item|floatformat:'2'|default:'0.00' }}</td>
+                                        {% endif %}
+                                        {% if forloop.counter == 15 %}
+                                            {# out qoldiq last#}
+                                            <td class="text-center font-weight-bold">{{ item|floatformat:'2'|default:'0.00' }}</td>
+                                        {% endif %}
+                                    {% endfor %}
+                                {% endif %}
+                            {% endfor %}
+                            </tr>
+                            </tbody>
+                            <tfoot class="table border">
+                                <th class="text-center text-light border">1</th>
+                                <th class="text-center text-light border">{% trans 'Жами' %}</th>
+                                <th class="text-center text-light border">
+                                    {{ result.remainder_sum.0|floatformat:'2'|default:'0.00' }}</th>
+                                <th class="text-center text-light border">
+                                    {{ result.in_donation|floatformat:'2'|default:'0.00' }}</th>
+                                <th class="text-center text-light border">
+                                    {{ result.in_buying|floatformat:'2'|default:'0.00' }}</th>
+                                <th class="text-center text-light border">
+                                    {{ result.in_new_sprout|floatformat:'2'|default:'0.00' }}</th>
+                                <th class="text-center text-light border">
+                                    {{ result.input_sum|floatformat:'2'|default:'0.00' }}</th>
+                                <th class="text-center text-light border">
+                                    {{ result.out_for_the_forest|floatformat:'2'|default:'0.00' }}</th>
+                                <th class="text-center text-light border">
+                                    {{ result.out_donation|floatformat:'2'|default:'0.00' }}</th>
+                                <th class="text-center text-light border">
+                                    {{ result.out_selling|floatformat:'2'|default:'0.00' }}</th>
+                                <th class="text-center text-light border">
+                                    {{ result.out_unsuccessful|floatformat:'2'|default:'0.00' }}</th>
+                                <th class="text-center text-light border">
+                                    {{ result.out_place_changed|floatformat:'2'|default:'0.00' }}</th>
+                                <th class="text-center text-light border">
+                                    {{ result.out_out_of_count|floatformat:'2'|default:'0.00' }}</th>
+                                <th class="text-center text-light border">
+                                    {{ result.output_sum|floatformat:'2'|default:'0.00' }}</th>
+                            </tfoot>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}
+    <script>
+        console.log("data", data);
+        let date = new Date('December 25, 1995 23:15:30');
+        let month = date.getMonth();
+        console.log("month", month);
+
+        const child = document.querySelectorAll('.child');
+        const showHideRegionChild = (event) => {
+            console.log(event.textContent)
+            const text = event.textContent.toLowerCase();
+            if (text == "hide") {
+                event.textContent = "show"
+            } else {
+                event.textContent = "hide"
+            }
+            child.forEach(elem => console.log(elem.classList.toggle("hidden")))
+        }
+
+    </script>
+
+    <script>
+        let a_href = document.querySelector('#sapling_io_xlsx');
+        const from_date = document.querySelector('#id_start');
+        const to_date = document.querySelector('#id_end');
+
+        let current_date_start_value = from_date.value
+        let current_date_to_value = to_date.value
+        let path = a_href.getAttribute('href')
+        a_href.setAttribute('href', `${path}?start=${current_date_start_value}&end=${current_date_to_value}`)
+        from_date.addEventListener("change", (e) => {
+            current_date_start_value = e.target.value;
+            a_href.setAttribute('href', `${path}?start=${current_date_start_value}&end=${current_date_to_value}`)
+        });
+        to_date.addEventListener("change", (e) => {
+            current_date_to_value = e.target.value;
+            a_href.setAttribute('href', `${path}?start=${current_date_start_value}&end=${current_date_to_value}`)
+        });
+    </script>
+
+{% endblock javascripts %}
+

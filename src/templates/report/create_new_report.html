@@ -1,0 +1,276 @@
+{% extends "layouts/base.html" %}
+{% load i18n %}
+
+{% block title %} {% trans 'Report list title' %}{% endblock %}
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}
+    <style>
+        option {
+          width: 100px;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+        }
+        [v-cloak]{
+            display: none;
+        }
+    </style>
+{% endblock stylesheets %}
+{% block content %}
+    {% if perms.report.view_report %}
+        <div class="row d-flex align-items-center justify-content-center" id="report-create" v-cloak>
+            <div class="col-md-10">
+                <div class="card bg-white">
+                    <div class="card-header card-header-info py-4 d-flex justify-content-between align-items-center">
+                        <div class="d-flex justify-content-center w-100">
+                            <h4 class="card-title text-light text-center">Generate new report</h4>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="row px-5 d-flex justify-content-center">
+                            <div class="col-md-6 py-3">
+                                <div class="form-group">
+                                    <label for="new-report">{% trans "New report name" %}</label>
+                                    <input type="text" class="form-control" id="new-report" v-model="newReport">
+                                </div>
+                            </div>
+                            <div class="col-md-3 pt-1">
+                                <div class="from-group">
+                                    <label for="report-type">{% trans "Hisobot turi" %}</label>
+                                    <select name="" id="report-type" class="custom-select" v-model="reportKind">
+                                        <option value="1">{% trans "Yig'indi" %}</option>
+                                        <option value="2">{% trans "Alohida" %}</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-3 pt-1">
+                                <div class="from-group">
+                                    <label for="report-type">{% trans "Faoliyat turi" %}</label>
+                                    <select name="" id="report-type" class="custom-select" v-model="reportType">
+                                        <option value="1">{% trans 'Moliya' %}</option>
+                                        <option value="2">{% trans "O'rmon barpo" %}</option>
+                                        <option value="3">{% trans 'Chorvachilik' %}</option>
+                                        <option value="4">{% trans "Qishloq-xo'jaligi" %}</option>
+                                        <option value="5">{% trans "O'rmon maxsulotlari" %}</option>
+                                        <option value="6" selected>{% trans "Tanlanmagan" %}</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="row d-flex justify-content-between"
+                                     v-for="(item, i) in count">
+                                    <div class="col-md-5 py-4">
+                                        <div class="form-group">
+                                            <label :for="result[i].reportGroupOne * i"
+                                                   class="text-dark">
+                                                {% trans 'Select first gruop name' %}
+                                            </label>
+                                            <select class="custom-select mt-1"
+                                                :id="result[i].reportGroupOne * i"
+                                                v-model="result[i].reportGroupOne">
+                                                <option v-for="item in reportGroups" :key="item.id" :value="item.id">
+                                                    [[ item.name ]]
+                                                </option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-5 py-4">
+                                        <div class="form-group">
+                                            <label :for="result[i].reportGroupTwo * i"
+                                                   class="text-dark">
+                                                {% trans 'Select second gruop name' %}
+                                            </label>
+                                            <select class="custom-select mt-1"
+                                                    :id="result[i].reportGroupTwo * i"
+                                                    v-model="result[i].reportGroupTwo">
+                                                    <option v-for="item in reportGroups" :key="item.id" :value="item.id">
+                                                        [[ item.name ]]
+                                                    </option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2 py-4">
+                                        <button class="btn btn-success btn-sm text-dark btn-fab btn-fab-mini btn-round"
+                                                @click="incrementFormRow">
+                                            <i class="material-icons text-light">add</i>
+                                        </button>
+                                        <button class="btn btn-danger btn-sm text-dark btn-fab btn-fab-mini btn-round"
+                                                data-toggle="modal" data-target="#staticBackdrop"
+                                                type="button">
+                                            <i class="material-icons text-light">create</i>
+                                        </button>
+                                        <button v-if="count > 1" class="btn btn-danger btn-sm text-dark btn-fab btn-fab-mini btn-round" @click="decrementFormRow(i)">
+                                            <i class="material-icons text-light">close</i>
+                                        </button>
+                                    </div>
+                                    <div class="col-md-5 py-4">
+                                        <div class="form-group">
+                                            <label for="new-keys" class="text-dark">{% trans 'Report key name' %}</label>
+                                            <input
+                                                type="text"
+                                                class="form-control"
+                                                id="new-keys"
+                                                v-model="result[i].reportKey">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label for="second-group-name" class="text-dark">{% trans 'Category' %}</label>
+                                            <select class="custom-select mt-1"
+                                                    id="second-group-name"
+                                                    v-model="result[i].valueType">
+                                                    <option value="1">{% trans "Number" %}</option>
+                                                    <option value="2">{% trans "String" %}</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3 py-4">
+                                        <div class="form-group">
+                                            <label for="new-keys" class="text-dark">{% trans 'tartib raqamini kiriting' %}</label>
+                                            <input
+                                                type="number"
+                                                class="form-control"
+                                                id="new-keys"
+                                                v-model="result[i].sortValue">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-1 py-4"></div>
+                                </div>
+                            </div>
+                            <div class="col-md-12 d-flex justify-content-between">
+                                <button class="btn btn-danger btn-sm"
+                                        href="{% url 'controller:home' %}">{% trans 'back' %}
+                                </button>
+                                <button class="btn btn-success btn-sm"
+                                        @click="createNewReport">
+                                    {% trans 'create' %}
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <div class="modal fade"
+             id="staticBackdrop"
+             data-backdrop="static"
+             data-keyboard="true"
+             tabindex="-1"
+             aria-labelledby="staticBackdropLabel"
+             aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header d-flex flex-column">
+                        <p class="modal-title">{% trans "Siz qo'shgan ma'lumotingiz avtomatik tarzda ro'yxatga qo'shiladi" %}</p>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="create-new-key">{% trans 'Create new report group' %}</label>
+                            <input type="text" class="form-control" id="create-new-key" v-model="newGroupValue">
+                        </div>
+                    </div>
+                    <div class="modal-footer d-flex justify-content-between">
+                        <button type="button"
+                                class="btn btn-danger btn-sm"
+                                data-dismiss="modal">{% trans 'Close' %}</button>
+                        <button type="button"
+                                class="btn btn-success btn-sm"
+                                data-dismiss="modal"
+                                @click="createReportGroup">
+                            {% trans 'create' %}
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+
+    {% else %}
+        <h1>{% trans 'Permission Denied' %}</h1>
+    {% endif %}
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}
+    <script>
+    let reportGroups = {% if groups %} {{ groups|safe }} {% else %} null {% endif %};
+    const token = getCsrfToken(document.querySelectorAll('input'));
+    if(reportGroups !== null){
+        reportGroups = convertToObj(reportGroups)
+    }
+    const app = new Vue({
+      delimiters: ['[[', ']]'],
+      el: '#report-create',
+      data: {
+          count: 1,
+          newReport: null,
+          reportType: null,
+          reportKind: 1,
+          result: [{reportGroupOne: null, reportGroupTwo:null, reportKey: null, valueType:null, sortValue: null}],
+          reportGroups: reportGroups,
+          newGroupValue: null
+      },
+      methods: {
+          incrementFormRow(){
+              this.count++;
+              this.result.push({reportGroupOne: null, reportGroupTwo:null, reportKey: null, valueType:null, sortValue: null})
+          },
+          decrementFormRow(num){
+              this.result.splice(num, 1)
+              if(this.count > 1) this.count--
+          },
+          truncateText(text, length, clamp){
+                clamp = clamp || '...';
+                const node = document.createElement('div');
+                node.innerHTML = text;
+                let content = node.textContent;
+                return content.length > length ? content.slice(0, length) + clamp : content;
+          },
+          async createNewReport() {
+            let form = new FormData();
+            form.append("csrfmiddlewaretoken", token);
+            form.append("newReport", this.newReport);
+            form.append("reportType", this.reportType);
+            form.append("reportKind", this.reportKind);
+            form.append("items", JSON.stringify(this.result))
+            const url = location.origin + "/report/create/new/report";
+            try {
+                const response = await fetch(url, {method: 'POST', body: form})
+                if (response.status === 200) {
+                   let msg = "{% trans "Your work has been saved" %}"
+                    successMessage(msg)
+                }
+            } catch (error) {
+                alert('Error')
+            }
+          },
+          async createReportGroup(){
+              let form = new FormData();
+              form.append("csrfmiddlewaretoken", token);
+              form.append('item', this.newGroupValue)
+              const url = location.origin + "/report/create/group";
+
+              fetch(url, {method: 'POST', body: form})
+                  .then((response) =>  response.json())
+                  .then(data => {
+                      let msg = "{% trans "Your work has been saved" %}"
+                      successMessage(msg)
+                      console.log("data", data)
+                      this.reportGroups.push(data)
+                      this.newGroupValue = null
+                  }).catch((error) => {
+                    console.log(error)
+                  errorMessage('Что то пошло не так....')
+              })
+          },
+          changeInputState(itemNumber){
+              if(this.result[itemNumber].reportValue !== "") {
+                  this.result[itemNumber].state = true
+                  this.result[itemNumber].reportKeyId = null
+              } else {
+                  this.result[itemNumber].state = false
+              }
+          }
+      },
+    });
+    </script>
+{% endblock javascripts %}

@@ -1,0 +1,97 @@
+{% extends "layouts/full_base.html" %}
+{% load i18n %}
+{% block title %} {% trans "Register page" %} {% endblock %}
+
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+    {% if perms.accounts.add_user %}
+        <div class="row">
+            <div class="col-md-4"></div>
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-header card-header-info">
+                        <h4 class="card-title">
+                            Create Account
+                        </h4>
+                    </div>
+                    <div class="card-body">
+
+                        <h6 class="card-category">
+                            {% if msg %}
+                                <span class="text-danger">{{ msg }}</span>
+                            {% else %}
+                            {% endif %}
+                        </h6>
+                        <br/>
+                        {% if success %}
+                            <p class="">
+                                Please <a href={% url 'accounts:login' %} class="text-black text-small">authenticate</a>
+                                using the new account.
+                            </p>
+                        {% else %}
+                            <form role="form" method="post" action="">
+                                {% csrf_token %}
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label class="bmd-label-floating">{% trans "Username" %}</label>
+                                            {{ form.username }}
+                                        </div>
+                                    </div>
+                                </div>
+                                <span class="text-danger">{{ form.username.errors }}</span>
+                                <br/>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label class="bmd-label-floating">{% trans "Email" %}</label>
+                                            {{ form.email }}
+                                        </div>
+                                    </div>
+                                </div>
+                                <span class="text-danger">{{ form.email.errors }}</span>
+                                <br/>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label class="bmd-label-floating">{% trans "Password" %}</label>
+                                            {{ form.password1 }}
+                                        </div>
+                                    </div>
+                                </div>
+                                <span class="text-danger">{{ form.password1.errors }}</span>
+                                <br/>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label class="bmd-label-floating">{% trans "Password Check" %}</label>
+                                            {{ form.password2 }}
+                                        </div>
+                                    </div>
+                                </div>
+                                <span class="text-danger">{{ form.password2.errors }}</span>
+                                <br/>
+                                <button type="submit" name="register"
+                                        class="btn btn-info pull-left">{% trans "Register" %}</button>
+                                &nbsp; &nbsp;
+                                <span class="pull-right">
+                {% trans "Have an account?" %}<a href="{% url 'accounts:login' %}"
+                                                 class="text-info">{% trans "Login" %}</a>
+              </span>
+                                <div class="clearfix"></div>
+                            </form>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% else %}
+        <h2>{% trans "permision_denied" %}</h2>
+    {% endif %}
+
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}{% endblock javascripts %}

@@ -1,0 +1,102 @@
+{% extends "layouts/base.html" %}
+{% load i18n %}
+{% block title %} Dashboard {% endblock %}
+
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}
+    <style>
+        .card-body {
+            display: flex;
+            flex-direction: column;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: flex-end;
+        }
+
+        .card-body .card-title {
+            text-overflow: ellipsis;
+            overflow: hidden;
+            white-space: nowrap;
+            width: 100%;
+            max-width: 100%;
+            -webkit-line-clamp: 3;
+        }
+    </style>
+{% endblock stylesheets %}
+
+{% block content %}
+    <div class="container-fluid ">
+        <h3 class="text-center">{% trans 'DASHBOARD' %}.</h3>
+        <div class="row">
+            <div class="col-md-4 col-lg-3 col-sm-6">
+                {% if perms.trees.view_treeplant %}
+                    <div class="card">
+                        <div class="card-body text-right">
+                            <h4 class="card-title text-center py-3 font-weight-bold">{% trans "O'rmon hisoboti" %}</h4>
+                            <a href="{% url 'trees:dashboard' %}" class="btn btn-info btn-sm">{% trans "Кириш" %}</a>
+                        </div>
+                    </div>
+                {% endif %}
+            </div>
+            <div class="col-md-4 col-lg-3 col-sm-6">
+                {% if perms.finance.view_finance %}
+                    <div class="card">
+                        <div class="card-body text-right">
+                            <h4 class="card-title text-center py-3 font-weight-bold">{% trans "Moliya hisoboti" %}</h4>
+                            <a href="{% url 'finance:finance_dashboard' %}"
+                               class="btn btn-info btn-sm">{% trans "Кириш" %}</a>
+                        </div>
+                    </div>
+                {% endif %}
+            </div>
+            <div class="col-md-4 col-lg-3 col-sm-6">
+                {% if perms.agriculture.view_agricultureactual %}
+                    <div class="card">
+                        <div class="card-body text-right">
+                            <h4 class="card-title text-center py-3 font-weight-bold">{% trans "Qishloq xo'jaligi xisobot" %}</h4>
+                            <a href="{% url 'agriculture:agriculture_report_dashboard' %}"
+                               class="btn btn-info btn-sm">{% trans "Кириш" %}</a>
+                        </div>
+                    </div>
+                {% endif %}
+            </div>
+            <div class="col-md-4 col-lg-3 col-sm-6">
+                {% if perms.chorvachilik.view_chorvachilikactual %}
+                    <div class="card">
+                        <div class="card-body text-right">
+                            <h4 class="card-title text-center py-3 font-weight-bold">{% trans "Chorvachilik xisoboti" %}</h4>
+                            <a href="{% url 'chorvachilik:chorvachilik_report_dashboard' %}"
+                               class="btn btn-info btn-sm">{% trans "Кириш" %}</a>
+                        </div>
+                    </div>
+                {% endif %}
+            </div>
+            <div class="col-md-4 col-lg-3 col-sm-6">
+                {% if perms.finance.view_productionserviceactual %}
+                    <div class="card">
+                        <div class="card-body text-right">
+                            <h4 title="{% trans 'Mahsulotlar va xizmat' %}"
+                                class="card-title text-center py-3 font-weight-bold">{% trans 'Mahsulotlar va xizmat' %}</h4>
+                            <a href="{% url 'finance:production_dashboard' %}"
+                               class="btn btn-info btn-sm">{% trans "Кириш" %}</a>
+                        </div>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}
+
+    <script>
+        $(document).ready(function () {
+            // Javascript method's body can be found in assets/js/demos.js
+            md.initDashboardPageCharts();
+        });
+
+    </script>
+
+{% endblock javascripts %}

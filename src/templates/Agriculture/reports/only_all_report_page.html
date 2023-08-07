@@ -1,0 +1,391 @@
+{% extends "layouts/base.html" %}
+{% load static %}
+{% load i18n %}
+{% block title %} {% trans 'Nihol yil hisoboti' %} {% endblock %}
+
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}
+    <style>
+        body {
+            overflow-y: hidden;
+        }
+
+        .hidden {
+            display: none;
+            transition: all .5s ease-in-out;
+        }
+
+        .fix__table_header {
+            position: sticky;
+            background-color: #009879;
+            color: #ffffff;
+            z-index: 1;
+            top: -1px;
+            outline: 1px solid #ffffff;
+        }
+
+        .fix__table_second_line {
+            position: sticky;
+            background-color: #009879;
+            color: #ffffff;
+            z-index: 1;
+            top: 3.3%;
+            outline: 1px solid #ffffff;
+        }
+
+        @media only screen and (max-width: 998px) {
+            .fix__table_second_line {
+                top: 0;
+            }
+        }
+
+        @media only screen and (max-width: 1398px) {
+            .fix__table_second_line {
+                top: 3.8%;
+            }
+        }
+    </style>
+{% endblock stylesheets %}
+
+{% block content %}
+    {% if perms.agriculture.view_agricultureactual %}
+        {% if messages %}
+            {% for message in messages %}
+                <div class="text-warning text-center alert{% if message.tags %}alert-{{ message.tags }}{% endif %}"
+                     role="alert">{{ message }}</div>
+            {% endfor %}
+        {% endif %}
+        <div class="row">
+            <div class="col-md-12 bg-light pt-2">
+                    <div class="row d-flex justify-content-between w-100">
+                        <div class="col-md-1 d-flex align-items-center">
+                            <a href="{% url "agriculture:agriculture_report_dashboard" %}"
+                            style="box-shadow: none; color: black" type="button"
+                            class="btn bg-light shadow-normal text-black">
+                            <i class="text-black material-icons">arrow_back</i>
+                            </a>
+                        </div>
+                        <div class="col-md-3">
+                            <label for="id_start" class="text-dark">{% trans "start" %}</label>
+                            <div class="form-group w-100">
+                                <input type="date" name="start" required class="form-control" id="id_start"
+                                       value="{{ form.start.value }}">
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <label for="id_end" class="text-dark">{% trans "end" %}</label>
+                            <div class="form-group w-100">
+                                <input type="date" name="end" required class="form-control" id="id_end"
+                                       value="{{ form.end.value }}">
+                            </div>
+                        </div>
+                        <div class="col-md-5 d-flex align-items-end flex-row">
+                            <button type="submit" onclick="filterBtn(this)"
+                                    class="btn btn-info btn-fab btn-fab-mini text-light">
+                                <i class="material-icons">search</i></button>
+                            <a href="{% url 'agriculture:only_all' %}?type=all"
+                               class="btn btn-info btn-sm text-light ml-1">
+                                {% trans 'reset' %}
+                            </a>
+                            <button class="btn btn-info btn-sm text-light ml-1"
+                                    type="button"
+                                    id="1"
+                                    onclick="showHideRegionChild(this)">{% trans "Hududlar kesimida" %}
+                            </button>
+                            <a class="btn btn-success btn-sm text-light ml-1"
+                               type="button"
+                               href="{% url 'agriculture:agriculture_crops' %}" id="agriculture_crops">
+                                <img src="{% static 'assets/img/excel.ico' %}"
+                                     style="max-width: 20px; max-height: 15px"
+                                     alt="Excel">
+                            </a>
+                        </div>
+                    </div>
+            </div>
+            <div class="col-md-12 bg-light">
+                <div class="card card-plain">
+                    <div class="card-header card-header-info">
+                        <h4 class="card-title mt-0 text-center text-light">
+                            {% trans "Ўрмон хўжалиги давлат қўмитаси тизимидаги ўрмон хўжаликларида" %}
+                            <span class="text-light">{{ start|date:"Y" }}</span>
+                            {% trans "йилда экиладиган қишлоқ хўжалиги экинларини экиш ва махсулотларини етиштириш тўғрисида тезкор маълумот" %}
+                        </h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="table table-wrapper" id="wrap">
+                            <table class="table table-hover table-responsive-lg table-responsive-md table-responsive-sm">
+                                <thead class="table-bordered border-dark text-light"
+                                       style="opacity: 1; background-color: #009879;">
+                                <tr>
+                                    <th class="text-center fix__table_header" rowspan="7">{% trans "T/p" %}</th>
+                                    <th class="text-center fix__table_header" rowspan="7"
+                                    >{% trans 'Хўжалик номи' %}</th>
+                                    <th class="text-center fix__table_header" rowspan="3"
+                                        colspan="3">{% trans 'Topshiriq' %}</th>
+                                    <th class="text-center fix__table_header" rowspan="3"
+                                            {% if show_profit %} colspan="5" {% else %} colspan="3"{% endif %}
+                                    >{% trans 'Amalda' %}</th>
+                                    <th class="text-center fix__table_header" rowspan="3"
+                                        colspan="3">{% trans 'Foizi' %}</th>
+                                </tr>
+                                <tr>
+                                </tr>
+                                <tr>
+                                </tr>
+                                <tr>
+                                    <th class="text-center fix__table_second_line" rowspan="4">{% trans "га" %}</th>
+                                    <th class="text-center fix__table_second_line" rowspan="4">{% trans "ц/га" %}</th>
+                                    <th class="text-center fix__table_second_line" rowspan="4">{% trans "тн" %}</th>
+                                    <th class="text-center fix__table_second_line"
+                                        rowspan="4">{% trans "Жами майдон, га" %}</th>
+                                    {% if show_profit %}
+                                        <th class="text-center fix__table_second_line"
+                                            rowspan="4">{% trans "Шундан хосилга киргани" %}</th>
+                                    {% endif %}
+                                    <th class="text-center fix__table_second_line" rowspan="4">{% trans "ц/га" %}</th>
+                                    <th class="text-center fix__table_second_line" rowspan="4">{% trans "тн" %}</th>
+                                    {% if show_profit %}
+                                        <th class="text-center fix__table_second_line"
+                                            rowspan="4">{% trans "Даромад, млн сўм" %}</th>
+                                    {% endif %}
+                                    <th class="text-center fix__table_second_line" rowspan="4">{% trans "га" %}</th>
+                                    <th class="text-center fix__table_second_line" rowspan="4">{% trans "ц/га" %}</th>
+                                    <th class="text-center fix__table_second_line" rowspan="4">{% trans "тн" %}</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% for item in data %}
+                                    {% if item.region_name %}
+                                        <tr class="table-bordered border-dark bg-info parent"
+                                            data-region="{{ item.region_id }}">
+                                        <td class="region_index text-center"></td>
+                                        <td class="text-center">
+                                            <a href="{% url 'agriculture:agriculture_report_region' item.region_id %}?type={{ tipp }}"
+                                               class="font-weight-bold nav-link text-dark">{{ item.region_name }}</a>
+                                        </td>
+                                        <td class="text-center font-weight-bold amount_sum">{{ item.region_plan_hectare|floatformat }} </td>
+                                        <td class="text-center font-weight-bold amount_sum">{{ item.region_plan_cent|floatformat }}</td>
+                                        <td class="text-center font-weight-bold amount_sum">{{ item.region_plan_weight|floatformat }}</td>
+                                        <td class="text-center font-weight-bold amount_sum">{{ item.region_actual_hectare|floatformat }}</td>
+                                        {% if show_profit %}
+                                            <td class="text-center font-weight-bold amount_sum">{{ item.region_actual_yield_area|floatformat }}</td>
+                                        {% endif %}
+                                        <td class="text-center font-weight-bold amount_sum">{{ item.region_actual_cent|floatformat }}</td>
+                                        <td class="text-center font-weight-bold amount_sum">{{ item.region_actual_weight|floatformat }}</td>
+                                        {% if show_profit %}
+                                            <td class="text-center font-weight-bold amount_sum">{{ item.region_actual_profit|floatformat }}</td>
+                                        {% endif %}
+                                        <td class="text-center font-weight-bold amount_sum">
+                                            {{ item.region_hectare_percentage|floatformat:"0" }}
+                                            %
+                                        </td>
+                                        <td class="text-center font-weight-bold amount_sum">
+                                            {{ item.region_cent_percentage|floatformat:"0" }} %
+                                        </td>
+                                        <td class="text-center font-weight-bold amount_sum">
+                                            {{ item.region_weight_percentage|floatformat:"0" }}%
+                                        </td>
+
+                                    {% endif %}
+                                {% if item.department_name %}
+                                    <tr class="table-bordered border-dark child">
+                                        <td class="text-center">{{ item.index }}</td>
+                                        <td>
+                                            <a href="{% url 'agriculture:agriculture_report_department' item.department_id %}?type={{ tipp }}"
+                                               class="text-left font-weight-bold nav-link text-dark">{{ item.department_name }}</a>
+                                        </td>
+                                        <td class="text-center amount_sum">{{ item.department_plan_hectare|floatformat }} </td>
+                                        <td class="text-center amount_sum">{{ item.department_plan_cent|floatformat }} </td>
+                                        <td class="text-center amount_sum">{{ item.department_plan_weight|floatformat }} </td>
+                                        <td class="text-center amount_sum">{{ item.department_actual_hectare|floatformat }} </td>
+                                        {% if show_profit %}
+                                            <td class="text-center amount_sum">{{ item.department_actual_yield_area|floatformat }} </td>
+                                        {% endif %}
+                                        <td class="text-center amount_sum">{{ item.department_actual_cent|floatformat }} </td>
+                                        <td class="text-center amount_sum">{{ item.department_actual_weight|floatformat }} </td>
+                                        {% if show_profit %}
+                                            <td class="text-center amount_sum">{{ item.department_actual_profit|floatformat }} </td>
+                                        {% endif %}
+                                        <td class="text-center amount_sum">
+                                            {{ item.department_hectare_percentage|floatformat:"0" }} %
+                                        </td>
+                                        <td class="text-center amount_sum">
+                                            {{ item.department_cent_percentage|floatformat:"0" }} %
+                                        </td>
+                                        <td class="text-center amount_sum">
+                                            {{ item.department_weight_percentage|floatformat:"0" }} %
+                                        </td>
+                                    </tr>
+                                {% endif %}
+                                {% endfor %}
+                                </tbody>
+                                <tfoot class="table-bordered border-dark text-light"
+                                       style="opacity: 1; background-color: #009879;">
+                                <th class="text-light">.</th>
+                                <th class="text-center text-light amount_sum">{% trans 'Жами' %}</th>
+                                <th class="text-center text-light amount_sum">
+                                    {{ all_sum.all_hectare_plan_sum|floatformat:"0" }}</th>
+                                <th class="text-center text-light amount_sum">
+                                    {{ all_sum.all_cent_plan_sum|floatformat:"0" }}</th>
+                                <th class="text-center text-light amount_sum">
+                                    {{ all_sum.all_weight_plan_sum|floatformat:"0" }}</th>
+
+                                <th class="text-center text-light amount_sum">
+                                    {{ all_sum.all_hectare_actual_sum|floatformat:"0" }}</th>
+                                {% if show_profit %}
+                                    <th class="text-center text-light amount_sum">
+                                        {{ all_sum.all_yield_area_sum|floatformat:"0" }}</th>
+                                {% endif %}
+                                <th class="text-center text-light amount_sum">
+                                    {{ all_sum.all_cent_actual_sum|floatformat:"0" }}</th>
+                                <th class="text-center text-light amount_sum">
+                                    {{ all_sum.all_weight_actual_sum|floatformat:"0" }}</th>
+                                {% if show_profit %}
+                                    <th class="text-center text-light amount_sum">
+                                        {{ all_sum.all_profit_sum|floatformat:"0" }}</th>
+                                {% endif %}
+                                <th class="text-center text-light amount_sum">
+                                    {{ all_sum.all_hectare_percentage|floatformat:"0" }} %
+                                </th>
+                                <th class="text-center text-light amount_sum">
+                                    {{ all_sum.all_cent_percentage|floatformat:"0" }} %
+                                </th>
+                                <th class="text-center text-light amount_sum">
+                                    {{ all_sum.all_weight_percentage|floatformat:"0" }} %
+                                </th>
+                                </tfoot>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% else %}
+        <h1>{% trans 'Permission Denied' %}</h1>
+    {% endif %}
+{% endblock content %}
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}
+    <script>
+        const from_date = document.querySelector('#id_start');
+        const to_date = document.querySelector('#id_end');
+        let current_date_start_value = from_date.value
+        let current_date_to_value = to_date.value
+        let agro_product_type = "{{ tipp }}"
+        let a_href = document.querySelector('#agriculture_crops');
+        let path = a_href.getAttribute('href')
+
+        if (typeof agro_product_type !== undefined) {
+            if (agro_product_type !== "all") {
+                let type_number = parseInt(agro_product_type)
+                a_href.setAttribute('href', `${path}?type_id=${type_number}&start=${current_date_start_value}&end=${current_date_to_value}`)
+                from_date.addEventListener("change", (e) => {
+                    current_date_start_value = e.target.value;
+                    a_href.setAttribute('href', `${path}?type_id=${type_number}&start=${current_date_start_value}&end=${current_date_to_value}`)
+                });
+                to_date.addEventListener("change", (e) => {
+                    current_date_to_value = e.target.value;
+                    a_href.setAttribute('href', `${path}?type_id=${type_number}&start=${current_date_start_value}&end=${current_date_to_value}`)
+                });
+            } else {
+                a_href.setAttribute('href', `${path}?type_id=all&start=${current_date_start_value}&end=${current_date_to_value}`)
+                from_date.addEventListener("change", (e) => {
+                    current_date_start_value = e.target.value;
+                    a_href.setAttribute('href', `${path}?type_id=all&start=${current_date_start_value}&end=${current_date_to_value}`)
+                });
+                to_date.addEventListener("change", (e) => {
+                    current_date_to_value = e.target.value;
+                    a_href.setAttribute('href', `${path}?type_id=all&start=${current_date_start_value}&end=${current_date_to_value}`)
+                });
+            }
+        } else {
+            a_href.setAttribute('href', 'javascript:void(0)')
+        }
+    </script>
+    <script>
+        const child = document.querySelectorAll('.child');
+        const parrent = document.querySelectorAll('.parent');
+        const region_index = document.querySelectorAll('.region_index');
+        const showHideRegionChild = (event) => {
+            const iid = event.id;
+            if (iid === "1") {
+                event.id = '2'
+                event.textContent = "{% trans 'Tashkilotlar kesimida' %}"
+                parrent.forEach(elem => {
+                    if (elem) {
+                        elem.classList.toggle('bg-info')
+                        elem.children[1].classList.toggle('text-center')
+                    }
+                })
+                child.forEach(elem => elem.classList.toggle("hidden"))
+                region_index.forEach((item, index, region_index) => item.innerText = index + 1)
+            } else if (iid === '2') {
+                event.id = '1'
+                event.textContent = "{% trans 'Hududlar kesimida' %}"
+                parrent.forEach(elem => {
+                    if (elem) {
+                        elem.classList.toggle('bg-info')
+                        elem.children[1].classList.toggle('text-center')
+                    }
+                })
+                region_index.forEach((item, index, region_index) => item.innerText = "")
+                child.forEach(elem => elem.classList.toggle("hidden"))
+            }
+        }
+        const amount_sum = document.querySelectorAll('.amount_sum');
+        amount_sum.forEach(item => item.textContent = numberWithSpaces(item.textContent))
+        const tree_type_data = {{ tree_types|safe }};
+        const tree_types = convertToObj(tree_type_data);
+        const typesSelect = document.querySelector('#types');
+        // GET TYPE PARAMS VALUE
+        const urlParams = new URLSearchParams(window.location.search);
+        let myParam = urlParams.get('type');
+        const filterBtn = async () => {
+            const url = location.origin + "/agriculture/only/all/report" +`?start=${current_date_start_value}&end=${current_date_to_value}&type=all`;
+            try {
+                const result = await fetch(url, {method: 'GET'})
+                console.log("RESULT", result)
+        location.href = result.url
+
+            } catch (error) {
+                console.log(error)
+            }
+        }
+        // SET TREE TYPE AND SELECTED CURRENT TYPE
+        /*
+        tree_types.forEach((elem, index) => {
+            let opt = document.createElement('option')
+            opt.setAttribute("value", elem.id)
+            if (myParam === 'all' && index === 0) {
+                opt.textContent = "--------"
+            } else if (elem.id === parseInt(myParam)) {
+                opt.setAttribute("selected", "selected")
+                opt.textContent = elem.name
+            } else {
+                opt.textContent = elem.name
+            }
+
+            typesSelect.append(opt)
+        })
+
+
+
+        const filterBtn = async () => {
+            const url = location.origin + "/agriculture/agriculture/report/all/" +`?start=${current_date_start_value}&end=${current_date_to_value}&type=${myParam ? myParam : tree_types[0].id}`;
+            try {
+                const result = await fetch(url, {method: 'GET'})
+                console.log("RESULT", result)
+        location.href = result.url
+
+            } catch (error) {
+                console.log(error)
+            }
+        }
+            typesSelect.addEventListener('change', (event) => {
+                myParam = event.target.value
+
+            })*/
+
+
+    </script>
+{% endblock javascripts %}

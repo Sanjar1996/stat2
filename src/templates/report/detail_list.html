@@ -1,0 +1,183 @@
+{% extends "layouts/base.html" %}
+{% load i18n %}
+
+{% block title %} {% trans 'Report list title' %}{% endblock %}
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}
+    <style>
+        option {
+          width: 100px;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+        }
+    </style>
+{% endblock stylesheets %}
+{% block content %}
+{#    {% if perms.report.view_report %}#}
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card bg-white">
+                    <div class="card-header card-header-info py-4 d-flex justify-content-between align-items-center">
+                        <div>
+                            <h4 class="card-title text-light">{{ report.name }}</h4>
+                            <p class="card-category text-dark"></p>
+                        </div>
+                        <div>
+                            <a type="button" class="btn btn-success btn-sm"
+                               href="{% url 'report:hisobot' report_id %}">
+                                {% trans 'report' %}
+                            </a>
+                            <a type="button" class="btn btn-success btn-sm"
+                               href="{% url 'report:report_create'  %}?id={{ report_id }}">
+                                {% trans 'create' %}
+                            </a>
+
+                        </div>
+                    </div>
+
+                    <div class="card-body">
+                        <div class="table">
+                            <table class="table table-hover table-responsive-xl table-responsive-lg table-responsive-md table-responsive-sm">
+                                <thead class=" text-info">
+                                    <th class="text-light border">{% trans 'date' %}</th>
+                                    <th class="text-light border">{% trans 'department' %}</th>
+                                    <th class="text-light border">{% trans 'region' %}</th>
+                                    <th class="text-light border">{% trans 'Actions' %}</th>
+                                </thead>
+                                <tbody>
+                                {% for item in object_list %}
+                                    <tr>
+                                        <td class="text-dark border">{{ item.date|date:"Y-m-d" }} {{ item.date|time:"H:i" }}</td>
+                                        <td class="text-dark border">{{ item.department__name }}</td>
+                                        <td class="text-dark border">{{ item.region_id__name }}</td>
+                                        <td>
+                                         <a href="{% url 'report:update_report' %}?id={{ report_id }}&date={{ item.date|date:"Y-m-d H:i" }}&department={{ item.department_id }}&region={{ item.region_id }}"
+                                                  class="btn btn-info btn-fab btn-fab-mini btn-round text-light">
+                                            <i class="material-icons">edit</i>
+                                         </a>
+{#                                               <a#}
+{#                                                  data-toggle="modal"#}
+{#                                                  data-target="#removeUser"#}
+{#                                                  onclick="removeItem({{ item.id }})"#}
+{#                                                  class="btn btn-info btn-fab btn-fab-mini btn-round text-light">#}
+{#                                                  <i class="material-icons">delete</i>#}
+{#                                               </a>#}
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+{#    {% else %}#}
+{#        <h1>{% trans 'Permission Denied' %}</h1>#}
+{#    {% endif %}#}
+    {% if is_paginated %}
+        <nav aria-label="Page navigation example text-center" class="d-flex align-items-center justify-content-center">
+            <ul class="pagination">
+                {% if page_obj.has_previous %}
+                    <li class="page-item">
+                        <a class="page-link"
+                           href="?page=1&id={{ report_id }}"
+                           aria-label="Previous">
+                            <span aria-hidden="true">&laquo;</span>
+                            <span class="sr-only">begin</span>
+                        </a>
+                    </li>
+                {% endif %}
+                {% for n in page_obj.paginator.page_range %}
+                    {% if page_obj.number == n %}
+                        <li class="page-item active">
+                            <span class="page-link">{{ n }}<span class="sr-only">(current)</span></span>
+                        </li>
+                    {% elif n > page_obj.number|add:'-3' and n < page_obj.number|add:'3' %}
+                        <li class="page-item"><a class="page-link"
+                                                 href="?page={{ n }}&id={{ report_id }}">{{ n }}</a>
+                        </li>
+                    {% endif %}
+                {% endfor %}
+                {% if page_obj.has_next %}
+                    <li class="page-item">
+                        <a class="page-link"
+                           href="?page={{ page_obj.paginator.num_pages }}&id={{ report_id }}"
+                           aria-label="Next">
+                            <span aria-hidden="true">&raquo;</span>
+                            <span class="sr-only">end</span>
+                        </a>
+                    </li>
+                {% endif %}
+            </ul>
+        </nav>
+    {% endif %}
+    <div class="modal fade" id="removeUser" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">{% trans 'delete' %}</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <span>{% trans "Sizni ishonchingiz komilmi?" %}</span>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-success btn-sm"
+                            data-dismiss="modal">{% trans 'Close' %}</button>
+                    <a href="" class="btn btn-danger btn-sm" id="remove">{% trans 'confirm' %}</a>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}
+    <script>
+        const amount_sum = document.querySelectorAll('.amount_sum');
+        amount_sum.forEach(item => item.textContent =  numberWithSpaces(item.textContent));
+        function getCookie(name) {
+            let cookiValue = null;
+            if(document.cookie && document.cookie !== '') {
+                let cookies = document.cookie.split(';');
+                for (let i =0; i < cookies.length; i++){
+                    let cookie = cookies[i].trim();
+                    if(cookie.substring(0, name.length + 1) === (name + '=')) {
+                        cookiValue = decodeURIComponent(cookie.substring(name.length + 1));
+                        break;
+                    }
+                }
+            }
+            return cookiValue
+        }
+        const token = getCookie('csrftoken');
+        const removeItem = (id) => {
+            const anchor = document.querySelector('#remove')
+            anchor.href = location.href = `/report/report/value/delete/${id}`;
+        }
+      async function removeItemHandler(id){
+          const url = location.href = `/report/report/value/delete/${id}`;
+          try {
+              const response = await fetch(url, {method: 'POST',
+                headers: {'Content-Type': 'application/json', 'X-CSRFToken': token},
+                body: JSON.stringify({"itemId": id})
+              }).then((response) => {
+                  return response.json()
+              })
+              .then((data) => {
+                  successMessage(data.msg)
+                  setTimeout(() => {
+                      location.reload()
+                  }, 1500)
+              })
+          } catch (error) {
+              console.log(error)
+          }
+    }
+    </script>
+{% endblock javascripts %}

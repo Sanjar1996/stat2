@@ -1,0 +1,158 @@
+{% extends "layouts/base.html" %}
+{% load i18n %}
+{% block title %} {% trans 'Kochat shartnoma reja' %} {% endblock %}
+
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}
+    <style>
+        #land{
+            display: block;
+            position: relative;
+            margin-top: 10rem;
+        }
+        .fixed-add-btn{
+            position: fixed;
+            top:50%;
+            left: 85%;
+        }
+        #region_id{
+            font-size: 18px;
+        }
+    </style>
+{% endblock stylesheets %}
+{% block content %}
+    {% if perms.trees.add_treecontractplan %}
+        <div class="row" id="land">
+            <div class="col-md-10 offset-md-1 my-5">
+                <form @submit.prevent="createGrowing" id="form">
+                    {% csrf_token %}
+                    <div class="card">
+                        <div class="card-header card-header-info py-4 shadow">
+                            <h4 class="card-title text-light text-center">{% trans 'Kochat shartnoma reja kiritish formasi' %}</h4>
+                        </div>
+                        <div class="card-body mt-4">
+                            <div class="row d-flex align-items-end bg-light border mb-1 mx-1">
+                                <div class="col-md-4">
+                                    <div class="form-group py-2">
+                                        <label for="region_id">{% trans 'Region' %}</label>
+                                        <select name="region" id="region_id" class="custom-select" v-model="region"
+                                                @change="regionChangeHandler(region)" required>
+                                            <option v-for="(item, index) in regions" :key="item.id" :value="item.id">[[
+                                                item.name ]]
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group py-2">
+                                        <label for="region">{% trans 'Department' %}</label>
+                                        <select name="department" id="department_id" class="custom-select"
+                                                v-model="department" @change="departmentChangeHandler(department)"
+                                                required>
+                                            <option v-for="item in selectedDepartments" :key="item.id" :value="item.id">
+                                                [[ item.name ]]
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group py-2">
+                                        <label for="text" class="text-dark">{% trans 'tree_count_c' %}</label>
+                                        <input type="number" step="0.01" min="0.01" class="form-control"
+                                               v-model="tree_count">
+                                    </div>
+                                </div>
+                                <div class="col-md-12 d-flex align-items-center justify-content-between">
+                                    <a href="{% url 'trees:tree_contract_plan_list' %}"
+                                       class="btn btn-success btn-sm text-light">
+                                        {% trans 'back' %}
+                                    </a>
+                                    <div>
+                                        <button @click="isSave = true" class="btn btn-info btn-sm">{% trans 'saqlash' %}</button>
+                                        <button type="submit" @click="isSave = false" class="btn btn-info btn-sm">{% trans 'save and exit' %}</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </form>
+
+            </div>
+        </div>
+    {% else %}
+        <h2>{% trans 'Permission Denied' %}</h2>
+    {% endif %}
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}
+    <script>
+     let checkUserPermission = {% if departments is none %} 0 {% else %} 1 {% endif %};
+     if (!checkUserPermission) {
+         let msg = "{% trans "Sizda ruxsat yoq Admin bilan boglaning!" %}"
+         warningMessage(msg)
+         setTimeout(() => {
+             location.href = '/trees/tree/tree_contract/plan/list'
+         }, 1700)
+     }
+    const token = getCsrfToken(document.querySelectorAll('input'));
+    const departments = convertToJson({{ departments|safe }});
+    const regions = convertToObj({{ regions|safe }})
+    const land = new Vue({
+      delimiters: ['[[', ']]'],
+      el: '#land',
+      data: {
+          region: null,
+          department: null,
+          tree_count: null,
+          regions: regions,
+          selectedDepartments: [],
+          departmentsRoot: departments,
+          token: token,
+          isSave: false
+      },
+      methods: {
+          regionChangeHandler(id){
+            this.selectedDepartments = this.departmentsRoot.filter(elem => elem.region === id)
+          },
+          departmentChangeHandler(id){
+              this.department = id
+          },
+
+          async createGrowing(){
+              let form = new FormData();
+              form.append("csrfmiddlewaretoken", this.token);
+              form.append("date", this.date);
+              form.append("region", this.region);
+              form.append("department", this.department);
+              form.append("tree_count", this.tree_count);
+              const url = location.origin + "/trees/tree/tree_contract/plan/create/";
+              try{
+                const response = await fetch(url, {
+                    method: 'POST',
+                    body: form
+                })
+                console.log("response", response)
+                if(response.redirected){
+                    let msg = "{% trans 'Your work has been saved' %}"
+                    successMessage(msg)
+                    if(this.isSave) {
+                        this.tree_count = null
+                    }
+                    else {
+                        setTimeout(() => {
+                            location.href = response.url
+                        }, 1500)
+                    }
+                } else if(!response.redirected){
+                    warningMessage("{% trans 'Bu bolim uchun malumot kiritib bolingan!' %}")
+                }
+              } catch (error) {
+                  errorMessage('Error')
+              }
+          }
+      },
+    });
+  </script>
+{% endblock javascripts %}
